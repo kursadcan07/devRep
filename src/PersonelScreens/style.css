@@ -22,17 +22,4 @@
 }
 
 
-button {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    font-size: 16px;
-    padding: 15px 20px 15px 20px;
-    border: 0;
-    border-bottom: 1px solid #ccc;
-    width: 100%;
-    text-align: left;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
 
-}

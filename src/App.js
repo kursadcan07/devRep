@@ -1,11 +1,12 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Link} from "react-router-dom";
-import Logo from "./logok.png";
+import Logo from "./PersonelScreens/logok.png";
 import PerNavScreen from "./PersonelScreens/PerNavScreen";
 import PerPerDemScreen from "./PersonelScreens/PerPerDemScreen";
 import PerPrevPerDisScreen from "./PersonelScreens/PerPrevPerDisScreen";
-
+import TestPage from "./PersonelScreens/testPage";
+import perFillPerScreen from "./PersonelScreens/perFillScreen";
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
                     <Route path="/PersonelScreens/PerNavScreen" component={PerNavScreen}/>
                     <Route path="/PersonelScreens/PerPerDemScreen" component={PerPerDemScreen}/>
                     <Route path="/PersonelScreens/PerPrevPerDisScreen" component={PerPrevPerDisScreen}/>
+                    <Route path="/PersonelScreens/testPage" component={TestPage}/>
+                    <Route path="/PersonelScreens/perFillScreen" component={perFillPerScreen}/>
                 </Switch>
             </div>
         </Router>
@@ -32,7 +35,6 @@ const LoginScreen = () => (
         alignItems:"center",
         width:"100%"
     }}>
-
         <img src={Logo} style={{
             display: "flex",
             flexWrap:"wrap",
@@ -69,27 +71,26 @@ const LoginScreen = () => (
                 alignItems:"center",
                 flex:1,
                 justifyContent:"center",
-                marginLeft:"8%",
-                marginRight:"10%"
+                marginLeft:"5%",
+                marginRight:"10%",
+                marginBottom:"3%"
 
             }}>
                 <h1 style ={{
-                    display: "flex",
+                    display: "block",
                     fontFamily: "Roboto",
                     fontStyle: "normal",
                     fontWeight: "normal",
                     fontSize: "18px",
                     color: "#000000",
-                    flex:0.25
+                    flex:0.35
                 }}>
                     E-Posta:
                 </h1>
                 <input type="text" style={{
-                    flex:0.8
+                    flex:0.65
                 }}/>
             </div>
-
-
             <div style={{
                 display: "flex",
                 flexDirection:"row",
@@ -98,7 +99,6 @@ const LoginScreen = () => (
                 flex:1,
                 marginLeft:"8%",
                 marginRight:"10%"
-
             }}>
                 <h1 style ={{
                     display: "flex",
@@ -123,7 +123,6 @@ const LoginScreen = () => (
                 margin:"3%"
             }}>
                 <Link to="/PersonelScreens/PerNavScreen" style={{textDecoration:"none"}}>
-
                         <button style={{
                             display:"flex",
                             fontFamily: "Roboto",
@@ -132,17 +131,11 @@ const LoginScreen = () => (
                             fontSize: "18px",
                             lineHeight: "21px",
                             textAlign: "center",
-
-
                         }}>
                             GİRİŞ
                         </button>
-
                 </Link>
-
-
             </div>
-
         </div>
         <h1 style={{
             display:"flex",
@@ -155,7 +148,7 @@ const LoginScreen = () => (
         }}>
             E-Posta/Şifre uyarı alanı.
         </h1>
-
     </div>
 )
+
 export default App;

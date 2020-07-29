@@ -60,27 +60,6 @@ function PerNavScreen() {
                 </Link>
                 <br/>
             </div>
-
-            {/*
-            <div style={{
-                width:"100%",
-                display:"flex",
-                flexDirection:"row",
-                justifyContent:"space-around",
-                alignItems:"center"
-            }}>
-                <button  style={{
-                    margin: "1%" ,
-                    background:"rgba(226,195,195,0.66)",
-                    borderRadius:"2%",
-                    fontFamily:"Roboto",
-                    padding:"1%"
-                }}>
-                    <h1>
-                        ROL DEĞİŞTİR
-                    </h1>
-                </button>
-            </div>*/}
         </div>
 
 

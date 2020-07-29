@@ -4,7 +4,9 @@ class DropDownAreas extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {value: "SB"};
+        this.state={
+            value:""
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -13,6 +15,7 @@ class DropDownAreas extends React.Component {
     }
 
     render() {
+        console.log(this.state.value);
         return (
             <form style={{width: "100%", height: "100%"}}>
                     <select style={{
@@ -25,6 +28,7 @@ class DropDownAreas extends React.Component {
                         fontSize: "2vw",
                         textAlignment: "center"
                     }} value={this.state.value} onChange={this.handleChange}>
+                        <option value="default" hidden>BÖLGE SEÇİN</option>
                         <option value="SB">SERBEST BÖLGE</option>
                         <option value="AS">ASPENDOS</option>
                         <option value="VL">VİLLA</option>
@@ -33,6 +37,8 @@ class DropDownAreas extends React.Component {
 
         );
     }
+
 }
+
 
 export default DropDownAreas;
