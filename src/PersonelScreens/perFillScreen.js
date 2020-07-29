@@ -3,6 +3,7 @@ import {Container, Col, Row} from 'react-bootstrap';
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 class perFillPerScreen extends React.Component {
 
@@ -22,12 +23,12 @@ class perFillPerScreen extends React.Component {
         })
     }
 
-    handleDate(event){
+    handleDate(date){
         this.setState({
-            startDate : event.target.date
+            startDate : date
         })
-        console.log(event.target.date)
     }
+
 
     render() {
         return (
@@ -48,7 +49,15 @@ class perFillPerScreen extends React.Component {
                             </DropdownButton>
                         </Col>
                         <Col xs={12} md={8} >
-
+                            <DatePicker
+                                onChange={this.handleDate}
+                                placeholderText="I have been cleared!"
+                                selected={this.state.startDate}
+                                showTimeSelect
+                                timeIntervals={10}
+                                timeFormat="HH:mm"
+                                dateFormat="d MMMM yyyy  | h:mm"
+                            />
                         </Col>
                 </Row>
 
