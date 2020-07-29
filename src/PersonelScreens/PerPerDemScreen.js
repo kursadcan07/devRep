@@ -75,7 +75,6 @@ function underHeadPart() {
         </div>
     );
 }
-
 //İZİN TİPİ SEÇME COMPONENTİ
 function perAccCompt() {
     return (
@@ -231,7 +230,6 @@ function perAccCompt() {
         </div>
     )
 }
-
 //ÜST BAŞLIĞIN OLDUĞU KOMPONENT
 function headPart() {
     let folderNumb = "551";
@@ -342,7 +340,6 @@ function headPart() {
         </div>
     );
 }
-
 //BLOCK THREE
 function personelInfoPart() {
     let personelAdSoyad = "Zozan Kartal";
@@ -386,7 +383,6 @@ function personelInfoPart() {
         </div>
     );
 }
-
 //BLOCK FOUR
 function personelDatesAndExp() {
     return (
