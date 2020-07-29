@@ -1,26 +1,161 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Link} from "react-router-dom";
+import Logo from "./logok.png";
+import PerNavScreen from "./PersonelScreens/PerNavScreen";
+import PerPerDemScreen from "./PersonelScreens/PerPerDemScreen";
+import PerPrevPerDisScreen from "./PersonelScreens/PerPrevPerDisScreen";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div>
+                <Switch>
+                    <Route path="/" exact component={LoginScreen}/>
+                    <Route path="/PersonelScreens/PerNavScreen" component={PerNavScreen}/>
+                    <Route path="/PersonelScreens/PerPerDemScreen" component={PerPerDemScreen}/>
+                    <Route path="/PersonelScreens/PerPrevPerDisScreen" component={PerPrevPerDisScreen}/>
+                </Switch>
+            </div>
+        </Router>
+    )
 }
 
+const LoginScreen = () => (
+    <div style={{
+        display: "flex",
+        flex: 4,
+        flexDirection:"column",
+        justifyContent: "column",
+        alignItems:"center",
+        width:"100%"
+    }}>
+
+        <img src={Logo} style={{
+            display: "flex",
+            flexWrap:"wrap",
+            flexDirection:"column",
+            flex:1,
+            height:"20vh"
+            }}
+             alt="Logo"/>
+        <div style={{
+            display: "flex",
+            flexWrap:"wrap",
+            flex: 3,
+            backgroundColor: "rgba(153, 145, 145, 0.24)",
+            padding:"1.4%",
+            borderRadius:"2%",
+            flexDirection:"column"
+        }}>
+            <h1 style={{
+                display: "flex",
+                textAlign:"center",
+                fontFamily: "Roboto",
+                fontStyle: "normal" ,
+                fontWeight:"22px",
+                color: "#675B5B",
+                fontSize: "36px",
+                textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            }}>
+                İZİN BİLGİ SİSTEMİ
+            </h1>
+
+            <div style={{
+                display: "flex",
+                flexDirection:"row",
+                alignItems:"center",
+                flex:1,
+                justifyContent:"center",
+                marginLeft:"8%",
+                marginRight:"10%"
+
+            }}>
+                <h1 style ={{
+                    display: "flex",
+                    fontFamily: "Roboto",
+                    fontStyle: "normal",
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "#000000",
+                    flex:0.25
+                }}>
+                    E-Posta:
+                </h1>
+                <input type="text" style={{
+                    flex:0.8
+                }}/>
+            </div>
+
+
+            <div style={{
+                display: "flex",
+                flexDirection:"row",
+                alignItems:"center",
+                justifyContent:"center",
+                flex:1,
+                marginLeft:"8%",
+                marginRight:"10%"
+
+            }}>
+                <h1 style ={{
+                    display: "flex",
+                    fontFamily: "Roboto",
+                    fontStyle: "normal",
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "#000000",
+                    flex:0.25
+                }}>
+                   Şifre:
+                </h1>
+                <input type="text" style={{
+                    flex:"0.8"
+                }}/>
+            </div>
+            <div style={{
+                display:"flex",
+                flex:1,
+                justifyContent:"center",
+                alignItems:"center",
+                margin:"3%"
+            }}>
+                <Link to="/PersonelScreens/PerNavScreen" style={{textDecoration:"none"}}>
+
+                        <button style={{
+                            display:"flex",
+                            fontFamily: "Roboto",
+                            fontStyle: "normal",
+                            fontWeight: "normal",
+                            fontSize: "18px",
+                            lineHeight: "21px",
+                            textAlign: "center",
+
+
+                        }}>
+                            GİRİŞ
+                        </button>
+
+                </Link>
+
+
+            </div>
+
+        </div>
+        <h1 style={{
+            display:"flex",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            fontSize: "18px",
+            textAlign: "center"
+
+        }}>
+            E-Posta/Şifre uyarı alanı.
+        </h1>
+
+    </div>
+)
 export default App;
