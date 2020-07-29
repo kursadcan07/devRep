@@ -59,9 +59,7 @@ class perFillPerScreen extends React.Component {
                                 dateFormat="d MMMM yyyy  | h:mm"
                             />
                         </Col>
-                    <Col>
 
-                    </Col>
                 </Row>
 
             </Container>
