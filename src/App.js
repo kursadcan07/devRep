@@ -107,12 +107,13 @@ const LoginScreen = () => (
                     fontWeight: "normal",
                     fontSize: "18px",
                     color: "#000000",
-                    flex:0.25
+                    flex:0.35
                 }}>
                    Şifre:
                 </h1>
                 <input type="text" style={{
-                    flex:"0.8"
+                    display: "flex",
+                    flex:0.65
                 }}/>
             </div>
             <div style={{
