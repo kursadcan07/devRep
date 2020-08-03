@@ -7,7 +7,9 @@ import DatePicker from "react-datepicker";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { InputGroup, InputGroupText, Input } from "reactstrap";
+import { InputGroup, Input } from "reactstrap";
+import Form from "reactstrap/es/Form";
+
 
 const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
 const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
@@ -22,13 +24,14 @@ const locale = {
 }
 
 class perFillPerScreen extends React.Component {
-
     constructor() {
         super();
         this.state = {
             sltcPrmType: "İzin Tipinizi Seçiniz",
             perVhcUsg:"Araç Kullanım Durumu Seçiniz",
             startDate: null,
+            price:"",
+            distance:"",
             endDate:null,
             dispEntPriBox:false,
             dispEntDisBox:false
@@ -37,12 +40,27 @@ class perFillPerScreen extends React.Component {
         this.handleStartDate = this.handleStartDate.bind(this);
         this.handleEndDate = this.handleEndDate.bind(this);
         this.handleVhcSel = this.handleVhcSel.bind(this);
+        this.takePrice = this.takePrice.bind(this);
+        this.takeDistance = this.takeDistance.bind(this);
+        inputForBus = inputForBus.bind(this);
+        inputForDist= inputForDist.bind(this);
     }
 
     handleClicki(event) {
         this.setState({
             sltcPrmType: event.target.name
         })
+    }
+
+    takeDistance(event) {
+        this.setState({
+            distance: event.target.value
+        });
+    }
+    takePrice(event) {
+        this.setState({
+            price: event.target.value
+        });
     }
     handleVhcSel(event) {
         this.setState({
@@ -87,11 +105,10 @@ class perFillPerScreen extends React.Component {
 
     render() {
         return (
-            <Container
-            >
+            <Container>
                 {/* Stack the columns on mobile by making one full-width and the other half-width */}
-                <Col >
-                    <Row className="justify-content-center" >
+                <Col>
+                    <Row  className="justify-content-center" style={{marginTop:"4vw" , marginBottom:"2vw"}}>
                         <DropdownButton id="dropdown-item-button" title={this.state.sltcPrmType}>
                             <Dropdown.Item id="i1" name="Yıllık" as="button"
                                            onClick={this.handleClicki}>Yıllık</Dropdown.Item>
@@ -108,8 +125,9 @@ class perFillPerScreen extends React.Component {
                                            onClick={this.handleClicki}>Diğer</Dropdown.Item>
                         </DropdownButton>
                     </Row>
-                    <Row className="justify-content-center" >
+                    <Row className="justify-content-center"  style={{margin:"2vw"}}>
                         <DatePicker
+                            withPortal
                             locale={locale}
                             onChange={this.handleStartDate}
                             placeholderText="İzin Başlangıç Tarihi       "
@@ -123,8 +141,9 @@ class perFillPerScreen extends React.Component {
                         />
                     </Row>
 
-                    <Row className="justify-content-center" >
+                    <Row className="justify-content-center" style={{margin:"2vw"}} >
                         <DatePicker
+                            withPortal
                             locale={locale}
                             onChange={this.handleEndDate}
                             placeholderText="İzin Bitiş Tarihi       "
@@ -138,9 +157,9 @@ class perFillPerScreen extends React.Component {
                         />
                     </Row>
 
-                    <Row className="justify-content-center" >
+                    <Row className="justify-content-center"  style={{margin:"2vw"}} >
 
-                        <DropdownButton id="dropdown-item-button" title={this.state.perVhcUsg}>
+                        <DropdownButton id="dropdown-item-button" title={this.state.perVhcUsg} >
                             <Dropdown.Item id="v1" name="Araç Kullanılmayacak" as="button"
                                            onClick={this.handleVhcSel}>Araç Kullanılmayacak</Dropdown.Item>
                             <Dropdown.Divider/>
@@ -155,17 +174,23 @@ class perFillPerScreen extends React.Component {
                         {inputForBus(this.state.dispEntPriBox)}
                         {inputForDist(this.state.dispEntDisBox)}
                     </Row>
-
+                    <Row className="justify-content-center" md={3} style={{margin:"2vw"}}>
+                        <div>
+                            <textarea placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500" className="form-control" rows="4"/>
+                        </div>
+                    </Row>
                 </Col>
             </Container>
         )
     }
 }
+
+
 function inputForBus(flag) {
     if (flag){
         return(
             <div>
-                <input type="text" style={{height:"100%"}} placeholder="Ücret (₺)"/>
+                <input type="text" style={{height:"100%"}} placeholder="Ücret (₺)" value={this.state.price} onChange={this.takePrice}  />
             </div>
         )
     }
@@ -178,7 +203,7 @@ function inputForDist(flag) {
     if (flag){
         return(
             <div>
-                <input type="text" style={{height:"100%"}} placeholder="Gidiş-Geliş (km)"/>
+                <input type="text" style={{height:"100%"}} placeholder="Gidiş-Geliş (km)" value={this.state.distance} onChange={this.takeDistance} />
             </div>
         )
     }
