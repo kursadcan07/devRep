@@ -1,69 +1,47 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import {Row} from "react-bootstrap";
+import Col from "react-bootstrap/Col";
 
 function PerNavScreen() {
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "row",
-            flex: 4,
-            flexWrap: "wrap",
-            justifyContent: "flex-start",
-            height: "80vh",
-            width: "100%",
-            marginLeft: "1%",
-            marginRight: "1%"
-        }}>
-
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "100%"
-            }}>
-                <Link to="PerPerDemScreen" style={{display:"flex",flex:2,textDecoration:"none"}}>
-                    <button
-                        style={{
-                            display: "flex",
-                            background: "#CFC2C2",
-                            borderRadius: "2%",
-                            fontFamily: "Roboto",
-                            textAlign: "center",
-                            borderWidth: "1.1px",
-                            flex: 2
-
-                        }}>
-                        <h1 style={{flex: 2}}>
-                            İZİN <br/>TALEBİ <br/> OLUŞTUR
-                        </h1>
-
-                    </button>
-                </Link>
-                <Link to="PerPrevPerDisScreen" style={{display:"flex",flex:2,textDecoration:"none"}}>
-                    <button style={{
-                        alignContent: "center",
-                        display: "flex",
-                        textAlign: "center",
-                        flex: 2,
-                        background: "#CFC2C2",
-                        borderRadius: "2%",
-                        borderWidth: "1.1px",
-                        fontFamily: "Roboto"
-                    }}>
-
-                        <h1 style={{flex: 2}}>
-                            GEÇMİŞ <br/> İZİNLERİ <br/> GÖRÜNTÜLE
-                        </h1>
-
-                    </button>
-                </Link>
-                <br/>
-            </div>
+        <div >
+            <Col>
+                <Row style={{
+                    display:"flex",justifyContent:"center",alignItems:"center",marginTop:"20vw",marginBottom:"20vw"}}>
+                    <Link to="perFillScreen" style={{textDecoration:"none",display:"flex",  flex:1,
+                        height:"20vw"}}>
+                <button type="button" className="btn btn-success" style={{
+                    display:"flex",
+                    flex:1,
+                    height:"20vw",
+                    justifyContent:"center",
+                    fontSize:"5vw",
+                    marginRight:"0.2vw",
+                    borderRadius:"5%",
+                    textAlign: "center",
+                    fontWeight:"normal",
+                    paddingTop:"3vw"
+                }}>İZİN TALEBİ YARAT</button>
+                    </Link>
+                    <Link to="PerPrevPerDisScreen" style={{textDecoration:"none", display:"flex",  flex:1,
+                        height:"20vw"}} >
+                <button type="button" className="btn btn-success" style={{
+                    display:"flex",
+                    flex:1,
+                    height:"20vw",
+                    fontSize:"5vw",
+                    borderRadius:"5%",
+                    textAlign: "center",
+                    justifyContent:"center",
+                    paddingTop:"3vw"
+                }}>GEÇMİŞ İZİNLERİ GÖRÜNTÜLE</button>
+                        </Link>
+                </Row>
+            </Col>
         </div>
-
-
-    )
+    );
 }
 
 export default PerNavScreen;

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,8 +6,7 @@ import DatePicker from "react-datepicker";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { InputGroup, Input } from "reactstrap";
-import Form from "reactstrap/es/Form";
+import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 
@@ -113,10 +111,9 @@ class perFillPerScreen extends React.Component {
                     <Row className="justify-content-center" style={{marginTop:"2vw"}} >
                         <p style={{
                             borderBottom: "2px solid rgba(255,255,255,1)",
-                            fontFamily: "Roboto",
                             fontStyle: "normal",
                             textAlign: "center",
-                            fontSize:"28px",
+                            fontSize:28,
                             color: "rgb(9,7,49)",
                             textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
                         }}>İZİN TALEBİ YARATMA
@@ -194,9 +191,11 @@ class perFillPerScreen extends React.Component {
                         </div>
                     </Row>
                     <Row className="justify-content-center"  >
+                        <Link to="PerPerDemScreen">
                         <Button variant="primary" size="lg" active onClick={()=> {console.log("Merhaba")}}>
                             ONAYLAMAYA GEÇ
                         </Button>
+                        </Link>
                     </Row>
                     <Row className="justify-content-center">
                         <p style={{paddingTop:"1vw"}}>

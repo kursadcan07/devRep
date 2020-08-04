@@ -1,7 +1,6 @@
 import React from "react";
 import Logo from "./logok.png";
-import DropDownAreas from "./DropDown";
-import DateTimePicker from 'react-datetime-picker';
+import {Link} from "react-router-dom";
 
 function PerPerDemScreen() {
     return (
@@ -41,8 +40,6 @@ function PerPerDemScreen() {
         </div>
     )
 }
-
-
 //ÜSTTEN 2.BLOK KOMPONENT İZİN TÜRÜ ALINIR, BİR KOMPONENTİ DE İÇERDE YARATIR.
 function underHeadPart() {
     return (
