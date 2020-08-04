@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "./logok.png";
 import {Link} from "react-router-dom";
 
+
 function PerPerDemScreen() {
     return (
         <div>
@@ -37,6 +38,25 @@ function PerPerDemScreen() {
             }}>
                 {vhcUsageOfPers()}
             </div>
+            <div style={{
+                display: "flex",
+                flex: 1
+            }}>
+                {perExplPart()}
+            </div>
+            <div style={{
+                display: "flex",
+                flex: 1
+            }}>
+                {vhclUsgInfo()}
+            </div>
+            <div style={{
+                display: "flex",
+                flex: 1
+            }}>
+                {perAccpPart()}
+            </div>
+
         </div>
     )
 }
@@ -240,7 +260,7 @@ function headPart() {
         <div style={{
             display: "flex",
             width: "100%",
-            height: "20vw"
+            height: "10vw"
 
         }}>
             <div style={{
@@ -264,8 +284,8 @@ function headPart() {
                     }}/>
                 </div>
                 <div style={{
-                    flex: 10,
                     display: "flex",
+                    flex: 10,
                     flexDirection: "column",
                     justifyContent: "flex-start"
                 }}>
@@ -279,6 +299,7 @@ function headPart() {
                     }}>
                         <h1 style={{
                             display: "flex",
+                            fontWeight: "bold",
                             fontSize: "1.8vw",
                             flex: 4,
                             alignItems: "center",
@@ -290,21 +311,11 @@ function headPart() {
                             alignItems: "center",
                             justifyContent: "center",
                             fontSize: "2vw",
-                            flex: 1
+                            flex: 1,
+                            border: "0.35px solid black",
+                            margin:"auto"
                         }}>
-                            <div style={{
-                                display:"flex",
-                                flex: 1,
-                                border:"1px solid black",
-                                alignItems:"center",
-                                textAlignment:"center"
-                            }}>
-                                <h1 style={{
-                                    display:"flex",
-                                    flex:1,
-                                    fontSize:"1vw"
-                                }}>(SB)</h1>
-                            </div>
+                            (SB)
                         </div>
                     </div>
                     <div  style={{display: "flex",
@@ -369,7 +380,7 @@ function personelInfoPart() {
                     display: "flex",
                     flexWrap:"nowrap",
                     fontFamily: "Roboto",
-                    fontSize: "1.65vw",
+                    fontSize: "15px",
                     fontWeight: "normal",
                     paddingLeft: "4vw",
                     paddingTop:"0.8vw"
@@ -377,9 +388,8 @@ function personelInfoPart() {
                 >PERSONEL ADI SOYADI : </h1>
                 <h1 style={{
                     display: "flex",
-
                     fontFamily: "Roboto",
-                    fontSize: "1.65vw",
+                    fontSize: "15px",
                     fontWeight: "normal",
                     paddingLeft: "5vw",
                     paddingTop:"0.8vw"
@@ -391,16 +401,20 @@ function personelInfoPart() {
             <div style={{
                 display: "flex",
                 flexDirection: "row",
+                textAlignment:"center",
                 flex: 2,
                 height: "100%"
             }}>
-                <input type="date" style={{
+                <h1 style={{
                     display: "flex",
-                    width: "100%",
-                    textAlign: "center",
+                    flex:2,
+                    textAlignment: "center",
+                   padding:"1vw",
+                    fontSize:"16px",
+                    margin:"auto",
                     border: "1px solid black"
                 }}
-                />
+                >Talep Tarih : 22/22/2222</h1>
             </div>
         </div>
     );
@@ -416,16 +430,18 @@ function personelDatesAndExp() {
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                flex: 3,
+                flex: 3
 
             }}>
                 <div style={{
                     display: "flex",
-                    flex: 0.85,
+                    flex: 1,
                     border: "0.2px solid black",
-                    borderTop:"0px"
+                    borderTop:"0px",
+                    fontSize: "1.6vw",
+                    padding:"0.35vw"
                 }}>
-
+                   .
                 </div>
 
                 <div style={{
@@ -455,8 +471,7 @@ function personelDatesAndExp() {
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                flex: 3,
-                height: "10vw"
+                flex: 3
             }}>
                 <div style={{
                     display: "flex",
@@ -467,7 +482,7 @@ function personelDatesAndExp() {
                     borderTop:"0px"
                 }}>
                     <h1 style={{
-                        paddingTop:"0.2vw",
+                        paddingTop:"0.5vw",
                         fontSize: "1.7vw"
                     }}>İZİN BAŞLANGIÇ</h1>
                 </div>
@@ -477,31 +492,25 @@ function personelDatesAndExp() {
                 justifyContent:"center",
                 flex:1,
                 alignItems:"center",
-                padding:"0.4vw",
                 border:"0.2px solid black"
             }}>
-                ----------
+                    ----------
             </div>
-                <div style={{
-                    display:"flex",
-                    justifyContent:"center",
-                    flex:1,
-                    alignItems:"center",
-                    padding:"0.4vw",
-                    border:"0.2px solid black"
-                }}>
-                    <h1 style={{
-                        fontSize: "1vw",
-                        padding: "0.3vw"
-                    }}>-----</h1>
-                </div>
 
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flex: 1,
+                    alignItems: "center",
+                    border: "0.2px solid black"
+                }}>
+                    -------
+                </div>
             </div>
             <div style={{
                 display: "flex",
                 flexDirection: "column",
                 flex: 3,
-                height: "10vw",
                 textAlign:"center"
             }}>
                 <div style={{
@@ -513,7 +522,8 @@ function personelDatesAndExp() {
                     borderTop:"0px"
                 }}>
                     <h1 style={{
-                        paddingTop:"0.2vw",
+
+                        paddingTop:"0.5vw",
                         fontSize: "1.7vw"
                     }}>İZİN BİTİŞ</h1>
                 </div>
@@ -523,13 +533,9 @@ function personelDatesAndExp() {
                     flex: 1,
                     border: "0.2px solid black",
                     justifyContent:"center",
-                    alignItems:"center",
-                    padding:"0.4vw"
+                    alignItems:"center"
                 }}>
-                    <h1 style={{
-                        fontSize: "1vw",
-                        padding: "0.3vw"
-                    }}>-----</h1>
+                    ---------
                 </div>
 
                 <div style={{
@@ -537,25 +543,17 @@ function personelDatesAndExp() {
                     flex: 1,
                     border: "0.2px solid black",
                     justifyContent:"center",
-                    alignItems:"center",
-                    padding:"0.4vw"
+                    alignItems:"center"
                 }}>
-                    <h1 style={{
-                        fontSize: "1vw",
-                        textAlign: "center",
-                        padding: "0.3vw"
-                    }}>
+
                         ------
 
-                    </h1>
                 </div>
             </div>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
                     flex: 3,
-                    width: "100%",
-                    height: "10vw"
                 }}>
                     <div style={{
                         display: "flex",
@@ -566,7 +564,8 @@ function personelDatesAndExp() {
                         borderTop:"0px"
                     }}>
                         <h1 style={{
-                            paddingTop:"0.2vw",
+                            display: "flex",
+                            paddingTop:"0.5vw",
                             fontSize: "1.7vw"
                         }}>İZİN SÜRESİ</h1>
                     </div>
@@ -576,18 +575,13 @@ function personelDatesAndExp() {
                         flex: 2,
                         border: "0.2px solid black"
                     }}>
-                        <h1 style={{
-                            fontSize: "1vw",
-                            padding: "2.5vw"
-                        }}>
+
                             ------
-                        </h1>
                     </div>
                 </div>
             </div>
     );
 }
-
 function vhcUsageOfPers() {
     let compvhcUsg="EVET"
     return(
@@ -602,7 +596,8 @@ function vhcUsageOfPers() {
                     display:"flex",
                     flex:2,
                     justifyContent:"center",
-                    textAlignment:"center"
+                    textAlignment:"center",
+                    fontSize:16
                 }}
                 >
                     GÖREVLİ İSE ŞİRKET ARACI KULLANACAK MI :
@@ -646,5 +641,170 @@ function vhcUsageOfPers() {
             </div>
     );
 }
+//HERE THE EXPLANATION OF PERMISSON DEMAND THAT DESCRIBED BY PERSONEL
+function perExplPart() {
+    return(
+        <div style={{
+            display:"flex",
+            justifyContent:"center",
+            flexDirection:"row",
+            flex:1
+        }}>
+            <h1 style={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                fontSize:15,
+                flex:0.1,
+                padding:"0.1vw",
+                border:"0.2px solid black",
+                height:"100%"
+            }}>Açıklama : </h1>
+            <textarea  style={{
+                display:"flex",
+                justifyContent:"center",
+                flexDirection:"row",
+                flex:0.9
+            }} placeholder="İzin Açıklamanızın bulunduğu kısım" maxLength="500" />
+        </div>
+    )
+ }
+function vhclUsgInfo() {
+    return(
+        <div style={{
+            display:"flex",
+            flex:4,
+            flewDirection:"row",
+            justifyContent:"center",
+            border:"0.35px solid black"
+        }}>
+            <div style={{
+                display:"flex",
+                justifyContent:"flex-start",
+                flexDirection:"row",
+                alignItems:"center",
+                flex:1,
+                paddingLeft:"30px",
+                borderLeft: "0.1px solid black",
+                textAlignment:"center",
+                padding:"0.2vw"
+            }}
+            >
+               Kendi Aracı:
+                <input style={{
+                    display:"flex",
+                    flex:0.4,
+                }} type="checkbox"/>
+               <p style={{ display:"flex",border:"0.2px solid black", alignItems:"center",flex:0.2,margin:"auto",fontSize:15}}> ___ km</p>
+            </div>
+            <div style={{
+                display:"flex",
+                justifyContent:"flex-start",
+                flexDirection:"row",
+                alignItems:"center",
+                flex:1,
+                paddingLeft:"30px",
+                borderLeft: "0.1px solid black",
+                textAlignment:"center",
+                padding:"0.2vw"
+            }}
+            >
+                Otobus/Tramvay:
+                <input style={{
+                    display:"flex",
+                    flex:0.40
+                }} type="checkbox"/>
+                <p style={{ display:"flex",border:"0.2px solid black", fontSize:15,alignItems:"center",textAlignment:"center",flex:0.2,margin:"auto"}}> ___ ₺</p>
+            </div>
+
+
+        </div>
+    )
+ }
+function perAccpPart() {
+    const imza1 = require('./ornImz.png');
+    return(
+        <div style={{
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"row",
+            flex:12,
+            marginTop:"0.4vw"
+        }}>
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                flex:3,
+                textAlignment:"center"
+            }}>
+                <h1 style={{display:"flex",padding:"5px", margin:"auto",justifyContent:"center",flex:1 , fontSize:15 , border:"0.2px solid black"}}>
+                    İZİNLİ PERSONEL ONAYI
+                </h1>
+
+                <h1 style={{display:"flex", padding:"5px",margin:"auto",justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black"}}>
+                   SORUMLU AMİR ONAYI
+                </h1>
+
+                <h1 style={{display:"flex", padding:"5px", margin:"auto",justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black"}}>
+                    ONAYLAYAN
+                </h1>
+            </div>
+
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                flex:3,
+                textAlignment:"center"
+            }}>
+                <h1 style={{display:"flex",padding:"15px", margin:"auto",justifyContent:"center",flex:1 , fontSize:15 , border:"0.2px solid black", borderTop:"0px"}}>
+                    ZOZAN KARTAL
+                </h1>
+
+                <h1 style={{display:"flex", padding:"15px", margin:"auto", justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black",borderTop:"0px"}}>
+                    OZAN KARTAL
+                </h1>
+
+                <h1 style={{display:"flex", padding:"15px", margin:"auto",justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black",borderTop:"0px"}}>
+                    KARTAL ZOZAN
+                </h1>
+            </div>
+
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                flex:6,
+                textAlignment:"center"
+            }}>
+
+                <img src={imza1} alt="imza" style={{
+                    border:"0.5px solid black",
+                    width:"33vw",
+                    height:"5vw",
+                    display: "flex",
+                    justifyContent:"center",
+                    flex:2
+                }}/>
+                <img src={imza1} alt="imza" style={{
+                    border:"0.5px solid black",
+                    display: "flex",
+                    width:"33vw",
+                    height:"5vw",
+                    justifyContent:"center",
+                    flex:2
+                }}/>
+                <img src={imza1} alt="imza" style={{
+                    border:"0.5px solid black",
+                    width:"33vw",
+                    height:"5vw",
+                    display: "flex",
+                    justifyContent:"center",
+                    flex:2
+                }}/>
+            </div>
+
+        </div>
+    )
+}
+
 
 export default PerPerDemScreen;
