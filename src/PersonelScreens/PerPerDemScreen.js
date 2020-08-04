@@ -32,6 +32,12 @@ function PerPerDemScreen() {
             }}>
                 {personelDatesAndExp()}
             </div>
+            <div style={{
+                display: "flex",
+                flex: 1
+            }}>
+                {vhcUsageOfPers()}
+            </div>
         </div>
     )
 }
@@ -313,7 +319,8 @@ function headPart() {
                             border: "1.35px solid black",
                             borderRadius: "2%",
                             flexDirection: "row",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            alignItems:"center"
                         }}>
                             <h1 style={{
                                 fontSize: "1.9vw",
@@ -328,7 +335,7 @@ function headPart() {
                                 display: "flex",
                                 fontSize: "1.3vw",
                                 flex: 1,
-                                border: "1.35px solid black",
+                                border: "0.1px solid black",
                                 borderRadius: "2%",
                                 alignItems: "center",
                                 justifyContent: "center"
@@ -353,18 +360,36 @@ function personelInfoPart() {
             <div style={{
                 display: "flex",
                 flexDirection: "row",
-                flex: 4,
+                flex:4,
+                flexWrap:"nowrap",
+                justifyContent:"flex-start",
+                alignItems:"center",
                 border: "1px solid black",
                 borderTop: "1px solid black",
                 borderRight: "0.2px solid black"
             }}>
                 <h1 style={{
+                    display: "flex",
+                    flexWrap:"nowrap",
                     fontFamily: "Roboto",
-                    fontSize: "1.2vw",
+                    fontSize: "1.65vw",
                     fontWeight: "normal",
-                    paddingLeft: "5%"
+                    paddingLeft: "4vw",
+                    paddingTop:"0.8vw"
                 }}
-                >PERSONEL ADI SOYADI : {personelAdSoyad}</h1>
+                >PERSONEL ADI SOYADI : </h1>
+                <h1 style={{
+                    display: "flex",
+
+                    fontFamily: "Roboto",
+                    fontSize: "1.65vw",
+                    fontWeight: "normal",
+                    paddingLeft: "5vw",
+                    paddingTop:"0.8vw"
+                }}>
+                    {personelAdSoyad}
+                    </h1>
+
             </div>
             <div style={{
                 display: "flex",
@@ -389,13 +414,12 @@ function personelDatesAndExp() {
         <div style={{
             display: "flex",
             flexDirection: "row",
-            flex:4
+            flex:3
         }}>
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                flex: 4,
-                height: "10vw"
+                flex: 3,
             }}>
                 <div style={{
                     display: "flex",
@@ -403,19 +427,21 @@ function personelDatesAndExp() {
                     border: "0.2px solid black"
                 }}>
                     <h1 style={{
-                        fontSize: "1vw",
-                        padding: "0.87vw"
-                    }}> </h1>
+                        fontSize: "1.7vw",
+                        padding: "1.1vw"
+                    }}>  </h1>
                 </div>
 
                 <div style={{
                     display: "flex",
                     flex: 1,
-                    border: "0.2px solid black"
+                    border: "0.2px solid black",
+                    textAlign:"center",
+                    justifyContent:"center"
                 }}>
                     <h1 style={{
-                        fontSize: "1vw",
-                        padding: "0.8vw"
+                        fontSize: "1.6vw",
+                        padding:"0.4vw"
                     }}>
                         TARİHİ
                     </h1>
@@ -424,50 +450,36 @@ function personelDatesAndExp() {
                 <div style={{
                     display: "flex",
                     flex: 1,
-                    border: "0.2px solid black"
+                    border: "0.2px solid black",
+                    textAlign:"center",
+                    justifyContent:"center"
                 }}>
                     <h1 style={{
-                        fontSize: "1vw",
-                        textAlign: "center",
-                        padding: "0.8vw"
+                        fontSize: "1.6vw",
+                        padding:"0.35vw"
                     }}>
                         SAATİ
-                    </h1>
-                </div>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    border: "0.2px solid black"
-                }}>
-                    <h1 style={{
-                        fontSize: "0.9vw",
-                        textAlign: "center",
-                        padding: "0.91vw"
-                    }}>
-                        GÖREVLİ İSE ŞİRKET ARACI KULLANACAK MI
-
                     </h1>
                 </div>
             </div>
 
 
-
-
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                flex: 4,
+                flex: 3,
                 height: "10vw"
             }}>
                 <div style={{
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    alignItems:"center"
+                    textAlign:"center",
+                    justifyContent:"center"
                 }}>
                     <h1 style={{
-                        fontSize: "1.7vw",
-                        paddingLeft: "5vw"
+                        paddingTop:"0.2vw",
+                        fontSize: "1.7vw"
                     }}>İZİN BAŞLANGIÇ</h1>
                 </div>
 
@@ -498,10 +510,35 @@ function personelDatesAndExp() {
                         padding: "0.3vw"
                     }}>-----</h1>
                 </div>
+
+            </div>
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 3,
+                height: "10vw",
+                textAlign:"center"
+            }}>
                 <div style={{
                     display: "flex",
                     flex: 1,
-                    border: "0.2px solid black"
+                    border: "0.2px solid black",
+                    textAlign:"center",
+                    justifyContent:"center"
+                }}>
+                    <h1 style={{
+                        paddingTop:"0.2vw",
+                        fontSize: "1.7vw"
+                    }}>İZİN BİTİŞ</h1>
+                </div>
+
+                <div style={{
+                    display: "flex",
+                    flex: 1,
+                    border: "0.2px solid black",
+                    justifyContent:"center",
+                    alignItems:"center",
+                    padding:"0.4vw"
                 }}>
                     <h1 style={{
                         fontSize: "1vw",
@@ -509,59 +546,18 @@ function personelDatesAndExp() {
                     }}>-----</h1>
                 </div>
 
-            </div>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                flex: 4,
-                height: "10vw"
-            }}>
                 <div style={{
                     display: "flex",
                     flex: 1,
-                    border: "0.2px solid black"
+                    border: "0.2px solid black",
+                    justifyContent:"center",
+                    alignItems:"center",
+                    padding:"0.4vw"
                 }}>
                     <h1 style={{
                         fontSize: "1vw",
+                        textAlign: "center",
                         padding: "0.3vw"
-                    }}>İZİN BİTİŞ</h1>
-                </div>
-
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    border: "0.2px solid black"
-                }}>
-                    <input style={{
-                        textAlign:"center"
-                    }} type="date"/>
-                </div>
-
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    border: "0.2px solid black"
-                }}>
-
-                    <h1 style={{
-                        fontSize: "1vw",
-                        textAlign: "center",
-                        padding: "0.8vw"
-                    }}>
-                        ------
-
-                    </h1>
-
-                </div>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    border: "0.2px solid black"
-                }}>
-                    <h1 style={{
-                        fontSize: "1vw",
-                        textAlign: "center",
-                        padding: "0.8vw"
                     }}>
                         ------
 
@@ -571,61 +567,54 @@ function personelDatesAndExp() {
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
-                    flex: 4,
+                    flex: 3,
                     width: "100%",
                     height: "10vw"
                 }}>
                     <div style={{
                         display: "flex",
                         flex: 1,
-                        border: "0.2px solid black"
+                        border: "0.2px solid black",
+                        textAlign:"center",
+                        justifyContent:"center"
                     }}>
                         <h1 style={{
-                            fontSize: "1vw",
-                            padding: "0.3vw"
+                            paddingTop:"0.2vw",
+                            fontSize: "1.7vw"
                         }}>İZİN SÜRESİ</h1>
                     </div>
 
                     <div style={{
                         display: "flex",
-                        flex: 1,
+                        flex: 2,
                         border: "0.2px solid black"
                     }}>
                         <h1 style={{
                             fontSize: "1vw",
-                            padding: "0.8vw"
+                            padding: "2.5vw"
                         }}>
                             ------
                         </h1>
                     </div>
-
-                    <div style={{
-                        display: "flex",
-                        flex: 1,
-                        border: "0.2px solid black"
-                    }}>
-                        <h1 style={{
-                            fontSize: "1vw",
-                            textAlign: "center",
-                            padding: "0.8vw"
-                        }}>
-                            -----
-                        </h1>
-                    </div>
-                    <div style={{
-                        display: "flex",
-                        flex: 1,
-                        border: "0.2px solid black"
-                    }}>
-                        <h1 style={{
-                            fontSize: "1vw",
-                            textAlign: "center",
-                            padding: "0.8vw"
-                        }}>
-                            -----
-                        </h1>
-                    </div>
                 </div>
+            </div>
+    );
+}
+
+function vhcUsageOfPers() {
+    return(
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                flex:4,
+                border: "0.2px solid black"
+            }}>
+                <h1 style={{
+                    flex:6
+                }}>
+                    MERHABALAT MERHABALR-1
+                </h1>
+
             </div>
     );
 }
