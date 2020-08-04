@@ -417,16 +417,15 @@ function personelDatesAndExp() {
                 display: "flex",
                 flexDirection: "column",
                 flex: 3,
+
             }}>
                 <div style={{
                     display: "flex",
-                    flex: 1,
-                    border: "0.2px solid black"
+                    flex: 0.85,
+                    border: "0.2px solid black",
+                    borderTop:"0px"
                 }}>
-                    <h1 style={{
-                        fontSize: "1.7vw",
-                        padding: "1.1vw"
-                    }}>  </h1>
+
                 </div>
 
                 <div style={{
@@ -434,14 +433,10 @@ function personelDatesAndExp() {
                     flex: 1,
                     border: "0.2px solid black",
                     textAlign:"center",
-                    justifyContent:"center"
+                    justifyContent:"center",
+                    fontSize: "1.6vw"
                 }}>
-                    <h1 style={{
-                        fontSize: "1.6vw",
-                        padding:"0.4vw"
-                    }}>
                         TARİHİ
-                    </h1>
                 </div>
 
                 <div style={{
@@ -449,14 +444,10 @@ function personelDatesAndExp() {
                     flex: 1,
                     border: "0.2px solid black",
                     textAlign:"center",
-                    justifyContent:"center"
+                    justifyContent:"center",
+                    fontSize: "1.6vw"
                 }}>
-                    <h1 style={{
-                        fontSize: "1.6vw",
-                        padding:"0.35vw"
-                    }}>
                         SAATİ
-                    </h1>
                 </div>
             </div>
 
@@ -472,7 +463,8 @@ function personelDatesAndExp() {
                     flex: 1,
                     border: "0.2px solid black",
                     textAlign:"center",
-                    justifyContent:"center"
+                    justifyContent:"center",
+                    borderTop:"0px"
                 }}>
                     <h1 style={{
                         paddingTop:"0.2vw",
@@ -486,13 +478,9 @@ function personelDatesAndExp() {
                 flex:1,
                 alignItems:"center",
                 padding:"0.4vw",
-                border:"1px solid black"
+                border:"0.2px solid black"
             }}>
-                <h1 style={{
-                    fontSize: "1vw",
-                    padding: "0.3vw"
-                }}>-----</h1>
-
+                ----------
             </div>
                 <div style={{
                     display:"flex",
@@ -500,7 +488,7 @@ function personelDatesAndExp() {
                     flex:1,
                     alignItems:"center",
                     padding:"0.4vw",
-                    border:"1px solid black"
+                    border:"0.2px solid black"
                 }}>
                     <h1 style={{
                         fontSize: "1vw",
@@ -521,7 +509,8 @@ function personelDatesAndExp() {
                     flex: 1,
                     border: "0.2px solid black",
                     textAlign:"center",
-                    justifyContent:"center"
+                    justifyContent:"center",
+                    borderTop:"0px"
                 }}>
                     <h1 style={{
                         paddingTop:"0.2vw",
@@ -573,7 +562,8 @@ function personelDatesAndExp() {
                         flex: 1,
                         border: "0.2px solid black",
                         textAlign:"center",
-                        justifyContent:"center"
+                        justifyContent:"center",
+                        borderTop:"0px"
                     }}>
                         <h1 style={{
                             paddingTop:"0.2vw",
@@ -599,18 +589,59 @@ function personelDatesAndExp() {
 }
 
 function vhcUsageOfPers() {
+    let compvhcUsg="EVET"
     return(
             <div style={{
                 display:"flex",
                 flexDirection:"row",
+                justifyContent:"center",
                 flex:4,
-                border: "0.2px solid black"
+                border: "0.2px solid black",
             }}>
-                <h1 style={{
-                    flex:6
-                }}>
-                    MERHABALAT MERHABALR-1
-                </h1>
+                <div style={{
+                    display:"flex",
+                    flex:2,
+                    justifyContent:"center",
+                    textAlignment:"center"
+                }}
+                >
+                    GÖREVLİ İSE ŞİRKET ARACI KULLANACAK MI :
+                </div>
+                <div style={{
+                    display:"flex",
+                    justifyContent:"flex-start",
+                    flexDirection:"row",
+                    alignItems:"center",
+                    flex:0.60,
+                    paddingLeft:"30px",
+                    borderLeft: "0.1px solid black",
+                    textAlignment:"center"
+                }}
+                >
+                       EVET
+                    <input style={{
+                        display:"flex",
+                        flex:0.3,
+                        }} type="checkbox"/>
+                </div>
+
+                <div style={{
+                    display:"flex",
+                    justifyContent:"flex-start",
+                    flex:0.60,
+                    alignItems:"center",
+                    paddingLeft:"20px",
+                    borderLeft: "0.1px solid black",
+                    textAlignment:"center"
+                }}
+                >
+                        HAYIR
+                    <input style={{
+                        display:"flex",
+                        flex:0.40
+                    }} type="checkbox"/>
+
+                </div>
 
             </div>
     );
