@@ -93,8 +93,7 @@ class perFillPerScreen extends React.Component {
     handleStartDate(date) {
         this.setState({
             startDate: date
-        })
-        console.log(date);
+        });
     }
 
     handleEndDate(date) {

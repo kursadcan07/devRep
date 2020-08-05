@@ -5,7 +5,11 @@ import {Link} from "react-router-dom";
 
 function PerPerDemScreen() {
     return (
-        <div>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 8
+        }}>
             <div
                 style={{
                     display: "flex",
@@ -60,301 +64,310 @@ function PerPerDemScreen() {
         </div>
     )
 }
+
 //ÜSTTEN 2.BLOK KOMPONENT İZİN TÜRÜ ALINIR, BİR KOMPONENTİ DE İÇERDE YARATIR.
 function underHeadPart() {
     return (
         <div style={{
             display: "flex",
             flexDirection: "row",
-            width: "100%",
-            height: "100%",
-            margin:"0.1vw",
-            alignItems: "row",
-            justifyContent: "flex-start"
+            flex:6
         }}>
             <div style={{
                 display: "flex",
-                border: "1px solid black",
+                flex:1,
+                justifyContent:"center",
+                border: "0.5px solid black",
                 borderRadius: "2%",
-                textAlign:"center",
-                height: "100%",
+                textAlign: "center"
             }}>
                 <h1 style={{
-                    display: "flex",
-                    fontFamily: "Roboto",
-                    fontSize: "2vw",
-                    textAlign: "center",
-                    fontWeight: "500",
-                    padding: "0.2vw",
-                    margin:"0.8vw"
-                }}>İZİN TÜRÜ</h1>
+                    display:"flex",
+                    flex:1,
+                    fontFamily:"Scada",
+                    fontSize:"22px",
+                    margin:"auto",
+                    justifyContent:"center"
+                }}>
+                    İZİN TÜRÜ
+                </h1>
+
             </div>
             <div style={{
                 display: "flex",
-                width: "100%"
+                flex:5
             }}>
                 {perAccCompt()}
             </div>
         </div>
     );
 }
+
 //İZİN TİPİ SEÇME COMPONENTİ
 function perAccCompt() {
     return (
-        <div style={{width: "100%"}}>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 6,
+            border: "0.2px solid black"
+        }}>
             <div style={{
                 display: "flex",
-                flex: 1,
-                borderRadius: "2%",
                 flexDirection: "row",
-                height: "50%",
-                width: "100%"
-            }}
-            >
+                flex: 3
+            }}>
                 <div style={{
                     display: "flex",
+                    flexDirection: "row",
                     flex: 1,
-                    borderRadius: "2%",
-                    alignItems: "center",
-                    border: "0.7px solid black",
+                    borderRight: "0.1px solid black",
+                    borderBottom: "0.1px solid black"
                 }}>
                     <h1 style={{
                         display: "flex",
-                        flex: 0.5,
-                        fontFamily: "Roboto",
-                        fontSize: "1.7vw",
-                        fontWeight: "normal",
-                        paddingLeft: "1vw"
-                    }}>Yıllık İzin</h1>
-                    <input style={{
+                        justifyContent: "center",
+                        flex: 0.8,
+                        fontFamily:"Scada",
+                        fontSize: "18px",
+                        margin:"auto"
+                    }}>
+                        Yıllık İzin
+                    </h1>
+
+                    <input type="checkbox" style={{
+                        margin:"auto",
                         display: "flex",
-                        flex: 0.5,
-                        height: "50%"
-                    }} type="checkbox"/>
-                </div>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    borderRadius: "2%",
-                    alignItems: "center",
-                    border: "0.7px solid black"
-                }}>
-                    <h1 style={{
-                        display: "flex",
-                        flex: 0.5,
-                        fontFamily: "Roboto",
-                        fontSize: "1.7vw",
-                        fontWeight: "normal",
-                        paddingLeft: "1vw"
-                    }}>Görevli</h1>
-                    <input style={{
-                        display: "flex",
-                        flex: 0.5,
-                        height: "50%"
-                    }} type="checkbox"/>
-                </div>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    borderRadius: "2%",
-                    alignItems: "center",
-                    border: "0.7px solid black"
-                }}>
-                    <h1 style={{
-                        display: "flex",
-                        flex: 0.5,
-                        fontFamily: "Roboto",
-                        fontSize: "1.7vw",
-                        fontWeight: "normal",
-                        paddingLeft: "1vw"
-                    }}>Diğer</h1>
-                    <input style={{
-                        display: "flex",
-                        flex: 0.5,
-                        height: "50%"
-                    }} type="checkbox"/>
+                        flex: 0.2,
+                        height:"80%",
+                    }}/>
                 </div>
 
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: 1,
+                    borderRight: "0.1px solid black",
+                    borderBottom: "0.1px solid black"
+                }}>
+                    <h1 style={{
+                        display: "flex",
+                        flex: 0.8,
+                        justifyContent: "center",
+                        fontFamily:"Scada",
+                        fontSize: "18px",
+                        margin:"auto"
+                    }}>
+                        Görevli
+                    </h1>
+
+                    <input type="checkbox" style={{
+                        display: "flex",
+                        flex: 0.2,
+                        height:"80%",
+                        margin:"auto"
+                    }}/>
+                </div>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: 1,
+                    borderBottom: "0.1px solid black"
+                }}>
+                    <h1 style={{
+                        display: "flex",
+                        flex: 0.8,
+                        justifyContent: "center",
+                        fontFamily:"Scada",
+                        fontSize: "18px",
+                        margin:"auto"
+                    }}>
+                        Diğer
+                    </h1>
+                    <input type="checkbox" style={{
+                        display: "flex",
+                        flex: 0.2,
+                        height:"80%",
+                        margin:"auto"
+                    }}/>
+                </div>
             </div>
-            <div style={{
+            <div style= {{
                 display: "flex",
-                flex: 1,
-                borderRadius: "2%",
                 flexDirection: "row",
-                height: "53%",
-                width: "100%"
-            }}
-            >
+                flex: 3
+            }}>
                 <div style={{
                     display: "flex",
+                    flexDirection: "row",
                     flex: 1,
-                    borderRadius: "2%",
-                    alignItems: "center",
-                    border: "0.7px solid black"
+                    borderRight:"0.1px solid black"
                 }}>
                     <h1 style={{
                         display: "flex",
-                        flex: 0.5,
-                        fontFamily: "Roboto",
-                        fontSize: "1.7vw",
-                        fontWeight: "normal",
-                        paddingLeft: "1vw"
-                    }}>Ücretsiz İzin</h1>
-                    <input style={{
+                        justifyContent: "center",
+                        flex: 0.8,
+                        fontSize: "14px",
+                        margin:"auto",
+                        fontFamily:"Scada"
+                    }}>
+                        Ücretsiz İzin
+                    </h1>
+
+                    <input type="checkbox" style={{
+                        margin:"auto",
                         display: "flex",
-                        flex: 0.5,
-                        height: "50%"
-                    }} type="checkbox"/>
-                </div>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    borderRadius: "2%",
-                    alignItems: "center",
-                    border: "0.7px solid black"
-                }}>
-                    <h1 style={{
-                        display: "flex",
-                        flex: 0.5,
-                        fontFamily: "Roboto",
-                        fontSize: "1.7vw",
-                        fontWeight: "normal",
-                        paddingLeft: "1vw",
-                    }}>Ücretli İzin</h1>
-                    <input style={{
-                        display: "flex",
-                        flex: 0.5,
-                        height: "50%"
-                    }} type="checkbox"/>
-                </div>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    borderRadius: "2%",
-                    alignItems: "center",
-                    border: "0.7px solid black"
-                }}>
-                    <h1 style={{
-                        display: "flex",
-                        flex: 0.5,
-                        fontFamily: "Roboto",
-                        fontSize: "1.1vw",
-                        fontWeight: "normal",
-                        paddingLeft: "1vw"
-                    }}>2 Ay İçinde Telafi Çalışması Yapacak Şekilde İzin </h1>
-                    <input style={{
-                        display: "flex",
-                        flex: 0.5,
-                        height: "50%"
-                    }} type="checkbox"/>
+                        flex: 0.2,
+                        height:"80%",
+                    }}/>
                 </div>
 
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: 1,
+                    borderRight: "0.1px solid black"
+                }}>
+                    <h1 style={{
+                        display: "flex",
+                        flex: 0.8,
+                        justifyContent: "center",
+                        fontSize: "16px",
+                        fontFamily:"Scada",
+                        margin:"auto"
+                    }}>
+                        Ücretli İzin
+                    </h1>
+
+                    <input type="checkbox" style={{
+                        display: "flex",
+                        flex: 0.2,
+                        height:"80%",
+                        margin:"auto"
+                    }}/>
+                </div>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: 1
+                }}>
+                    <h1 style={{
+                        display: "flex",
+                        flex: 0.8,
+                        justifyContent: "center",
+                        fontSize: "12px",
+                        fontFamily:"Scada",
+                        margin:"auto"
+                    }}>
+                        2 Ay İçinde Telafi Yapılacak
+                    </h1>
+                    <input type="checkbox" style={{
+                        display: "flex",
+                        flex: 0.2,
+                        height:"80%",
+                        margin:"auto"
+                    }}/>
+                </div>
             </div>
         </div>
     )
 }
+
 //ÜST BAŞLIĞIN OLDUĞU KOMPONENT
 function headPart() {
     let folderNumb = "551";
     return (
         <div style={{
             display: "flex",
-            width: "100%",
-            height: "10vw"
-
+            flexDirection: "row",
+            flex: 5,
+            border: "0.1px solid black"
         }}>
+            <img src={Logo} alt="Logo" style={{
+                display: "flex",
+                flex: 1,
+                width: "200px",
+                height: "100px",
+                margin: "0.1vw",
+                border: "0.1px solid black",
+                borderRadius: "2%"
+            }}/>
             <div style={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                flex: 12,
-                width: "100%",
-                height: "100%"
+                flexDirection: "column",
+                flex: 4,
+
             }}>
                 <div style={{
                     display: "flex",
                     flex: 2,
-                    border: "1.35px solid black",
-                    alignItems: "center",
-                    justifyContent: "flex-start"
+                    justifyContent: "flex-start",
+                    border: "0.1px solid black",
+                    margin: "0.1vw",
+
                 }}>
-                    <img src={Logo} alt="Logo" style={{
+                    <h1 style={{
                         display: "flex",
-                        flex: 2
-                    }}/>
+                        flex: 1.8,
+                        justifyContent: "center",
+                        fontSize: "3vw",
+                        fontWeight: "normal",
+                        margin: "auto",
+                        fontFamily: "Scada"
+                    }}>
+                        DESIRD TASARIM
+                    </h1>
+
+                    <h1 style={{
+                        display: "flex",
+                        flex: 0.2,
+                        fontSize: "2.5vw",
+                        justifyContent: "center",
+                        margin: "auto",
+                        fontFamily: "Scada"
+                    }}>
+                        (AS)
+                    </h1>
                 </div>
+
                 <div style={{
                     display: "flex",
-                    flex: 10,
-                    flexDirection: "column",
-                    justifyContent: "flex-start"
+                    flex: 2,
+                    justifyContent: "flex-start",
+                    border: "0.1px solid black",
+                    margin: "0.1vw",
+
                 }}>
-                    <div style={{
+                    <h1 style={{
                         display: "flex",
-                        flex: 5,
-                        border: "1.35px solid black",
-                        borderRadius: "2%",
-                        flexDirection: "row",
-                        justifyContent: "center"
+                        flex: 1.9,
+                        textAlign: "center",
+                        justifyContent: "center",
+                        fontSize: "2.5vw",
+                        fontWeight: "normal",
+                        margin: "auto",
+                        fontFamily: "Scada"
                     }}>
-                        <h1 style={{
-                            display: "flex",
-                            fontWeight: "bold",
-                            fontSize: "1.8vw",
-                            flex: 4,
-                            alignItems: "center",
-                            justifyContent: "center",
-                            paddingTop:"0.5vw"
-                        }}>DESIRD TASARIM</h1>
-                        <div style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "2vw",
-                            flex: 1,
-                            border: "0.35px solid black",
-                            margin:"auto"
-                        }}>
-                            (SB)
-                        </div>
-                    </div>
-                    <div  style={{display: "flex",
-                    flex: 5 }}
-                    >
-                        <div style={{
-                            display: "flex",
-                            flex: 5,
-                            border: "1.35px solid black",
-                            borderRadius: "2%",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems:"center"
-                        }}>
-                            <h1 style={{
-                                fontSize: "1.9vw",
-                                display: "flex",
-                                fontWeight: "bold",
-                                flex: 2,
-                                alignItems: "center",
-                                justifyContent: "center",
-                                paddingTop:"0.5vw"
-                            }}>PERSONEL İZİN BELGESİ FORMU</h1>
-                            <h1 style={{
-                                display: "flex",
-                                fontSize: "1.3vw",
-                                flex: 1,
-                                border: "0.1px solid black",
-                                borderRadius: "2%",
-                                alignItems: "center",
-                                justifyContent: "center"
-                            }}> {folderNumb}</h1>
-                        </div>
-                    </div>
+                        PERSONEL İZİN BELGESİ FORMU
+                    </h1>
+
+                    <h1 style={{
+                        display: "flex",
+                        flex: 0.1,
+                        fontSize: "2.5vw",
+                        justifyContent: "center",
+                        margin: "auto",
+                        border: "0.5px solid black",
+                        fontFamily: "Scada"
+                    }}>
+                        No:50
+                    </h1>
                 </div>
             </div>
         </div>
     );
 }
+
 //BLOCK THREE
 function personelInfoPart() {
     let personelAdSoyad = "Zozan Kartal";
@@ -363,69 +376,79 @@ function personelInfoPart() {
             display: "flex",
             flexDirection: "row",
             flex: 6,
-            width: "100%"
         }}>
             <div style={{
                 display: "flex",
                 flexDirection: "row",
-                flex:4,
-                flexWrap:"nowrap",
-                justifyContent:"flex-start",
-                alignItems:"center",
-                border: "1px solid black",
-                borderTop: "1px solid black",
-                borderRight: "0.2px solid black"
+                flex: 4.333,
+                border:"0.5px solid black"
+
             }}>
                 <h1 style={{
                     display: "flex",
-                    flexWrap:"nowrap",
-                    fontFamily: "Roboto",
-                    fontSize: "15px",
-                    fontWeight: "normal",
-                    paddingLeft: "4vw",
-                    paddingTop:"0.8vw"
+                    justifyContent:"center",
+                    flex:1,
+                    textAlign:"center",
+                    fontFamily: "Scada",
+                    margin:"auto",
+                    fontSize: "18px",
+                    borderTop:"0px",
+                    fontWeight: "normal"
                 }}
-                >PERSONEL ADI SOYADI : </h1>
-                <h1 style={{
-                    display: "flex",
-                    fontFamily: "Roboto",
-                    fontSize: "15px",
-                    fontWeight: "normal",
-                    paddingLeft: "5vw",
-                    paddingTop:"0.8vw"
-                }}>
-                    {personelAdSoyad}
-                    </h1>
+                >AD SOYAD</h1>
+                <div style={{
+                        display: "flex",
+                        justifyContent:"center",
+                        flex:3.333,
+                        border:"0.5px solid black",
+                        borderLeft:"1px solid black",
+                        borderTop:"0px"
 
+                    }}
+                    >
+                    <h1 style={{
+                        display: "flex",
+                        flex:3.333,
+                        justifyContent:"center",
+                        margin:"auto",
+                        fontFamily: "Scada",
+                        fontSize: "15px",
+                        textAlign:"center"
+                    }}
+                    >
+                        KARTAL DUMAN
+                    </h1>
+                 </div>
             </div>
             <div style={{
                 display: "flex",
-                flexDirection: "row",
-                textAlignment:"center",
-                flex: 2,
-                height: "100%"
+                flex:1.666,
+                justifyContent:"center"
             }}>
                 <h1 style={{
                     display: "flex",
-                    flex:2,
-                    textAlignment: "center",
-                   padding:"1vw",
-                    fontSize:"16px",
+                    flex:1.667,
+                    justifyContent:"center",
+                    textAlign:"center",
                     margin:"auto",
-                    border: "1px solid black"
+                    fontSize:"18px",
+                    fontFamily:"Scada",
+                    borderBottom:"0.5px solid black",
+                    borderRight:"0.5px solid black"
                 }}
                 >Talep Tarih : 22/22/2222</h1>
             </div>
         </div>
     );
 }
+
 //BLOCK FOUR
 function personelDatesAndExp() {
     return (
         <div style={{
             display: "flex",
             flexDirection: "row",
-            flex:3
+            flex: 3
         }}>
             <div style={{
                 display: "flex",
@@ -437,33 +460,33 @@ function personelDatesAndExp() {
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    borderTop:"0px",
+                    borderTop: "0px",
                     fontSize: "1.6vw",
-                    padding:"0.35vw"
+                    padding: "0.35vw"
                 }}>
-                   .
+                    .
                 </div>
 
                 <div style={{
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    textAlign:"center",
-                    justifyContent:"center",
+                    textAlign: "center",
+                    justifyContent: "center",
                     fontSize: "1.6vw"
                 }}>
-                        TARİHİ
+                    TARİHİ
                 </div>
 
                 <div style={{
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    textAlign:"center",
-                    justifyContent:"center",
+                    textAlign: "center",
+                    justifyContent: "center",
                     fontSize: "1.6vw"
                 }}>
-                        SAATİ
+                    SAATİ
                 </div>
             </div>
 
@@ -477,25 +500,25 @@ function personelDatesAndExp() {
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    textAlign:"center",
-                    justifyContent:"center",
-                    borderTop:"0px"
+                    textAlign: "center",
+                    justifyContent: "center",
+                    borderTop: "0px"
                 }}>
                     <h1 style={{
-                        paddingTop:"0.5vw",
+                        paddingTop: "0.5vw",
                         fontSize: "1.7vw"
                     }}>İZİN BAŞLANGIÇ</h1>
                 </div>
 
-            <div style={{
-                display:"flex",
-                justifyContent:"center",
-                flex:1,
-                alignItems:"center",
-                border:"0.2px solid black"
-            }}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flex: 1,
+                    alignItems: "center",
+                    border: "0.2px solid black"
+                }}>
                     ----------
-            </div>
+                </div>
 
                 <div style={{
                     display: "flex",
@@ -511,19 +534,19 @@ function personelDatesAndExp() {
                 display: "flex",
                 flexDirection: "column",
                 flex: 3,
-                textAlign:"center"
+                textAlign: "center"
             }}>
                 <div style={{
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    textAlign:"center",
-                    justifyContent:"center",
-                    borderTop:"0px"
+                    textAlign: "center",
+                    justifyContent: "center",
+                    borderTop: "0px"
                 }}>
                     <h1 style={{
 
-                        paddingTop:"0.5vw",
+                        paddingTop: "0.5vw",
                         fontSize: "1.7vw"
                     }}>İZİN BİTİŞ</h1>
                 </div>
@@ -532,8 +555,8 @@ function personelDatesAndExp() {
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    justifyContent:"center",
-                    alignItems:"center"
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
                     ---------
                 </div>
@@ -542,269 +565,343 @@ function personelDatesAndExp() {
                     display: "flex",
                     flex: 1,
                     border: "0.2px solid black",
-                    justifyContent:"center",
-                    alignItems:"center"
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
 
-                        ------
+                    ------
 
                 </div>
             </div>
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    flex: 3,
-                }}>
-                    <div style={{
-                        display: "flex",
-                        flex: 1,
-                        border: "0.2px solid black",
-                        textAlign:"center",
-                        justifyContent:"center",
-                        borderTop:"0px"
-                    }}>
-                        <h1 style={{
-                            display: "flex",
-                            paddingTop:"0.5vw",
-                            fontSize: "1.7vw"
-                        }}>İZİN SÜRESİ</h1>
-                    </div>
-
-                    <div style={{
-                        display: "flex",
-                        flex: 2,
-                        border: "0.2px solid black"
-                    }}>
-
-                            ------
-                    </div>
-                </div>
-            </div>
-    );
-}
-function vhcUsageOfPers() {
-    let compvhcUsg="EVET"
-    return(
             <div style={{
-                display:"flex",
-                flexDirection:"row",
-                justifyContent:"center",
-                flex:4,
-                border: "0.2px solid black",
+                display: "flex",
+                flexDirection: "column",
+                flex: 3,
             }}>
                 <div style={{
-                    display:"flex",
-                    flex:2,
-                    justifyContent:"center",
-                    textAlignment:"center",
-                    fontSize:16
-                }}
-                >
-                    GÖREVLİ İSE ŞİRKET ARACI KULLANACAK MI :
-                </div>
-                <div style={{
-                    display:"flex",
-                    justifyContent:"flex-start",
-                    flexDirection:"row",
-                    alignItems:"center",
-                    flex:0.60,
-                    paddingLeft:"30px",
-                    borderLeft: "0.1px solid black",
-                    textAlignment:"center"
-                }}
-                >
-                       EVET
-                    <input style={{
-                        display:"flex",
-                        flex:0.3,
-                        }} type="checkbox"/>
+                    display: "flex",
+                    flex: 1,
+                    border: "0.2px solid black",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    borderTop: "0px"
+                }}>
+                    <h1 style={{
+                        display: "flex",
+                        paddingTop: "0.5vw",
+                        fontSize: "1.7vw"
+                    }}>İZİN SÜRESİ</h1>
                 </div>
 
                 <div style={{
-                    display:"flex",
-                    justifyContent:"flex-start",
-                    flex:0.60,
-                    alignItems:"center",
-                    paddingLeft:"20px",
-                    borderLeft: "0.1px solid black",
-                    textAlignment:"center"
-                }}
-                >
-                        HAYIR
-                    <input style={{
-                        display:"flex",
-                        flex:0.40
-                    }} type="checkbox"/>
+                    display: "flex",
+                    flex: 2,
+                    border: "0.2px solid black"
+                }}>
 
+                    ------
                 </div>
-
             </div>
+        </div>
     );
 }
-//HERE THE EXPLANATION OF PERMISSON DEMAND THAT DESCRIBED BY PERSONEL
-function perExplPart() {
-    return(
+
+function vhcUsageOfPers() {
+    let compvhcUsg = "EVET"
+    return (
         <div style={{
-            display:"flex",
-            justifyContent:"center",
-            flexDirection:"row",
-            flex:1
-        }}>
-            <h1 style={{
-                display:"flex",
-                alignItems:"center",
-                justifyContent:"center",
-                fontSize:15,
-                flex:0.1,
-                padding:"0.1vw",
-                border:"0.2px solid black",
-                height:"100%"
-            }}>Açıklama : </h1>
-            <textarea  style={{
-                display:"flex",
-                justifyContent:"center",
-                flexDirection:"row",
-                flex:0.9
-            }} placeholder="İzin Açıklamanızın bulunduğu kısım" maxLength="500" />
-        </div>
-    )
- }
-function vhclUsgInfo() {
-    return(
-        <div style={{
-            display:"flex",
-            flex:4,
-            flewDirection:"row",
-            justifyContent:"center",
-            border:"0.35px solid black"
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            flex: 4,
+            border: "0.2px solid black",
         }}>
             <div style={{
-                display:"flex",
-                justifyContent:"flex-start",
-                flexDirection:"row",
-                alignItems:"center",
-                flex:1,
-                paddingLeft:"30px",
-                borderLeft: "0.1px solid black",
-                textAlignment:"center",
-                padding:"0.2vw"
+                display: "flex",
+                flex: 2,
+                justifyContent: "center",
+                textAlignment: "center",
+                fontSize: "1.5vw",
+                fontFamily: "roboto"
             }}
             >
-               Kendi Aracı:
-                <input style={{
-                    display:"flex",
-                    flex:0.4,
-                }} type="checkbox"/>
-               <p style={{ display:"flex",border:"0.2px solid black", alignItems:"center",flex:0.2,margin:"auto",fontSize:15}}> ___ km</p>
+                GÖREVLİ İSE ŞİRKET ARACI KULLANACAK MI :
             </div>
             <div style={{
-                display:"flex",
-                justifyContent:"flex-start",
-                flexDirection:"row",
-                alignItems:"center",
-                flex:1,
-                paddingLeft:"30px",
+                display: "flex",
+                justifyContent: "flex-start",
+                flexDirection: "row",
+                alignItems: "center",
+                flex: 0.60,
+                paddingLeft: "30px",
                 borderLeft: "0.1px solid black",
-                textAlignment:"center",
-                padding:"0.2vw"
+                textAlignment: "center",
+                fontFamily: "roboto",
+                fontSize: "2vw"
+            }}
+            >
+                EVET
+                <input style={{
+                    display: "flex",
+                    flex: 0.3,
+                }} type="checkbox"/>
+            </div>
+
+            <div style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                flex: 0.60,
+                alignItems: "center",
+                paddingLeft: "20px",
+                borderLeft: "0.1px solid black",
+                textAlignment: "center",
+                fontSize: "2vw",
+                fontFamily: "Roboto"
+            }}
+            >
+                HAYIR
+                <input style={{
+                    display: "flex",
+                    flex: 0.40
+                }} type="checkbox"/>
+
+            </div>
+
+        </div>
+    );
+}
+
+//HERE THE EXPLANATION OF PERMISSON DEMAND THAT DESCRIBED BY PERSONEL
+function perExplPart() {
+    return (
+        <div style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "row",
+            flex: 1
+        }}>
+            <h1 style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 15,
+                flex: 0.1,
+                padding: "0.1vw",
+                border: "0.2px solid black",
+                height: "100%"
+            }}>Açıklama : </h1>
+            <textarea style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "row",
+                flex: 0.9
+            }} placeholder="İzin Açıklamanızın bulunduğu kısım" maxLength="500"/>
+        </div>
+    )
+}
+
+//HERE WE TAKE
+function vhclUsgInfo() {
+    return (
+        <div style={{
+            display: "flex",
+            flex: 4,
+            flewDirection: "row",
+            justifyContent: "center",
+            border: "0.35px solid black"
+        }}>
+            <div style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                flexDirection: "row",
+                alignItems: "center",
+                flex: 1,
+                paddingLeft: "30px",
+                borderLeft: "0.1px solid black",
+                textAlignment: "center",
+                padding: "0.2vw"
+            }}
+            >
+                Kendi Aracı:
+                <input style={{
+                    display: "flex",
+                    flex: 0.4,
+                }} type="checkbox"/>
+                <p style={{
+                    display: "flex",
+                    border: "0.2px solid black",
+                    alignItems: "center",
+                    flex: 0.2,
+                    margin: "auto",
+                    fontSize: 15
+                }}> ___ km</p>
+            </div>
+            <div style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                flexDirection: "row",
+                alignItems: "center",
+                flex: 1,
+                paddingLeft: "30px",
+                borderLeft: "0.1px solid black",
+                textAlignment: "center",
+                padding: "0.2vw"
             }}
             >
                 Otobus/Tramvay:
                 <input style={{
-                    display:"flex",
-                    flex:0.40
+                    display: "flex",
+                    flex: 0.40
                 }} type="checkbox"/>
-                <p style={{ display:"flex",border:"0.2px solid black", fontSize:15,alignItems:"center",textAlignment:"center",flex:0.2,margin:"auto"}}> ___ ₺</p>
+                <p style={{
+                    display: "flex",
+                    border: "0.2px solid black",
+                    fontSize: 15,
+                    alignItems: "center",
+                    textAlignment: "center",
+                    flex: 0.2,
+                    margin: "auto"
+                }}> ___ ₺</p>
             </div>
 
 
         </div>
     )
- }
+}
+
 function perAccpPart() {
     const imza1 = require('./ornImz.png');
-    return(
+    return (
         <div style={{
-            display:"flex",
-            flexDirection:"column",
-            alignItems:"row",
-            flex:12,
-            marginTop:"0.4vw"
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "row",
+            flex: 12,
+            marginTop: "0.4vw"
         }}>
             <div style={{
-                display:"flex",
-                flexDirection:"row",
-                flex:3,
-                textAlignment:"center"
+                display: "flex",
+                flexDirection: "row",
+                flex: 3,
+                textAlignment: "center"
             }}>
-                <h1 style={{display:"flex",padding:"5px", margin:"auto",justifyContent:"center",flex:1 , fontSize:15 , border:"0.2px solid black"}}>
+                <h1 style={{
+                    display: "flex",
+                    padding: "5px",
+                    margin: "auto",
+                    justifyContent: "center",
+                    flex: 1,
+                    fontSize: 15,
+                    border: "0.2px solid black"
+                }}>
                     İZİNLİ PERSONEL ONAYI
                 </h1>
 
-                <h1 style={{display:"flex", padding:"5px",margin:"auto",justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black"}}>
-                   SORUMLU AMİR ONAYI
+                <h1 style={{
+                    display: "flex",
+                    padding: "5px",
+                    margin: "auto",
+                    justifyContent: "center",
+                    flex: 1,
+                    fontSize: 15,
+                    border: "0.2px solid black"
+                }}>
+                    SORUMLU AMİR ONAYI
                 </h1>
 
-                <h1 style={{display:"flex", padding:"5px", margin:"auto",justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black"}}>
+                <h1 style={{
+                    display: "flex",
+                    padding: "5px",
+                    margin: "auto",
+                    justifyContent: "center",
+                    flex: 1,
+                    fontSize: 15,
+                    border: "0.2px solid black"
+                }}>
                     ONAYLAYAN
                 </h1>
             </div>
 
             <div style={{
-                display:"flex",
-                flexDirection:"row",
-                flex:3,
-                textAlignment:"center"
+                display: "flex",
+                flexDirection: "row",
+                flex: 3,
+                textAlignment: "center"
             }}>
-                <h1 style={{display:"flex",padding:"15px", margin:"auto",justifyContent:"center",flex:1 , fontSize:15 , border:"0.2px solid black", borderTop:"0px"}}>
+                <h1 style={{
+                    display: "flex",
+                    padding: "15px",
+                    margin: "auto",
+                    justifyContent: "center",
+                    flex: 1,
+                    fontSize: 15,
+                    border: "0.2px solid black",
+                    borderTop: "0px"
+                }}>
                     ZOZAN KARTAL
                 </h1>
 
-                <h1 style={{display:"flex", padding:"15px", margin:"auto", justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black",borderTop:"0px"}}>
+                <h1 style={{
+                    display: "flex",
+                    padding: "15px",
+                    margin: "auto",
+                    justifyContent: "center",
+                    flex: 1,
+                    fontSize: 15,
+                    border: "0.2px solid black",
+                    borderTop: "0px"
+                }}>
                     OZAN KARTAL
                 </h1>
 
-                <h1 style={{display:"flex", padding:"15px", margin:"auto",justifyContent:"center", flex:1 , fontSize:15,border:"0.2px solid black",borderTop:"0px"}}>
+                <h1 style={{
+                    display: "flex",
+                    padding: "15px",
+                    margin: "auto",
+                    justifyContent: "center",
+                    flex: 1,
+                    fontSize: 15,
+                    border: "0.2px solid black",
+                    borderTop: "0px"
+                }}>
                     KARTAL ZOZAN
                 </h1>
             </div>
 
             <div style={{
-                display:"flex",
-                flexDirection:"row",
-                flex:6,
-                textAlignment:"center"
+                display: "flex",
+                flexDirection: "row",
+                flex: 6,
+                textAlignment: "center"
             }}>
-
                 <img src={imza1} alt="imza" style={{
-                    border:"0.5px solid black",
-                    width:"33vw",
-                    height:"5vw",
+                    border: "0.5px solid black",
+                    width: "33vw",
+                    height: "5vw",
                     display: "flex",
-                    justifyContent:"center",
-                    flex:2
+                    justifyContent: "center",
+                    flex: 2
                 }}/>
                 <img src={imza1} alt="imza" style={{
-                    border:"0.5px solid black",
+                    border: "0.5px solid black",
                     display: "flex",
-                    width:"33vw",
-                    height:"5vw",
-                    justifyContent:"center",
-                    flex:2
+                    width: "33vw",
+                    height: "5vw",
+                    justifyContent: "center",
+                    flex: 2
                 }}/>
                 <img src={imza1} alt="imza" style={{
-                    border:"0.5px solid black",
-                    width:"33vw",
-                    height:"5vw",
+                    border: "0.5px solid black",
+                    width: "33vw",
+                    height: "5vw",
                     display: "flex",
-                    justifyContent:"center",
-                    flex:2
+                    justifyContent: "center",
+                    flex: 2
                 }}/>
             </div>
 
         </div>
     )
 }
-
 
 export default PerPerDemScreen;
