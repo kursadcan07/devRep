@@ -7,6 +7,7 @@ import PerPerDemScreen from "./PersonelScreens/PerPerDemScreen";
 import PerPrevPerDisScreen from "./PersonelScreens/PerPrevPerDisScreen";
 import TestPage from "./PersonelScreens/testPage";
 import perFillPerScreen from "./PersonelScreens/perFillScreen";
+import aftPerCreNavScreen from "./PersonelScreens/aftPerCreNavScreen";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/PersonelScreens/PerPrevPerDisScreen" component={PerPrevPerDisScreen}/>
                     <Route path="/PersonelScreens/testPage" component={TestPage}/>
                     <Route path="/PersonelScreens/perFillScreen" component={perFillPerScreen}/>
+                    <Route path="/PersonelScreens/aftPerCreNavScreen" component={aftPerCreNavScreen} />
                 </Switch>
             </div>
         </Router>
