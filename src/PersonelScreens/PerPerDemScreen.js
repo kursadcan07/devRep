@@ -671,7 +671,7 @@ function vhcUsageOfPers() {
     );
 }
 
-//HERE THE EXPLANATION OF PERMISSON DEMAND THAT DESCRIBED BY PERSONEL
+//HERE THE EXPLANATION OF PERMISSON DEMAND THAT DESCRIBED BY PERSONEL11
 function perExplPart() {
     return (
         <div style={{
