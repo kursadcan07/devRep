@@ -139,6 +139,23 @@ function underHeadPart() {
 
 //İZİN TİPİ SEÇME COMPONENTİ
 function perAccCompt() {
+    let userPerSel = 1;
+
+    let yearlyPer=false;
+    let missionPer=false;
+    let otherPer=false;
+
+
+    if(userPerSel===1){
+        yearlyPer=true;
+    }
+    else if(userPerSel===2){
+        missionPer=true;
+    }
+    else if(userPerSel===3){
+        otherPer=true;
+    }
+
     return (
         <div style={{
             display: "flex",
@@ -169,7 +186,7 @@ function perAccCompt() {
                         Yıllık İzin
                     </h1>
 
-                    <input type="checkbox" style={{
+                    <input disabled checked={yearlyPer} type="checkbox" style={{
                         margin:"auto",
                         display: "flex",
                         flex: 0.2,
@@ -195,7 +212,7 @@ function perAccCompt() {
                         Görevli
                     </h1>
 
-                    <input type="checkbox" style={{
+                    <input type="checkbox" disabled checked={missionPer} style={{
                         display: "flex",
                         flex: 0.2,
                         height:"80%",
@@ -218,7 +235,7 @@ function perAccCompt() {
                     }}>
                         Diğer
                     </h1>
-                    <input type="checkbox" style={{
+                    <input type="checkbox" disabled checked={otherPer} style={{
                         display: "flex",
                         flex: 0.2,
                         height:"80%",
