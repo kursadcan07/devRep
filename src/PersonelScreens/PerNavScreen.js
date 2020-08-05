@@ -6,38 +6,64 @@ import Col from "react-bootstrap/Col";
 
 function PerNavScreen() {
     return (
-        <div >
+        <div>
             <Col>
                 <Row style={{
-                    display:"flex",justifyContent:"center",alignItems:"center",marginTop:"20vw",marginBottom:"20vw"}}>
-                    <Link to="perFillScreen" style={{textDecoration:"none",display:"flex",  flex:1,
-                        height:"20vw"}}>
-                <button type="button" className="btn btn-success" style={{
-                    display:"flex",
-                    flex:1,
-                    height:"20vw",
-                    justifyContent:"center",
-                    fontSize:"5vw",
-                    marginRight:"0.2vw",
-                    borderRadius:"5%",
-                    textAlign: "center",
-                    fontWeight:"normal",
-                    paddingTop:"3vw"
-                }}>İZİN TALEBİ YARAT</button>
+                    display: "flex",
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: "20vw",
+                    marginBottom: "20vw"
+                }}>
+                    <Link to="perFillScreen" style={{
+                        textDecoration: "none", display: "flex", flex: 1,
+                        height: "20vw"
+                    }}>
+                        <button type="button" className="btn btn-success" style={{
+                            display: "flex",
+                            marginRight: "5px",
+                            flex: 1,
+                            height: "20vw",
+                            justifyContent: "center",
+                            borderRadius: "5%",
+                            textAlign: "center",
+                            fontWeight: "normal"
+                        }}>
+                            <h1 style={{
+                                display: "flex",
+                                flex: 1,
+                                justifyContent: "center",
+                                fontSize: "3vw",
+                                margin: "auto"
+                            }}>
+                                İZİN TALEBİ YARAT
+                            </h1>
+                        </button>
                     </Link>
-                    <Link to="PerPrevPerDisScreen" style={{textDecoration:"none", display:"flex",  flex:1,
-                        height:"20vw"}} >
-                <button type="button" className="btn btn-success" style={{
-                    display:"flex",
-                    flex:1,
-                    height:"20vw",
-                    fontSize:"5vw",
-                    borderRadius:"5%",
-                    textAlign: "center",
-                    justifyContent:"center",
-                    paddingTop:"3vw"
-                }}>GEÇMİŞ İZİNLERİ GÖRÜNTÜLE</button>
-                        </Link>
+                    <Link to="PerPrevPerDisScreen" style={{
+                        textDecoration: "none", display: "flex", flex: 1,
+                        height: "20vw"
+                    }}>
+                        <button type="button" className="btn btn-success" style={{
+                            display: "flex",
+                            flex: 1,
+                            height: "20vw",
+                            borderRadius: "5%",
+                            textAlign: "center",
+                            justifyContent: "center"
+                        }}>
+                            <h1 style={{
+                                display: "flex",
+                                flex: 1,
+                                justifyContent: "center",
+                                fontSize: "3vw",
+                                margin: "auto"
+                            }}>
+                                GEÇMİŞ İZİNLERİ GÖRÜNTÜLE
+                            </h1>
+                        </button>
+                    </Link>
                 </Row>
             </Col>
         </div>

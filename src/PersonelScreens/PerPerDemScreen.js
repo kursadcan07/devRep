@@ -7,7 +7,7 @@ function PerPerDemScreen() {
         <div style={{
             display: "flex",
             flexDirection: "column",
-            flex: 8,
+            flex: 9,
             border:"0.2px solid black",
             borderRadius:"2%"
         }}>
@@ -86,6 +86,15 @@ function PerPerDemScreen() {
                 {perAccpPart()}
             </div>
 
+            <div style={{
+                display: "flex",
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
+            }}>
+                {formDetailsPart()}
+            </div>
         </div>
     )
 }
@@ -1031,6 +1040,57 @@ function perAccpPart() {
             </div>
 
         </div>
+    )
+}
+
+function formDetailsPart() {
+    return(
+        <div style={{
+            display:"flex",
+            justifyContent:"center",
+            flex:4
+        }}>
+            <h1 style={{
+                display:"flex",
+                justifyContent:"center",
+                flex:0.6,
+                fontSize:"1vw",
+                margin:"auto"
+            }}>
+                Form No: IKFR002
+            </h1>
+
+            <h1 style={{
+                display:"flex",
+                justifyContent:"center",
+                flex:1,
+                fontSize:"1vw",
+                margin:"auto"
+            }}>
+                Form Yayın Tarihi: 21/09/2016
+            </h1>
+            <h1 style={{
+                display:"flex",
+                justifyContent:"center",
+                flex:1.4,
+                fontSize:"1vw",
+                margin:"auto"
+            }}>
+                Form Revizyon Tarihi :02.07.2019
+            </h1>
+            <h1 style={{
+                display:"flex",
+                justifyContent:"center",
+                flex:1,
+                fontSize:"1vw",
+                margin:"auto"
+            }}>
+                Form Revizyon No: 0002
+            </h1>
+
+
+        </div>
+
     )
 }
 
