@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "./logok.png";
-import {Link} from "react-router-dom";
 
 
 function PerPerDemScreen() {
@@ -8,55 +7,81 @@ function PerPerDemScreen() {
         <div style={{
             display: "flex",
             flexDirection: "column",
-            flex: 8
+            flex: 8,
+            border:"0.2px solid black",
+            borderRadius:"2%"
         }}>
             <div
                 style={{
                     display: "flex",
-                    flex: 1
+                    flex: 1,
+                    marginTop:"4px",
+                    marginBottom:"4px",
+                    border:"0.6px solid black"
                 }}>
                 {headPart()}
             </div>
 
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {underHeadPart()}
             </div>
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {personelInfoPart()}
             </div>
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {personelDatesAndExp()}
             </div>
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {vhcUsageOfPers()}
             </div>
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {perExplPart()}
             </div>
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {vhclUsgInfo()}
             </div>
             <div style={{
                 display: "flex",
-                flex: 1
+                flex: 1,
+                marginTop:"4px",
+                marginBottom:"4px",
+                border:"0.6px solid black"
             }}>
                 {perAccpPart()}
             </div>
@@ -403,7 +428,6 @@ function personelInfoPart() {
                         border:"0.5px solid black",
                         borderLeft:"1px solid black",
                         borderTop:"0px"
-
                     }}
                     >
                     <h1 style={{
@@ -758,26 +782,34 @@ function perExplPart() {
     return (
         <div style={{
             display: "flex",
+            flex: 1,
             justifyContent: "center",
-            flexDirection: "row",
-            flex: 1
+            flexDirection: "row"
         }}>
             <h1 style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: 15,
+                fontSize: "13px",
                 flex: 0.1,
                 padding: "0.1vw",
                 border: "0.2px solid black",
-                height: "100%"
-            }}>Açıklama : </h1>
-            <textarea style={{
+                height: "100%",
+                margin:"auto"
+
+            }}>Açıklama:
+            </h1>
+
+            <p style={{
                 display: "flex",
-                justifyContent: "center",
+                alignItems:"row",
+                justifyContent: "flex-start",
                 flexDirection: "row",
-                flex: 0.9
-            }} placeholder="İzin Açıklamanızın bulunduğu kısım" maxLength="500"/>
+                flex: 0.9,
+                wordBreak:"break-word"
+            }}>
+                Tatil yapacağım.
+            </p>
         </div>
     )
 }
@@ -787,7 +819,7 @@ function vhclUsgInfo() {
     return (
         <div style={{
             display: "flex",
-            flex: 4,
+            flex: 2,
             flewDirection: "row",
             justifyContent: "center",
             border: "0.35px solid black"
@@ -797,23 +829,31 @@ function vhclUsgInfo() {
                 justifyContent: "flex-start",
                 flexDirection: "row",
                 alignItems: "center",
-                flex: 1,
-                paddingLeft: "30px",
+                flex: 2,
                 borderLeft: "0.1px solid black",
-                textAlignment: "center",
-                padding: "0.2vw"
             }}
             >
-                Kendi Aracı:
+                <h1 style={{
+                    display: "flex",
+                    justifyContent:"center",
+                    flex:1,
+                    fontFamily:"Scada",
+                    fontSize:"16px",
+                    margin:"auto"
+                }}>
+                    Kendi Aracı:
+                </h1>
+
                 <input style={{
                     display: "flex",
-                    flex: 0.4,
+                    flex: 0.3,
                 }} type="checkbox"/>
                 <p style={{
                     display: "flex",
-                    border: "0.2px solid black",
+                    justifyContent:"center",
+                    borderLeft: "0.1px solid black",
                     alignItems: "center",
-                    flex: 0.2,
+                    flex: 0.7,
                     margin: "auto",
                     fontSize: 15
                 }}> ___ km</p>
@@ -823,25 +863,33 @@ function vhclUsgInfo() {
                 justifyContent: "flex-start",
                 flexDirection: "row",
                 alignItems: "center",
-                flex: 1,
-                paddingLeft: "30px",
+                flex: 2,
                 borderLeft: "0.1px solid black",
-                textAlignment: "center",
-                padding: "0.2vw"
+                textAlignment: "center"
             }}
             >
-                Otobus/Tramvay:
+                <h1 style={{
+                    display: "flex",
+                    justifyContent:"center",
+                    flex:1,
+                    fontFamily:"Scada",
+                    fontSize:"16px",
+                    margin:"auto"
+                }}>
+                   Otobus/Travmay:
+                </h1>
                 <input style={{
                     display: "flex",
-                    flex: 0.40
+                    flex: 0.3
                 }} type="checkbox"/>
                 <p style={{
                     display: "flex",
-                    border: "0.2px solid black",
                     fontSize: 15,
                     alignItems: "center",
                     textAlignment: "center",
-                    flex: 0.2,
+                    justifyContent:"center",
+                    borderLeft: "0.1px solid black",
+                    flex: 0.7,
                     margin: "auto"
                 }}> ___ ₺</p>
             </div>
@@ -857,103 +905,103 @@ function perAccpPart() {
         <div style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "row",
-            flex: 12,
-            marginTop: "0.4vw"
+            flex: 21,
+
         }}>
             <div style={{
                 display: "flex",
                 flexDirection: "row",
+                justifyContent:"center",
                 flex: 3,
-                textAlignment: "center"
+                textAlign: "center"
             }}>
                 <h1 style={{
                     display: "flex",
-                    padding: "5px",
-                    margin: "auto",
                     justifyContent: "center",
                     flex: 1,
-                    fontSize: 15,
-                    border: "0.2px solid black"
+                    fontSize: "12px",
+                    border: "0.2px solid black",
+                    margin:"auto",
+                    padding:"5px"
                 }}>
                     İZİNLİ PERSONEL ONAYI
                 </h1>
 
                 <h1 style={{
                     display: "flex",
-                    padding: "5px",
-                    margin: "auto",
                     justifyContent: "center",
                     flex: 1,
-                    fontSize: 15,
-                    border: "0.2px solid black"
+                    fontSize: "12px",
+                    border: "0.2px solid black",
+                    margin:"auto",
+                    padding:"5px"
+
                 }}>
                     SORUMLU AMİR ONAYI
                 </h1>
 
                 <h1 style={{
                     display: "flex",
-                    padding: "5px",
-                    margin: "auto",
                     justifyContent: "center",
                     flex: 1,
-                    fontSize: 15,
-                    border: "0.2px solid black"
+                    fontSize: "13px",
+                    border: "0.2px solid black",
+                    margin:"auto",
+                    padding:"4px"
                 }}>
-                    ONAYLAYAN
+                   GENEL MÜDÜR ONAYI
                 </h1>
             </div>
 
             <div style={{
                 display: "flex",
+                justifyContent: "center",
                 flexDirection: "row",
-                flex: 3,
-                textAlignment: "center"
+                flex:6,
+                textAlign: "center"
             }}>
                 <h1 style={{
+
                     display: "flex",
-                    padding: "15px",
-                    margin: "auto",
                     justifyContent: "center",
-                    flex: 1,
-                    fontSize: 15,
+                    flex:2,
+                    fontSize: "15px",
                     border: "0.2px solid black",
-                    borderTop: "0px"
+                    padding:"10px",
+                    margin:"auto"
                 }}>
                     ZOZAN KARTAL
                 </h1>
 
                 <h1 style={{
                     display: "flex",
-                    padding: "15px",
-                    margin: "auto",
                     justifyContent: "center",
-                    flex: 1,
-                    fontSize: 15,
+                    flex:2,
+                    fontSize: "15px",
                     border: "0.2px solid black",
-                    borderTop: "0px"
+                    padding:"10px",
+                    margin:"auto"
                 }}>
-                    OZAN KARTAL
+                    KARTAL ZOZAN
                 </h1>
 
                 <h1 style={{
                     display: "flex",
-                    padding: "15px",
-                    margin: "auto",
                     justifyContent: "center",
-                    flex: 1,
-                    fontSize: 15,
+                    flex:2,
+                    fontSize: "15px",
                     border: "0.2px solid black",
-                    borderTop: "0px"
+                    padding:"10px",
+                    margin:"auto"
                 }}>
-                    KARTAL ZOZAN
+                    KOZAN KARTAL
                 </h1>
             </div>
-
             <div style={{
                 display: "flex",
                 flexDirection: "row",
-                flex: 6,
+                justifyContent:"center",
+                flex: 12,
                 textAlignment: "center"
             }}>
                 <img src={imza1} alt="imza" style={{
@@ -962,7 +1010,7 @@ function perAccpPart() {
                     height: "5vw",
                     display: "flex",
                     justifyContent: "center",
-                    flex: 2
+                    flex: 4
                 }}/>
                 <img src={imza1} alt="imza" style={{
                     border: "0.5px solid black",
@@ -970,7 +1018,7 @@ function perAccpPart() {
                     width: "33vw",
                     height: "5vw",
                     justifyContent: "center",
-                    flex: 2
+                    flex: 4
                 }}/>
                 <img src={imza1} alt="imza" style={{
                     border: "0.5px solid black",
@@ -978,7 +1026,7 @@ function perAccpPart() {
                     height: "5vw",
                     display: "flex",
                     justifyContent: "center",
-                    flex: 2
+                    flex: 4
                 }}/>
             </div>
 
