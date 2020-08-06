@@ -1,31 +1,39 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Link} from "react-router-dom";
-import Logo from "./PersonelScreens/logok.png";
-import PerNavScreen from "./PersonelScreens/PerNavScreen";
-import PerPerDemScreen from "./PersonelScreens/PerPerDemScreen";
-import PerPrevPerDisScreen from "./PersonelScreens/PerPrevPerDisScreen";
-import TestPage from "./PersonelScreens/testPage";
-import perFillPerScreen from "./PersonelScreens/perFillScreen";
-import aftPerCreNavScreen from "./PersonelScreens/aftPerCreNavScreen";
+import Logo from "./PersonelScreens/compLogo.png";
+import PerNav from "./PersonelScreens/PerNav";
+import DisPerDem from "./PersonelScreens/DisPerDem";
+import PrevPer from "./PersonelScreens/PrevPer";
+import PerFill from "./PersonelScreens/PerFill";
+import NavPrevPer from "./PersonelScreens/SuccPer";
+import SuccPer from "./PersonelScreens/SuccPer";
+/*
+const counter = useSelector(state => state.counter);
+const isLogged = useSelector(state => state.isLogged);
+const dispatch = useDispatch();
 
+onClick{}
+
+*/
 function App() {
     return (
         <Router>
             <div>
                 <Switch>
                     <Route path="/" exact component={LoginScreen}/>
-                    <Route path="/PersonelScreens/PerNavScreen" component={PerNavScreen}/>
-                    <Route path="/PersonelScreens/PerPerDemScreen" component={PerPerDemScreen}/>
-                    <Route path="/PersonelScreens/PerPrevPerDisScreen" component={PerPrevPerDisScreen}/>
-                    <Route path="/PersonelScreens/testPage" component={TestPage}/>
-                    <Route path="/PersonelScreens/perFillScreen" component={perFillPerScreen}/>
-                    <Route path="/PersonelScreens/aftPerCreNavScreen" component={aftPerCreNavScreen} />
+                    <Route path="/PersonelScreens/PerNav" component={PerNav}/>
+                    <Route path="/PersonelScreens/DisPerDem" component={DisPerDem}/>
+                    <Route path="/PersonelScreens/PrevPer" component={PrevPer}/>
+                    <Route path="/PersonelScreens/PerFill" component={PerFill}/>
+                    <Route path="/PersonelScreens/NavPrevPer" component={NavPrevPer} />
+                    <Route path="/PersonelScreens/SuccPer" component={SuccPer} />
                 </Switch>
             </div>
         </Router>
     )
 }
+
 
 const LoginScreen = () => (
     <div style={{
@@ -36,6 +44,7 @@ const LoginScreen = () => (
         alignItems:"center",
         width:"100%"
     }}>
+
         <img src={Logo} style={{
             display: "flex",
             flexWrap:"wrap",
@@ -124,18 +133,13 @@ const LoginScreen = () => (
                 alignItems:"center",
                 margin:"3%"
             }}>
-                <Link to="/PersonelScreens/PerNavScreen" style={{textDecoration:"none"}}>
-                        <button style={{
-                            display:"flex",
-                            fontFamily: "Roboto",
-                            fontStyle: "normal",
-                            fontWeight: "normal",
-                            fontSize: "18px",
-                            lineHeight: "21px",
-                            textAlign: "center",
-                        }}>
-                            GİRİŞ
-                        </button>
+                <Link to="/PersonelScreens/PerNav" style={{
+                    display:"flex",
+                    textDecoration:"none",
+                    alignItems:"center",
+                    flex:1,
+                    justifyContent:"center"}}>
+                    <button type="button" className="btn btn-info" style={{ display:"flex",flex:0.33,justifyContent:"center"}}>GİRİŞ</button>
                 </Link>
             </div>
         </div>
