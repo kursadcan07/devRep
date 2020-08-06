@@ -139,12 +139,12 @@ function underHeadPart() {
 
 //İZİN TİPİ SEÇME COMPONENTİ
 function perAccCompt() {
+
     let userPerSel = 1;
 
     let yearlyPer=false;
     let missionPer=false;
     let otherPer=false;
-
 
     if(userPerSel===1){
         yearlyPer=true;
