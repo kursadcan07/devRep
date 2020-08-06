@@ -18,8 +18,10 @@ function DisPerDem() {
     let permissionStartTime="22:50";
     let permissionEndDate= "22/22/2222";
     let permissionEndTime="24:42";
-
     let permissionLength="22 saat";
+
+    let vhicleUsageID=0;
+
 
     return (
         <div style={{
@@ -78,7 +80,7 @@ function DisPerDem() {
                     marginBottom: "4px",
                     border: "0.6px solid black"
                 }}>
-                    {vhcUsageOfPers()}
+                    {vhcUsageOfPers(vhicleUsageID)}
                 </div>
                 <div style={{
                     display: "flex",
@@ -87,7 +89,7 @@ function DisPerDem() {
                     marginBottom: "4px",
                     border: "0.6px solid black"
                 }}>
-                    {perExplPart()}
+                    {perExplPart(expOfPer)}
                 </div>
                 <div style={{
                     display: "flex",
@@ -751,10 +753,8 @@ function personelDatesAndExp(permissionStartDate,permissionStartTime,permissionE
                     justifyContent: "center",
                     flex: 2,
                     alignItems: "center",
-                    border: "0.2px solid black",
-
+                    border: "0.2px solid black"
                 }}>
-
                     <h1 style={{
                         display: "flex",
                         flex: 1,
@@ -768,8 +768,16 @@ function personelDatesAndExp(permissionStartDate,permissionStartTime,permissionE
     );
 }
 
-function vhcUsageOfPers() {
-    let compvhcUsg = "EVET"
+function vhcUsageOfPers(vehicleUsageID) {
+    let personelCarUsage;
+
+
+    if (vehicleUsageID===1){
+        personelCarUsage=true;
+    }
+    else{
+        personelCarUsage=false;
+    }
     return (
         <div style={{
             display: "flex",
@@ -817,7 +825,7 @@ function vhcUsageOfPers() {
                     display: "flex",
                     justifyContent: "center",
                     flex: 0.4,
-                }} type="checkbox"/>
+                }} type="checkbox" disabled checked={personelCarUsage}/>
             </div>
 
             <div style={{
@@ -833,11 +841,10 @@ function vhcUsageOfPers() {
             }}
             >
                 HAYIR
-                <input style={{
+                <input disabled checked={!personelCarUsage} style={{
                     display: "flex",
                     flex: 0.40
                 }} type="checkbox"/>
-
             </div>
 
         </div>
@@ -845,7 +852,7 @@ function vhcUsageOfPers() {
 }
 
 //HERE THE EXPLANATION OF PERMISSON DEMAND THAT DESCRIBED BY PERSONEL11
-function perExplPart() {
+function perExplPart(explOfPer) {
     return (
         <div style={{
             display: "flex",
@@ -875,7 +882,7 @@ function perExplPart() {
                 flex: 0.9,
                 wordBreak: "break-word"
             }}>
-                Tatil yapacağım.
+                {explOfPer}
             </p>
         </div>
     )
