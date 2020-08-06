@@ -9,8 +9,6 @@ import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-
-
 const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
 const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
 const locale = {
@@ -22,7 +20,9 @@ const locale = {
     formatLong: {}
 }
 
+
 class PerFill extends React.Component {
+
     constructor() {
         super();
         this.state = {
@@ -30,12 +30,13 @@ class PerFill extends React.Component {
             perSel:0,
             perVhcUsg:"Araç Kullanım Durumu Seçiniz",
             startDate: null,
-            price:"qq",
+            price:"",
             distance:"",
             endDate:null,
             dispEntPriBox:false,
             dispEntDisBox:false
         }
+
 
         this.perTypeSlct = this.perTypeSlct.bind(this);
         this.handleStartDate = this.handleStartDate.bind(this);
@@ -46,7 +47,6 @@ class PerFill extends React.Component {
         inputForBus = inputForBus.bind(this);
         inputForDist= inputForDist.bind(this);
     }
-
 
     perTypeSlct(event) {
         this.setState({
@@ -141,7 +141,7 @@ class PerFill extends React.Component {
                         <DatePicker
                             locale={locale}
                             onChange={this.handleStartDate}
-                            placeholderText="İzin Başlangıç Tarihi       "
+                            placeholderText="İzin Başlangıç Tarihi"
                             selected={this.state.startDate}
                             timeCaption="Saat"
                             isClearable
@@ -157,7 +157,7 @@ class PerFill extends React.Component {
                         <DatePicker
                             locale={locale}
                             onChange={this.handleEndDate}
-                            placeholderText="İzin Bitiş Tarihi       "
+                            placeholderText="İzin Bitiş Tarihi"
                             selected={this.state.endDate}
                             timeCaption="Saat"
                             isClearable
@@ -193,7 +193,7 @@ class PerFill extends React.Component {
                     </Row>
                     <Row className="justify-content-center"  >
                         <Link to="DisPerDem">
-                        <Button variant="primary" size="lg" active onClick={()=> {console.log("Merhaba")}}>
+                        <Button variant="primary" size="lg" active onClick={()=>{console.log("Hello")}}>
                             ONAYLAMAYA GEÇ
                         </Button>
                         </Link>

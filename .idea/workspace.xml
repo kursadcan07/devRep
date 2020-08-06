@@ -20,30 +20,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8df69efc-61da-480a-b293-a3bdf97cf1c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/isLogged.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/DropDown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PerNavScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PerNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PerPerDemScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/DisPerDem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PerPrevPerDisScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PrevPer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/aftPerCreNavScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SuccPer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/logok.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/compLogo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/ornImz.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/ExSign.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/perFillScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PerFill.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/testPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/DisPerDem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/DisPerDem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PerFill.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PerFill.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PerNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PerNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,8 +58,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/PersonelScreens" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -98,7 +97,7 @@
       <workItem from="1596520653331" duration="1737000" />
       <workItem from="1596522987030" duration="24093000" />
       <workItem from="1596607264801" duration="20842000" />
-      <workItem from="1596692743871" duration="18594000" />
+      <workItem from="1596692743871" duration="26073000" />
     </task>
     <servers />
   </component>
@@ -118,6 +117,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2726" y="431" width="298" height="224" key="#ESLint" timestamp="1596720681592">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2726" y="431" width="298" height="224" key="#ESLint/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596720681592" />
     <state x="2338" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596523423057">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -134,22 +137,22 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596523192347" />
-    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1596717035663">
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1596724687208">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596717035663" />
-    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1596717035663">
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596724687208" />
+    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1596724687207">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596717035663" />
-    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1596717035663">
+    <state width="1874" height="284" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596724687207" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1596724687207">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596717035663" />
-    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1596717035663">
+    <state width="1874" height="284" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596724687207" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1596724687207">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596717035663" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596724687207" />
     <state x="2571" y="279" width="618" height="522" key="find.popup" timestamp="1596522603220">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

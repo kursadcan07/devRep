@@ -3,9 +3,40 @@ import Logo from "./compLogo.png";
 import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
-import PerFill from "./PerFill";
+
 
 function DisPerDem() {
+    let areaCode="(SB)";
+    let foldCode=25;
+    let perTypeID=6;
+    let personalName="ZOZAN KARTAL";
+    let dateOfDemand="22/22/22";
+
+    let expOfPer="Tatil yapmak maksadıyla.";
+
+    let permissionStartDate= "22/22/2222";
+    let permissionStartTime="22:50";
+    let permissionEndDate= "22/22/2222";
+    let permissionEndTime="24:42";
+
+    // start time and end time
+    let startTime = moment("12:16:59 am", "HH:mm:ss a");
+    let endTime = moment("06:12:07 pm", "HH:mm:ss a");
+
+// calculate total duration
+    let duration = moment.duration(endTime.diff(startTime));
+
+// duration in hours
+    let hours = parseInt(duration.asHours());
+
+// duration in minutes
+    let minutes = parseInt(duration.asMinutes())%60;
+
+    alert (hours + ' hour and '+ minutes+' minutes.');
+
+
+    let permissionLength="22 saat";
+
     return (
         <div style={{
             display: "flex",
@@ -26,7 +57,7 @@ function DisPerDem() {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                    {headPart()}
+                    {headPart(areaCode,foldCode)}
                 </div>
 
                 <div style={{
@@ -36,7 +67,7 @@ function DisPerDem() {
                     marginBottom: "4px",
                     border: "0.6px solid black"
                 }}>
-                    {underHeadPart()}
+                    {underHeadPart(perTypeID)}
                 </div>
                 <div style={{
                     display: "flex",
@@ -45,7 +76,7 @@ function DisPerDem() {
                     marginBottom: "4px",
                     border: "0.6px solid black"
                 }}>
-                    {personelInfoPart()}
+                    {personelInfoPart(personalName,dateOfDemand)}
                 </div>
                 <div style={{
                     display: "flex",
@@ -54,7 +85,7 @@ function DisPerDem() {
                     marginBottom: "4px",
                     border: "0.6px solid black"
                 }}>
-                    {personelDatesAndExp()}
+                    {personelDatesAndExp(permissionStartDate,permissionStartTime,permissionEndDate,permissionEndTime,permissionLength)}
                 </div>
                 <div style={{
                     display: "flex",
@@ -116,8 +147,8 @@ function DisPerDem() {
     )
 }
 
-//ÜST BAŞLIĞIN OLDUĞU KOMPONENT
-function headPart() {
+//ÜST BAŞLIĞIN OLDUĞU KOMPONENT ( __1__ )
+function headPart(areaCode,foldNumb) {
     return (
         <div style={{
             display: "flex",
@@ -168,7 +199,7 @@ function headPart() {
                         margin: "auto",
                         fontFamily: "Scada"
                     }}>
-                        (AS)
+                        {areaCode}
                     </h1>
                 </div>
 
@@ -202,7 +233,7 @@ function headPart() {
                         border: "0.5px solid black",
                         fontFamily: "Scada"
                     }}>
-                        222s
+                        {foldNumb}
                     </h1>
                 </div>
             </div>
@@ -211,7 +242,7 @@ function headPart() {
 }
 
 //ÜSTTEN 2.BLOK KOMPONENT İZİN TÜRÜ ALINIR, BİR KOMPONENTİ DE İÇERDE YARATIR.
-function underHeadPart() {
+function underHeadPart(perTypeID) {
     return (
         <div style={{
             display: "flex",
@@ -242,27 +273,40 @@ function underHeadPart() {
                 display: "flex",
                 flex: 5
             }}>
-                {perAccCompt()}
+                {perAccCompt(perTypeID)}
             </div>
         </div>
     );
 }
 
 //İZİN TİPİ SEÇME COMPONENTİ
-function perAccCompt() {
-    let userPerSel = 1;
+function perAccCompt(perTypeID) {
 
-    let yearlyPer = false;
-    let missionPer = false;
-    let otherPer = false;
+    let yearlyPer;
+    let missionPer;
+    let otherPer;
+    let pricelessPer;
+    let pricelyPer;
+    let twoMonthBasedPer;
 
-
-    if (userPerSel === 1) {
-        yearlyPer = true;
-    } else if (userPerSel === 2) {
-        missionPer = true;
-    } else if (userPerSel === 3) {
-        otherPer = true;
+    switch (perTypeID) {
+        case 1:
+            yearlyPer = true;
+            break;
+        case 2:
+            missionPer = true;
+            break;
+        case 3:
+            otherPer = true;
+            break;
+        case 4:
+            pricelessPer = true;
+            break;
+        case 5:
+            pricelyPer = true;
+            break;
+        default:
+            twoMonthBasedPer = true;
     }
 
     return (
@@ -374,7 +418,7 @@ function perAccCompt() {
                         Ücretsiz İzin
                     </h1>
 
-                    <input type="checkbox" style={{
+                    <input type="checkbox" disabled checked={pricelessPer} style={{
                         margin: "auto",
                         display: "flex",
                         flex: 0.2,
@@ -399,7 +443,7 @@ function perAccCompt() {
                         Ücretli İzin
                     </h1>
 
-                    <input type="checkbox" style={{
+                    <input type="checkbox" disabled checked={pricelyPer} style={{
                         display: "flex",
                         flex: 0.2,
                         height: "80%",
@@ -421,7 +465,7 @@ function perAccCompt() {
                     }}>
                         2 Ay İçinde Telafi Yapılacak
                     </h1>
-                    <input type="checkbox" style={{
+                    <input type="checkbox" disabled checked={twoMonthBasedPer} style={{
                         display: "flex",
                         flex: 0.2,
                         height: "80%",
@@ -433,9 +477,9 @@ function perAccCompt() {
     )
 }
 
-//BLOCK THREE
-function personelInfoPart() {
-    let personelAdSoyad = "Zozan Kartal";
+//This functional component fills that name-surname of personel that demands permisson and date when demans created.
+function personelInfoPart(personalNameSurname,demandDate) {
+
     return (
         <div style={{
             display: "flex",
@@ -480,7 +524,7 @@ function personelInfoPart() {
                         textAlign: "center"
                     }}
                     >
-                        KARTAL DUMAN
+                        {personalNameSurname}
                     </h1>
                 </div>
             </div>
@@ -500,14 +544,14 @@ function personelInfoPart() {
                     borderBottom: "0.5px solid black",
                     borderRight: "0.5px solid black"
                 }}
-                >Talep Tarih : 22/22/2222</h1>
+                >Talep Tarih : {demandDate}</h1>
             </div>
         </div>
     );
 }
 
 //BLOCK FOUR
-function personelDatesAndExp() {
+function personelDatesAndExp(permissionStartDate,permissionStartTime,permissionEndDate,permissionEndTime,permissionLength) {
     return (
         <div style={{
             display: "flex",
@@ -612,14 +656,13 @@ function personelDatesAndExp() {
                     border: "0.2px solid black",
 
                 }}>
-
                     <h1 style={{
                         display: "flex",
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>22/22/2222</h1>
+                    }}>{permissionStartDate}</h1>
                 </div>
 
                 <div style={{
@@ -636,7 +679,7 @@ function personelDatesAndExp() {
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>22:22</h1>
+                    }}>{permissionStartTime}</h1>
                 </div>
             </div>
             <div style={{
@@ -677,7 +720,7 @@ function personelDatesAndExp() {
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>22/22/2222</h1>
+                    }}>{permissionEndDate}</h1>
                 </div>
                 <div style={{
                     display: "flex",
@@ -693,7 +736,7 @@ function personelDatesAndExp() {
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>22:22</h1>
+                    }}>{permissionEndTime}</h1>
                 </div>
             </div>
             <div style={{
@@ -734,7 +777,7 @@ function personelDatesAndExp() {
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}> 2 gün 22 saat</h1>
+                    }}> {permissionLength}</h1>
                 </div>
             </div>
         </div>

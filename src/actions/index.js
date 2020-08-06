@@ -1,7 +1,7 @@
 export const setExp = (exp) =>{
     return{
         type:"SET-EXP",
-        exp:setExp
+        exp:exp
     };
 };
 export const decrement = () =>{

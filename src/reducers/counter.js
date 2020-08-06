@@ -1,9 +1,10 @@
-const counterReducer = (state=0,action) =>{
+const counterReducer = (state="",action) =>{
     switch (action.type) {
-        case "INCREMENT":
-            return !state;
+        case "SET-EXP":
+            return state;
         default:
             return state;
     }
 }
+
 export default counterReducer;
