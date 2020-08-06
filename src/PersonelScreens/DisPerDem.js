@@ -19,22 +19,6 @@ function DisPerDem() {
     let permissionEndDate= "22/22/2222";
     let permissionEndTime="24:42";
 
-    // start time and end time
-    let startTime = moment("12:16:59 am", "HH:mm:ss a");
-    let endTime = moment("06:12:07 pm", "HH:mm:ss a");
-
-// calculate total duration
-    let duration = moment.duration(endTime.diff(startTime));
-
-// duration in hours
-    let hours = parseInt(duration.asHours());
-
-// duration in minutes
-    let minutes = parseInt(duration.asMinutes())%60;
-
-    alert (hours + ' hour and '+ minutes+' minutes.');
-
-
     let permissionLength="22 saat";
 
     return (
