@@ -239,14 +239,14 @@ class PreviousPermissons extends React.Component {
                     display: "flex",
                     flexDirection: "row",
                     flex: 1,
-                    justifyContent: "center",
+                    justifyContent: "flex-end",
                     margin: "20px"
                 }}>
                     <BootstrapSwitchButton
                         style={{
                             display: "flex",
                             justifyContent: "center",
-                            flex: 0.8,
+                            flex: 0.4,
                             flexDirection: "row"
                         }}
                         width={300}
@@ -255,6 +255,90 @@ class PreviousPermissons extends React.Component {
                         offlabel='GEÇMİŞ TALEPLER'
                         onChange={() => this.ToggleButton()}
                     />
+                    <Bounce>
+                        <h1 style={{
+                            display:"flex",
+                            flex: 0.5,
+                            justifyContent:"flex-start",
+                            marginLeft:"40px"
+                        }}>
+                            <div style={{
+                                display:"flex",
+                                flex:0.2
+                            }}>
+                                <h1 style={{
+                                    display:"flex",
+                                    justifyContent:"center",
+                                    borderRadius:"5%",
+                                    flex:4,
+                                    backgroundColor: "rgb(203,27,27)",
+                                    fontSize:"20px"
+                                }}>
+                                    ✖
+                                </h1>
+                                <h1 style={{
+                                    display:"flex",
+                                    justifyContent:"center",
+                                    borderRadius:"5%",
+                                    flex:2,
+                                    fontSize:"20px"
+                                }}>
+                                   RED
+                                </h1>
+                            </div>
+                            <div style={{
+                                display:"flex",
+                                flex:0.2,
+                                margin:"3px"
+                            }}>
+                                <h1 style={{
+                                    display:"flex",
+                                    justifyContent:"center",
+                                    borderRadius:"5%",
+                                    flex:4,
+                                    backgroundColor: "rgb(255,227,4)",
+                                    fontSize:"20px"
+                                }}>
+                                    ⊖
+                                </h1>
+                                <h1 style={{
+                                    display:"flex",
+                                    justifyContent:"center",
+                                    borderRadius:"5%",
+                                    flex:2,
+                                    fontSize:"20px"
+                                }}>
+                                    BEKLEMEDE
+                                </h1>
+                            </div>
+                                <div style={{
+                                    display:"flex",
+                                    flex:0.2,
+                                    margin:"3px"
+                                }}>
+                                    <h1 style={{
+                                        display:"flex",
+                                        justifyContent:"center",
+                                        borderRadius:"5%",
+                                        flex:4,
+                                        backgroundColor: "rgb(39,180,64)",
+                                        fontSize:"20px"
+                                    }}>
+                                        ⊖
+                                    </h1>
+                                    <h1 style={{
+                                        display:"flex",
+                                        justifyContent:"center",
+                                        borderRadius:"5%",
+                                        flex:2,
+                                        fontSize:"20px"
+                                    }}>
+                                        ONAY
+                                    </h1>
+                                </div>
+                        </h1>
+                    </Bounce>
+
 
 
                 </div>
