@@ -1,13 +1,13 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Link} from "react-router-dom";
-import Logo from "./PersonelScreens/compLogo.png";
-import PerNav from "./PersonelScreens/PerNav";
-import DisPerDem from "./PersonelScreens/DisPerDem";
-import PrevPer from "./PersonelScreens/PrevPer";
-import PerFill from "./PersonelScreens/PerFill";
-import NavPrevPer from "./PersonelScreens/SuccPer";
-import SuccPer from "./PersonelScreens/SuccPer";
+import Logo from "./PersonelScreens/CompanyLogo.png";
+import PersonelNavigation from "./PersonelScreens/PersonelNavigation";
+import PermissionDisplay from "./PersonelScreens/PermissionDisplay";
+import PreviousPermissons from "./PersonelScreens/PreviousPermissons";
+import PermissionFilling from "./PersonelScreens/PermissionFilling";
+import NavPrevPer from "./PersonelScreens/SuccesDisplaying";
+import SuccesDisplaying from "./PersonelScreens/SuccesDisplaying";
 /*
 const counter = useSelector(state => state.counter);
 const isLogged = useSelector(state => state.isLogged);
@@ -22,12 +22,12 @@ function App() {
             <div>
                 <Switch>
                     <Route path="/" exact component={LoginScreen}/>
-                    <Route path="/PersonelScreens/PerNav" component={PerNav}/>
-                    <Route path="/PersonelScreens/DisPerDem" component={DisPerDem}/>
-                    <Route path="/PersonelScreens/PrevPer" component={PrevPer}/>
-                    <Route path="/PersonelScreens/PerFill" component={PerFill}/>
-                    <Route path="/PersonelScreens/NavPrevPer" component={NavPrevPer} />
-                    <Route path="/PersonelScreens/SuccPer" component={SuccPer} />
+                    <Route path="/PersonelScreens/PersonelNavigation" component={PersonelNavigation}/>
+                    <Route path="/PersonelScreens/PermissionDisplay" component={PermissionDisplay}/>
+                    <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissons}/>
+                    <Route path="/PersonelScreens/PermissionFilling" component={PermissionFilling}/>
+                    <Route path="/PersonelScreens/PersonelNavigation" component={NavPrevPer} />
+                    <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
                 </Switch>
             </div>
         </Router>
@@ -133,7 +133,7 @@ const LoginScreen = () => (
                 alignItems:"center",
                 margin:"3%"
             }}>
-                <Link to="/PersonelScreens/PerNav" style={{
+                <Link to="/PersonelScreens/PersonelNavigation" style={{
                     display:"flex",
                     textDecoration:"none",
                     alignItems:"center",

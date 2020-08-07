@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
-function PerNav() {
+function PersonelNavigation() {
     return (
         <div>
             <Col>
@@ -15,7 +15,7 @@ function PerNav() {
                     marginTop: "10vw",
                     marginBottom: "20vw"
                 }}>
-                    <Link to="PerFill" style={{
+                    <Link to="PermissionFilling" style={{
                         textDecoration: "none", display: "flex", flex: 1,
                         height: "20vw"
                     }}>
@@ -40,7 +40,7 @@ function PerNav() {
                             </h1>
                         </button>
                     </Link>
-                    <Link to="PrevPer" style={{
+                    <Link to="PreviousPermissons" style={{
                         textDecoration: "none", display: "flex", flex: 1,
                         height: "20vw"
                     }}>
@@ -69,4 +69,4 @@ function PerNav() {
     );
 }
 
-export default PerNav;
+export default PersonelNavigation;

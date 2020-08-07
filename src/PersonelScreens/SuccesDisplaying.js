@@ -23,7 +23,7 @@ function dispNavAftPreCrea() {
             }}>
                 İZİN TALEBİNİZ BAŞARIYLA YARATILMIŞTIR
             </h1>
-            <Link to="PrevPer" style={{
+            <Link to="PreviousPermissons" style={{
                 textDecoration: "none",
                 display: "flex",
                 flex: 1,

@@ -21,7 +21,7 @@ const locale = {
 }
 
 
-class PerFill extends React.Component {
+class PermissionFilling extends React.Component {
 
     constructor() {
         super();
@@ -192,7 +192,7 @@ class PerFill extends React.Component {
                         </div>
                     </Row>
                     <Row className="justify-content-center"  >
-                        <Link to="DisPerDem">
+                        <Link to="PermissionDisplay">
                         <Button variant="primary" size="lg" active onClick={()=>{console.log("Hello")}}>
                             ONAYLAMAYA GEÇ
                         </Button>
@@ -235,4 +235,4 @@ function inputForDist(flag) {
     }
 }
 
-export default PerFill;
+export default PermissionFilling;

@@ -1,11 +1,11 @@
 import React from "react";
-import Logo from "./compLogo.png";
+import Logo from "./CompanyLogo.png";
 import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
 
-function DisPerDem() {
+function PermissionDisplay() {
     let areaCode="(SB)";
     let foldCode=25;
     let perTypeID=6;
@@ -22,6 +22,9 @@ function DisPerDem() {
 
     let vhicleUsageID=0;
 
+    let kiloMeter=221;
+    let priceTL=55;
+    let personelCarUsage=false;
 
     return (
         <div style={{
@@ -98,7 +101,7 @@ function DisPerDem() {
                     marginBottom: "4px",
                     border: "0.6px solid black"
                 }}>
-                    {vhclUsgInfo()}
+                    {vhclUsgInfo(kiloMeter,priceTL,personelCarUsage)}
                 </div>
                 <div style={{
                     display: "flex",
@@ -771,7 +774,6 @@ function personelDatesAndExp(permissionStartDate,permissionStartTime,permissionE
 function vhcUsageOfPers(vehicleUsageID) {
     let personelCarUsage;
 
-
     if (vehicleUsageID===1){
         personelCarUsage=true;
     }
@@ -889,7 +891,7 @@ function perExplPart(explOfPer) {
 }
 
 //HERE WE TAKE
-function vhclUsgInfo() {
+function vhclUsgInfo(kiloMeter,priceTL,personelCarUsage) {
     return (
         <div style={{
             display: "flex",
@@ -920,8 +922,8 @@ function vhclUsgInfo() {
 
                 <input style={{
                     display: "flex",
-                    flex: 0.3,
-                }} type="checkbox"/>
+                    flex: 0.3
+                }} disabled checked={personelCarUsage} type="checkbox"/>
                 <p style={{
                     display: "flex",
                     justifyContent: "center",
@@ -930,7 +932,7 @@ function vhclUsgInfo() {
                     flex: 0.7,
                     margin: "auto",
                     fontSize: 15
-                }}> ___ km</p>
+                }}> {kiloMeter} km</p>
             </div>
             <div style={{
                 display: "flex",
@@ -955,7 +957,7 @@ function vhclUsgInfo() {
                 <input style={{
                     display: "flex",
                     flex: 0.3
-                }} type="checkbox"/>
+                }} disabled checked={!personelCarUsage} type="checkbox"/>
                 <p style={{
                     display: "flex",
                     fontSize: 15,
@@ -965,16 +967,14 @@ function vhclUsgInfo() {
                     borderLeft: "0.1px solid black",
                     flex: 0.7,
                     margin: "auto"
-                }}> ___ ₺</p>
+                }}> {priceTL} ₺</p>
             </div>
-
-
         </div>
     )
 }
 
 function perAccpPart() {
-    const imza1 = require('./ExSign.png');
+    const imza1 = require('./ExampleSignature.png');
     return (
         <div style={{
             display: "flex",
@@ -1174,7 +1174,7 @@ function subOrRetBtn() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <Link to="PerNav" style={{
+                    <Link to="PersonelNavigation" style={{
                         textDecoration: "none",
                         display: "flex",
                         flex: 1
@@ -1199,7 +1199,7 @@ function subOrRetBtn() {
                             </h1>
                         </button>
                     </Link>
-                    <Link to="perFill" style={{
+                    <Link to="PermissionFilling" style={{
                         textDecoration: "none",
                         display: "flex",
                         flex: 1,
@@ -1223,7 +1223,7 @@ function subOrRetBtn() {
                             </h1>
                         </button>
                     </Link>
-                    <Link to="SuccPer" style={{
+                    <Link to="SuccesDisplaying" style={{
                         textDecoration: "none",
                         display: "flex",
                         flex: 1
@@ -1252,4 +1252,4 @@ function subOrRetBtn() {
     )
 }
 
-export default DisPerDem;
+export default PermissionDisplay;

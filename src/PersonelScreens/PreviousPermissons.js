@@ -1,5 +1,5 @@
 import React from "react";
-function PrevPer() {
+function PreviousPermissons() {
 
     return(
         <div>
@@ -9,4 +9,4 @@ function PrevPer() {
         </div>
     )
 }
-export default PrevPer;
+export default PreviousPermissons;
