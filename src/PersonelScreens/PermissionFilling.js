@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +8,23 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import TimePicker from 'react-time-picker';
+
+function MyApp() {
+    const [value, onChange] = useState('9:00');
+    return (
+        <div>
+            <TimePicker
+                onChange={onChange}
+                value={value}
+                format="HH:mm"
+                hourPlaceholder="saat"
+                minutePlaceholder="dk"
+                minTime="00:00:01"
+                maxTime="23:59:59"/>
+        </div>
+    );
+}
 
 const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
 const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
@@ -145,12 +162,12 @@ class PermissionFilling extends React.Component {
                             selected={this.state.startDate}
                             timeCaption="Saat"
                             isClearable
-                            showTimeSelect
                             timeIntervals={1}
                             timeFormat="HH:mm"
-                            dateFormat="d MMMM yyyy | HH:mm "
+                            dateFormat="d MMMM yyyy"
                             withPortal
                         />
+                        <MyApp />
                     </Row>
 
                     <Row className="justify-content-center"  style={{margin:"10px"}} >
@@ -161,12 +178,12 @@ class PermissionFilling extends React.Component {
                             selected={this.state.endDate}
                             timeCaption="Saat"
                             isClearable
-                            showTimeSelect
                             timeIntervals={1}
                             timeFormat="HH:mm"
-                            dateFormat="d MMMM yyyy | HH:mm "
+                            dateFormat="d MMMM yyyy"
                             withPortal
                         />
+                        <MyApp />
                     </Row>
 
                     <Row className="justify-content-center" style={{margin:"10px"}} >

@@ -8,6 +8,7 @@ import PreviousPermissons from "./PersonelScreens/PreviousPermissons";
 import PermissionFilling from "./PersonelScreens/PermissionFilling";
 import NavPrevPer from "./PersonelScreens/SuccesDisplaying";
 import SuccesDisplaying from "./PersonelScreens/SuccesDisplaying";
+
 /*
 const counter = useSelector(state => state.counter);
 const isLogged = useSelector(state => state.isLogged);
