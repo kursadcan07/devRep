@@ -34,7 +34,6 @@ function App() {
     )
 }
 
-
 const LoginScreen = () => (
     <div style={{
         display: "flex",
