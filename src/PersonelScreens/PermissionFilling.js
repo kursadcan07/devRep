@@ -53,8 +53,6 @@ class PermissionFilling extends React.Component {
             dispEntPriBox:false,
             dispEntDisBox:false
         }
-
-
         this.perTypeSlct = this.perTypeSlct.bind(this);
         this.handleStartDate = this.handleStartDate.bind(this);
         this.handleEndDate = this.handleEndDate.bind(this);
@@ -108,7 +106,6 @@ class PermissionFilling extends React.Component {
        }
     }
 
-
     handleStartDate(date) {
         this.setState({
             startDate: date
@@ -120,7 +117,6 @@ class PermissionFilling extends React.Component {
             endDate: date
         })
     }
-
     render() {
         return (
             <Container>
@@ -225,6 +221,8 @@ class PermissionFilling extends React.Component {
         )
     }
 }
+
+
 
 function inputForBus(flag) {
     if (flag){

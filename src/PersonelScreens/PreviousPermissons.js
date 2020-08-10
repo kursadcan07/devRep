@@ -5,7 +5,7 @@ import {useState} from "react";
 import {Bounce} from "react-reveal";
 import {Link} from "react-router-dom";
 import PermissionDisplay from "./PermissionDisplay";
-
+import Row from "react-bootstrap/Row";
 
 export function acceptionSymb() {
     return (
@@ -13,7 +13,7 @@ export function acceptionSymb() {
             display: "flex",
             margin: "auto",
             flex: 1,
-            background: "rgb(39,180,64)",
+            background: "rgb(0,190,55)",
             borderRadius: "4%"
         }}>
             <h1 style={{
@@ -168,7 +168,8 @@ export function activeDemands(props) {
                 justifyContent: "row",
                 marginTop: "8px",
                 border: "0.2px solid black",
-                padding: "2px"
+                padding: "2px",
+                flex:4
             }}>
                 {permissionLine(izinTalepID, izinTalepTarihi, izinBaslangicTarihi, izinBitisTarihi)}
                 {permissionLine(izinTalepID, izinTalepTarihi, izinBaslangicTarihi, izinBitisTarihi)}
@@ -192,7 +193,8 @@ export function activeDemands(props) {
                 justifyContent: "row",
                 marginTop: "8px",
                 border: "0.2px solid black",
-                padding: "2px"
+                padding: "2px",
+                flex:4
             }}>
                 {permissionLine(eskiIzinTalepID, eskiIzinTalepTarihi, eskiIzinBaşlangıcTarihi, eskiIzinBitisTarihi)}
                 {permissionLine(eskiIzinTalepID, eskiIzinTalepTarihi, eskiIzinBaşlangıcTarihi, eskiIzinBitisTarihi)}
@@ -234,7 +236,6 @@ class PreviousPermissons extends React.Component {
                 flexDirection: "column",
                 flex: 6
             }}>
-
                 <div style={{
                     display: "flex",
                     flexDirection: "row",
@@ -242,105 +243,88 @@ class PreviousPermissons extends React.Component {
                     justifyContent: "flex-end",
                     margin: "20px"
                 }}>
-                    <BootstrapSwitchButton
-                        style={{
+                    <Row style={{
+                        display:"flex",
+                        flexDirection:"row",
+                        justifyContent: "flex-end",
+                        flex:1
+                    }}>
+                        <BootstrapSwitchButton
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                flex: 0.4,
+                                flexDirection: "row"
+                            }}
+                            width={300}
+                            checked={this.state.displayActives}
+                            onlabel='AKTİF TALEPLER'
+                            offlabel='GEÇMİŞ TALEPLER'
+                            onChange={() => this.ToggleButton()}
+                        />
+                        <Bounce style={{
                             display: "flex",
-                            justifyContent: "center",
-                            flex: 0.4,
-                            flexDirection: "row"
+                            flex: 0.60
                         }}
-                        width={300}
-                        checked={true}
-                        onlabel='AKTİF TALEPLER'
-                        offlabel='GEÇMİŞ TALEPLER'
-                        onChange={() => this.ToggleButton()}
-                    />
-                    <Bounce>
-                        <h1 style={{
-                            display:"flex",
-                            flex: 0.5,
-                            justifyContent:"flex-start",
-                            marginLeft:"40px"
-                        }}>
-                            <div style={{
-                                display:"flex",
-                                flex:0.2
+                        >
+                            <h1 style={{
+                                display: "flex",
+                                flex: 0.60,
+                                justifyContent: "flex-end",
+                                marginLeft: "40px"
                             }}>
-                                <h1 style={{
-                                    display:"flex",
-                                    justifyContent:"center",
-                                    borderRadius:"5%",
-                                    flex:4,
-                                    backgroundColor: "rgb(203,27,27)",
-                                    fontSize:"20px"
-                                }}>
-                                    ✖
-                                </h1>
-                                <h1 style={{
-                                    display:"flex",
-                                    justifyContent:"center",
-                                    borderRadius:"5%",
-                                    flex:2,
-                                    fontSize:"20px"
-                                }}>
-                                   RED
-                                </h1>
-                            </div>
-                            <div style={{
-                                display:"flex",
-                                flex:0.2,
-                                margin:"3px"
-                            }}>
-                                <h1 style={{
-                                    display:"flex",
-                                    justifyContent:"center",
-                                    borderRadius:"5%",
-                                    flex:4,
-                                    backgroundColor: "rgb(255,227,4)",
-                                    fontSize:"20px"
-                                }}>
-                                    ⊖
-                                </h1>
-                                <h1 style={{
-                                    display:"flex",
-                                    justifyContent:"center",
-                                    borderRadius:"5%",
-                                    flex:2,
-                                    fontSize:"20px"
-                                }}>
-                                    BEKLEMEDE
-                                </h1>
-                            </div>
                                 <div style={{
-                                    display:"flex",
-                                    flex:0.2,
-                                    margin:"3px"
+                                    display: "flex",
+                                    flex: 0.1,
+                                    justifyContent: "center"
                                 }}>
-                                    <h1 style={{
-                                        display:"flex",
-                                        justifyContent:"center",
-                                        borderRadius:"5%",
-                                        flex:4,
-                                        backgroundColor: "rgb(39,180,64)",
-                                        fontSize:"20px"
+                                    {deniedSymb()}
+                                    <h5 style={{
+                                        display: "flex",
+                                        fontsize: "14px",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        margin: "auto"
                                     }}>
-                                        ⊖
-                                    </h1>
-                                    <h1 style={{
-                                        display:"flex",
-                                        justifyContent:"center",
-                                        borderRadius:"5%",
-                                        flex:2,
-                                        fontSize:"20px"
+                                        RED
+                                    </h5>
+                                </div>
+                                <div style={{
+                                    display: "flex",
+                                    flex: 0.1,
+                                    justifyContent: "center"
+                                }}>
+                                    {acceptionSymb()}
+                                    <h5 style={{
+                                        display: "flex",
+                                        fontsize: "14px",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        margin: "auto"
                                     }}>
                                         ONAY
-                                    </h1>
+                                    </h5>
                                 </div>
-                        </h1>
-                    </Bounce>
+                                <div style={{
+                                    display: "flex",
+                                    flex: 0.1,
+                                    justifyContent: "center"
+                                }}>
+                                    {waitingSymbol()}
+                                    <h5 style={{
+                                        display: "flex",
+                                        fontsize: "14px",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        margin: "auto"
+                                    }}>
+                                        BEKLEMEDE
+                                    </h5>
+                                </div>
+                            </h1>
+                        </Bounce>
 
-
-
+                    </Row>
                 </div>
                 <div style={{
                     display: "flex",
@@ -463,7 +447,16 @@ class PreviousPermissons extends React.Component {
                         GENEL YÖNETİCİ ONAYI
                     </h1>
                 </div>
-                {activeDemands(this.state.displayActives)}
+                <div style={{
+                    display:"flex",
+                    flex:4,
+                    width:"100%"
+                }}>
+                    {
+                        activeDemands(this.state.displayActives)
+                    }
+                </div>
+
             </div>
         )
     }
@@ -473,85 +466,85 @@ export default PreviousPermissons;
 /*
 
 
- <Bounce style={{
-                        display: "flex",
-                        flex:0.2,
-                        justifyContent: "right"
-                    }} top timeout={1000}>
-                        <div style={{
-                            display: "flex",
-                            flex: 0.1,
-                            alignItems: "center",
-                            fontSize: "22px",
-                            justifyContent: "right",
-                            border: "1px solid black",
-                            borderRadius: "5%",
-                            padding: "4px"
-                        }}>
+<Bounce style={{
+display: "flex",
+flex:0.2,
+justifyContent: "right"
+}} top timeout={1000}>
+<div style={{
+display: "flex",
+flex: 0.1,
+alignItems: "center",
+fontSize: "22px",
+justifyContent: "right",
+border: "1px solid black",
+borderRadius: "5%",
+padding: "4px"
+}}>
 
-                            <h1 style={{
-                                display: "flex",
-                                flex: 0.05,
-                                backgroundColor: "rgb(203,27,27)",
-                                borderRadius: "5%"
-                            }}
-                            >
-                                ✖
-                            </h1>
-                            <h1 style={{
-                                display: "flex",
-                                flex: 0.05,
-                                fontSize: "15px",
-                                marginLeft: "10px",
-                                justifyContent: "center",
-                                paddingTop: "10px",
-                                fontWeight: "bold",
-                                marginRight: "10px"
-                            }}>
-                                Reddedildi
-                            </h1>
+<h1 style={{
+display: "flex",
+flex: 0.05,
+backgroundColor: "rgb(203,27,27)",
+borderRadius: "5%"
+}}
+>
+✖
+</h1>
+<h1 style={{
+display: "flex",
+flex: 0.05,
+fontSize: "15px",
+marginLeft: "10px",
+justifyContent: "center",
+paddingTop: "10px",
+fontWeight: "bold",
+marginRight: "10px"
+}}>
+Reddedildi
+</h1>
 
-                            <h1 style={{
-                                display: "flex",
-                                flex: 0.05,
-                                backgroundColor: "rgb(255,227,4)"
-                            }}>
-                                ⊖
-                            </h1>
-                            <h1 style={{
-                                display: "flex",
-                                flex: 0.05,
-                                fontSize: "15px",
-                                marginLeft: "10px",
-                                justifyContent: "center",
-                                paddingTop: "10px",
-                                fontWeight: "bold",
-                                marginRight: "10px"
-                            }}>
-                                Beklemede
-                            </h1>
+<h1 style={{
+display: "flex",
+flex: 0.05,
+backgroundColor: "rgb(255,227,4)"
+}}>
+⊖
+</h1>
+<h1 style={{
+display: "flex",
+flex: 0.05,
+fontSize: "15px",
+marginLeft: "10px",
+justifyContent: "center",
+paddingTop: "10px",
+fontWeight: "bold",
+marginRight: "10px"
+}}>
+Beklemede
+</h1>
 
-                            <h1 style={{
-                                display: "flex",
-                                flex: 0.05,
-                                backgroundColor: "rgb(39,180,64)"
-                            }}>
-                                ✔
-                            </h1>
-                            <h1 style={{
-                                display: "flex",
-                                flex: 0.05,
-                                fontSize: "15px",
-                                marginLeft: "10px",
-                                justifyContent: "center",
-                                paddingTop: "10px",
-                                fontWeight: "bold",
-                                marginRight: "10px"
-                            }}>
-                                Onaylandı
-                            </h1>
+<h1 style={{
+display: "flex",
+flex: 0.05,
+backgroundColor: "rgb(39,180,64)"
+}}>
+✔
+</h1>
+<h1 style={{
+display: "flex",
+flex: 0.05,
+fontSize: "15px",
+marginLeft: "10px",
+justifyContent: "center",
+paddingTop: "10px",
+fontWeight: "bold",
+marginRight: "10px"
+}}>
+Onaylandı
+</h1>
 
-                        </div>
-                    </Bounce>
+</div>
+</Bounce>
 
- */
+*/

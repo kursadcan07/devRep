@@ -8,6 +8,11 @@ import PreviousPermissons from "./PersonelScreens/PreviousPermissons";
 import PermissionFilling from "./PersonelScreens/PermissionFilling";
 import NavPrevPer from "./PersonelScreens/SuccesDisplaying";
 import SuccesDisplaying from "./PersonelScreens/SuccesDisplaying";
+import ChiefNavigation from "./PersonelScreens/ChiefNavigation";
+import PreviousPermissonsChief from "./PersonelScreens/PreviousPermissionsChief";
+import PermissionToAccept from "./PersonelScreens/PermissionToAccept";
+import reviseMessage from "./PersonelScreens/ReviseMessageSending";
+import myApp from "./PersonelScreens/myApp";
 
 /*
 const counter = useSelector(state => state.counter);
@@ -29,6 +34,12 @@ function App() {
                     <Route path="/PersonelScreens/PermissionFilling" component={PermissionFilling}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={NavPrevPer} />
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
+                    <Route path="/PersonelScreens/ChiefNavigation" component={ChiefNavigation} />
+                    <Route path="/PersonelScreens/PreviousPermissionsChief" component={PreviousPermissonsChief} />
+                    <Route path="/PersonelScreens/PermissionToAccept" component={PermissionToAccept}/>
+                    <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
+                    <Route path="/PersonelScreens/myApp" component={myApp}/>
+
                 </Switch>
             </div>
         </Router>
@@ -40,9 +51,9 @@ const LoginScreen = () => (
         display: "flex",
         flex: 4,
         flexDirection:"column",
-        justifyContent: "column",
+        justifyContent: "center",
         alignItems:"center",
-        width:"100%"
+        margin:"0px"
     }}>
 
         <img src={Logo} style={{
@@ -50,110 +61,37 @@ const LoginScreen = () => (
             flexWrap:"wrap",
             flexDirection:"column",
             flex:1,
-            height:"20vh"
+            height:"20vh",
+            margin:"10px"
             }}
              alt="Logo"/>
-        <div style={{
-            display: "flex",
-            flexWrap:"wrap",
-            flex: 3,
-            backgroundColor: "rgba(153, 145, 145, 0.24)",
-            padding:"1.4%",
-            borderRadius:"2%",
-            flexDirection:"column"
-        }}>
-            <h1 style={{
-                display: "flex",
+        <form style={{ margin:"10px"}}>
+            <h3 style={{
                 textAlign:"center",
-                fontFamily: "Roboto",
-                fontStyle: "normal" ,
-                fontWeight:"22px",
-                color: "#675B5B",
-                fontSize: "36px",
-                textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-            }}>
-                İZİN BİLGİ SİSTEMİ
-            </h1>
+                margin:"10px"
+            }}> İZİN BİLGİ SİSTEMİ</h3>
 
-            <div style={{
-                display: "flex",
-                flexDirection:"row",
-                alignItems:"center",
-                flex:1,
-                justifyContent:"center",
-                marginLeft:"5%",
-                marginRight:"10%",
-                marginBottom:"3%"
+            <div className="form-group">
+                <input type="email" className="form-control" placeholder="E-Posta" />
+            </div>
 
-            }}>
-                <h1 style ={{
-                    display: "block",
-                    fontFamily: "Roboto",
-                    fontStyle: "normal",
-                    fontWeight: "normal",
-                    fontSize: "18px",
-                    color: "#000000",
-                    flex:0.35
-                }}>
-                    E-Posta:
-                </h1>
-                <input type="text" style={{
-                    flex:0.65
-                }}/>
+            <div className="form-group">
+                <input type="password" className="form-control" placeholder="Şifre" />
             </div>
-            <div style={{
-                display: "flex",
-                flexDirection:"row",
-                alignItems:"center",
-                justifyContent:"center",
-                flex:1,
-                marginLeft:"8%",
-                marginRight:"10%"
-            }}>
-                <h1 style ={{
-                    display: "flex",
-                    fontFamily: "Roboto",
-                    fontStyle: "normal",
-                    fontWeight: "normal",
-                    fontSize: "18px",
-                    color: "#000000",
-                    flex:0.35
-                }}>
-                   Şifre:
-                </h1>
-                <input type="text" style={{
-                    display: "flex",
-                    flex:0.65
-                }}/>
-            </div>
-            <div style={{
-                display:"flex",
-                flex:1,
-                justifyContent:"center",
-                alignItems:"center",
-                margin:"3%"
-            }}>
-                <Link to="/PersonelScreens/PersonelNavigation" style={{
-                    display:"flex",
-                    textDecoration:"none",
-                    alignItems:"center",
-                    flex:1,
-                    justifyContent:"center"}}>
-                    <button type="button" className="btn btn-info" style={{ display:"flex",flex:0.33,justifyContent:"center"}}>GİRİŞ</button>
-                </Link>
-            </div>
-        </div>
-        <h1 style={{
-            display:"flex",
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            fontSize: "18px",
-            textAlign: "center"
 
-        }}>
-            E-Posta/Şifre uyarı alanı.
-        </h1>
+            <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">Beni hatırla</label>
+                </div>
+            </div>
+            <Link to="/PersonelScreens/PersonelNavigation">
+                <button type="submit" className="btn btn-primary btn-block">Giriş</button>
+                <p className="forgot-password text-right">
+                    Şifremi <a href="#">unuttum</a>
+                </p>
+            </Link>
+        </form>
     </div>
 )
 
