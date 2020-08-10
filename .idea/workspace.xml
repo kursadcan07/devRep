@@ -20,20 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8df69efc-61da-480a-b293-a3bdf97cf1c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/ChiefNavigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/PermissionToAccept.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissionsChief.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/ReviseMessageSending.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/SuccesSendedRevise.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/myApp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PermissionFilling.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PermissionFilling.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +93,7 @@
       <workItem from="1596607264801" duration="20842000" />
       <workItem from="1596692743871" duration="27591000" />
       <workItem from="1596779670363" duration="27690000" />
-      <workItem from="1597041305971" duration="19148000" />
+      <workItem from="1597041305971" duration="19990000" />
     </task>
     <servers />
   </component>

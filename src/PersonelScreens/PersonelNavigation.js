@@ -6,26 +6,28 @@ import Container from "react-bootstrap/Container";
 
 function PersonelNavigation() {
     return (
-            <div style={{
-                display: "flex",
-                flex:2}}
-                 xs={12} md={6}
-            >
+            <div>
             <Col style={{
                 display: "flex",
                 flexDirection:"row",
                 justifyContent:"column",
                 flex:2
-            }}  xs={12} md={6}>
+            }} >
                 <Row style={{
                     display: "flex",
                     flexDirection:"row",
                     flex: 2,
-                    justifyContent: "column",
-                    marginTop: "10vw",
-                    marginBottom: "20vw"
-                }} xs={12} md={6}>
-                    <Link to="PermissionFilling" xs={12} md={6}>
+                    justifyContent: "center",
+                    alignItems:"center",
+                    margin:"25px"
+
+                }}>
+                    <Link to="PermissionFilling"   style={{
+                        display:"block",
+                        alignItems:"center",
+                        justifyContent:"center",
+                        margin:"15px"
+                    }}>
                         <button type="button" className="btn btn-success" style={{
                             display: "flex",
                             marginRight: "5px",
@@ -33,8 +35,7 @@ function PersonelNavigation() {
                             height: "20vw",
                             justifyContent: "center",
                             textAlign: "center",
-                            fontWeight: "normal",
-                            margin:"10px"
+                            fontWeight: "normal"
                         }}>
                             <h1 style={{
                                 display: "flex",
@@ -47,13 +48,18 @@ function PersonelNavigation() {
                             </h1>
                         </button>
                     </Link>
-                    <Link to="PreviousPermissons" sx={12} md={6}>
+                    <Link to="PreviousPermissons" style={{
+                        display:"block",
+                        alignItems:"center",
+                        justifyContent:"center",
+                    }}>
                         <button type="button" className="btn btn-success" style={{
                             display: "flex",
                             flex: 1,
                             height: "20vw",
                             textAlign: "center",
-                            justifyContent: "center"
+                            alignItems:"center",
+                            justifyContent: "flex-start"
                         }}>
                             <h1 style={{
                                 display: "flex",
@@ -68,7 +74,7 @@ function PersonelNavigation() {
                     </Link>
                 </Row>
             </Col>
-            </div>
+            </div >
     );
 }
 
