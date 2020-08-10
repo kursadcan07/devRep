@@ -2,31 +2,29 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 
 function PersonelNavigation() {
     return (
-            <div>
+        <div>
             <Col style={{
                 display: "flex",
-                flexDirection:"row",
-                justifyContent:"column",
-                flex:2
-            }} >
+                flexDirection: "row",
+                justifyContent: "column",
+                flex: 2
+            }}>
                 <Row style={{
                     display: "flex",
-                    flexDirection:"row",
+                    flexDirection: "row",
                     flex: 2,
                     justifyContent: "center",
-                    alignItems:"center",
-                    margin:"25px"
-
+                    alignItems: "center",
+                    margin: "25px"
                 }}>
-                    <Link to="PermissionFilling"   style={{
-                        display:"block",
-                        alignItems:"center",
-                        justifyContent:"center",
-                        margin:"15px"
+                    <Link to="PermissionFilling" style={{
+                        display: "block",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: "15px"
                     }}>
                         <button type="button" className="btn btn-success" style={{
                             display: "flex",
@@ -49,16 +47,16 @@ function PersonelNavigation() {
                         </button>
                     </Link>
                     <Link to="PreviousPermissons" style={{
-                        display:"block",
-                        alignItems:"center",
-                        justifyContent:"center",
+                        display: "block",
+                        alignItems: "center",
+                        justifyContent: "center",
                     }}>
                         <button type="button" className="btn btn-success" style={{
                             display: "flex",
                             flex: 1,
                             height: "20vw",
                             textAlign: "center",
-                            alignItems:"center",
+                            alignItems: "center",
                             justifyContent: "flex-start"
                         }}>
                             <h1 style={{
@@ -74,7 +72,7 @@ function PersonelNavigation() {
                     </Link>
                 </Row>
             </Col>
-            </div >
+        </div>
     );
 }
 

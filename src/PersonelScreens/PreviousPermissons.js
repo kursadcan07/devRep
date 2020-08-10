@@ -14,12 +14,13 @@ export function acceptionSymb() {
             margin: "auto",
             flex: 1,
             background: "rgb(0,190,55)",
-            borderRadius: "4%"
+            borderRadius: "50%"
         }}>
             <h1 style={{
                 display: "flex",
                 margin: "auto",
-                fontSize: "20px"
+                fontSize: "20px",
+                borderRadius:"50%"
             }}
             >
                 ✔
@@ -35,7 +36,7 @@ export function deniedSymb() {
             margin: "auto",
             flex: 1,
             background: "rgb(203,27,27)",
-            borderRadius: "4%"
+            borderRadius: "50%"
         }}>
             <h1 style={{
                 display: "flex",
@@ -56,7 +57,7 @@ export function waitingSymbol() {
             margin: "auto",
             flex: 1,
             background: "rgb(255,227,4)",
-            borderRadius: "4%"
+            borderRadius: "50%"
         }}>
             <h1 style={{
                 display: "flex",

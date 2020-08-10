@@ -13,6 +13,7 @@ import PreviousPermissonsChief from "./PersonelScreens/PreviousPermissionsChief"
 import PermissionToAccept from "./PersonelScreens/PermissionToAccept";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
 import myApp from "./PersonelScreens/myApp";
+import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
 
 /*
 const counter = useSelector(state => state.counter);
@@ -39,7 +40,7 @@ function App() {
                     <Route path="/PersonelScreens/PermissionToAccept" component={PermissionToAccept}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/myApp" component={myApp}/>
-
+                    <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
                 </Switch>
             </div>
         </Router>
