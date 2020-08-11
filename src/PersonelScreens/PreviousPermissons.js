@@ -116,8 +116,6 @@ class PreviousPermissons extends React.Component {
                         onChange={() => this.ToggleButton()}
                     />
                 </div>
-
-
                     {
                         activeDemands(this.state.displayActives)
                     }

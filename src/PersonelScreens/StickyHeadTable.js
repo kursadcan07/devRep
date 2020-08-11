@@ -194,24 +194,23 @@ export default function StickyHeadTable() {
                         <h1 style={{
                             fontSize: "20px",
                             borderRadius: "50%",
-                            backgroundColor: "rgba(220,16,16,0.95)",
+                            backgroundColor: "rgba(49,236,9,0.95)",
                             textAlign: "center"
                         }}>
-                            ✖
+                            ✔
                         </h1>
                         <h1 style={{
                             fontSize: "12px",
-                            fontFamily: "Sans-Sherif",
                             fontWeight: "bold",
-                            textAlign: "center"
+                            textAlign: "center",
+                            paddingRight:"10px"
                         }}
                         >
-                            RED
+                            ONAY
                         </h1>
 
                     </Paper>
                 </Grid>
-
                 <Grid item xs={6}>
                     <Paper className={styke.paper}>
 
@@ -225,7 +224,7 @@ export default function StickyHeadTable() {
                         }}>
                             ⊖
                         </h1>
-                        <h1 style={{fontSize: "12px", textAlign: "center"}}
+                        <h1 style={{fontSize: "12px", textAlign: "center", fontWeight: "bold",}}
                         >
                             BEKLEMEDE
                         </h1>
@@ -237,29 +236,31 @@ export default function StickyHeadTable() {
                         <h1 style={{
                             fontSize: "20px",
                             borderRadius: "50%",
-                            backgroundColor: "rgba(49,236,9,0.95)",
+                            backgroundColor: "rgba(220,16,16,0.95)",
                             textAlign: "center"
                         }}>
-                            ✔
+                            ✖
                         </h1>
                         <h1 style={{
                             fontSize: "12px",
-                            fontFamily: "Sans-Sherif",
                             fontWeight: "bold",
                             textAlign: "center"
                         }}
                         >
-                            ONAY
+                            RED
                         </h1>
 
                     </Paper>
                 </Grid>
+
+
+
             </React.Fragment>
         );
     }
 
     return (
-        <div>
+        <div style={{margin:"auto"}}>
             <div style={{display: "flex", justifyContent: "flex-end"}}>
                 <Bounce>
                     <Grid container spacing={1}>
