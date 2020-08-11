@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,92 +8,99 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import IconButton from '@material-ui/core/IconButton';
-import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import {trTR} from '@material-ui/core/locale';
+import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import {Bounce} from "react-reveal";
+import Grid from "@material-ui/core/Grid";
+
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {main: '#1976d2'},
+    },
+}, trTR);
 
 const columns = [
-    { id: 'demandID', label: 'İzin ID',display: 'flex',justifyContent:"flex-start"},
-    { id: 'demandDate', label: 'TALEP TARİHİ',display: 'flex',justifyContent:"flex-start"},
+    {id: 'demandID', label: 'İzin ID'},
+    {id: 'demandDate', label: 'TALEP TARİHİ'},
     {
         id: 'demandBegin',
         label: 'İZİN BAŞLANGIÇ',
-        display: 'flex',
-        justifyContent:"flex-start",
-        format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'demandEnd',
         label: 'İZİN BİTİŞ',
-        display: 'flex',
-        justifyContent:"flex-start",
-        format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'chiefAcceptance',
         label: 'AMİR ONAYI',
-        justifyContent:"flex-start",
-        format: (value) => value.toFixed(2),
     },
     {
         id: 'generalManAcceptance',
         label: 'GENEL MÜDÜR ONAYI',
-        justifyContent:"flex-start",
-        format: (value) => value.toFixed(2),
     },
     {
         id: 'displayScreen',
-        label: ' ',
-        justifyContent:"flex-start",
+        label: ' ÖNİZLEME',
     },
 ];
 
 function chiefBossAccaptance(chiefStatus) {
-    if(chiefStatus===1){
-        return(
+    if (chiefStatus === 1) {
+        return (
             <div style={{
-                display:"flex"
+                display: "flex", width: "80px", justifyContent: "center",
+                textAlign: "center"
+
             }}>
-                <h1 style={{backgroundColor:"rgba(49,236,9,0.95)",
-                                fontSize:"20px",
-                borderRadius:"50%",
-                margin:"auto",
-                textAlign:"center",
-                width:"40px"}}
+                <h1 style={{
+                    backgroundColor: "rgba(49,236,9,0.95)",
+                    fontSize: "20px",
+                    borderRadius: "50%",
+                    margin: "auto",
+                    textAlign: "center",
+                    width: "40px",
+                }}
                 >
                     ✔
                 </h1>
             </div>
         )
-    }
-    else if(chiefStatus===2){
-        return(
+    } else if (chiefStatus === 2) {
+        return (
             <div style={{
-                display:"flex"
+                display: "flex", width: "80px", justifyContent: "center"
             }}>
-                <h1 style={{backgroundColor:"rgba(220,16,16,0.95)",
-                    fontSize:"20px",
-                    borderRadius:"50%",
-                    margin:"auto",
-                    textAlign:"center",
-                    width:"40px"}}
+                <h1 style={{
+                    backgroundColor: "rgba(220,16,16,0.95)",
+                    fontSize: "20px",
+                    borderRadius: "50%",
+                    margin: "auto",
+                    textAlign: "center",
+                    display: 'flex',
+                    width: "40px"
+                }}
                 >
                     ✖
                 </h1>
             </div>
         )
-    }
-    else {
-        return(
+    } else {
+        return (
             <div style={{
-                display:"flex"
+                display: "flex", width: "80px",
+                justifyContent: "center"
             }}>
-                <h1 style={{backgroundColor:"rgba(255,220,0,0.95)",
-                    fontSize:"20px",
-                    borderRadius:"50%",
-                    margin:"auto",
-                    textAlign:"center",
-                    width:"40px"}}
+                <h1 style={{
+                    backgroundColor: "rgba(255,220,0,0.95)",
+                    fontSize: "20px",
+                    borderRadius: "50%",
+                    margin: "auto",
+                    textAlign: "center",
+                    width: "40px"
+                }}
                 >
                     ⊖
                 </h1>
@@ -103,38 +110,45 @@ function chiefBossAccaptance(chiefStatus) {
 }
 
 function displayButton() {
-    return(
-    <div style={{
-        display:"flex",
-        justifyContent:"center"
-    }}>
-        <Button variant="outlined" color="primary" style={{display:"flex",justifyContent:"flex-start",padding:"1px",background:"rgba(180,133,205,0.64)",borderRadius:"100%"}}>
-            <img style={{width:"50px",height:"30px",margin:"auto"}} src={require('./eye2.svg')} alt="my image"/>
-        </Button>
-    </div>
+    return (
+        <div style={{
+            display: "flex",
+            justifyContent: "flex-start"
+        }}>
+            <Button variant="outlined" color="primary" style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                padding: "1px",
+                background: "rgba(180,133,205,0.64)",
+                borderRadius: "100%"
+            }}>
+                <img style={{width: "50px", height: "30px", margin: "auto"}} src={require('./eye2.svg')}
+                     alt="my image"/>
+            </Button>
+        </div>
     )
 }
 
-function createData(demandID, demandDate, demandBegin, demandEnd,chiefStatus,bossStatus) {
-    return { demandID, demandDate, demandBegin, demandEnd,chiefStatus,bossStatus};
+function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus) {
+    return {demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus};
 }
 
 const rows = [
-    createData('India', "22/22/22", "22/22/22", "22/22/22",1,0),
-    createData('China', "22/22/22", "22/22/22", "22/22/22",1,0),
-    createData('Italy', "22/22/22", "22/22/22", "22/22/22",1,0),
-    createData('United States', "22/22/22", "22/22/22", "22/22/22",1,0),
-    createData('Canada', "22/22/22", "22/22/22", "22/22/22",1,0),
-    createData('Australia', 'AU', "22/22/22", "22/22/22",1,0),
-    createData('Germany', 'DE', "22/22/22", "22/22/22",1,0),
-    createData('Ireland', 'IE', "22/22/22", "22/22/22",1,0),
-    createData('Mexico', 'MX', "22/22/22", "22/22/22",1,0),
-    createData('Japan', 'JP', "22/22/22", "22/22/22",1,0),
-    createData('France', 'FR', "22/22/22", "22/22/22",1,0),
-    createData('United Kingdom', 'GB', "22/22/22", "22/22/22",1,0),
-    createData('Russia', 'RU', "22/22/22", "22/22/22",1,0),
-    createData('Nigeria', 'NG', "22/22/22", "22/22/22",1,0),
-    createData('Brazil', 'BR', "22/22/22", "22/22/22",1,0),
+    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('125', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('126', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('127', "22/22/22", "22/22/22", "22/22/22", 1, 0),
+    createData('128', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('129', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('130', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('131', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('132', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('133', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('134', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('135', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('136', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('137', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
 ];
 
 const useStyles = makeStyles({
@@ -142,15 +156,26 @@ const useStyles = makeStyles({
         width: '100%',
     },
     container: {
-        maxHeight: 600,
+        display: "flex",
     },
 });
+const stylesForBounce = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        textAlign: 'center',
+        padding: "8px",
+        background: "rgba(139,133,133,0.21)"
+    },
+}));
 
 
 export default function StickyHeadTable() {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const styke = stylesForBounce();
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -161,53 +186,138 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
+    function FormRow() {
+        return (
+            <React.Fragment>
+                <Grid item xs={3}>
+                    <Paper className={styke.paper}>
+                        <h1 style={{
+                            fontSize: "20px",
+                            borderRadius: "50%",
+                            backgroundColor: "rgba(220,16,16,0.95)",
+                            textAlign: "center"
+                        }}>
+                            ✖
+                        </h1>
+                        <h1 style={{
+                            fontSize: "12px",
+                            fontFamily: "Sans-Sherif",
+                            fontWeight: "bold",
+                            textAlign: "center"
+                        }}
+                        >
+                            RED
+                        </h1>
+
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <Paper className={styke.paper}>
+
+                        <h1 style={{
+                            marginRight: "20px",
+                            marginLeft: "20px",
+                            fontSize: "20px",
+                            borderRadius: "50%",
+                            backgroundColor: "rgba(255,220,0,0.95)",
+                            textAlign: "center"
+                        }}>
+                            ⊖
+                        </h1>
+                        <h1 style={{fontSize: "12px", textAlign: "center"}}
+                        >
+                            BEKLEMEDE
+                        </h1>
+
+                    </Paper>
+                </Grid>
+                <Grid item xs={3}>
+                    <Paper className={styke.paper}>
+                        <h1 style={{
+                            fontSize: "20px",
+                            borderRadius: "50%",
+                            backgroundColor: "rgba(49,236,9,0.95)",
+                            textAlign: "center"
+                        }}>
+                            ✔
+                        </h1>
+                        <h1 style={{
+                            fontSize: "12px",
+                            fontFamily: "Sans-Sherif",
+                            fontWeight: "bold",
+                            textAlign: "center"
+                        }}
+                        >
+                            ONAY
+                        </h1>
+
+                    </Paper>
+                </Grid>
+            </React.Fragment>
+        );
+    }
+
     return (
-        <Paper className={classes.root}>
-            <TableContainer className={classes.container}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                            return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.demandDate}>
-                                    {columns.map((column) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <TableCell key={column.id} >
-                                                {column.format && typeof value === 'number' ? column.format(value) : value}
-                                                {column.id ==="chiefAcceptance" && chiefBossAccaptance(row.chiefStatus)}
-                                                {column.id ==="generalManAcceptance" && chiefBossAccaptance(row.bossStatus)}
-                                                {column.id ==="displayScreen" && displayButton()}
-                                            </TableCell>
-                                        );
-                                    })}
-
+        <div>
+            <div style={{display: "flex", justifyContent: "flex-end"}}>
+                <Bounce>
+                    <Grid container spacing={1}>
+                        <Grid container item xs={12} spacing={1}>
+                            <FormRow/>
+                        </Grid>
+                    </Grid>
+                </Bounce>
+            </div>
+            <ThemeProvider theme={theme}>
+                <Paper className={classes.root}>
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    {columns.map((column) => (
+                                        <TableCell
+                                            key={column.id}
+                                        >
+                                            {column.label}
+                                        </TableCell>
+                                    ))}
                                 </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                    return (
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.demandDate}>
+                                            {columns.map((column) => {
+                                                const value = row[column.id];
+                                                return (
+                                                    <TableCell key={column.id}>
+                                                        {value}
+                                                        {column.id === "chiefAcceptance" && chiefBossAccaptance(row.chiefStatus)}
+                                                        {column.id === "generalManAcceptance" && chiefBossAccaptance(row.bossStatus)}
+                                                        {column.id === "displayScreen" && displayButton()}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
 
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
-        </Paper>
+                    />
+                </Paper>
+            </ThemeProvider>
+        </div>
     );
 }
+
