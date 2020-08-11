@@ -8,54 +8,134 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from "@material-ui/core/Icon";
+import Button from "@material-ui/core/Button";
+import "/src/PersonelScreens/goz.svg"
+// or
+
+
 
 const columns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+    { id: 'demandID', label: 'İzin ID',display: 'flex',justifyContent:"flex-start"},
+    { id: 'demandDate', label: 'TALEP TARİHİ',display: 'flex',justifyContent:"flex-start"},
     {
-        id: 'population',
-        label: 'Population',
-        minWidth: 170,
-        align: 'right',
+        id: 'demandBegin',
+        label: 'İZİN BAŞLANGIÇ',
+        display: 'flex',
+        justifyContent:"flex-start",
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
-        minWidth: 170,
-        align: 'right',
+        id: 'demandEnd',
+        label: 'İZİN BİTİŞ',
+        display: 'flex',
+        justifyContent:"flex-start",
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'density',
-        label: 'Density',
-        minWidth: 170,
-        align: 'right',
+        id: 'chiefAcceptance',
+        label: 'AMİR ONAYI',
+        justifyContent:"flex-start",
         format: (value) => value.toFixed(2),
+    },
+    {
+        id: 'generalManAcceptance',
+        label: 'GENEL MÜDÜR ONAYI',
+        justifyContent:"flex-start",
+        format: (value) => value.toFixed(2),
+    },
+    {
+        id: 'displayScreen',
+        label: ' ',
+        justifyContent:"flex-start",
     },
 ];
 
-function createData(name, code, population, size) {
-    const density = population / size;
-    return { name, code, population, size, density };
+function chiefBossAccaptance(chiefStatus) {
+    if(chiefStatus===1){
+        return(
+            <div style={{
+                display:"flex"
+            }}>
+                <h1 style={{backgroundColor:"rgba(49,236,9,0.95)",
+                                fontSize:"20px",
+                borderRadius:"50%",
+                margin:"auto",
+                textAlign:"center",
+                width:"40px"}}
+                >
+                    ✔
+                </h1>
+            </div>
+        )
+    }
+    else if(chiefStatus===2){
+        return(
+            <div style={{
+                display:"flex"
+            }}>
+                <h1 style={{backgroundColor:"rgba(220,16,16,0.95)",
+                    fontSize:"20px",
+                    borderRadius:"50%",
+                    margin:"auto",
+                    textAlign:"center",
+                    width:"40px"}}
+                >
+                    ✖
+                </h1>
+            </div>
+        )
+    }
+    else {
+        return(
+            <div style={{
+                display:"flex"
+            }}>
+                <h1 style={{backgroundColor:"rgba(255,220,0,0.95)",
+                    fontSize:"20px",
+                    borderRadius:"50%",
+                    margin:"auto",
+                    textAlign:"center",
+                    width:"40px"}}
+                >
+                    ⊖
+                </h1>
+            </div>
+        )
+    }
+}
+
+function displayButton() {
+    return(
+    <div>
+        <Button variant="outlined" color="primary">
+            <img src="goz.svg" alt="my image"/>
+        </Button>
+    </div>
+    )
+}
+
+function createData(demandID, demandDate, demandBegin, demandEnd,chiefStatus,bossStatus) {
+    return { demandID, demandDate, demandBegin, demandEnd,chiefStatus,bossStatus};
 }
 
 const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
-    createData('China', 'CN', 1403500365, 9596961),
-    createData('Italy', 'IT', 60483973, 301340),
-    createData('United States', 'US', 327167434, 9833520),
-    createData('Canada', 'CA', 37602103, 9984670),
-    createData('Australia', 'AU', 25475400, 7692024),
-    createData('Germany', 'DE', 83019200, 357578),
-    createData('Ireland', 'IE', 4857000, 70273),
-    createData('Mexico', 'MX', 126577691, 1972550),
-    createData('Japan', 'JP', 126317000, 377973),
-    createData('France', 'FR', 67022000, 640679),
-    createData('United Kingdom', 'GB', 67545757, 242495),
-    createData('Russia', 'RU', 146793744, 17098246),
-    createData('Nigeria', 'NG', 200962417, 923768),
-    createData('Brazil', 'BR', 210147125, 8515767),
+    createData('India', "22/22/22", "22/22/22", "22/22/22",1,0),
+    createData('China', "22/22/22", "22/22/22", "22/22/22",1,0),
+    createData('Italy', "22/22/22", "22/22/22", "22/22/22",1,0),
+    createData('United States', "22/22/22", "22/22/22", "22/22/22",1,0),
+    createData('Canada', "22/22/22", "22/22/22", "22/22/22",1,0),
+    createData('Australia', 'AU', "22/22/22", "22/22/22",1,0),
+    createData('Germany', 'DE', "22/22/22", "22/22/22",1,0),
+    createData('Ireland', 'IE', "22/22/22", "22/22/22",1,0),
+    createData('Mexico', 'MX', "22/22/22", "22/22/22",1,0),
+    createData('Japan', 'JP', "22/22/22", "22/22/22",1,0),
+    createData('France', 'FR', "22/22/22", "22/22/22",1,0),
+    createData('United Kingdom', 'GB', "22/22/22", "22/22/22",1,0),
+    createData('Russia', 'RU', "22/22/22", "22/22/22",1,0),
+    createData('Nigeria', 'NG', "22/22/22", "22/22/22",1,0),
+    createData('Brazil', 'BR', "22/22/22", "22/22/22",1,0),
 ];
 
 const useStyles = makeStyles({
@@ -63,9 +143,10 @@ const useStyles = makeStyles({
         width: '100%',
     },
     container: {
-        maxHeight: 440,
+        maxHeight: 600,
     },
 });
+
 
 export default function StickyHeadTable() {
     const classes = useStyles();
@@ -90,8 +171,6 @@ export default function StickyHeadTable() {
                             {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
                                 >
                                     {column.label}
                                 </TableCell>
@@ -101,16 +180,21 @@ export default function StickyHeadTable() {
                     <TableBody>
                         {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row.demandDate}>
                                     {columns.map((column) => {
                                         const value = row[column.id];
                                         return (
-                                            <TableCell key={column.id} align={column.align}>
+                                            <TableCell key={column.id} >
                                                 {column.format && typeof value === 'number' ? column.format(value) : value}
+                                                {column.id ==="chiefAcceptance" && chiefBossAccaptance(row.chiefStatus)}
+                                                {column.id ==="generalManAcceptance" && chiefBossAccaptance(row.bossStatus)}
+                                                {column.id ==="displayScreen" && displayButton()}
                                             </TableCell>
                                         );
                                     })}
+
                                 </TableRow>
+
                             );
                         })}
                     </TableBody>
