@@ -103,8 +103,7 @@ class PreviousPermissons extends React.Component {
         return (
             <div style={{
                 display: "flex",
-                flexDirection: "column",
-                flex: 6
+                flexDirection: "column"
             }}>
                 <div style={{display:"flex",justifyContent:"center",
                 marginTop:"20px"}}>
@@ -116,9 +115,11 @@ class PreviousPermissons extends React.Component {
                         onChange={() => this.ToggleButton()}
                     />
                 </div>
+
                     {
                         activeDemands(this.state.displayActives)
                     }
+
             </div>
         )
     }
