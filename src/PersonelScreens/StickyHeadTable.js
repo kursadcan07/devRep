@@ -11,10 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
-import "/src/PersonelScreens/goz.svg"
-// or
-
-
 
 const columns = [
     { id: 'demandID', label: 'İzin ID',display: 'flex',justifyContent:"flex-start"},
@@ -108,9 +104,12 @@ function chiefBossAccaptance(chiefStatus) {
 
 function displayButton() {
     return(
-    <div>
-        <Button variant="outlined" color="primary">
-            <img src="goz.svg" alt="my image"/>
+    <div style={{
+        display:"flex",
+        justifyContent:"center"
+    }}>
+        <Button variant="outlined" color="primary" style={{display:"flex",justifyContent:"flex-start",padding:"1px",background:"rgba(180,133,205,0.64)",borderRadius:"100%"}}>
+            <img style={{width:"50px",height:"30px",margin:"auto"}} src={require('./eye2.svg')} alt="my image"/>
         </Button>
     </div>
     )
