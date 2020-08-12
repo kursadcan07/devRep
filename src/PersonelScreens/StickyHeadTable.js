@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -14,6 +14,14 @@ import {trTR} from '@material-ui/core/locale';
 import {Bounce} from "react-reveal";
 import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@material-ui/core/Dialog";
+import useTheme from "@material-ui/core/styles/useTheme";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import ResponsiveDialog from "./ResponsiveDialog";
 
 const theme = createMuiTheme({
     palette: {
@@ -47,6 +55,7 @@ const columns = [
 ];
 
 function chiefBossAccaptance(chiefStatus) {
+
     if (chiefStatus === 1) {
         return (
             <div style={{
@@ -54,7 +63,8 @@ function chiefBossAccaptance(chiefStatus) {
                 textAlign: "center"
 
             }}>
-                <h1 style={{
+
+                <button style={{
                     backgroundColor: "rgba(49,236,9,0.95)",
                     fontSize: "20px",
                     borderRadius: "50%",
@@ -64,7 +74,7 @@ function chiefBossAccaptance(chiefStatus) {
                 }}
                 >
                     ✔
-                </h1>
+                </button>
             </div>
         )
     } else if (chiefStatus === 2) {
@@ -273,8 +283,8 @@ export default function StickyHeadTable(props) {
                                                 return (
                                                     <TableCell key={column.id}>
                                                         {value}
-                                                        {column.id === "chiefAcceptance" && chiefBossAccaptance(row.chiefStatus)}
-                                                        {column.id === "generalManAcceptance" && chiefBossAccaptance(row.bossStatus)}
+                                                        {column.id === "chiefAcceptance" && <ResponsiveDialog chiefAcceptance={props.chiefAcceptance} />}
+                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefAcceptance={props.chiefAcceptance} />}
                                                         {column.id === "displayScreen" && displayButton()}
                                                     </TableCell>
                                                 );
