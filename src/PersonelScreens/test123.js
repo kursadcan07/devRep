@@ -1,12 +1,13 @@
 import React from "react";
 
-function merhaba() {
+function Merhaba(isim) {
+    let name = isim;
     return(
         <div>
             <h1>
-                MERHABA
+                MERHABA {isim}
             </h1>
         </div>
     )
 }
-export default merhaba();
+export default Merhaba;

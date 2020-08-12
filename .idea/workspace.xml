@@ -20,12 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8df69efc-61da-480a-b293-a3bdf97cf1c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/test123.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/displayIcon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/fromSVG.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PermissionDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PermissionDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissionsChief.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissionsChief.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/test123.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/test123.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,13 +68,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/PersonelScreens" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/PersonelScreens" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/PersonelScreens" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -102,7 +105,7 @@
       <workItem from="1596779670363" duration="27690000" />
       <workItem from="1597041305971" duration="22034000" />
       <workItem from="1597125947298" duration="24817000" />
-      <workItem from="1597211856882" duration="6633000" />
+      <workItem from="1597211856882" duration="21868000" />
     </task>
     <servers />
   </component>
@@ -134,30 +137,30 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2585" y="342" width="580" height="403" key="#com.intellij.fileTypes.FileTypeChooser/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596713865855" />
-    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596708997794">
+    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597228952617">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596708997794" />
+    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597228952617" />
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl" timestamp="1596523192347">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596523192347" />
-    <state width="1874" height="87" key="GridCell.Tab.0.bottom" timestamp="1597218984341">
+    <state width="1874" height="2" key="GridCell.Tab.0.bottom" timestamp="1597228943894">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="87" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597218984341" />
-    <state width="1874" height="87" key="GridCell.Tab.0.center" timestamp="1597218984341">
+    <state width="1874" height="2" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597228943894" />
+    <state width="1874" height="2" key="GridCell.Tab.0.center" timestamp="1597228943894">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="87" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597218984341" />
-    <state width="1874" height="87" key="GridCell.Tab.0.left" timestamp="1597218984341">
+    <state width="1874" height="2" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597228943894" />
+    <state width="1874" height="2" key="GridCell.Tab.0.left" timestamp="1597228943894">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="87" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597218984340" />
-    <state width="1874" height="87" key="GridCell.Tab.0.right" timestamp="1597218984341">
+    <state width="1874" height="2" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597228943894" />
+    <state width="1874" height="2" key="GridCell.Tab.0.right" timestamp="1597228943894">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="87" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597218984341" />
+    <state width="1874" height="2" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597228943894" />
     <state x="2369" y="175" width="1183" height="737" key="SettingsEditor" timestamp="1597147490994">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -174,10 +177,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2189" y="266" width="1372" height="554" key="new project wizard/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596523193130" />
-    <state x="2544" y="245" key="run.anything.popup" timestamp="1596529618351">
+    <state x="2544" y="245" key="run.anything.popup" timestamp="1597240273280">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2544" y="245" key="run.anything.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596529618351" />
+    <state x="2544" y="245" key="run.anything.popup/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597240273280" />
     <state x="2543" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1597147434568">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

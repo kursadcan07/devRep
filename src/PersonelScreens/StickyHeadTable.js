@@ -15,7 +15,6 @@ import {Bounce} from "react-reveal";
 import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
 
-
 const theme = createMuiTheme({
     palette: {
         primary: {main: '#1976d2'},
@@ -45,28 +44,6 @@ const columns = [
         id: 'displayScreen',
         label: ' ÖNİZLEME',
     },
-];
-
-function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus) {
-    return {demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus};
-}
-
-const rows = [
-    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('124', "22/22/2221", "22/22/2222", "22/22/2222", 1, 0),
-    createData('125', "22/22/22212", "22/22/2222", "22/22/2222", 1, 0),
-    createData('126', "22/22/22122", "22/22/2222", "22/22/2222", 1, 0),
-    createData('127', "22/22/2112", "22/22/22", "22/22/22", 1, 0),
-    createData('128', "22/22/22322", "22/22/2222", "22/22/2222", 1, 0),
-    createData('129', "22/22/22522", "22/22/2222", "22/22/2222", 1, 0),
-    createData('130', "22/22/22822", "22/22/2222", "22/22/2222", 1, 0),
-    createData('131', "22/22/22*22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('132', "22/22/22722", "22/22/2222", "22/22/2222", 1, 0),
-    createData('133', "22/22/22222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('134', "22/22/27222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('135', "22/22/22s22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('136', "22/22/22g22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('137', "22/22/222a2", "22/22/2222", "22/22/2222", 1, 0)
 ];
 
 function chiefBossAccaptance(chiefStatus) {
@@ -174,6 +151,7 @@ const stylesForBounce = makeStyles((theme) => ({
 }));
 
 export default function StickyHeadTable(props) {
+
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -287,7 +265,7 @@ export default function StickyHeadTable(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                                     return (
                                         <TableRow hover role="checkbox" tabIndex={-1} key={row.demandDate}>
                                             {columns.map((column) => {
@@ -310,16 +288,14 @@ export default function StickyHeadTable(props) {
                     <TablePagination
                         rowsPerPageOptions={[10, 25, 100]}
                         component="div"
-                        count={rows.length}
+                        count={props.rows.length}
                         rowsPerPage={rowsPerPage}
                         page={page}
                         onChangePage={handleChangePage}
                         onChangeRowsPerPage={handleChangeRowsPerPage}
-
                     />
                 </Paper>
             </ThemeProvider>
         </div>
     );
 }
-

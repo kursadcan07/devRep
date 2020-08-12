@@ -90,7 +90,7 @@ const LoginScreen = () => (
                 <button type="submit" className="btn btn-primary btn-block">Giriş</button>
             </Link>
             <p className="forgot-password text-right">
-                Şifremi <a href="#">unuttum</a>
+               <a href="#">  Şifremi unuttum</a>
             </p>
         </form>
     </div>
