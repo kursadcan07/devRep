@@ -11,9 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from "@material-ui/core/Button";
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import {trTR} from '@material-ui/core/locale';
-import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import {Bounce} from "react-reveal";
 import Grid from "@material-ui/core/Grid";
+import {Link} from "react-router-dom";
 
 
 const theme = createMuiTheme({
@@ -45,6 +45,28 @@ const columns = [
         id: 'displayScreen',
         label: ' ÖNİZLEME',
     },
+];
+
+function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus) {
+    return {demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus};
+}
+
+const rows = [
+    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('124', "22/22/2221", "22/22/2222", "22/22/2222", 1, 0),
+    createData('125', "22/22/22212", "22/22/2222", "22/22/2222", 1, 0),
+    createData('126', "22/22/22122", "22/22/2222", "22/22/2222", 1, 0),
+    createData('127', "22/22/2112", "22/22/22", "22/22/22", 1, 0),
+    createData('128', "22/22/22322", "22/22/2222", "22/22/2222", 1, 0),
+    createData('129', "22/22/22522", "22/22/2222", "22/22/2222", 1, 0),
+    createData('130', "22/22/22822", "22/22/2222", "22/22/2222", 1, 0),
+    createData('131', "22/22/22*22", "22/22/2222", "22/22/2222", 1, 0),
+    createData('132', "22/22/22722", "22/22/2222", "22/22/2222", 1, 0),
+    createData('133', "22/22/22222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('134', "22/22/27222", "22/22/2222", "22/22/2222", 1, 0),
+    createData('135', "22/22/22s22", "22/22/2222", "22/22/2222", 1, 0),
+    createData('136', "22/22/22g22", "22/22/2222", "22/22/2222", 1, 0),
+    createData('137', "22/22/222a2", "22/22/2222", "22/22/2222", 1, 0)
 ];
 
 function chiefBossAccaptance(chiefStatus) {
@@ -115,41 +137,21 @@ function displayButton() {
             display: "flex",
             justifyContent: "flex-start"
         }}>
+            <Link to={"/PersonelScreens/PermissionDisplay"}>
             <Button variant="outlined" color="primary" style={{
                 display: "flex",
                 justifyContent: "flex-start",
                 padding: "1px",
                 background: "rgba(180,133,205,0.64)",
-                borderRadius: "100%"
+                borderRadius: "50%"
             }}>
-                <img style={{width: "50px", height: "30px", margin: "auto"}} src={require('./eye2.svg')}
+                <img style={{width: "30px", height: "20px", margin: "auto"}} src={require('./eye2.svg')}
                      alt="my image"/>
             </Button>
+            </Link>
         </div>
     )
 }
-
-function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus) {
-    return {demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus};
-}
-
-const rows = [
-    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('124', "22/22/2221", "22/22/2222", "22/22/2222", 1, 0),
-    createData('125', "22/22/22212", "22/22/2222", "22/22/2222", 1, 0),
-    createData('126', "22/22/22122", "22/22/2222", "22/22/2222", 1, 0),
-    createData('127', "22/22/2112", "22/22/22", "22/22/22", 1, 0),
-    createData('128', "22/22/22322", "22/22/2222", "22/22/2222", 1, 0),
-    createData('129', "22/22/22522", "22/22/2222", "22/22/2222", 1, 0),
-    createData('130', "22/22/22822", "22/22/2222", "22/22/2222", 1, 0),
-    createData('131', "22/22/22*22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('132', "22/22/22722", "22/22/2222", "22/22/2222", 1, 0),
-    createData('133', "22/22/22222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('134', "22/22/27222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('135', "22/22/22s22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('136', "22/22/22g22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('137', "22/22/222a2", "22/22/2222", "22/22/2222", 1, 0),
-];
 
 const useStyles = makeStyles({
     root: {
@@ -159,6 +161,7 @@ const useStyles = makeStyles({
         display: "flex",
     },
 });
+
 const stylesForBounce = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -170,8 +173,7 @@ const stylesForBounce = makeStyles((theme) => ({
     },
 }));
 
-
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);

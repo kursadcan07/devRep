@@ -88,10 +88,10 @@ const LoginScreen = () => (
             </div>
             <Link to="/PersonelScreens/PersonelNavigation">
                 <button type="submit" className="btn btn-primary btn-block">Giriş</button>
-                <p className="forgot-password text-right">
-                    Şifremi <a href="#">unuttum</a>
-                </p>
             </Link>
+            <p className="forgot-password text-right">
+                Şifremi <a href="#">unuttum</a>
+            </p>
         </form>
     </div>
 )

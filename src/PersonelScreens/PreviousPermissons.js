@@ -1,13 +1,7 @@
 import React from "react";
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
-import {useSpring, animated} from "react-spring";
-import {useState} from "react";
-import {Bounce} from "react-reveal";
-import {Link} from "react-router-dom";
-import PermissionDisplay from "./PermissionDisplay";
-import Row from "react-bootstrap/Row";
 import StickyHeadTable from "./StickyHeadTable";
-
+import
 
 export function acceptionSymb() {
     return (
@@ -73,11 +67,10 @@ export function waitingSymbol() {
     )
 }
 
+
 function activeDemands(displayActives) {
     if (displayActives) {
-        return (
-            <StickyHeadTable/>
-        )
+        return (<StickyHeadTable/>);
     } else {
         return null;
     }
@@ -115,11 +108,9 @@ class PreviousPermissons extends React.Component {
                         onChange={() => this.ToggleButton()}
                     />
                 </div>
-
                     {
                         activeDemands(this.state.displayActives)
                     }
-
             </div>
         )
     }

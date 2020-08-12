@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
+
 function PermissionDisplay() {
     let areaCode="(SB)";
     let foldCode=25;
