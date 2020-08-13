@@ -21,12 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8df69efc-61da-480a-b293-a3bdf97cf1c1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/CompanyLogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/CompanyLogo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/ExampleSignature.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PrivateData/ExampleSignature.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PermissionDisplay.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PermissionFilling.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PermissionFilling.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PermissionToAccept.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/DisplayThePermissionForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/displayIcon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/DisplayPreviousPermissionsImage.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/eye2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/DisplayPermissionButtonIcon.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/fromSVG.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/FillingFormImage.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/ResponsiveDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/ResponsiveDialog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/eye1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/goz.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +71,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/PersonelScreens/PrivateData" />
       <recent name="$PROJECT_DIR$/src/PersonelScreens/SystemImages" />
       <recent name="$PROJECT_DIR$/src/PersonelScreens" />
       <recent name="$PROJECT_DIR$/src" />
@@ -105,7 +110,7 @@
       <workItem from="1597041305971" duration="22034000" />
       <workItem from="1597125947298" duration="24817000" />
       <workItem from="1597211856882" duration="25574000" />
-      <workItem from="1597298528889" duration="10292000" />
+      <workItem from="1597298528889" duration="17115000" />
     </task>
     <servers />
   </component>
@@ -137,30 +142,30 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2585" y="342" width="580" height="403" key="#com.intellij.fileTypes.FileTypeChooser/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596713865855" />
-    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597316576095">
+    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597319679483">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597316576095" />
+    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597319679483" />
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl" timestamp="1596523192347">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596523192347" />
-    <state width="1874" height="68" key="GridCell.Tab.0.bottom" timestamp="1597316567345">
+    <state width="1874" height="68" key="GridCell.Tab.0.bottom" timestamp="1597319786546">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="68" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597316567345" />
-    <state width="1874" height="68" key="GridCell.Tab.0.center" timestamp="1597316567345">
+    <state width="1874" height="68" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597319786546" />
+    <state width="1874" height="68" key="GridCell.Tab.0.center" timestamp="1597319786545">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="68" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597316567345" />
-    <state width="1874" height="68" key="GridCell.Tab.0.left" timestamp="1597316567345">
+    <state width="1874" height="68" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597319786545" />
+    <state width="1874" height="68" key="GridCell.Tab.0.left" timestamp="1597319786545">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="68" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597316567345" />
-    <state width="1874" height="68" key="GridCell.Tab.0.right" timestamp="1597316567345">
+    <state width="1874" height="68" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597319786545" />
+    <state width="1874" height="68" key="GridCell.Tab.0.right" timestamp="1597319786545">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="68" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597316567345" />
+    <state width="1874" height="68" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597319786545" />
     <state x="2369" y="175" width="1183" height="737" key="SettingsEditor" timestamp="1597147490994">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

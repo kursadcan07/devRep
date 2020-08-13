@@ -10,9 +10,6 @@ import { useTheme } from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
 
 export default function ResponsiveDialog(props) {
-
-
-
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));

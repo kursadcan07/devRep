@@ -1,16 +1,15 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Link} from "react-router-dom";
-import Logo from "./PersonelScreens/CompanyLogo.png";
+import Logo from "./PersonelScreens/SystemImages/CompanyLogo.png";
 import PersonelNavigation from "./PersonelScreens/PersonelNavigation";
-import PermissionDisplay from "./PersonelScreens/PermissionDisplay";
 import PreviousPermissons from "./PersonelScreens/PreviousPermissons";
 import PermissionFilling from "./PersonelScreens/PermissionFilling";
 import NavPrevPer from "./PersonelScreens/SuccesDisplaying";
 import SuccesDisplaying from "./PersonelScreens/SuccesDisplaying";
 import ChiefNavigation from "./PersonelScreens/ChiefNavigation";
 import PreviousPermissonsChief from "./PersonelScreens/PreviousPermissionsChief";
-import PermissionToAccept from "./PersonelScreens/PermissionToAccept";
+import DisplayThePermissionForm from "./PersonelScreens/DisplayThePermissionForm";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
 import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
 
@@ -29,14 +28,13 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={LoginScreen}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={PersonelNavigation}/>
-                    <Route path="/PersonelScreens/PermissionDisplay" component={PermissionDisplay}/>
                     <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissons}/>
                     <Route path="/PersonelScreens/PermissionFilling" component={PermissionFilling}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={NavPrevPer} />
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
                     <Route path="/PersonelScreens/ChiefNavigation" component={ChiefNavigation} />
                     <Route path="/PersonelScreens/PreviousPermissionsChief" component={PreviousPermissonsChief} />
-                    <Route path="/PersonelScreens/PermissionToAccept" component={PermissionToAccept}/>
+                    <Route path="/PersonelScreens/DisplayThePermissionForm" component={DisplayThePermissionForm}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
                 </Switch>
