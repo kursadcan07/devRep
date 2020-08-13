@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
 
 function PersonelNavigation() {
 
-    const iconFirst = require('./fromSVG.svg');
-    const iconSecond = require('./displayIcon.svg');
+    const iconFirst = require('./SystemImages/FillingFormImage.svg');
+    const iconSecond = require('./SystemImages/DisplayPreviousPermissionsImage.svg');
     const classes = useStyles();
     return (
 

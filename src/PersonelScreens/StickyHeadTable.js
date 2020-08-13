@@ -69,7 +69,7 @@ function displayButton() {
                 background: "rgba(180,133,205,0.64)",
                 borderRadius: "50%"
             }}>
-                <img style={{width: "30px", height: "20px", margin: "auto"}} src={require('./eye2.svg')}
+                <img style={{width: "30px", height: "20px", margin: "auto"}} src={require('./SystemImages/DisplayPermissionButtonIcon.svg')}
                      alt="my image"/>
             </Button>
             </Link>

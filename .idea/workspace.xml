@@ -21,14 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8df69efc-61da-480a-b293-a3bdf97cf1c1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PermissionFilling.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PermissionFilling.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PersonelNavigation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/ResponsiveDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/ResponsiveDialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/ReviseMessageSending.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/ReviseMessageSending.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/myApp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/displayIcon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/DisplayPreviousPermissionsImage.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/eye2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/DisplayPermissionButtonIcon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/fromSVG.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SystemImages/FillingFormImage.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,13 +66,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/PersonelScreens" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/PersonelScreens/SystemImages" />
       <recent name="$PROJECT_DIR$/src/PersonelScreens" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/PersonelScreens" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -106,7 +105,7 @@
       <workItem from="1597041305971" duration="22034000" />
       <workItem from="1597125947298" duration="24817000" />
       <workItem from="1597211856882" duration="25574000" />
-      <workItem from="1597298528889" duration="10012000" />
+      <workItem from="1597298528889" duration="10292000" />
     </task>
     <servers />
   </component>
