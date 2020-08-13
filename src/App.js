@@ -12,7 +12,6 @@ import ChiefNavigation from "./PersonelScreens/ChiefNavigation";
 import PreviousPermissonsChief from "./PersonelScreens/PreviousPermissionsChief";
 import PermissionToAccept from "./PersonelScreens/PermissionToAccept";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
-import myApp from "./PersonelScreens/myApp";
 import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
 
 /*
@@ -39,7 +38,6 @@ function App() {
                     <Route path="/PersonelScreens/PreviousPermissionsChief" component={PreviousPermissonsChief} />
                     <Route path="/PersonelScreens/PermissionToAccept" component={PermissionToAccept}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
-                    <Route path="/PersonelScreens/myApp" component={myApp}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
                 </Switch>
             </div>

@@ -7,8 +7,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import {Link} from "react-router-dom";
 
 export default function ResponsiveDialog(props) {
+
+
 
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -20,6 +23,10 @@ export default function ResponsiveDialog(props) {
 
     const handleClose = () => {
         setOpen(false);
+    };
+    const handleCloseAndDeleteDemand = () => {
+        setOpen(false);
+        //HERE WE DELETE THE DEMAND OF PERMISSION.
     };
 
     if (props.chiefStatus === 1) {
@@ -52,6 +59,7 @@ export default function ResponsiveDialog(props) {
                     <DialogContent>
                         <DialogContentText>
                             {props.explanationOfChief}
+                            {props.explanationOfGeneralManager}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -69,14 +77,17 @@ export default function ResponsiveDialog(props) {
             }}>
                 <button style={{
                     backgroundColor: "rgba(220,16,16,0.95)",
-                    fontSize: "20px",
+
                     borderRadius: "50%",
                     margin: "auto",
                     textAlign: "center",
                     display: 'flex',
                     width: "40px"
                 }}  onClick={handleClickOpen} >
-                    ✖
+                    <h1 style={{ fontSize: "20px",margin:"auto"}}>
+                        ✖
+                    </h1>
+
                 </button>
                 <Dialog
                     fullScreen={fullScreen}
@@ -88,17 +99,18 @@ export default function ResponsiveDialog(props) {
                     <DialogContent>
                         <DialogContentText>
                             {props.explanationOfChief}
+                            {props.explanationOfGeneralManager}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose} color="primary">
-                            KAPAT
+                            TAMAM
                         </Button>
                     </DialogActions>
                 </Dialog>
             </div>
         )
-    } else {
+    } else if (props.chiefStatus === 3) {
         return (
             <div style={{
                 display: "flex",
@@ -114,7 +126,9 @@ export default function ResponsiveDialog(props) {
                     width: "40px"
                 }}  onClick={handleClickOpen}
                 >
+                    <h1 style={{ fontSize: "20px",margin:"auto"}}>
                     ⊖
+                    </h1>
                 </button>
                 <Dialog
                     fullScreen={fullScreen}
@@ -125,20 +139,64 @@ export default function ResponsiveDialog(props) {
                     <DialogTitle id="responsive-dialog-title">{"AÇIKLAMA"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                          xxxxxxxxxxx
+                            {props.explanationOfChief}
+                            {props.explanationOfGeneralManager}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose} color="primary">
-                            Disagree
-                        </Button>
-                        <Button onClick={handleClose} color="primary" autoFocus>
-                            Agree
+                            TAMAM
                         </Button>
                     </DialogActions>
                 </Dialog>
             </div>
-
+        )
+    }
+    else{
+        return (
+            <div style={{
+                display: "flex",
+                width: "80px",
+                justifyContent: "center"
+            }}>
+                <button style={{
+                    backgroundColor: "rgb(253,131,1)",
+                    fontSize: "20px",
+                    borderRadius: "50%",
+                    margin: "auto",
+                    textAlign: "center",
+                    width: "40px"
+                }}  onClick={handleClickOpen}
+                >
+                    <h1 style={{ fontSize: "20px",margin:"auto"}}>
+                        !
+                    </h1>
+                </button>
+                <Dialog
+                    fullScreen={fullScreen}
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="responsive-dialog-title"
+                >
+                    <DialogTitle id="responsive-dialog-title">{"AÇIKLAMA"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {props.explanationOfChief}
+                            {props.explanationOfGeneralManager}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                            <Button autoFocus onClick={handleCloseAndDeleteDemand} color="primary">
+                                İPTAL ET
+                            </Button>
+                        <Link to="./PermissionFilling">
+                        <Button autoFocus color="primary">
+                            DÜZENLE
+                        </Button>
+                        </Link>
+                    </DialogActions>
+                </Dialog>
+            </div>
         )
     }
 }

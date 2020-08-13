@@ -80,17 +80,17 @@ function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, b
 }
 
 const rows = [
-    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 2, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData('125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+    createData('125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 3, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData('126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+    createData('126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 4, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData('127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+    createData('127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 5, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData('128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+    createData('128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 6, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
     createData('129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
@@ -101,9 +101,9 @@ const rows = [
 ];
 
 const rows1 = [
-    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 3, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
     createData('125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),

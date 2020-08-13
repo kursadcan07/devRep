@@ -54,69 +54,6 @@ const columns = [
     },
 ];
 
-function chiefBossAccaptance(chiefStatus) {
-
-    if (chiefStatus === 1) {
-        return (
-            <div style={{
-                display: "flex", width: "80px", justifyContent: "center",
-                textAlign: "center"
-
-            }}>
-
-                <button style={{
-                    backgroundColor: "rgba(49,236,9,0.95)",
-                    fontSize: "20px",
-                    borderRadius: "50%",
-                    margin: "auto",
-                    textAlign: "center",
-                    width: "40px",
-                }}
-                >
-                    ✔
-                </button>
-            </div>
-        )
-    } else if (chiefStatus === 2) {
-        return (
-            <div style={{
-                display: "flex", width: "80px", justifyContent: "center"
-            }}>
-                <h1 style={{
-                    backgroundColor: "rgba(220,16,16,0.95)",
-                    fontSize: "20px",
-                    borderRadius: "50%",
-                    margin: "auto",
-                    textAlign: "center",
-                    display: 'flex',
-                    width: "40px"
-                }}
-                >
-                    ✖
-                </h1>
-            </div>
-        )
-    } else {
-        return (
-            <div style={{
-                display: "flex", width: "80px",
-                justifyContent: "center"
-            }}>
-                <h1 style={{
-                    backgroundColor: "rgba(255,220,0,0.95)",
-                    fontSize: "20px",
-                    borderRadius: "50%",
-                    margin: "auto",
-                    textAlign: "center",
-                    width: "40px"
-                }}
-                >
-                    ⊖
-                </h1>
-            </div>
-        )
-    }
-}
 
 function displayButton() {
     return (
@@ -155,7 +92,7 @@ const stylesForBounce = makeStyles((theme) => ({
     },
     paper: {
         textAlign: 'center',
-        padding: "8px",
+        padding: "10px",
         background: "rgba(139,133,133,0.21)"
     },
 }));
@@ -185,7 +122,8 @@ export default function StickyHeadTable(props) {
                             fontSize: "20px",
                             borderRadius: "50%",
                             backgroundColor: "rgba(49,236,9,0.95)",
-                            textAlign: "center"
+                            textAlign: "center",
+
                         }}>
                             ✔
                         </h1>
@@ -193,7 +131,7 @@ export default function StickyHeadTable(props) {
                             fontSize: "12px",
                             fontWeight: "bold",
                             textAlign: "center",
-                            paddingRight:"10px"
+
                         }}
                         >
                             ONAY
@@ -201,16 +139,16 @@ export default function StickyHeadTable(props) {
 
                     </Paper>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4} >
                     <Paper className={styke.paper}>
 
                         <h1 style={{
-                            marginRight: "20px",
-                            marginLeft: "20px",
                             fontSize: "20px",
                             borderRadius: "50%",
                             backgroundColor: "rgba(255,220,0,0.95)",
-                            textAlign: "center"
+                            textAlign: "center",
+                            marginRight:"10px",
+                            marginLeft:"10px"
                         }}>
                             ⊖
                         </h1>
@@ -221,7 +159,7 @@ export default function StickyHeadTable(props) {
 
                     </Paper>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2} >
                     <Paper className={styke.paper}>
                         <h1 style={{
                             fontSize: "20px",
@@ -242,9 +180,27 @@ export default function StickyHeadTable(props) {
 
                     </Paper>
                 </Grid>
+                <Grid item xs={3} >
+                    <Paper className={styke.paper}>
+                        <h1 style={{
+                            fontSize: "20px",
+                            borderRadius: "50%",
+                            backgroundColor: "rgb(253,131,1)",
+                            textAlign: "center"
+                        }}>
+                            !
+                        </h1>
+                        <h1 style={{
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                            textAlign: "center",
+                        }}
+                        >
+                            REVİZE
+                        </h1>
 
-
-
+                    </Paper>
+                </Grid>
             </React.Fragment>
         );
     }
@@ -284,7 +240,7 @@ export default function StickyHeadTable(props) {
                                                     <TableCell key={column.id}>
                                                         {value}
                                                         {column.id === "chiefAcceptance" && <ResponsiveDialog chiefStatus={row.chiefStatus} explanationOfChief={row.explanationOfChief}/>}
-                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefStatus={row.chiefStatus} explanationOfChief={row.explanationOfChief} />}
+                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefStatus={row.bossStatus} explanationOfGeneralManager={row.explanationOfGeneralManager} />}
                                                         {column.id === "displayScreen" && displayButton()}
                                                     </TableCell>
                                                 );

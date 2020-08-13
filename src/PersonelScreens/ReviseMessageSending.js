@@ -18,6 +18,7 @@ function reviseMessage() {
                     İZİN REVİZE MEKTUBU
                 </h1>
             </Row>
+
             <Row className="justify-content-center" md={3} style={{margin: "10px"}}>
                 <div>
                     <textarea placeholder="Revize hususundaki talebinizi doldurunuz" maxLength="500"
