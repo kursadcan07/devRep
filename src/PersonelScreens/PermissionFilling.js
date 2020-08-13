@@ -11,7 +11,6 @@ import Button from "react-bootstrap/Button";
 import TimePicker from 'react-time-picker';
 import DisplayThePermissionForm from "./DisplayThePermissionForm";
 
-
 function TakeTime() {
     const [value, onChange] = useState('9:00');
     return (
@@ -38,7 +37,6 @@ const locale = {
     },
     formatLong: {}
 }
-
 
 class PermissionFilling extends React.Component {
 
@@ -212,27 +210,23 @@ class PermissionFilling extends React.Component {
                                       className="form-control" rows="4"/>
                         </div>
                     </Row>
-                    <Link to={{
-                        pathname:"DisplayThePermissionForm",
-                        aboutProps:{
-                            name:"Cihan"
-                        }
-                    }}>
 
-                        <Row className="justify-content-center">
-                            <Button variant="primary" size="lg" active onClick={() =>{
+                    <Row className="justify-content-center">
+                        <Link to="DisplayThePermissionForm">
+                            <Button variant="primary" size="lg" active onClick={() => {
                                 console.log("SelamınAleyküm");
                             }}>
                                 ONAYLAMAYA GEÇ
                             </Button>
-                        </Row>
+                        </Link>
+                    </Row>
 
-                    </Link>
                     <Row className="justify-content-center">
                         <p style={{paddingTop: "1vw"}}>
                             UYARI ALANI
                         </p>
                     </Row>
+
                 </Col>
             </Container>
         )

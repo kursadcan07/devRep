@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 export default function DisplayThePermissionForm (props) {
 
     const foldCode = 25;
+    let areaCode = "SB";
     let perTypeID = 6;
     let personalName = "ZOZAN KARTAL";
     let dateOfDemand = "22/22/22";
@@ -44,7 +45,7 @@ export default function DisplayThePermissionForm (props) {
                             marginBottom: "4px",
                             border: "0.6px solid black"
                         }}>
-                        {headPart(props.location.aboutProps, foldCode)}
+                        {headPart(areaCode, foldCode)}
                     </div>
 
                     <div style={{
@@ -163,8 +164,7 @@ function headPart(areaCode, foldNumb) {
                     flex: 2,
                     justifyContent: "flex-start",
                     border: "0.1px solid black",
-                    margin: "0.1vw",
-
+                    margin: "0.1vw"
                 }}>
                     <h1 style={{
                         display: "flex",
@@ -195,8 +195,7 @@ function headPart(areaCode, foldNumb) {
                     flex: 2,
                     justifyContent: "flex-start",
                     border: "0.1px solid black",
-                    margin: "0.1vw",
-
+                    margin: "0.1vw"
                 }}>
                     <h1 style={{
                         display: "flex",
