@@ -22,7 +22,8 @@ export default function ResponsiveDialog(props) {
         setOpen(false);
     };
 
-    if (props.chiefStatus === "1") {
+    if (props.chiefStatus === 1) {
+
         return (
             <div style={{
                 display: "flex", width: "80px", justifyContent: "center",
@@ -38,7 +39,7 @@ export default function ResponsiveDialog(props) {
                     textAlign: "center",
                     width: "40px",
                 }}
-                >
+                        onClick={handleClickOpen} >
                     ✔
                 </button>
                 <Dialog
@@ -47,19 +48,15 @@ export default function ResponsiveDialog(props) {
                     onClose={handleClose}
                     aria-labelledby="responsive-dialog-title"
                 >
-                    <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                    <DialogTitle id="responsive-dialog-title">{"AÇIKLAMA"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Let Google help apps determine location. This means sending anonymous location data to
-                            Google, even when no apps are running.
+                            {props.explanationOfChief}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose} color="primary">
-                            Disagree
-                        </Button>
-                        <Button onClick={handleClose} color="primary" autoFocus>
-                            Agree
+                            TAMAM
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -78,8 +75,7 @@ export default function ResponsiveDialog(props) {
                     textAlign: "center",
                     display: 'flex',
                     width: "40px"
-                }}
-                >
+                }}  onClick={handleClickOpen} >
                     ✖
                 </button>
                 <Dialog
@@ -88,19 +84,15 @@ export default function ResponsiveDialog(props) {
                     onClose={handleClose}
                     aria-labelledby="responsive-dialog-title"
                 >
-                    <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                    <DialogTitle id="responsive-dialog-title">{"AÇIKLAMA"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Let Google help apps determine location. This means sending anonymous location data to
-                            Google, even when no apps are running.
+                            {props.explanationOfChief}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose} color="primary">
-                            Disagree
-                        </Button>
-                        <Button onClick={handleClose} color="primary" autoFocus>
-                            Agree
+                            KAPAT
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -120,7 +112,7 @@ export default function ResponsiveDialog(props) {
                     margin: "auto",
                     textAlign: "center",
                     width: "40px"
-                }}
+                }}  onClick={handleClickOpen}
                 >
                     ⊖
                 </button>
@@ -130,11 +122,10 @@ export default function ResponsiveDialog(props) {
                     onClose={handleClose}
                     aria-labelledby="responsive-dialog-title"
                 >
-                    <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                    <DialogTitle id="responsive-dialog-title">{"AÇIKLAMA"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Let Google help apps determine location. This means sending anonymous location data to
-                            Google, even when no apps are running.
+                          xxxxxxxxxxx
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

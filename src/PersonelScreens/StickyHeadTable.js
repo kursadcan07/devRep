@@ -277,14 +277,14 @@ export default function StickyHeadTable(props) {
                             <TableBody>
                                 {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.demandDate}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.demandID}>
                                             {columns.map((column) => {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id}>
                                                         {value}
-                                                        {column.id === "chiefAcceptance" && <ResponsiveDialog chiefAcceptance={props.chiefAcceptance} />}
-                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefAcceptance={props.chiefAcceptance} />}
+                                                        {column.id === "chiefAcceptance" && <ResponsiveDialog chiefStatus={row.chiefStatus} explanationOfChief={row.explanationOfChief}/>}
+                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefStatus={row.chiefStatus} explanationOfChief={row.explanationOfChief} />}
                                                         {column.id === "displayScreen" && displayButton()}
                                                     </TableCell>
                                                 );

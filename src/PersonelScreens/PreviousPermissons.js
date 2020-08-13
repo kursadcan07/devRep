@@ -66,46 +66,60 @@ export function waitingSymbol() {
     )
 }
 
-function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus) {
-    return {demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus};
+function createData(demandID, demandDate, demandBegin, demandEnd, chiefStatus, bossStatus, explanationOfChief, explanationOfGeneralManager) {
+    return {
+        demandID,
+        demandDate,
+        demandBegin,
+        demandEnd,
+        chiefStatus,
+        bossStatus,
+        explanationOfChief,
+        explanationOfGeneralManager
+    };
 }
 
 const rows = [
-    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('124', "22/22/2221", "22/22/2222", "22/22/2222", 1, 0),
-    createData('125', "22/22/22212", "22/22/2222", "22/22/2222", 1, 0),
-    createData('126', "22/22/22122", "22/22/2222", "22/22/2222", 1, 0),
-    createData('127', "22/22/2112", "22/22/22", "22/22/22", 1, 0),
-    createData('128', "22/22/22322", "22/22/2222", "22/22/2222", 1, 0),
-    createData('129', "22/22/22522", "22/22/2222", "22/22/2222", 1, 0),
-    createData('130', "22/22/22822", "22/22/2222", "22/22/2222", 1, 0),
-    createData('131', "22/22/22*22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('132', "22/22/22722", "22/22/2222", "22/22/2222", 1, 0),
-    createData('133', "22/22/22222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('134', "22/22/27222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('135', "22/22/22s22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('136', "22/22/22g22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('137', "22/22/222a2", "22/22/2222", "22/22/2222", 1, 0)
+    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('130', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('131', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
 ];
 
 const rows1 = [
-    createData('1123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1124', "22/22/2221", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1125', "22/22/22212", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1126', "22/22/22122", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1127', "22/22/2112", "22/22/22", "22/22/22", 1, 0),
-    createData('1128', "22/22/22322", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1129', "22/22/22522", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1130', "22/22/22822", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1131', "22/22/22*22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1132', "22/22/22722", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1133', "22/22/22222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1134', "22/22/27222", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1315', "22/22/22s22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1316', "22/22/22g22", "22/22/2222", "22/22/2222", 1, 0),
-    createData('1371', "22/22/222a2", "22/22/2222", "22/22/2222", 1, 0)
+    createData('123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('130', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData('131', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
 ];
-
 
 function activeDemands(displayActives) {
     if (displayActives) {
@@ -137,8 +151,10 @@ class PreviousPermissons extends React.Component {
                 display: "flex",
                 flexDirection: "column"
             }}>
-                <div style={{display:"flex",justifyContent:"center",
-                marginTop:"20px"}}>
+                <div style={{
+                    display: "flex", justifyContent: "center",
+                    marginTop: "20px"
+                }}>
                     <BootstrapSwitchButton
                         width={300}
                         checked={this.state.displayActives}
@@ -147,9 +163,9 @@ class PreviousPermissons extends React.Component {
                         onChange={() => this.ToggleButton()}
                     />
                 </div>
-                    {
-                        activeDemands(this.state.displayActives)
-                    }
+                {
+                    activeDemands(this.state.displayActives)
+                }
             </div>
         )
     }
