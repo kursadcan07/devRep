@@ -21,9 +21,7 @@ function PersonelNavigation() {
     const iconFirst = require('./SystemImages/FillingFormImage.svg');
     const iconSecond = require('./SystemImages/DisplayPreviousPermissionsImage.svg');
     return (
-
         <Grid container spacing={2} style={{width:"100%"}}>
-
             <Grid item xs={12} sm={6} >
                 <Link to="PermissionFilling" style={{display:"flex",flex:1,textDecoration:"none"}} >
                     <button type="button" className="btn btn-success" style={{display:"flex",flex:1,margin:"20px"}}

@@ -4,32 +4,27 @@ import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 
-class DisplayThePermissionForm extends React.Component{
-    state = {
-        currName: "null"
-    }
+export default function DisplayThePermissionForm (props) {
 
-    render() {
-        let foldCode = 25;
-        let perTypeID = 6;
-        let personalName = "ZOZAN KARTAL";
-        let dateOfDemand = "22/22/22";
+    const foldCode = 25;
+    let perTypeID = 6;
+    let personalName = "ZOZAN KARTAL";
+    let dateOfDemand = "22/22/22";
 
-        let expOfPer = "Tatil yapmak maksadıyla.";
+    let expOfPer = "Tatil yapmak maksadıyla.";
 
-        let permissionStartDate = "22/22/2222";
-        let permissionStartTime = "22:50";
-        let permissionEndDate = "22/22/2222";
-        let permissionEndTime = "24:42";
-        let permissionLength = "22 saat";
+    let permissionStartDate = "22/22/2222";
+    let permissionStartTime = "22:50";
+    let permissionEndDate = "22/22/2222";
+    let permissionEndTime = "24:42";
+    let permissionLength = "22 saat";
 
-        let vhicleUsageID = 0;
+    let vhicleUsageID = 0;
 
-        let kiloMeter = 221;
-        let priceTL = 55;
-        let personelCarUsage = false;
-
-        return (
+    let kiloMeter = 221;
+    let priceTL = 55;
+    let personelCarUsage = false;
+    return (
             <div style={{
                 display: "flex",
                 flexDirection: "column",
@@ -49,7 +44,7 @@ class DisplayThePermissionForm extends React.Component{
                             marginBottom: "4px",
                             border: "0.6px solid black"
                         }}>
-                        {headPart(this.state.currName, foldCode)}
+                        {headPart(props.location.aboutProps, foldCode)}
                     </div>
 
                     <div style={{
@@ -137,7 +132,6 @@ class DisplayThePermissionForm extends React.Component{
 
             </div>
         )
-    }
 }
 
 //ÜST BAŞLIĞIN OLDUĞU KOMPONENT ( __1__ )
@@ -1255,4 +1249,3 @@ function subOrRetBtn() {
     )
 }
 
-export default DisplayThePermissionForm;

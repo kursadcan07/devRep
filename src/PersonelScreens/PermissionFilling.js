@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {Link, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import TimePicker from 'react-time-picker';
 import DisplayThePermissionForm from "./DisplayThePermissionForm";
@@ -120,9 +120,6 @@ class PermissionFilling extends React.Component {
         })
     }
 
-    texter123() {
-
-    }
 
     render() {
         return (
@@ -204,11 +201,11 @@ class PermissionFilling extends React.Component {
                                            onClick={this.handleVhcSel}>Otobus/Tramvay Kullanılacak </Dropdown.Item>
                             <Dropdown.Item id="v4" as="button" name="Şahsi Araç Kullanılacak"
                                            onClick={this.handleVhcSel}>Şahsi Araç Kullanılacak</Dropdown.Item>
-
                         </DropdownButton>
                         {inputForBus(this.state.dispEntPriBox)}
                         {inputForDist(this.state.dispEntDisBox)}
                     </Row>
+
                     <Row className="justify-content-center" md={3} style={{margin: "10px"}}>
                         <div>
                             <textarea placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
@@ -216,18 +213,20 @@ class PermissionFilling extends React.Component {
                         </div>
                     </Row>
                     <Link to={{
-                        pathname: "DisplayThePermissionForm",
-                        state: {
-                            currName: "cancan",
-                        },
+                        pathname:"DisplayThePermissionForm",
+                        aboutProps:{
+                            name:"Cihan"
+                        }
                     }}>
+
                         <Row className="justify-content-center">
-                            <Button variant="primary" size="lg" active onClick={
-                             console.log("SElam")
-                            }>
+                            <Button variant="primary" size="lg" active onClick={() =>{
+                                console.log("SelamınAleyküm");
+                            }}>
                                 ONAYLAMAYA GEÇ
                             </Button>
                         </Row>
+
                     </Link>
                     <Row className="justify-content-center">
                         <p style={{paddingTop: "1vw"}}>
