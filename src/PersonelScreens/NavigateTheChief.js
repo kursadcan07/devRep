@@ -77,8 +77,8 @@ function displayTheManagementBasedOperations(flag) {
     const displayPermissionDemandIcon = require('./SystemImages/DisplayPermissionButtonIcon.svg');
     if (flag) {
         return (
-
             <Grid container spacing={1} style={{justifyContent: "center"}}>
+
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
                         <Link to="PreviousPermissons" style={{textDecoration:"none"}}>

@@ -65,7 +65,6 @@ function activeDemands(displayActives) {
     }
 }
 
-
 class PreviousPermissons extends React.Component {
 
     constructor(props) {
@@ -95,8 +94,8 @@ class PreviousPermissons extends React.Component {
                     <BootstrapSwitchButton
                         width={300}
                         checked={this.state.displayActives}
-                        onlabel='AKTİF TALEPLER'
-                        offlabel='GEÇMİŞ TALEPLER'
+                        onlabel={this.props.onLabelText}
+                        offlabel={this.props.offLabelText}
                         onChange={() => this.ToggleButton()}
                     />
                 </div>

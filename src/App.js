@@ -17,7 +17,7 @@ import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
 /*
 This class includes <Router> component with in <Route>.Which describes the paths of the portal.
 Login screen created and given as default page here as well.
-
+render={(props) => <PropsPage {...props} title={`Props through render`}
 */
 function App() {
     return (
@@ -32,7 +32,7 @@ function App() {
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
                     <Route path="/PersonelScreens/ChiefNavigation" component={NavigateTheChief} />
                     <Route path="/PersonelScreens/DisplayPermissionsForChief" component={DisplayPermissionsForChief} />
-                    <Route path="/PersonelScreens/DisplayThePermissionForm" component={DisplayThePermissionForm}/>
+                    <Route path="/PersonelScreens/DisplayThePermissionForm" render={(props) => <DisplayThePermissionForm {...props} title={`Props through render`} />}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
                 </Switch>
