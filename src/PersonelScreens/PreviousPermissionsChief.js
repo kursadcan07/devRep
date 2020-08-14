@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import {Col} from "react-bootstrap";
 import {Row} from "react-bootstrap";
 
-
 export function acceptionSymb() {
     return (
         <div style={{
