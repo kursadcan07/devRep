@@ -4,14 +4,15 @@ import {Link} from "react-router-dom";
 import Logo from "./PersonelScreens/SystemImages/CompanyLogo.png";
 import PersonelNavigation from "./PersonelScreens/PersonelNavigation";
 import PreviousPermissons from "./PersonelScreens/PreviousPermissons";
-import PermissionFilling from "./PersonelScreens/PermissionFilling";
+import FillingThePermissionForm from "./PersonelScreens/FillingThePermissionForm";
 import NavPrevPer from "./PersonelScreens/SuccesDisplaying";
 import SuccesDisplaying from "./PersonelScreens/SuccesDisplaying";
-import ChiefNavigation from "./PersonelScreens/ChiefNavigation";
-import PreviousPermissonsChief from "./PersonelScreens/PreviousPermissionsChief";
+import NavigateTheChief from "./PersonelScreens/NavigateTheChief";
+import DisplayPermissionsForChief from "./PersonelScreens/DisplayPermissionsForChief";
 import DisplayThePermissionForm from "./PersonelScreens/DisplayThePermissionForm";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
 import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
+
 
 /*
 This class includes <Router> component with in <Route>.Which describes the paths of the portal.
@@ -26,11 +27,11 @@ function App() {
                     <Route path="/" exact component={LoginScreen}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={PersonelNavigation}/>
                     <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissons}/>
-                    <Route path="/PersonelScreens/PermissionFilling" component={PermissionFilling}/>
+                    <Route path="/PersonelScreens/FillingThePermissionForm" component={FillingThePermissionForm}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={NavPrevPer} />
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
-                    <Route path="/PersonelScreens/ChiefNavigation" component={ChiefNavigation} />
-                    <Route path="/PersonelScreens/PreviousPermissionsChief" component={PreviousPermissonsChief} />
+                    <Route path="/PersonelScreens/ChiefNavigation" component={NavigateTheChief} />
+                    <Route path="/PersonelScreens/DisplayPermissionsForChief" component={DisplayPermissionsForChief} />
                     <Route path="/PersonelScreens/DisplayThePermissionForm" component={DisplayThePermissionForm}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>

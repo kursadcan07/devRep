@@ -186,7 +186,7 @@ export default function ResponsiveDialog(props) {
                             <Button autoFocus onClick={handleCloseAndDeleteDemand} color="primary">
                                 İPTAL ET
                             </Button>
-                        <Link to="./PermissionFilling">
+                        <Link to="./FillingThePermissionForm">
                         <Button autoFocus color="primary">
                             DÜZENLE
                         </Button>

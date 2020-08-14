@@ -23,7 +23,7 @@ function PersonelNavigation() {
     return (
         <Grid container spacing={2} style={{width:"100%"}}>
             <Grid item xs={12} sm={6} >
-                <Link to="PermissionFilling" style={{display:"flex",flex:1,textDecoration:"none"}} >
+                <Link to="FillingThePermissionForm" style={{display:"flex",flex:1,textDecoration:"none"}} >
                     <button type="button" className="btn btn-success" style={{display:"flex",flex:1,margin:"20px"}}
                     >
                             <img  alt="IconEye" style={{width:"150px",height:"150px"}}
@@ -43,7 +43,6 @@ function PersonelNavigation() {
                             </h3>
                         </button>
                     </Link>
-
             </Grid>
         </Grid>
 

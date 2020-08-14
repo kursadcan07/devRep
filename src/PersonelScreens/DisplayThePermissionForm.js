@@ -1195,7 +1195,7 @@ function subOrRetBtn() {
                             </h1>
                         </button>
                     </Link>
-                    <Link to="PermissionFilling" style={{
+                    <Link to="FillingThePermissionForm" style={{
                         textDecoration: "none",
                         display: "flex",
                         flex: 1,

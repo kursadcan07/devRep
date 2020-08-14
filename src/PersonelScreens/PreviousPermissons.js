@@ -65,6 +65,7 @@ function activeDemands(displayActives) {
     }
 }
 
+
 class PreviousPermissons extends React.Component {
 
     constructor(props) {
