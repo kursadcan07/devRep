@@ -46,7 +46,7 @@ function displayIndividualOperations(flag) {
 
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce right>
-                        <Link to="DisplayThePermissionForm" style={{textDecoration:"none"}}>
+                        <Link to="PreviousPermissons" style={{textDecoration:"none"}}>
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
                                     type="button" className="btn btn-success">
                                 <img alt="IconEye"
@@ -93,32 +93,12 @@ function displayTheManagementBasedOperations(flag) {
                                 fontSize: "16px",
                                 margin: "auto"
                             }}>
-                                AKTİF TALEPLER
+                                İZİN TALEPLERİ
                             </h1>
                         </button>
                         </Link>
                     </Bounce>
                 </Grid>
-
-                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
-                    <Bounce right>
-                        <button style={{display: "flex", flex: 0.5, width: "100%"}}
-                                type="button" className="btn btn-success">
-                            <img alt="IconEye"
-                                 style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
-                                 src={displayPermissionDemandIcon}/>
-                            <h1 style={{
-                                display: "flex",
-                                flexDirection: "flex-start",
-                                fontSize: "16px",
-                                margin: "auto"
-                            }}>
-                                GEÇMİŞ TALEPLER
-                            </h1>
-                        </button>
-                    </Bounce>
-                </Grid>
-
             </Grid>
         )
     } else {

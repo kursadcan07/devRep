@@ -28,7 +28,7 @@ function reviseMessage() {
 
             <Row className="justify-content-center" md={3} style={{margin: "10px"}}>
 
-                <Link to="/PersonelScreens/PersonelNavigation" style={{
+                <Link to="/PersonelScreens/NavigateTheChief" style={{
                     display: "flex",
                     textDecoration: "none",
                     alignItems: "center",

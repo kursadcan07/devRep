@@ -20,9 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8df69efc-61da-480a-b293-a3bdf97cf1c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/TakeTheSignature.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PersonelScreens/ResetThePassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/DisplayPermissionsForChief.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/DisplayThePermissionForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/DisplayPermissionForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/FillingThePermissionForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/FillingThePermissionForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/NavigateTheChief.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/NavigateTheChief.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/PreviousPermissons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/ReviseMessageSending.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/ReviseMessageSending.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/StickyHeadTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/SuccesDisplaying.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SuccesMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/SuccesSendedRevise.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/SuccesSendedRevise.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersonelScreens/TakeTheSignature.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonelScreens/TakeTheSignature.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/counter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/isLogged.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +121,7 @@
       <workItem from="1597211856882" duration="25574000" />
       <workItem from="1597298528889" duration="22417000" />
       <workItem from="1597384645300" duration="23676000" />
-      <workItem from="1597644229814" duration="1025000" />
+      <workItem from="1597644229814" duration="14321000" />
     </task>
     <servers />
   </component>
@@ -137,31 +153,31 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2585" y="342" width="580" height="403" key="#com.intellij.fileTypes.FileTypeChooser/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1596713865855" />
-    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597395299362">
+    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597648005568">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597395299362" />
+    <state x="2613" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597648005568" />
     <state x="739" y="309" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1597394253779" />
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl" timestamp="1597394638460">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="238" width="424" height="610" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597394638460" />
-    <state width="1874" height="416" key="GridCell.Tab.0.bottom" timestamp="1597417660627">
+    <state width="1874" height="2" key="GridCell.Tab.0.bottom" timestamp="1597663585860">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="416" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597417660627" />
-    <state width="1874" height="416" key="GridCell.Tab.0.center" timestamp="1597417660627">
+    <state width="1874" height="2" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597663585860" />
+    <state width="1874" height="2" key="GridCell.Tab.0.center" timestamp="1597663585860">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="416" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597417660627" />
-    <state width="1874" height="416" key="GridCell.Tab.0.left" timestamp="1597417660627">
+    <state width="1874" height="2" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597663585860" />
+    <state width="1874" height="2" key="GridCell.Tab.0.left" timestamp="1597663585860">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="416" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597417660627" />
-    <state width="1874" height="416" key="GridCell.Tab.0.right" timestamp="1597417660627">
+    <state width="1874" height="2" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597663585860" />
+    <state width="1874" height="2" key="GridCell.Tab.0.right" timestamp="1597663585860">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="416" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597417660627" />
+    <state width="1874" height="2" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1597663585860" />
     <state x="2369" y="175" width="1183" height="737" key="SettingsEditor" timestamp="1597147490994">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

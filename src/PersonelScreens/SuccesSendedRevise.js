@@ -1,7 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-function dispNavAftPreCrea() {
+{/*
+    This class displays success message to user.
+    Then allows to display it in the previous permissions
+    screen thanks the button that created below.
+
+*/}
+
+function displaySuccessMessageAboutReviseLetter() {
     return(
+        /* Here the main <div> */
         <div style={{
             display:"flex",
             flexDirection:"column",
@@ -10,6 +18,7 @@ function dispNavAftPreCrea() {
             textAlign:"center",
             flex:4
         }}>
+            {/* Here the message that displayed as as success message*/}
             <h1 style={{
                 display:"flex",
                 justifyContent:"center",
@@ -23,6 +32,7 @@ function dispNavAftPreCrea() {
             }}>
              REVİZE MEKTUBUNUZ BAŞARIYLA YARATILMIŞTIR
             </h1>
+            {/*This button allows to user navigate to display permission demands.*/}
             <Link to="PreviousPermissons" style={{
                 textDecoration: "none",
                 display: "flex",
@@ -34,4 +44,4 @@ function dispNavAftPreCrea() {
         </div>
     )
 }
-export default dispNavAftPreCrea;
+export default displaySuccessMessageAboutReviseLetter;

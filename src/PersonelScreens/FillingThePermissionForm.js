@@ -70,15 +70,14 @@ class FillingThePermissionForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            sltcPrmType: "İzin Tipinizi Seçiniz",
-            perSel: 0,
-            perVhcUsg: "Araç Kullanım Durumu Seçiniz",
-            startDate: null,
-            price: "",
-            distance: "",
-            endDate: null,
-            dispEntPriBox: false,
-            dispEntDisBox: false
+            selectThePermissionType: "İzin Tipinizi Seçiniz",
+            selectVehicleUsageType: "Araç Kullanım Durumu Seçiniz",
+            beginDateOfPermission: null,
+            priceOfTrainOrBus: "",
+            totalDistanceOfIndividualCar: "",
+            endDateOfPermission: null,
+            displayEnterPriceBox: false,
+            displayEnterDistanceBox: false
         }
         this.selectTheTypeOfPermission = this.selectTheTypeOfPermission.bind(this);
         this.handleBeginDateOfPermission = this.handleBeginDateOfPermission.bind(this);
@@ -92,56 +91,56 @@ class FillingThePermissionForm extends React.Component {
 
     selectTheTypeOfPermission(event) {
         this.setState({
-            sltcPrmType: event.target.name
+            selectThePermissionType: event.target.name
         })
     }
 
     takeTotalDistanceForIndividualCar(event) {
         this.setState({
-            distance: event.target.value
+            totalDistanceOfIndividualCar: event.target.value
         });
     }
 
     takePriceForBusAndTrain(event) {
         this.setState({
-            price: event.target.value
+            priceOfTrainOrBus: event.target.value
         });
     }
 
     handleTheSelectionOfVhecile(event) {
         this.setState({
-            perVhcUsg: event.target.name,
+            selectVehicleUsageType: event.target.name,
         })
         if (event.target.id === "v3") {
             this.setState({
-                dispEntPriBox: true
+                displayEnterPriceBox: true
             })
         } else {
             this.setState({
-                dispEntPriBox: false
+                displayEnterDistanceBox: false
             })
         }
 
         if (event.target.id === "v4") {
             this.setState({
-                dispEntDisBox: true
+                displayEnterDistanceBox: true
             })
         } else {
             this.setState({
-                dispEntDisBox: false
+                displayEnterPriceBox: false
             })
         }
     }
 
     handleBeginDateOfPermission(date) {
         this.setState({
-            startDate: date
+            beginDateOfPermission: date
         });
     }
 
     handleEndDateOfPermission(date) {
         this.setState({
-            endDate: date
+            endDateOfPermission: date
         })
     }
 
@@ -173,7 +172,7 @@ class FillingThePermissionForm extends React.Component {
                     {/* Here the permission type selection as dropdown */}
                     <Row className="justify-content-center"
                          style={{color: "black", marginTop: "2px", marginBottom: "8px"}}>
-                        <DropdownButton id="dropdown-item-button" title={this.state.sltcPrmType}>
+                        <DropdownButton id="dropdown-item-button" title={this.state.selectThePermissionType}>
                             <Dropdown.Item id="i1" name="Yıllık" as="button"
                                            onClick={this.selectTheTypeOfPermission}>Yıllık</Dropdown.Item>
                             <Dropdown.Item id="i2" as="button" name="Görevli"
@@ -195,7 +194,7 @@ class FillingThePermissionForm extends React.Component {
                             locale={locale}
                             onChange={this.handleBeginDateOfPermission}
                             placeholderText="İzin Başlangıç Tarihi"
-                            selected={this.state.startDate}
+                            selected={this.state.beginDateOfPermission}
                             timeCaption="Saat"
                             isClearable
                             dateFormat="d MMMM yyyy"
@@ -209,7 +208,7 @@ class FillingThePermissionForm extends React.Component {
                             locale={locale}
                             onChange={this.handleEndDateOfPermission}
                             placeholderText="İzin Bitiş Tarihi"
-                            selected={this.state.endDate}
+                            selected={this.state.endDateOfPermission}
                             timeCaption="Saat"
                             isClearable
                             timeFormat="HH:mm"
@@ -220,7 +219,7 @@ class FillingThePermissionForm extends React.Component {
                     </Row>
                     {/* Here the vehicle usage selection part as dropdown */}
                     <Row className="justify-content-center" style={{margin: "10px"}}>
-                        <DropdownButton id="dropdown-item-button" title={this.state.perVhcUsg}>
+                        <DropdownButton id="dropdown-item-button" title={this.state.selectVehicleUsageType}>
                             <Dropdown.Item id="v1" name="Araç Kullanılmayacak" as="button"
                                            onClick={this.handleTheSelectionOfVhecile}>Araç Kullanılmayacak</Dropdown.Item>
                             <Dropdown.Divider/>
@@ -237,8 +236,8 @@ class FillingThePermissionForm extends React.Component {
                             2)When employee selects  "Şahsi Araç Kullanılacak" second components becomes active to take
                                 total distance of journey as KM.
                         */}
-                        {inputForBus(this.state.dispEntPriBox)}
-                        {inputForDist(this.state.dispEntDisBox)}
+                        {inputForBus(this.state.displayEnterPriceBox)}
+                        {inputForDist(this.state.displayEnterDistanceBox)}
                     </Row>
                     {/*
                         This components allows to fill explanation of permission demand.
@@ -251,10 +250,10 @@ class FillingThePermissionForm extends React.Component {
                     </Row>
                     {/*
                         This component navigates the user to display permission demand before send as a demand.
-                        Navigates to "DisplayThePermissionForm" class.
+                        Navigates to "DisplayPermissionForm" class.
                     */}
                     <Row className="justify-content-center">
-                        <Link to="DisplayThePermissionForm">
+                        <Link to="DisplayPermissionForm">
                             <Button variant="primary" size="lg" active onClick={() => {
                                 console.log("SelamınAleyküm");
                             }}>
@@ -280,7 +279,7 @@ function inputForBus(flag) {
         return (
             <div className="justify-content-center">
                 <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
-                       value={this.state.price} onChange={this.takePrice}/>
+                       value={this.state.priceOfTrainOrBus} onChange={this.takePriceForBusAndTrain}/>
             </div>
         )
     } else {
@@ -293,7 +292,7 @@ function inputForDist(flag) {
         return (
             <div>
                 <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
-                       value={this.state.distance} onChange={this.takeDistance}/>
+                       value={this.state.totalDistanceOfIndividualCar} onChange={this.takePriceForBusAndTrain}/>
             </div>
         )
     } else {

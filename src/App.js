@@ -3,21 +3,20 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Link} from "react-router-dom";
 import Logo from "./PersonelScreens/SystemImages/CompanyLogo.png";
 import PersonelNavigation from "./PersonelScreens/PersonelNavigation";
-import PreviousPermissons from "./PersonelScreens/PreviousPermissons";
+import PreviousPermissions from "./PersonelScreens/PreviousPermissions";
 import FillingThePermissionForm from "./PersonelScreens/FillingThePermissionForm";
-import NavPrevPer from "./PersonelScreens/SuccesDisplaying";
-import SuccesDisplaying from "./PersonelScreens/SuccesDisplaying";
+import NavPrevPer from "./PersonelScreens/SuccesMessage";
+import SuccesDisplaying from "./PersonelScreens/SuccesMessage";
 import NavigateTheChief from "./PersonelScreens/NavigateTheChief";
-import DisplayPermissionsForChief from "./PersonelScreens/DisplayPermissionsForChief";
-import DisplayThePermissionForm from "./PersonelScreens/DisplayThePermissionForm";
+import DisplayPermissionForm from "./PersonelScreens/DisplayPermissionForm";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
 import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
 import TakeTheSignature from "./PersonelScreens/TakeTheSignature"
-
+import ResetThePassword from "./PersonelScreens/ResetThePassword";
 /*
 This class includes <Router> component with in <Route>.Which describes the paths of the portal.
-Login screen created and given as default page here as well.
-render={(props) => <PropsPage {...props} title={`Props through render`}
+Login screen created and given as default page here as well.The imported elements that given
+above are just imported to add <Route> element.
 */
 function App() {
     return (
@@ -26,16 +25,16 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={LoginScreen}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={PersonelNavigation}/>
-                    <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissons}/>
+                    <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissions}/>
                     <Route path="/PersonelScreens/FillingThePermissionForm" component={FillingThePermissionForm}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={NavPrevPer} />
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
-                    <Route path="/PersonelScreens/ChiefNavigation" component={NavigateTheChief} />
-                    <Route path="/PersonelScreens/DisplayPermissionsForChief" component={DisplayPermissionsForChief} />
-                    <Route path="/PersonelScreens/DisplayThePermissionForm" render={(props) => <DisplayThePermissionForm {...props} title={`Props through render`} />}/>
+                    <Route path="/PersonelScreens/NavigateTheChief" component={NavigateTheChief} />
+                    <Route path="/PersonelScreens/DisplayPermissionForm" render={(props) => <DisplayPermissionForm {...props} title={`Props through render`} />}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
                     <Route path="/PersonelScreens/TakeTheSignature" component={TakeTheSignature} />
+                    <Route path="/PersonelScreens/ResetThePassword" component={ResetThePassword} />
                 </Switch>
             </div>
         </Router>
@@ -108,7 +107,7 @@ const LoginScreen = () => (
                 Here the part of I forgot my password.
             */}
             <p className="forgot-password text-right">
-               <a href="#">  Şifremi unuttum</a>
+               <Link to="/PersonelScreens/ResetThePassword">  Şifremi unuttum</Link>
             </p>
         </form>
     </div>
