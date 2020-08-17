@@ -12,7 +12,7 @@ import DisplayPermissionsForChief from "./PersonelScreens/DisplayPermissionsForC
 import DisplayThePermissionForm from "./PersonelScreens/DisplayThePermissionForm";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
 import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
-
+import TakeTheSignature from "./PersonelScreens/TakeTheSignature"
 
 /*
 This class includes <Router> component with in <Route>.Which describes the paths of the portal.
@@ -35,6 +35,7 @@ function App() {
                     <Route path="/PersonelScreens/DisplayThePermissionForm" render={(props) => <DisplayThePermissionForm {...props} title={`Props through render`} />}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
+                    <Route path="/PersonelScreens/TakeTheSignature" component={TakeTheSignature} />
                 </Switch>
             </div>
         </Router>
