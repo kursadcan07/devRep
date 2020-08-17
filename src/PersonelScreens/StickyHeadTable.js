@@ -20,8 +20,9 @@ import ResponsiveDialog from "./ResponsiveDialog";
 }
 const theme = createMuiTheme({
     palette: {
-        primary: {main: '#1976d2'},
+        primary: {main: '#1976d2'}
     },
+
 }, trTR);
 
 {/*Here the columns that are specifies the main tags of rows.*/
@@ -29,7 +30,8 @@ const theme = createMuiTheme({
 const columns = [
     {
         id: 'demandID',
-        label: 'İzin ID'},
+        label: 'İzin ID'
+    },
     {
         id: 'demandBegin',
         label: 'İZİN BAŞLANGIÇ',
@@ -83,11 +85,12 @@ const useStyles = makeStyles({
         width: '100%',
     },
     container: {
-        display: "flex",
+        width: "100%",
     },
 });
 
-{/*This const determines styles for bounce which displays buttons as animated */
+{
+    /*This const determines styles for bounce which displays buttons as animated */
 }
 const stylesForBounce = makeStyles((theme) => ({
     root: {
@@ -134,7 +137,9 @@ export default function StickyHeadTable(props) {
             2) ⊖ => BEKLEMEDE
             3)
 
-    */}
+    */
+    }
+
     function DisplayTheRowOfForm() {
         return (
             <React.Fragment>
@@ -225,17 +230,15 @@ export default function StickyHeadTable(props) {
     }
 
     return (
-        <div>
+        <div  >
             <div style={{display: "flex", justifyContent: "flex-end", margin: "5px"}}>
                 <Bounce>
-                    <Grid container spacing={1}>
-                        <Grid container item xs={12} spacing={1}>
-                            <DisplayTheRowOfForm/>
-                        </Grid>
+                    <Grid container item xs={12} spacing={1}>
+                        <DisplayTheRowOfForm/>
                     </Grid>
                 </Bounce>
             </div>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme} >
                 <Paper className={defineRootAndContainerProperties.root}>
                     <TableContainer className={defineRootAndContainerProperties.container}>
                         <Table stickyHeader aria-label="sticky table">
