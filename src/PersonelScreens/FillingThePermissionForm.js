@@ -9,6 +9,9 @@ import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import TimePicker from 'react-time-picker';
+import {connect} from "react-redux";
+import setPermissionAction from "../actions/setPermissionAction";
+import rearrangePermission from "../actions/rearrengePermissionAction";
 
 /*
    This class allows to user that filling the permission form.
@@ -27,7 +30,55 @@ import TimePicker from 'react-time-picker';
     9) Uyarı Alanı (<h1> component)
 */
 
+function inputForBus(flag) {
+    if (flag) {
+        return (
+            <div className="justify-content-center">
+                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
+                       value={this.state.priceOfTrainOrBus} onChange={this.takePriceForBusAndTrain}/>
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
 
+function inputForDist(flag) {
+    if (flag) {
+        return (
+            <div>
+                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
+                       value={this.state.totalDistanceOfIndividualCar} onChange={this.takePriceForBusAndTrain}/>
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+            userID:state.userID,
+            permissionDescription: state.permissionDescription,
+            userName:state.userName,
+            beginDateOfPermission:state.beginDateOfPermission,
+            endDateOfPermission:state.endDateOfPermission,
+            selectVehicleUsageType:state.selectVehicleUsageType,
+            priceOfTrainOrBus:state.priceOfTrainOrBus,
+            totalDistanceOfIndividualCar:state.totalDistanceOfIndividualCar
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPermission: (permissionData) => {
+            dispatch(setPermissionAction(permissionData));
+        },
+        rearrangePermission :(prevState)=>{
+            dispatch(rearrangePermission(prevState));
+        }
+    }
+};
 /*
     This function takes time input from user as a input.In format of HH:mm .
 */
@@ -60,6 +111,7 @@ const locale = {
     formatLong: {}
 }
 
+
 /*
     This class created for filling the form of permission demand.
  */
@@ -69,21 +121,24 @@ class FillingThePermissionForm extends React.Component {
     */
     constructor() {
         super();
-        this.state = {
+        this.state= {
             selectThePermissionType: "İzin Tipinizi Seçiniz",
-            selectVehicleUsageType: "Araç Kullanım Durumu Seçiniz",
             beginDateOfPermission: null,
+            endDateOfPermission: null,
+            selectVehicleUsageType: "Araç Kullanım Durumu Seçiniz",
             priceOfTrainOrBus: "",
             totalDistanceOfIndividualCar: "",
-            endDateOfPermission: null,
             displayEnterPriceBox: false,
-            displayEnterDistanceBox: false
+            displayEnterDistanceBox: false,
+            permissionDescription: ""
         }
+
         this.selectTheTypeOfPermission = this.selectTheTypeOfPermission.bind(this);
         this.handleBeginDateOfPermission = this.handleBeginDateOfPermission.bind(this);
         this.handleEndDateOfPermission = this.handleEndDateOfPermission.bind(this);
         this.handleTheSelectionOfVhecile = this.handleTheSelectionOfVhecile.bind(this);
         this.takePriceForBusAndTrain = this.takePriceForBusAndTrain.bind(this);
+        this.updatePermissionDescription = this.updatePermissionDescription.bind(this);
         this.takeTotalDistanceForIndividualCar = this.takeTotalDistanceForIndividualCar.bind(this);
         inputForBus = inputForBus.bind(this);
         inputForDist = inputForDist.bind(this);
@@ -131,6 +186,9 @@ class FillingThePermissionForm extends React.Component {
             })
         }
     }
+    updatePermissionDescription(event){
+        this.setState({permissionDescription : event.target.value})
+    }
 
     handleBeginDateOfPermission(date) {
         this.setState({
@@ -173,7 +231,7 @@ class FillingThePermissionForm extends React.Component {
                     <Row className="justify-content-center"
                          style={{color: "black", marginTop: "2px", marginBottom: "8px"}}>
                         <DropdownButton id="dropdown-item-button" title={this.state.selectThePermissionType}>
-                            <Dropdown.Item id="i1" name="Yıllık" as="button"
+                            <Dropdown.Item id="i1" as="button" name="Yıllık"
                                            onClick={this.selectTheTypeOfPermission}>Yıllık</Dropdown.Item>
                             <Dropdown.Item id="i2" as="button" name="Görevli"
                                            onClick={this.selectTheTypeOfPermission}>Görevli</Dropdown.Item>
@@ -245,7 +303,7 @@ class FillingThePermissionForm extends React.Component {
                     <Row className="justify-content-center" md={3} style={{margin: "10px"}}>
                         <div>
                             <textarea placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
-                                      className="form-control" rows="4"/>
+                                      className="form-control" rows="4" onChange={this.updatePermissionDescription} />
                         </div>
                     </Row>
                     {/*
@@ -254,9 +312,7 @@ class FillingThePermissionForm extends React.Component {
                     */}
                     <Row className="justify-content-center">
                         <Link to="DisplayPermissionForm">
-                            <Button variant="primary" size="lg" active onClick={() => {
-                                console.log("SelamınAleyküm");
-                            }}>
+                            <Button variant="primary" size="lg" active onClick={this.props.setPermission(this.state)}>
                                 ONAYLAMAYA GEÇ
                             </Button>
                         </Link>
@@ -274,30 +330,5 @@ class FillingThePermissionForm extends React.Component {
     }
 }
 
-function inputForBus(flag) {
-    if (flag) {
-        return (
-            <div className="justify-content-center">
-                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
-                       value={this.state.priceOfTrainOrBus} onChange={this.takePriceForBusAndTrain}/>
-            </div>
-        )
-    } else {
-        return null;
-    }
-}
 
-function inputForDist(flag) {
-    if (flag) {
-        return (
-            <div>
-                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
-                       value={this.state.totalDistanceOfIndividualCar} onChange={this.takePriceForBusAndTrain}/>
-            </div>
-        )
-    } else {
-        return null;
-    }
-}
-
-export default FillingThePermissionForm;
+export default connect(mapStateToProps, mapDispatchToProps)(FillingThePermissionForm);

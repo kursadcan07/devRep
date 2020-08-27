@@ -201,7 +201,6 @@ export default function StickyHeadTable(props) {
                         >
                             RED
                         </h1>
-
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
