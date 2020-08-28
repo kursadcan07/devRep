@@ -60,6 +60,9 @@ function inputForDist(usageID) {
 const mapStateToProps = (state) => {
     return {
 
+        userType: state.permissionReducer.userType,
+        displayStatus:state.permissionReducer.displayStatus,
+
         userID: state.permissionReducer.userID,
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.permissionReducer.personalName,
@@ -107,8 +110,11 @@ class FillingThePermissionForm extends React.Component {
             displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
             setPermissionType: props.setPermissionType,
 
-            beginDateOfPermission: new Date("2020-01-01T00:00"),
-            endDateOfPermission: new Date("2020-01-01T00:00"),
+            userType: props.userType,
+            displayStatus:props.displayStatus,
+
+            beginDateOfPermission:props.beginDateOfPermission || new Date("2020-01-01T00:00"),
+            endDateOfPermission: props.endDateOfPermission || new Date("2020-01-01T00:00"),
 
             selectVehicleUsageName: props.selectVehicleUsageName || "Araç Kullanım Durumu Seçiniz",
             selectVehicleUsageID: props.selectVehicleUsageID || "",
@@ -126,8 +132,6 @@ class FillingThePermissionForm extends React.Component {
         this.selectTheTypeOfPermission = this.selectTheTypeOfPermission.bind(this);
 
         this.handleBeginDateOfPermission = this.handleBeginDateOfPermission.bind(this);
-
-
         this.handleEndDateOfPermission = this.handleEndDateOfPermission.bind(this);
 
 

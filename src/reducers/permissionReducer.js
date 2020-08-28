@@ -3,14 +3,14 @@ import moment from "moment";
 const permissionReducer = (state = {
     userID:"",
 
-    userType:1,
+    userType:2,
     displayStatus:2,
 
     personalName:"ZOZAN YILDIRIM",
-    demandDateOfPermission:null,
+    demandDateOfPermission: new Date("2020-01-01T00:00"),
 
-    beginDateOfPermission: moment().format("dd-MM-yyyy HH:mm:ss"),
-    endDateOfPermission:"-T-",
+    beginDateOfPermission:new Date("2020-01-01T00:00"),
+    endDateOfPermission: new Date("2020-01-01T00:00"),
 
     foldCode:25,
     areaCode:50,

@@ -173,7 +173,7 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.props.displayStatus === 1 && (this.props.userType === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm())}
+                    {this.props.displayStatus === 2 && (this.props.userType === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm())}
                 </div>
 
             </div>
