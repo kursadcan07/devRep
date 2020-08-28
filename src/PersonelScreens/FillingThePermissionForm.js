@@ -1,17 +1,17 @@
-import React, {useState} from "react";
+import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import TimePicker from 'react-time-picker';
 import {connect} from "react-redux";
 import setPermissionAction from "../actions/setPermissionAction";
-import rearrangePermission from "../actions/rearrengePermissionAction";
+import {KeyboardDateTimePicker} from "@material-ui/pickers";
+
+
 
 /*
    This class allows to user that filling the permission form.
@@ -30,12 +30,13 @@ import rearrangePermission from "../actions/rearrengePermissionAction";
     9) Uyarı Alanı (<h1> component)
 */
 
-function inputForBus(flag) {
-    if (flag) {
+
+function inputForBus(usageID) {
+    if (usageID==="v3") {
         return (
             <div className="justify-content-center">
                 <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
-                       value={this.state.priceOfTrainOrBus} onChange={this.takePriceForBusAndTrain}/>
+                       value={this.props.priceOfTrainOrBus} onChange={this.takePriceForBusAndTrain}/>
             </div>
         )
     } else {
@@ -43,12 +44,12 @@ function inputForBus(flag) {
     }
 }
 
-function inputForDist(flag) {
-    if (flag) {
+function inputForDist(usageID) {
+    if (usageID==="v4") {
         return (
             <div>
                 <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
-                       value={this.state.totalDistanceOfIndividualCar} onChange={this.takePriceForBusAndTrain}/>
+                       value={this.props.totalDistanceOfIndividualCar} onChange={this.takeTotalDistanceForIndividualCar}/>
             </div>
         )
     } else {
@@ -58,14 +59,22 @@ function inputForDist(flag) {
 
 const mapStateToProps = (state) => {
     return {
-            userID:state.userID,
-            permissionDescription: state.permissionDescription,
-            userName:state.userName,
-            beginDateOfPermission:state.beginDateOfPermission,
-            endDateOfPermission:state.endDateOfPermission,
-            selectVehicleUsageType:state.selectVehicleUsageType,
-            priceOfTrainOrBus:state.priceOfTrainOrBus,
-            totalDistanceOfIndividualCar:state.totalDistanceOfIndividualCar
+
+        userID: state.permissionReducer.userID,
+        permissionDescription: state.permissionReducer.permissionDescription,
+        personalName: state.permissionReducer.personalName,
+        beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
+        endDateOfPermission: state.permissionReducer.endDateOfPermission,
+        selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
+        selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
+        priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
+        totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
+
+        foldCode:state.permissionReducer.foldCode,
+        areaCode:state.permissionReducer.areaCode,
+
+        displayThePermissionName: state.permissionReducer.displayThePermissionName,
+        setPermissionType: state.permissionReducer.setPermissionType
     }
 };
 
@@ -73,44 +82,15 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setPermission: (permissionData) => {
             dispatch(setPermissionAction(permissionData));
-        },
-        rearrangePermission :(prevState)=>{
-            dispatch(rearrangePermission(prevState));
         }
     }
 };
 /*
     This function takes time input from user as a input.In format of HH:mm .
 */
-function TakeTime() {
-    const [value, onChange] = useState('9:00');
-    return (
-        <div>
-            <TimePicker
-                onChange={onChange}
-                value={value}
-                format="HH:mm"
-                hourPlaceholder="saat"
-                minutePlaceholder="dk"
-                minTime="00:00:01"
-                maxTime="23:59:59"/>
-        </div>
-    );
-}
 /*
     This components are created for converting DateTime into Turkish language.
 */
-const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
-const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
-const locale = {
-    localize: {
-        month: n => months[n],
-        day: n => days[n],
-
-    },
-    formatLong: {}
-}
-
 
 /*
     This class created for filling the form of permission demand.
@@ -119,35 +99,54 @@ class FillingThePermissionForm extends React.Component {
     /*
         Constructor defines state with attributes and binds the functions in it.
     */
-    constructor() {
-        super();
-        this.state= {
-            selectThePermissionType: "İzin Tipinizi Seçiniz",
-            beginDateOfPermission: null,
-            endDateOfPermission: null,
-            selectVehicleUsageType: "Araç Kullanım Durumu Seçiniz",
-            priceOfTrainOrBus: "",
-            totalDistanceOfIndividualCar: "",
+    constructor(props) {
+        super(props)
+
+
+        this.state = {
+            displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
+            setPermissionType: props.setPermissionType,
+
+            beginDateOfPermission: new Date("2020-01-01T00:00"),
+            endDateOfPermission: new Date("2020-01-01T00:00"),
+
+            selectVehicleUsageName: props.selectVehicleUsageName || "Araç Kullanım Durumu Seçiniz",
+            selectVehicleUsageID: props.selectVehicleUsageID || "",
+
+            foldCode:props.foldCode,
+            areaCode:props.areaCode,
+
+            priceOfTrainOrBus: 0,
+            totalDistanceOfIndividualCar:0,
             displayEnterPriceBox: false,
             displayEnterDistanceBox: false,
-            permissionDescription: ""
+            permissionDescription: props.permissionDescription || ""
         }
 
         this.selectTheTypeOfPermission = this.selectTheTypeOfPermission.bind(this);
+
         this.handleBeginDateOfPermission = this.handleBeginDateOfPermission.bind(this);
+
+
         this.handleEndDateOfPermission = this.handleEndDateOfPermission.bind(this);
-        this.handleTheSelectionOfVhecile = this.handleTheSelectionOfVhecile.bind(this);
+
+
+        this.handleTheSelectionOfVehicle = this.handleTheSelectionOfVehicle.bind(this);
         this.takePriceForBusAndTrain = this.takePriceForBusAndTrain.bind(this);
         this.updatePermissionDescription = this.updatePermissionDescription.bind(this);
         this.takeTotalDistanceForIndividualCar = this.takeTotalDistanceForIndividualCar.bind(this);
+
         inputForBus = inputForBus.bind(this);
         inputForDist = inputForDist.bind(this);
+
     }
 
     selectTheTypeOfPermission(event) {
         this.setState({
-            selectThePermissionType: event.target.name
+            displayThePermissionName: event.target.name,
+            setPermissionType: event.target.id
         })
+
     }
 
     takeTotalDistanceForIndividualCar(event) {
@@ -162,44 +161,28 @@ class FillingThePermissionForm extends React.Component {
         });
     }
 
-    handleTheSelectionOfVhecile(event) {
+    handleTheSelectionOfVehicle(event) {
         this.setState({
-            selectVehicleUsageType: event.target.name,
+            selectVehicleUsageName: event.target.name,
+            selectVehicleUsageID: event.target.id
         })
-        if (event.target.id === "v3") {
-            this.setState({
-                displayEnterPriceBox: true
-            })
-        } else {
-            this.setState({
-                displayEnterDistanceBox: false
-            })
-        }
-
-        if (event.target.id === "v4") {
-            this.setState({
-                displayEnterDistanceBox: true
-            })
-        } else {
-            this.setState({
-                displayEnterPriceBox: false
-            })
-        }
     }
-    updatePermissionDescription(event){
-        this.setState({permissionDescription : event.target.value})
+
+    updatePermissionDescription(event) {
+        this.setState({permissionDescription: event.target.value})
     }
 
     handleBeginDateOfPermission(date) {
         this.setState({
             beginDateOfPermission: date
         });
+
     }
 
     handleEndDateOfPermission(date) {
         this.setState({
             endDateOfPermission: date
-        })
+        });
     }
 
     render() {
@@ -230,63 +213,61 @@ class FillingThePermissionForm extends React.Component {
                     {/* Here the permission type selection as dropdown */}
                     <Row className="justify-content-center"
                          style={{color: "black", marginTop: "2px", marginBottom: "8px"}}>
-                        <DropdownButton id="dropdown-item-button" title={this.state.selectThePermissionType}>
-                            <Dropdown.Item id="i1" as="button" name="Yıllık"
+                        <DropdownButton id="dropdown-item-button" title={this.state.displayThePermissionName}>
+                            <Dropdown.Item id="1" as="button" name="Yıllık"
                                            onClick={this.selectTheTypeOfPermission}>Yıllık</Dropdown.Item>
-                            <Dropdown.Item id="i2" as="button" name="Görevli"
+                            <Dropdown.Item id="2" as="button" name="Görevli"
                                            onClick={this.selectTheTypeOfPermission}>Görevli</Dropdown.Item>
-                            <Dropdown.Item id="i3" as="button" name="Ücretli"
+                            <Dropdown.Item id="3" as="button" name="Ücretli"
                                            onClick={this.selectTheTypeOfPermission}>Ücretli</Dropdown.Item>
-                            <Dropdown.Item id="i4" as="button" name="2 Ay İçinde Telafisi Yapılacak"
-                                           onClick={this.selectTheTypeOfPermission}>2 Ay İçinde Telafisi Yapılacak</Dropdown.Item>
-                            <Dropdown.Item id="i5" as="button" name="Ücretsiz"
+                            <Dropdown.Item id="4" as="button" name="2 Ay İçinde Telafisi Yapılacak"
+                                           onClick={this.selectTheTypeOfPermission}>2 Ay İçinde Telafisi
+                                Yapılacak</Dropdown.Item>
+                            <Dropdown.Item id="5" as="button" name="Ücretsiz"
                                            onClick={this.selectTheTypeOfPermission}>Ücretsiz</Dropdown.Item>
                             <Dropdown.Divider/>
-                            <Dropdown.Item id="i6" as="button" name="Diğer"
+                            <Dropdown.Item id="6" as="button" name="Diğer"
                                            onClick={this.selectTheTypeOfPermission}>Diğer</Dropdown.Item>
                         </DropdownButton>
                     </Row>
                     {/* Here the date picker part for begin date of permission */}
                     <Row className="justify-content-center" style={{margin: "10px"}}>
-                        <DatePicker
-                            locale={locale}
+                        <KeyboardDateTimePicker
+                            value={this.state.beginDateOfPermission}
+                            label="İzin Başlangıç"
+                            onError={console.log}
                             onChange={this.handleBeginDateOfPermission}
-                            placeholderText="İzin Başlangıç Tarihi"
-                            selected={this.state.beginDateOfPermission}
-                            timeCaption="Saat"
-                            isClearable
-                            dateFormat="d MMMM yyyy"
-                            withPortal
+                            format="dd-MM-yyyy HH:mm:ss "
+                            ampm={false}
                         />
-                        <TakeTime/>
                     </Row>
                     {/* Here the end date part of permission */}
                     <Row className="justify-content-center" style={{margin: "10px"}}>
-                        <DatePicker
-                            locale={locale}
+                        <KeyboardDateTimePicker
+                            value={this.state.endDateOfPermission}
+                            label="İzin Bitiş"
+                            onError={console.log}
                             onChange={this.handleEndDateOfPermission}
-                            placeholderText="İzin Bitiş Tarihi"
-                            selected={this.state.endDateOfPermission}
-                            timeCaption="Saat"
-                            isClearable
-                            timeFormat="HH:mm"
-                            dateFormat="d MMMM yyyy"
-                            withPortal
+                            format="dd-MM-yyyy HH:mm:ss "
+                            ampm={false}
                         />
-                        <TakeTime/>
                     </Row>
                     {/* Here the vehicle usage selection part as dropdown */}
                     <Row className="justify-content-center" style={{margin: "10px"}}>
-                        <DropdownButton id="dropdown-item-button" title={this.state.selectVehicleUsageType}>
+                        <DropdownButton id="dropdown-item-button" title={this.props.selectVehicleUsageName}>
                             <Dropdown.Item id="v1" name="Araç Kullanılmayacak" as="button"
-                                           onClick={this.handleTheSelectionOfVhecile}>Araç Kullanılmayacak</Dropdown.Item>
+                                           onClick={this.handleTheSelectionOfVehicle}>Araç
+                                Kullanılmayacak</Dropdown.Item>
                             <Dropdown.Divider/>
                             <Dropdown.Item id="v2" as="button" name="Şirket Aracı Kullanılacak"
-                                           onClick={this.handleTheSelectionOfVhecile}>Şirket Aracı Kullanılacak</Dropdown.Item>
+                                           onClick={this.handleTheSelectionOfVehicle}>Şirket Aracı
+                                Kullanılacak</Dropdown.Item>
                             <Dropdown.Item id="v3" as="button" name="Otobus/Tramvay Kullanılacak"
-                                           onClick={this.handleTheSelectionOfVhecile}>Otobus/Tramvay Kullanılacak </Dropdown.Item>
+                                           onClick={this.handleTheSelectionOfVehicle}>Otobus/Tramvay
+                                Kullanılacak </Dropdown.Item>
                             <Dropdown.Item id="v4" as="button" name="Şahsi Araç Kullanılacak"
-                                           onClick={this.handleTheSelectionOfVhecile}>Şahsi Araç Kullanılacak</Dropdown.Item>
+                                           onClick={this.handleTheSelectionOfVehicle}>Şahsi Araç
+                                Kullanılacak</Dropdown.Item>
                         </DropdownButton>
                         {/* This component are rendering with control condition as following :
                             1)When employee selects  "Otobus travmay kullanılacak" first component becomes active to take
@@ -294,8 +275,8 @@ class FillingThePermissionForm extends React.Component {
                             2)When employee selects  "Şahsi Araç Kullanılacak" second components becomes active to take
                                 total distance of journey as KM.
                         */}
-                        {inputForBus(this.state.displayEnterPriceBox)}
-                        {inputForDist(this.state.displayEnterDistanceBox)}
+                        {inputForBus(this.state.selectVehicleUsageID)}
+                        {inputForDist(this.state.selectVehicleUsageID)}
                     </Row>
                     {/*
                         This components allows to fill explanation of permission demand.
@@ -303,7 +284,8 @@ class FillingThePermissionForm extends React.Component {
                     <Row className="justify-content-center" md={3} style={{margin: "10px"}}>
                         <div>
                             <textarea placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
-                                      className="form-control" rows="4" onChange={this.updatePermissionDescription} />
+                                      value={this.state.permissionDescription}
+                                      className="form-control" rows="4" onChange={this.updatePermissionDescription}/>
                         </div>
                     </Row>
                     {/*

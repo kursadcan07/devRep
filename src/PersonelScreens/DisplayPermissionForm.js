@@ -3,32 +3,55 @@ import Logo from "./SystemImages/CompanyLogo.png";
 import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
+import {connect} from "react-redux";
+import moment from "moment";
 
-export default function DisplayPermissionForm (props) {
-    // Mock data = CRUD = (Araştır)
-    let userType=2;
-    let displayStatus=1;
 
-    const foldCode = 25;
-    let areaCode = "SB";
-    let perTypeID = 6;
-    let personalName = "ZOZAN KARTAL";
-    let dateOfDemand = "22/22/22";
+const mapStateToProps = (state) => {
+    return {
+        userID: state.permissionReducer.userID,
 
-    let expOfPer = "Tatil yapmak maksadıyla.";
+        userType: state.permissionReducer.userType,
+        displayStatus: state.permissionReducer.displayStatus,
 
-    let permissionStartDate = "22/22/2222";
-    let permissionStartTime = "22:50";
-    let permissionEndDate = "22/22/2222";
-    let permissionEndTime = "24:42";
-    let permissionLength = "22 saat";
+        personalName: state.permissionReducer.personalName,
 
-    let vhicleUsageID = 0;
+        demandDate: moment().format("DD-MM-YYYY HH:mm:ss"),
 
-    let kiloMeter = 221;
-    let priceTL = 55;
-    let personelCarUsage = false;
-    return (
+        beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
+        endDateOfPermission: state.permissionReducer.endDateOfPermission,
+
+        foldCode: state.permissionReducer.foldCode,
+        areaCode: state.permissionReducer.areaCode,
+
+        selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
+        selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
+
+        permissionDescription: state.permissionReducer.permissionDescription,
+
+        personalCarUsage: state.permissionReducer.personalCarUsage,
+        totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
+        priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
+
+        displayThePermissionName: state.permissionReducer.displayThePermissionName,
+        setPermissionType: state.permissionReducer.setPermissionType
+
+    }
+};
+
+class DisplayPermissionForm extends React.Component {
+    constructor() {
+        super();
+
+        // Mock data = CRUD = (Araştır)
+
+    }
+
+    render() {
+
+        let permissionLength = "22 saat";
+
+        return (
             <div style={{
                 display: "flex",
                 flexDirection: "column",
@@ -48,7 +71,7 @@ export default function DisplayPermissionForm (props) {
                             marginBottom: "4px",
                             border: "0.6px solid black"
                         }}>
-                        {displayLogoAndMainDescription(areaCode, foldCode)}
+                        {displayLogoAndMainDescription(this.props.areaCode, this.props.foldCode)}
                     </div>
 
                     <div style={{
@@ -58,7 +81,7 @@ export default function DisplayPermissionForm (props) {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPermissionTypeAndRest(perTypeID)}
+                        {displayPermissionTypeAndRest(this.props.setPermissionType)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -67,7 +90,7 @@ export default function DisplayPermissionForm (props) {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPersonalInformationPart(personalName, dateOfDemand)}
+                        {displayPersonalInformationPart(this.props.personalName, this.props.demandDate)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -76,7 +99,25 @@ export default function DisplayPermissionForm (props) {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayEmployeesPermissionDates(permissionStartDate, permissionStartTime, permissionEndDate, permissionEndTime, permissionLength)}
+                        {
+
+                            displayEmployeesPermissionDates(
+                                this.props.beginDateOfPermission.getDate() + "-" +
+                                (this.props.beginDateOfPermission.getMonth() + 1) + "-" +
+                                this.props.beginDateOfPermission.getFullYear()
+                                ,
+                                this.props.beginDateOfPermission.getHours()+
+                                ":" +
+                                this.props.beginDateOfPermission.getMinutes(),
+
+                                this.props.endDateOfPermission.getDate() + "-" +
+                                (this.props.endDateOfPermission.getMonth() + 1) + "-" +
+                                this.props.endDateOfPermission.getFullYear(),
+
+                                this.props.endDateOfPermission.getHours() +
+                                ":" +
+                                this.props.endDateOfPermission.getMinutes(),
+                                permissionLength)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -85,7 +126,7 @@ export default function DisplayPermissionForm (props) {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayVehicleUsagesOfPersonel(vhicleUsageID)}
+                        {displayVehicleUsagesOfPersonel(this.props.selectVehicleUsageID)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -94,7 +135,7 @@ export default function DisplayPermissionForm (props) {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayTheExplanationOfPermission(expOfPer)}
+                        {displayTheExplanationOfPermission(this.props.permissionDescription)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -103,7 +144,7 @@ export default function DisplayPermissionForm (props) {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayDetailsOfVehicleUsage(kiloMeter, priceTL, personelCarUsage)}
+                        {displayDetailsOfVehicleUsage(this.props.totalDistanceOfIndividualCar, this.props.priceOfTrainOrBus, this.props.selectVehicleUsageID)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -132,11 +173,12 @@ export default function DisplayPermissionForm (props) {
                     marginBottom: "4px"
                 }}>
 
-                    { displayStatus === 1 && ( userType === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm())}
+                    {this.props.displayStatus === 1 && (this.props.userType === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm())}
                 </div>
 
             </div>
         )
+    }
 }
 
 //ÜST BAŞLIĞIN OLDUĞU KOMPONENT ( __1__ )
@@ -272,32 +314,6 @@ function displayPermissionTypeAndRest(perTypeID) {
 //İZİN TİPİ SEÇME COMPONENTİ
 function perAccCompt(perTypeID) {
 
-    let yearlyPer;
-    let missionPer;
-    let otherPer;
-    let pricelessPer;
-    let pricelyPer;
-    let twoMonthBasedPer;
-
-    switch (perTypeID) {
-        case 1:
-            yearlyPer = true;
-            break;
-        case 2:
-            missionPer = true;
-            break;
-        case 3:
-            otherPer = true;
-            break;
-        case 4:
-            pricelessPer = true;
-            break;
-        case 5:
-            pricelyPer = true;
-            break;
-        default:
-            twoMonthBasedPer = true;
-    }
 
     return (
         <div style={{
@@ -329,7 +345,8 @@ function perAccCompt(perTypeID) {
                         Yıllık İzin
                     </h1>
 
-                    <input disabled checked={yearlyPer} type="checkbox" style={{
+                    <input disabled checked={perTypeID === "1"}
+                           type="checkbox" style={{
                         margin: "auto",
                         display: "flex",
                         flex: 0.2,
@@ -355,12 +372,13 @@ function perAccCompt(perTypeID) {
                         Görevli
                     </h1>
 
-                    <input type="checkbox" disabled checked={missionPer} style={{
-                        display: "flex",
-                        flex: 0.2,
-                        height: "80%",
-                        margin: "auto"
-                    }}/>
+                    <input type="checkbox" disabled checked={perTypeID === "2"}
+                           style={{
+                               display: "flex",
+                               flex: 0.2,
+                               height: "80%",
+                               margin: "auto"
+                           }}/>
                 </div>
                 <div style={{
                     display: "flex",
@@ -378,7 +396,7 @@ function perAccCompt(perTypeID) {
                     }}>
                         Diğer
                     </h1>
-                    <input type="checkbox" disabled checked={otherPer} style={{
+                    <input type="checkbox" disabled checked={perTypeID === "6"} style={{
                         display: "flex",
                         flex: 0.2,
                         height: "80%",
@@ -408,12 +426,13 @@ function perAccCompt(perTypeID) {
                         Ücretsiz İzin
                     </h1>
 
-                    <input type="checkbox" disabled checked={pricelessPer} style={{
-                        margin: "auto",
-                        display: "flex",
-                        flex: 0.2,
-                        height: "80%",
-                    }}/>
+                    <input type="checkbox" disabled checked={perTypeID === "5"}
+                           style={{
+                               margin: "auto",
+                               display: "flex",
+                               flex: 0.2,
+                               height: "80%",
+                           }}/>
                 </div>
 
                 <div style={{
@@ -433,7 +452,7 @@ function perAccCompt(perTypeID) {
                         Ücretli İzin
                     </h1>
 
-                    <input type="checkbox" disabled checked={pricelyPer} style={{
+                    <input type="checkbox" disabled checked={perTypeID === "3"} style={{
                         display: "flex",
                         flex: 0.2,
                         height: "80%",
@@ -455,7 +474,7 @@ function perAccCompt(perTypeID) {
                     }}>
                         2 Ay İçinde Telafi Yapılacak
                     </h1>
-                    <input type="checkbox" disabled checked={twoMonthBasedPer} style={{
+                    <input type="checkbox" disabled checked={perTypeID === "4"} style={{
                         display: "flex",
                         flex: 0.2,
                         height: "80%",
@@ -703,7 +722,6 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                     border: "0.2px solid black",
 
                 }}>
-
                     <h1 style={{
                         display: "flex",
                         flex: 1,
@@ -773,12 +791,12 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
 }
 
 function displayVehicleUsagesOfPersonel(vehicleUsageID) {
-    let personelCarUsage;
+    let companyCarUsage;
 
-    if (vehicleUsageID === 1) {
-        personelCarUsage = true;
+    if (vehicleUsageID === "v2") {
+        companyCarUsage = true;
     } else {
-        personelCarUsage = false;
+        companyCarUsage = false;
     }
     return (
         <div style={{
@@ -827,7 +845,7 @@ function displayVehicleUsagesOfPersonel(vehicleUsageID) {
                     display: "flex",
                     justifyContent: "center",
                     flex: 0.4,
-                }} type="checkbox" disabled checked={personelCarUsage}/>
+                }} type="checkbox" disabled checked={companyCarUsage}/>
             </div>
 
             <div style={{
@@ -843,7 +861,7 @@ function displayVehicleUsagesOfPersonel(vehicleUsageID) {
             }}
             >
                 HAYIR
-                <input disabled checked={!personelCarUsage} style={{
+                <input disabled checked={!companyCarUsage} style={{
                     display: "flex",
                     flex: 0.40
                 }} type="checkbox"/>
@@ -891,7 +909,8 @@ function displayTheExplanationOfPermission(explOfPer) {
 }
 
 //HERE WE TAKE
-function displayDetailsOfVehicleUsage(kiloMeter, priceTL, personelCarUsage) {
+function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
+    console.log(carUsageID);
     return (
         <div style={{
             display: "flex",
@@ -923,7 +942,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, personelCarUsage) {
                 <input style={{
                     display: "flex",
                     flex: 0.3
-                }} disabled checked={personelCarUsage} type="checkbox"/>
+                }} disabled checked={carUsageID==="v4"} type="checkbox"/>
                 <p style={{
                     display: "flex",
                     justifyContent: "center",
@@ -957,7 +976,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, personelCarUsage) {
                 <input style={{
                     display: "flex",
                     flex: 0.3
-                }} disabled checked={!personelCarUsage} type="checkbox"/>
+                }} disabled checked={carUsageID==="v3"} type="checkbox"/>
                 <p style={{
                     display: "flex",
                     fontSize: 15,
@@ -1288,7 +1307,7 @@ function displayPersonelsButtonsForForm() {
                                 fontSize: "15px",
                                 margin: "auto"
                             }}>
-                               İPTAL ET
+                                İPTAL ET
                             </h1>
                         </button>
                     </Link>
@@ -1335,7 +1354,7 @@ function displayPersonelsButtonsForForm() {
                                 fontSize: "15px",
                                 margin: "auto"
                             }}>
-                               GÖNDER
+                                GÖNDER
                             </h1>
                         </button>
                     </Link>
@@ -1344,3 +1363,5 @@ function displayPersonelsButtonsForForm() {
         </div>
     )
 }
+
+export default connect(mapStateToProps)(DisplayPermissionForm);

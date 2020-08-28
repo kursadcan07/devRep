@@ -1,32 +1,63 @@
+import moment from "moment";
+
 const permissionReducer = (state = {
-    userID:"EMPTY ID",
-    userName:"EMPTY USERNAME",
-    beginDateOfPermission:"EMPTY PERMISSION BEGIN",
-    endDateOfPermission:"EMPTY PERMISSION END",
-    selectVehicleUsageType:"EMPTY VEHICLE USAGE TYPE",
-    priceOfTrainOrBus:"EMPTY PRICE OF BUS",
-    totalDistanceOfIndividualCar:"TOTAL DISTANCE OF CAR",
-    permissionDescription:"EMPTY PERMISSION DESCRIPTION",
-    selectThePermissionType:"İZİN TİPİNİZ SEÇİNİZ"
+    userID:"",
+
+    userType:1,
+    displayStatus:2,
+
+    personalName:"ZOZAN YILDIRIM",
+    demandDateOfPermission:null,
+
+    beginDateOfPermission: moment().format("dd-MM-yyyy HH:mm:ss"),
+    endDateOfPermission:"-T-",
+
+    foldCode:25,
+    areaCode:50,
+
+    permissionDescription:"",
+
+    selectVehicleUsageName:"Araç kullanım durumu",
+    selectVehicleUsageID:"",
+
+    personalCarUsage:false,
+    priceOfTrainOrBus:"",
+    totalDistanceOfIndividualCar:"",
+
+    displayThePermissionName:"",
+    setPermissionType:2
+
 }, action) => {
     switch (action.type) {
         case "SET_PERMISSION":
             state = {
                 ...state,
                 userID:action.payload.userID,
-                permissionDescription: action.payload.permissionDescription,
-                userName:action.payload.userName,
+
+                userType:action.payload.userType,
+                displayStatus:action.payload.displayStatus,
+                demandDateOfPermission:action.payload.demandDateOfPermission,
+
                 beginDateOfPermission:action.payload.beginDateOfPermission,
                 endDateOfPermission:action.payload.endDateOfPermission,
-                selectVehicleUsageType:action.payload.selectVehicleUsageType,
+
+                foldCode:action.payload.foldCode,
+                areaCode:action.payload.areaCode,
+
+                selectVehicleUsageName:action.payload.selectVehicleUsageName,
+                selectVehicleUsageID:action.payload.selectVehicleUsageID,
+
+                permissionDescription:action.payload.permissionDescription,
+
+                selectThePermissionType:action.payload.selectThePermissionType,
+
+                personalCarUsage:action.payload.personalCarUsage,
                 priceOfTrainOrBus:action.payload.priceOfTrainOrBus,
                 totalDistanceOfIndividualCar:action.payload.totalDistanceOfIndividualCar,
-                selectThePermissionType:action.payload.selectThePermissionType
-            }
-            break;
-        case "REARRENGE_PERMISSION":
-            state = {
-                ...state
+
+                perTypeID:action.payload.perTypeID,
+                displayThePermissionName:action.payload.displayThePermissionName,
+                setPermissionType:action.payload.setPermissionType
             }
             break;
         default:
@@ -35,15 +66,3 @@ const permissionReducer = (state = {
     return state;
 }
 export default permissionReducer;
-/*
-
-
-selectThePermissionType: "İzin Tipinizi Seçiniz",
-    beginDateOfPermission: null,
-    endDateOfPermission: null,
-    selectVehicleUsageType: "Araç Kullanım Durumu Seçiniz",
-    priceOfTrainOrBus: "",
-    totalDistanceOfIndividualCar: "",
-    displayEnterPriceBox: false,
-    displayEnterDistanceBox: false,
-    permissionDescription:""*/

@@ -14,6 +14,11 @@ import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
 import TakeTheSignature from "./PersonelScreens/TakeTheSignature"
 import ResetThePassword from "./PersonelScreens/ResetThePassword";
 import LoginScreen from "./PersonelScreens/LoginScreen";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+import DateFnsUtils from "@date-io/date-fns";
+import trLocale from "date-fns/locale/tr"
+
 
 /*
 This class includes <Router> component with in <Route>.Which describes the paths of the portal.
@@ -22,6 +27,7 @@ above are just imported to add <Route> element.
 */
 function App() {
     return (
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={trLocale}>
         <Router>
             <div>
                 <Switch>
@@ -40,6 +46,7 @@ function App() {
                 </Switch>
             </div>
         </Router>
+        </MuiPickersUtilsProvider>
     )
 }
 export default App;
