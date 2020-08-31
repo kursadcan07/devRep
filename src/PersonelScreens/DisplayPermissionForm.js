@@ -6,12 +6,14 @@ import Col from "react-bootstrap/Col";
 import {connect} from "react-redux";
 import moment from "moment";
 
+const axios = require('axios');
+
 
 const mapStateToProps = (state) => {
     return {
         userID: state.permissionReducer.userID,
 
-        userType: state.permissionReducer.userType,
+        userStatus: state.permissionReducer.userStatus,
         displayStatus: state.permissionReducer.displayStatus,
 
         personalName: state.permissionReducer.personalName,
@@ -171,7 +173,7 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.props.displayStatus === 2 && (this.props.userType === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm())}
+                    {this.props.displayStatus === 2 && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props.userMail))}
                 </div>
 
             </div>
@@ -556,6 +558,7 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
         </div>
     );
 }
+
 function timeDiffCalc(dateFuture, dateNow) {
     let diffInMilliSeconds = Math.abs(dateFuture - dateNow) / 1000;
 
@@ -811,7 +814,7 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}> {timeDiffCalc(permissionFinishDate,permissionBegDate)}</h1>
+                    }}> {timeDiffCalc(permissionFinishDate, permissionBegDate)}</h1>
                 </div>
             </div>
         </div>
@@ -1299,7 +1302,53 @@ function displayManagersButtonsForForm() {
     )
 }
 
-function displayPersonelsButtonsForForm() {
+const api = axios.create({
+    baseURL: `http://localhost:5000`
+})
+
+function setPermissionDemandAndNavigateToSuccesPage(userMail) {
+    console.log(userMail);
+   /* api.post('/createPermission',
+        {
+            userStatus: props.userStatus,
+            displayStatus: props.displayStatus,
+
+            userID:props.userID,
+            permissionDescription: props.permissionDescription,
+            personalName:props.personalName,
+            beginDateOfPermission: props.beginDateOfPermission,
+            endDateOfPermission: props.endDateOfPermission,
+            selectVehicleUsageName:props.selectVehicleUsageName,
+            selectVehicleUsageID: props.selectVehicleUsageID,
+            priceOfTrainOrBus: props.priceOfTrainOrBus,
+            totalDistanceOfIndividualCar: props.totalDistanceOfIndividualCar,
+
+            foldCode: props.foldCode,
+            areaCode:props.areaCode,
+
+            displayThePermissionName: props.displayThePermissionName,
+            setPermissionType: props.setPermissionType
+
+        }).then(res => {
+        console.log(res);
+        if (res.data.stat) {
+
+            console.log("İZİN YARATILMA BAŞARILI")
+            this.setState({
+                permissionDemandStat: true
+            })
+
+            this.props.history.push({
+                pathname: '/PersonelScreens/SuccesDisplaying',
+            })
+
+        }
+    })*/
+
+}
+
+function displayPersonelsButtonsForForm(userMail) {
+
     return (
         <div style={{
             display: "flex",
@@ -1363,29 +1412,31 @@ function displayPersonelsButtonsForForm() {
                             </h1>
                         </button>
                     </Link>
-                    <Link to="SuccesDisplaying" style={{
+                    {/*    <Link to="SuccesDisplaying" style={{
                         textDecoration: "none",
                         display: "flex",
                         flex: 1
+                    }}>*/}
+                    <button type="button" onClick={() => {
+                        setPermissionDemandAndNavigateToSuccesPage(userMail)
+                    }} className="btn btn-success" style={{
+                        display: "flex",
+                        flex: 1,
+                        borderRadius: "5%",
+                        textAlign: "center",
+                        justifyContent: "center"
                     }}>
-                        <button type="button" className="btn btn-success" style={{
+                        <h1 style={{
                             display: "flex",
                             flex: 1,
-                            borderRadius: "5%",
-                            textAlign: "center",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            fontSize: "15px",
+                            margin: "auto"
                         }}>
-                            <h1 style={{
-                                display: "flex",
-                                flex: 1,
-                                justifyContent: "center",
-                                fontSize: "15px",
-                                margin: "auto"
-                            }}>
-                                GÖNDER
-                            </h1>
-                        </button>
-                    </Link>
+                            GÖNDER
+                        </h1>
+                    </button>
+                    {/*  </Link>*/}
                 </Row>
             </Col>
         </div>

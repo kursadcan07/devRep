@@ -15,7 +15,6 @@ import TakeTheSignature from "./PersonelScreens/TakeTheSignature"
 import ResetThePassword from "./PersonelScreens/ResetThePassword";
 import LoginScreen from "./PersonelScreens/LoginScreen";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
 import DateFnsUtils from "@date-io/date-fns";
 import trLocale from "date-fns/locale/tr"
 

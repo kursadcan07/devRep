@@ -1,18 +1,19 @@
 const userReducer = (state = {
-    name: "zozan",
-    age: 22
+    userID:0,
+    userMail:"",
+    userName:"",
+    userStatus:0,
+    userArea:0
 }, action) => {
     switch (action.type) {
         case "SET_ONLINE_USER":
             state = {
                 ...state,
-                name: action.payload
-            }
-            break;
-        case "SET_AGE":
-            state = {
-                ...state,
-                age: action.payload
+                userID: action.payload.userID,
+                userMail:action.payload.userMail,
+                userName:action.payload.userName,
+                userStatus:action.payload.userStatus,
+                userArea:action.payload.userArea
             }
             break;
         default:

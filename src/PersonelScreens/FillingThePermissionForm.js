@@ -35,7 +35,7 @@ import {KeyboardDateTimePicker} from "@material-ui/pickers";
 const mapStateToProps = (state) => {
     return {
 
-        userType: state.permissionReducer.userType,
+        userStatus: state.permissionReducer.userStatus,
         displayStatus:state.permissionReducer.displayStatus,
 
         userID: state.permissionReducer.userID,
@@ -110,7 +110,7 @@ class FillingThePermissionForm extends React.Component {
             displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
             setPermissionType: props.setPermissionType,
 
-            userType: props.userType,
+            userStatus: props.userStatus,
             displayStatus:props.displayStatus,
 
             beginDateOfPermission:props.beginDateOfPermission || new Date("2020-01-01T00:00"),

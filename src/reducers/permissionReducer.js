@@ -1,7 +1,7 @@
 const permissionReducer = (state = {
     userID:"",
 
-    userType:2,
+    userStatus:2,
     displayStatus:2,
 
     personalName:"ZOZAN YILDIRIM",
@@ -38,8 +38,9 @@ const permissionReducer = (state = {
                 ...state,
                 userID:action.payload.userID,
 
-                userType:action.payload.userType,
+                userStatus:action.payload.userStatus,
                 displayStatus:action.payload.displayStatus,
+
                 demandDateOfPermission:action.payload.demandDateOfPermission,
 
                 beginDateOfPermission:action.payload.beginDateOfPermission,
