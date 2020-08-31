@@ -31,31 +31,6 @@ import {KeyboardDateTimePicker} from "@material-ui/pickers";
 */
 
 
-function inputForBus(usageID) {
-    if (usageID==="v3") {
-        return (
-            <div className="justify-content-center">
-                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
-                       value={this.props.priceOfTrainOrBus} onChange={this.takePriceForBusAndTrain}/>
-            </div>
-        )
-    } else {
-        return null;
-    }
-}
-
-function inputForDist(usageID) {
-    if (usageID==="v4") {
-        return (
-            <div>
-                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
-                       value={this.props.totalDistanceOfIndividualCar} onChange={this.takeTotalDistanceForIndividualCar}/>
-            </div>
-        )
-    } else {
-        return null;
-    }
-}
 
 const mapStateToProps = (state) => {
     return {
@@ -80,6 +55,31 @@ const mapStateToProps = (state) => {
         setPermissionType: state.permissionReducer.setPermissionType
     }
 };
+function inputForBus(usageID) {
+    if (usageID==="v3") {
+        return (
+            <div className="justify-content-center">
+                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
+                       value={this.props.priceOfTrainOrBus|| null} onChange={this.takePriceForBusAndTrain}/>
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
+
+function inputForDist(usageID) {
+    if (usageID==="v4") {
+        return (
+            <div>
+                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
+                       value={this.props.totalDistanceOfIndividualCar|| null} onChange={this.takeTotalDistanceForIndividualCar}/>
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {

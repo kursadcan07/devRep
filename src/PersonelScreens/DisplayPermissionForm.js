@@ -42,14 +42,11 @@ const mapStateToProps = (state) => {
 class DisplayPermissionForm extends React.Component {
     constructor() {
         super();
-
         // Mock data = CRUD = (Araştır)
-
     }
 
-    render() {
 
-        let permissionLength = "22 saat";
+    render() {
 
         return (
             <div style={{
@@ -106,7 +103,7 @@ class DisplayPermissionForm extends React.Component {
                                 (this.props.beginDateOfPermission.getMonth() + 1) + "-" +
                                 this.props.beginDateOfPermission.getFullYear()
                                 ,
-                                this.props.beginDateOfPermission.getHours()+
+                                this.props.beginDateOfPermission.getHours() +
                                 ":" +
                                 this.props.beginDateOfPermission.getMinutes(),
 
@@ -116,8 +113,9 @@ class DisplayPermissionForm extends React.Component {
 
                                 this.props.endDateOfPermission.getHours() +
                                 ":" +
-                                this.props.endDateOfPermission.getMinutes(),
-                                permissionLength)}
+                                this.props.endDateOfPermission.getMinutes(), this.props.beginDateOfPermission,
+                                this.props.endDateOfPermission
+                            )}
                     </div>
                     <div style={{
                         display: "flex",
@@ -558,10 +556,40 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
         </div>
     );
 }
+function timeDiffCalc(dateFuture, dateNow) {
+    let diffInMilliSeconds = Math.abs(dateFuture - dateNow) / 1000;
+
+    // calculate days
+    const days = Math.floor(diffInMilliSeconds / 86400);
+    diffInMilliSeconds -= days * 86400;
+
+
+    // calculate hours
+    const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+    diffInMilliSeconds -= hours * 3600;
+
+
+    // calculate minutes
+    const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+    diffInMilliSeconds -= minutes * 60;
+
+    let difference = '';
+    if (days > 0) {
+        difference += (days === 1) ? `${days} gün, ` : `${days} gün, `;
+    }
+
+    difference += (hours === 0 || hours === 1) ? `${hours} saat, ` : `${hours} saat, `;
+
+    difference += (minutes === 0 || hours === 1) ? `${minutes} dakika` : `${minutes} dakika`;
+
+    return difference;
+}
 
 //BLOCK FOUR
-function displayEmployeesPermissionDates(permissionStartDate, permissionStartTime, permissionEndDate, permissionEndTime, permissionLength) {
+function displayEmployeesPermissionDates(permissionStartDate, permissionStartTime, permissionEndDate, permissionEndTime, permissionBegDate, permissionFinishDate) {
+
     return (
+
         <div style={{
             display: "flex",
             flexDirection: "row",
@@ -783,7 +811,7 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}> {permissionLength}</h1>
+                    }}> {timeDiffCalc(permissionFinishDate,permissionBegDate)}</h1>
                 </div>
             </div>
         </div>
@@ -941,8 +969,8 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
 
                 <input style={{
                     display: "flex",
-                    flex: 0.3
-                }} disabled checked={carUsageID==="v4"} type="checkbox"/>
+                    flex: 0.3,
+                }} disabled checked={carUsageID === "v4"} type="checkbox"/>
                 <p style={{
                     display: "flex",
                     justifyContent: "center",
@@ -976,7 +1004,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
                 <input style={{
                     display: "flex",
                     flex: 0.3
-                }} disabled checked={carUsageID==="v3"} type="checkbox"/>
+                }} disabled checked={carUsageID === "v3"} type="checkbox"/>
                 <p style={{
                     display: "flex",
                     fontSize: 15,

@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const permissionReducer = (state = {
     userID:"",
 
@@ -21,11 +19,17 @@ const permissionReducer = (state = {
     selectVehicleUsageID:"",
 
     personalCarUsage:false,
-    priceOfTrainOrBus:"",
-    totalDistanceOfIndividualCar:"",
+    priceOfTrainOrBus:null,
+    totalDistanceOfIndividualCar:null,
 
     displayThePermissionName:"",
-    setPermissionType:2
+    setPermissionType:2,
+
+    chiefConfirmStatus:-1,
+    chiefsDescription:"",
+
+    generalManagerConfirmStatus:-1,
+    generalManagerDescription:"",
 
 }, action) => {
     switch (action.type) {
@@ -58,6 +62,20 @@ const permissionReducer = (state = {
                 perTypeID:action.payload.perTypeID,
                 displayThePermissionName:action.payload.displayThePermissionName,
                 setPermissionType:action.payload.setPermissionType
+            }
+            break;
+        case "CHIEFS_CONFIRM":
+            state={
+                ...state,
+                chiefConfirmStatus:action.payload.chiefConfirmStatus,
+                generalManagerDescription:action.payload.generalManagerDescription
+            }
+            break;
+        case "GENERAL_MANAGER_CONFIRM":
+            state={
+                ...state,
+                generalManagerConfirmStatus:action.payload.generalManagerConfirmStatus,
+                generalManagerDescription:action.payload.generalManagerDescription
             }
             break;
         default:
