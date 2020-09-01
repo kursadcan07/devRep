@@ -1,5 +1,5 @@
 const permissionReducer = (state = {
-    userID:"",
+    userID:0,
 
     userStatus:2,
     displayStatus:2,
@@ -18,12 +18,10 @@ const permissionReducer = (state = {
     selectVehicleUsageName:"Araç kullanım durumu",
     selectVehicleUsageID:"",
 
-    personalCarUsage:false,
     priceOfTrainOrBus:null,
     totalDistanceOfIndividualCar:null,
 
-    displayThePermissionName:"",
-    setPermissionType:2,
+    setThePermissionType:2,
 
     chiefConfirmStatus:-1,
     chiefsDescription:"",
@@ -37,6 +35,7 @@ const permissionReducer = (state = {
             state = {
                 ...state,
                 userID:action.payload.userID,
+                personalName:action.payload.personalName,
 
                 userStatus:action.payload.userStatus,
                 displayStatus:action.payload.displayStatus,
@@ -54,13 +53,9 @@ const permissionReducer = (state = {
 
                 permissionDescription:action.payload.permissionDescription,
 
-                selectThePermissionType:action.payload.selectThePermissionType,
-
-                personalCarUsage:action.payload.personalCarUsage,
                 priceOfTrainOrBus:action.payload.priceOfTrainOrBus,
                 totalDistanceOfIndividualCar:action.payload.totalDistanceOfIndividualCar,
 
-                perTypeID:action.payload.perTypeID,
                 displayThePermissionName:action.payload.displayThePermissionName,
                 setPermissionType:action.payload.setPermissionType
             }
@@ -69,7 +64,7 @@ const permissionReducer = (state = {
             state={
                 ...state,
                 chiefConfirmStatus:action.payload.chiefConfirmStatus,
-                generalManagerDescription:action.payload.generalManagerDescription
+                chiefsDescription:action.payload.chiefsDescription
             }
             break;
         case "GENERAL_MANAGER_CONFIRM":

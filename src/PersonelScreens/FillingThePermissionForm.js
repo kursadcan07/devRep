@@ -10,8 +10,7 @@ import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
 import setPermissionAction from "../actions/setPermissionAction";
 import {KeyboardDateTimePicker} from "@material-ui/pickers";
-
-
+import moment from "moment";
 
 /*
    This class allows to user that filling the permission form.
@@ -30,19 +29,19 @@ import {KeyboardDateTimePicker} from "@material-ui/pickers";
     9) Uyarı Alanı (<h1> component)
 */
 
-
-
 const mapStateToProps = (state) => {
     return {
 
         userStatus: state.permissionReducer.userStatus,
         displayStatus:state.permissionReducer.displayStatus,
 
-        userID: state.permissionReducer.userID,
+        userID: state.userLoginReducer.userID,
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.permissionReducer.personalName,
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
+        demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
+
         selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
         selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
         priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
@@ -60,7 +59,7 @@ function inputForBus(usageID) {
         return (
             <div className="justify-content-center">
                 <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
-                       value={this.props.priceOfTrainOrBus|| null} onChange={this.takePriceForBusAndTrain}/>
+                       value={this.props.priceOfTrainOrBus|| " "} onChange={this.takePriceForBusAndTrain}/>
             </div>
         )
     } else {
@@ -107,12 +106,15 @@ class FillingThePermissionForm extends React.Component {
 
 
         this.state = {
+            userID:props.userID,
             displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
             setPermissionType: props.setPermissionType,
 
             userStatus: props.userStatus,
             displayStatus:props.displayStatus,
+            personalName:props.personalName,
 
+            demandDateOfPermission: props.demandDateOfPermission || moment().format("DD-MM-YYYY HH:mm:ss"),
             beginDateOfPermission:props.beginDateOfPermission || new Date("2020-01-01T00:00"),
             endDateOfPermission: props.endDateOfPermission || new Date("2020-01-01T00:00"),
 
@@ -139,6 +141,7 @@ class FillingThePermissionForm extends React.Component {
         this.takePriceForBusAndTrain = this.takePriceForBusAndTrain.bind(this);
         this.updatePermissionDescription = this.updatePermissionDescription.bind(this);
         this.takeTotalDistanceForIndividualCar = this.takeTotalDistanceForIndividualCar.bind(this);
+        //this.validateAndSetPermission = this.validateAndSetPermission.bind(this);
 
         inputForBus = inputForBus.bind(this);
         inputForDist = inputForDist.bind(this);
@@ -150,8 +153,11 @@ class FillingThePermissionForm extends React.Component {
             displayThePermissionName: event.target.name,
             setPermissionType: event.target.id
         })
-
     }
+
+/*    validateAndSetPermission(){
+        this.props.setPermission(this.state);
+    }*/
 
     takeTotalDistanceForIndividualCar(event) {
         this.setState({
@@ -298,7 +304,7 @@ class FillingThePermissionForm extends React.Component {
                     */}
                     <Row className="justify-content-center">
                         <Link to="DisplayPermissionForm">
-                            <Button variant="primary" size="lg" active onClick={this.props.setPermission(this.state)}>
+                            <Button variant="primary" size="lg" active onClick={ this.props.setPermission(this.state)}>
                                 ONAYLAMAYA GEÇ
                             </Button>
                         </Link>
@@ -315,6 +321,5 @@ class FillingThePermissionForm extends React.Component {
         )
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(FillingThePermissionForm);

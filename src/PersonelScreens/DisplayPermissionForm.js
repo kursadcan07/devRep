@@ -8,7 +8,6 @@ import moment from "moment";
 
 const axios = require('axios');
 
-
 const mapStateToProps = (state) => {
     return {
         userID: state.permissionReducer.userID,
@@ -16,7 +15,7 @@ const mapStateToProps = (state) => {
         userStatus: state.permissionReducer.userStatus,
         displayStatus: state.permissionReducer.displayStatus,
 
-        personalName: state.permissionReducer.personalName,
+        personalName: state.userLoginReducer.personalName,
 
         demandDate: moment().format("DD-MM-YYYY HH:mm:ss"),
 
@@ -42,11 +41,6 @@ const mapStateToProps = (state) => {
 };
 
 class DisplayPermissionForm extends React.Component {
-    constructor() {
-        super();
-        // Mock data = CRUD = (Araştır)
-    }
-
 
     render() {
 
@@ -173,7 +167,39 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.props.displayStatus === 2 && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props.userMail))}
+                    {this.props.displayStatus === 2 && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(
+                      this.props
+                    ))}
+
+                    {/*
+                    userID: state.permissionReducer.userID,
+
+                    userStatus: state.permissionReducer.userStatus,
+                    displayStatus: state.permissionReducer.displayStatus,
+
+                    personalName: state.permissionReducer.personalName,
+
+                    demandDate: moment().format("DD-MM-YYYY HH:mm:ss"),
+
+                    beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
+                    endDateOfPermission: state.permissionReducer.endDateOfPermission,
+
+                    foldCode: state.permissionReducer.foldCode,
+                    areaCode: state.permissionReducer.areaCode,
+
+                    selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
+                    selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
+
+                    permissionDescription: state.permissionReducer.permissionDescription,
+
+                    personalCarUsage: state.permissionReducer.personalCarUsage,
+                    totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
+                    priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
+
+                    displayThePermissionName: state.permissionReducer.displayThePermissionName,
+                    setPermissionType: state.permissionReducer.setPermissionType
+
+                    }*/}
                 </div>
 
             </div>
@@ -1306,49 +1332,8 @@ const api = axios.create({
     baseURL: `http://localhost:5000`
 })
 
-function setPermissionDemandAndNavigateToSuccesPage(userMail) {
-    console.log(userMail);
-   /* api.post('/createPermission',
-        {
-            userStatus: props.userStatus,
-            displayStatus: props.displayStatus,
 
-            userID:props.userID,
-            permissionDescription: props.permissionDescription,
-            personalName:props.personalName,
-            beginDateOfPermission: props.beginDateOfPermission,
-            endDateOfPermission: props.endDateOfPermission,
-            selectVehicleUsageName:props.selectVehicleUsageName,
-            selectVehicleUsageID: props.selectVehicleUsageID,
-            priceOfTrainOrBus: props.priceOfTrainOrBus,
-            totalDistanceOfIndividualCar: props.totalDistanceOfIndividualCar,
-
-            foldCode: props.foldCode,
-            areaCode:props.areaCode,
-
-            displayThePermissionName: props.displayThePermissionName,
-            setPermissionType: props.setPermissionType
-
-        }).then(res => {
-        console.log(res);
-        if (res.data.stat) {
-
-            console.log("İZİN YARATILMA BAŞARILI")
-            this.setState({
-                permissionDemandStat: true
-            })
-
-            this.props.history.push({
-                pathname: '/PersonelScreens/SuccesDisplaying',
-            })
-
-        }
-    })*/
-
-}
-
-function displayPersonelsButtonsForForm(userMail) {
-
+function displayPersonelsButtonsForForm(props) {
     return (
         <div style={{
             display: "flex",
@@ -1412,13 +1397,47 @@ function displayPersonelsButtonsForForm(userMail) {
                             </h1>
                         </button>
                     </Link>
-                    {/*    <Link to="SuccesDisplaying" style={{
-                        textDecoration: "none",
-                        display: "flex",
-                        flex: 1
-                    }}>*/}
+
                     <button type="button" onClick={() => {
-                        setPermissionDemandAndNavigateToSuccesPage(userMail)
+                        console.log(props.userID + "-" + props.userStatus)
+                        api.post('/createPermission',
+                            {
+                                userID: props.userID,
+                                userStatus: props.userStatus,
+                                displayStatus: props.displayStatus,
+                                personalName: props.personalName,
+                                demandDate: props.demandDate,
+                                beginDateOfPermission: props.beginDateOfPermission,
+                                endDateOfPermission: props.endDateOfPermission,
+                                foldCode: props.foldCode,
+                                areaCode:props.areaCode,
+                                selectVehicleUsageName:  props.selectVehicleUsageName,
+                                selectVehicleUsageID: props.selectVehicleUsageID,
+                                permissionDescription: props.permissionDescription,
+                                totalDistanceOfIndividualCar: props.totalDistanceOfIndividualCar,
+                                priceOfTrainOrBus: props.priceOfTrainOrBus,
+                                displayThePermissionName: props.displayThePermissionName,
+                                setPermissionType: props.setPermissionType
+
+                            }).then(res => {
+                            console.log(res);
+                            if (res.data.stat) {
+
+                                console.log("İZİN YARATILMA BAŞARILI")
+                                this.setState({
+                                    permissionDemandStat: true
+                                })
+
+                                this.props.history.push({
+                                    pathname: '/PersonelScreens/SuccesDisplaying',
+                                })
+
+                            }else{
+                                console.log("HATA123")
+                            }
+                        })
+
+
                     }} className="btn btn-success" style={{
                         display: "flex",
                         flex: 1,
@@ -1443,4 +1462,4 @@ function displayPersonelsButtonsForForm(userMail) {
     )
 }
 
-export default connect(mapStateToProps)(DisplayPermissionForm);
+export default connect(mapStateToProps)(DisplayPermissionForm, displayPersonelsButtonsForForm);

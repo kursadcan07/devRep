@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
         userMail:state.userLoginReducer.userMail,
-        userName: state.userLoginReducer.userName,
+        personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
         userArea: state.userLoginReducer.userArea
     }
@@ -57,23 +57,23 @@ class loginScreen extends React.Component {
         api.post('/login',
             {
                 userMail: userMail,
-                password: password
+                password: password,
             }).then(res => {
-            console.log(res);
+
             if (res.data.stat) {
-                console.log("var1")
+
                 this.setState({
                     loginStat: true
                 })
 
                 this.props.setUser(res.data.onlineUser)
 
-
                 if(this.props.userStatus==="1"){
                     this.props.history.push({
                         pathname: '/PersonelScreens/PersonelNavigation',
                     })
                 }
+
                 else{
                     this.props.history.push({
                         pathname: '/PersonelScreens/NavigateTheChief',

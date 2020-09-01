@@ -1,7 +1,7 @@
 const userReducer = (state = {
     userID:0,
     userMail:"",
-    userName:"",
+    personalName:"",
     userStatus:0,
     userArea:0
 }, action) => {
@@ -11,7 +11,7 @@ const userReducer = (state = {
                 ...state,
                 userID: action.payload.userID,
                 userMail:action.payload.userMail,
-                userName:action.payload.userName,
+                personalName:action.payload.personalName,
                 userStatus:action.payload.userStatus,
                 userArea:action.payload.userArea
             }
