@@ -4,8 +4,8 @@ const permissionReducer = (state = {
     userStatus:2,
     displayStatus:2,
 
-    personalName:"ZOZAN YILDIRIM",
-    demandDateOfPermission: new Date("2020-01-01T00:00"),
+    personalName:"-",
+    demandDateOfPermission:null,
 
     beginDateOfPermission:new Date("2020-01-01T00:00"),
     endDateOfPermission: new Date("2020-01-01T00:00"),

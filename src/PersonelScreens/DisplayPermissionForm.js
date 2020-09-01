@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 
         personalName: state.userLoginReducer.personalName,
 
-        demandDate: moment().format("DD-MM-YYYY HH:mm:ss"),
+        demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
 
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
@@ -41,6 +41,18 @@ const mapStateToProps = (state) => {
 };
 
 class DisplayPermissionForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sendPermissionDemand: false,
+        }
+    }
+
+    componentDidMount() {
+        if (this.state.sendPermissionDemand) {
+            console.log("gonder,lcek")
+        }
+    }
 
     render() {
 
@@ -167,39 +179,23 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.props.displayStatus === 2 && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(
-                      this.props
+                    {this.props.displayStatus === 2 && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props,
+                        this.props.userID,
+                        this.props.userStatus,
+                        this.props.personalName,
+                        this.props.demandDateOfPermission,
+                        this.props.beginDateOfPermission,
+                        this.props.endDateOfPermission,
+                        this.props.foldCode,
+                        this.props.areaCode,
+                        this.props.selectVehicleUsageName,
+                        this.props.selectVehicleUsageID,
+                        this.props.permissionDescription,
+                        this.props.personalCarUsage,
+                        this.props.totalDistanceOfIndividualCar,
+                        this.props.priceOfTrainOrBus
                     ))}
 
-                    {/*
-                    userID: state.permissionReducer.userID,
-
-                    userStatus: state.permissionReducer.userStatus,
-                    displayStatus: state.permissionReducer.displayStatus,
-
-                    personalName: state.permissionReducer.personalName,
-
-                    demandDate: moment().format("DD-MM-YYYY HH:mm:ss"),
-
-                    beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
-                    endDateOfPermission: state.permissionReducer.endDateOfPermission,
-
-                    foldCode: state.permissionReducer.foldCode,
-                    areaCode: state.permissionReducer.areaCode,
-
-                    selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
-                    selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
-
-                    permissionDescription: state.permissionReducer.permissionDescription,
-
-                    personalCarUsage: state.permissionReducer.personalCarUsage,
-                    totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
-                    priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
-
-                    displayThePermissionName: state.permissionReducer.displayThePermissionName,
-                    setPermissionType: state.permissionReducer.setPermissionType
-
-                    }*/}
                 </div>
 
             </div>
@@ -850,11 +846,7 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
 function displayVehicleUsagesOfPersonel(vehicleUsageID) {
     let companyCarUsage;
 
-    if (vehicleUsageID === "v2") {
-        companyCarUsage = true;
-    } else {
-        companyCarUsage = false;
-    }
+    companyCarUsage = vehicleUsageID === "v2";
     return (
         <div style={{
             display: "flex",
@@ -1332,8 +1324,26 @@ const api = axios.create({
     baseURL: `http://localhost:5000`
 })
 
+function dateConverter(givenDate1) {
+    let givenDate= new Date(givenDate1);
+    return givenDate.getDate() + "-" +
+        (givenDate.getMonth() + 1) + "-" +
+        givenDate.getFullYear()
+        + ":" +
+        givenDate.getHours() +
+        "-" +
+        givenDate.getMinutes();
+}
 
-function displayPersonelsButtonsForForm(props) {
+
+function displayPersonelsButtonsForForm(props, userIDS,
+                                        userStatusS, personalNameS, demandDateOfPermissionS, beginDateOfPermissionS,
+                                        endDateOfPermissionS, foldCodeS, areaCodeS, selectVehicleUsageNameS,
+                                        selectVehicleUsageIDS, permissionDescriptionS, personalCarUsageS,totalDistanceOfIndividualCarS,
+                                        priceOfTrainOrBusS
+
+) {
+
     return (
         <div style={{
             display: "flex",
@@ -1399,41 +1409,37 @@ function displayPersonelsButtonsForForm(props) {
                     </Link>
 
                     <button type="button" onClick={() => {
-                        console.log(props.userID + "-" + props.userStatus)
+                        console.log(beginDateOfPermissionS + " ::: " + endDateOfPermissionS + " ::: " + demandDateOfPermissionS)
                         api.post('/createPermission',
                             {
-                                userID: props.userID,
-                                userStatus: props.userStatus,
-                                displayStatus: props.displayStatus,
-                                personalName: props.personalName,
-                                demandDate: props.demandDate,
-                                beginDateOfPermission: props.beginDateOfPermission,
-                                endDateOfPermission: props.endDateOfPermission,
-                                foldCode: props.foldCode,
-                                areaCode:props.areaCode,
-                                selectVehicleUsageName:  props.selectVehicleUsageName,
-                                selectVehicleUsageID: props.selectVehicleUsageID,
-                                permissionDescription: props.permissionDescription,
-                                totalDistanceOfIndividualCar: props.totalDistanceOfIndividualCar,
-                                priceOfTrainOrBus: props.priceOfTrainOrBus,
-                                displayThePermissionName: props.displayThePermissionName,
-                                setPermissionType: props.setPermissionType
-
+                                personalName: personalNameS,
+                                userID: userIDS,
+                                userStatus: userStatusS,
+                                demandDateOfPermission: dateConverter(demandDateOfPermissionS),
+                                beginDateOfPermission: dateConverter(beginDateOfPermissionS),
+                                endDateOfPermission: dateConverter(endDateOfPermissionS),
+                                foldCode: foldCodeS,
+                                areaCode: areaCodeS,
+                                selectVehicleUsageName: selectVehicleUsageNameS,
+                                selectVehicleUsageID: selectVehicleUsageIDS,
+                                priceOfTrainOrBus: priceOfTrainOrBusS,
+                                totalDistanceOfIndividualCar:totalDistanceOfIndividualCarS,
+                                permissionDescription: permissionDescriptionS,
+                                personalCarUsage: personalCarUsageS
                             }).then(res => {
-                            console.log(res);
+
                             if (res.data.stat) {
 
                                 console.log("İZİN YARATILMA BAŞARILI")
-                                this.setState({
-                                    permissionDemandStat: true
-                                })
 
-                                this.props.history.push({
+                                props.history.push({
                                     pathname: '/PersonelScreens/SuccesDisplaying',
                                 })
 
-                            }else{
+                                return true;
+                            } else {
                                 console.log("HATA123")
+                                return false;
                             }
                         })
 
@@ -1462,4 +1468,5 @@ function displayPersonelsButtonsForForm(props) {
     )
 }
 
-export default connect(mapStateToProps)(DisplayPermissionForm, displayPersonelsButtonsForForm);
+export default connect(mapStateToProps)(DisplayPermissionForm);
+

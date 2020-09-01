@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 
         userID: state.userLoginReducer.userID,
         permissionDescription: state.permissionReducer.permissionDescription,
-        personalName: state.permissionReducer.personalName,
+        personalName: state.userLoginReducer.personalName,
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
         demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
@@ -114,7 +114,7 @@ class FillingThePermissionForm extends React.Component {
             displayStatus:props.displayStatus,
             personalName:props.personalName,
 
-            demandDateOfPermission: props.demandDateOfPermission || moment().format("DD-MM-YYYY HH:mm:ss"),
+            demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
             beginDateOfPermission:props.beginDateOfPermission || new Date("2020-01-01T00:00"),
             endDateOfPermission: props.endDateOfPermission || new Date("2020-01-01T00:00"),
 
@@ -124,8 +124,8 @@ class FillingThePermissionForm extends React.Component {
             foldCode:props.foldCode,
             areaCode:props.areaCode,
 
-            priceOfTrainOrBus: 0,
-            totalDistanceOfIndividualCar:0,
+            priceOfTrainOrBus:props.priceOfTrainOrBus||  0,
+            totalDistanceOfIndividualCar:props.totalDistanceOfIndividualCar || 0,
             displayEnterPriceBox: false,
             displayEnterDistanceBox: false,
             permissionDescription: props.permissionDescription || ""
@@ -169,6 +169,7 @@ class FillingThePermissionForm extends React.Component {
         this.setState({
             priceOfTrainOrBus: event.target.value
         });
+
     }
 
     handleTheSelectionOfVehicle(event) {
@@ -304,7 +305,7 @@ class FillingThePermissionForm extends React.Component {
                     */}
                     <Row className="justify-content-center">
                         <Link to="DisplayPermissionForm">
-                            <Button variant="primary" size="lg" active onClick={ this.props.setPermission(this.state)}>
+                            <Button variant="primary" size="lg" active onClick={this.props.setPermission(this.state)}>
                                 ONAYLAMAYA GEÇ
                             </Button>
                         </Link>
