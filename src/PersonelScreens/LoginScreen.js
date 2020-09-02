@@ -60,6 +60,40 @@ class loginScreen extends React.Component {
         this.setState({userPassword: event.target.value})
     }
 
+    validateForEmail(emailInput){
+        if(emailInput.length<10){
+            return ({
+                mes: "Mail adresi çok kısa !",
+                stat: false
+            })
+        }
+        else if(emailInput.length>50){
+            return ({
+                mes: "Mail adresi çok uzun !",
+                stat: false
+            })
+        }
+        else if (!emailRegex.test(emailInput)){
+            return ({
+                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
+                stat: false
+            })
+        }
+        else if (emailInput.split("@")[1] !==  "orema.com.tr" && emailInput.split("@")[1] !== "desird.com.tr"){
+            return ({
+                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
+                stat: false
+            })
+        }
+        else{
+            return ({
+                mes: "E Mail Validasyonu Okey",
+                stat: true
+            })
+        }
+
+    }
+
     validateForPassword(passwordInput) {
         if (passwordInput.length < 5) {
             return ({
@@ -82,46 +116,6 @@ class loginScreen extends React.Component {
                 stat: true
             })
         }
-    }
-
-    validateForEmail(emailInput){
-        if(emailInput.length<10){
-            return ({
-                mes: "Mail adresi çok kısa !",
-                stat: false
-            })
-        }
-        else if(emailInput.length>50){
-            return ({
-                mes: "Mail adresi çok uzun !",
-                stat: false
-            })
-        }
-    /*    else if (!emailInput.contains("@")){
-            return ({
-                mes: "Mail adresi abc@desird.com.tr \n formatında olmalıdır !",
-                stat: false
-            })
-        }*/
-        else if (!emailRegex.test(emailInput)){
-            return ({
-                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
-                stat: false
-            })
-        }
-        else if (emailInput.split("@")[1] !==  "orema.com.tr" && emailInput.split("@")[1] !== "desird.com.tr"){
-            return ({
-                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
-                stat: false
-            })
-        }
-        else{
-            return ({
-                mes: "E Mail Validasyonu Okey",
-                stat: true
-            })
-        }
-
     }
 
     checkLoginData(userMail, userPassword) {
