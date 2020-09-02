@@ -10,7 +10,6 @@ import {connect} from "react-redux";
 
 const axios = require('axios');
 
-
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
@@ -60,6 +59,36 @@ class loginScreen extends React.Component {
         this.setState({userPassword: event.target.value})
     }
 
+    validateForEmail(emailInput) {
+        if (emailInput.length < 10) {
+            return ({
+                mes: "Mail adresi çok kısa !",
+                stat: false
+            })
+        } else if (emailInput.length > 50) {
+            return ({
+                mes: "Mail adresi çok uzun !",
+                stat: false
+            })
+        } else if (!emailRegex.test(emailInput)) {
+            return ({
+                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
+                stat: false
+            })
+        } else if (emailInput.split("@")[1] !== "orema.com.tr" && emailInput.split("@")[1] !== "desird.com.tr") {
+            return ({
+                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
+                stat: false
+            })
+        } else {
+            return ({
+                mes: "E Mail Validasyonu Okey",
+                stat: true
+            })
+        }
+
+    }
+
     validateForPassword(passwordInput) {
         if (passwordInput.length < 5) {
             return ({
@@ -84,59 +113,16 @@ class loginScreen extends React.Component {
         }
     }
 
-    validateForEmail(emailInput){
-        if(emailInput.length<10){
-            return ({
-                mes: "Mail adresi çok kısa !",
-                stat: false
-            })
-        }
-        else if(emailInput.length>50){
-            return ({
-                mes: "Mail adresi çok uzun !",
-                stat: false
-            })
-        }
-    /*    else if (!emailInput.contains("@")){
-            return ({
-                mes: "Mail adresi abc@desird.com.tr \n formatında olmalıdır !",
-                stat: false
-            })
-        }*/
-        else if (!emailRegex.test(emailInput)){
-            return ({
-                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
-                stat: false
-            })
-        }
-        else if (emailInput.split("@")[1] !==  "orema.com.tr" && emailInput.split("@")[1] !== "desird.com.tr"){
-            return ({
-                mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
-                stat: false
-            })
-        }
-        else{
-            return ({
-                mes: "E Mail Validasyonu Okey",
-                stat: true
-            })
-        }
-
-    }
-
     checkLoginData(userMail, userPassword) {
-
-        if (!this.validateForPassword(userPassword).stat) {
+        if (!this.validateForEmail(userMail).stat) {
+            this.setState({
+                mes: this.validateForEmail(userMail).mes
+            })
+        } else if (!this.validateForPassword(userPassword).stat) {
             this.setState({
                 mes: this.validateForPassword(userPassword).mes
             })
-        }
-        else if (!this.validateForEmail(userMail).stat){
-            this.setState({
-                mes:this.validateForEmail(userMail).mes
-            })
-        }
-        else {
+        } else {
             api.post('/login',
                 {
                     userMail: userMail,

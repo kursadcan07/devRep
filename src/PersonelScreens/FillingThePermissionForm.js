@@ -5,7 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
 import setPermissionAction from "../actions/setPermissionAction";
@@ -28,12 +27,13 @@ import moment from "moment";
     8) Onaylamaya Geç (Button Component)
     9) Uyarı Alanı (<h1> component)
 */
+let distRegex = /^\d+$/;
 
 const mapStateToProps = (state) => {
     return {
 
         userStatus: state.permissionReducer.userStatus,
-        displayStatus:state.permissionReducer.displayStatus,
+        displayStatus: state.permissionReducer.displayStatus,
 
         userID: state.userLoginReducer.userID,
         permissionDescription: state.permissionReducer.permissionDescription,
@@ -42,43 +42,23 @@ const mapStateToProps = (state) => {
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
         demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
 
+        begDateSelectionStat: state.permissionReducer.begDateSelectionStat || false,
+        endDateSelectionStat: state.permissionReducer.endDateSelectionStat || false,
+
         selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
         selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
         priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
-        totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
+        totalDistanceOfIndividualCar:  state.permissionReducer.totalDistanceOfIndividualCar,
 
-        foldCode:state.permissionReducer.foldCode,
-        areaCode:state.permissionReducer.areaCode,
+        foldCode: state.permissionReducer.foldCode,
+        areaCode: state.permissionReducer.areaCode,
 
         displayThePermissionName: state.permissionReducer.displayThePermissionName,
-        setPermissionType: state.permissionReducer.setPermissionType
+        setPermissionType: state.permissionReducer.setPermissionType,
+
     }
 };
-function inputForBus(usageID) {
-    if (usageID==="v3") {
-        return (
-            <div className="justify-content-center">
-                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Ücret (₺)"
-                       value={this.props.priceOfTrainOrBus|| " "} onChange={this.takePriceForBusAndTrain}/>
-            </div>
-        )
-    } else {
-        return null;
-    }
-}
 
-function inputForDist(usageID) {
-    if (usageID==="v4") {
-        return (
-            <div>
-                <input type="text" style={{height: "100%", margin: "0.1vw"}} placeholder="Gidiş-Geliş (km)"
-                       value={this.props.totalDistanceOfIndividualCar|| null} onChange={this.takeTotalDistanceForIndividualCar}/>
-            </div>
-        )
-    } else {
-        return null;
-    }
-}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -106,26 +86,33 @@ class FillingThePermissionForm extends React.Component {
 
 
         this.state = {
-            userID:props.userID,
+            userID: props.userID,
             displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
             setPermissionType: props.setPermissionType,
 
+            warningMessage: "",
+            checkStatus: false,
+
+            begDateSelectionStat: props.begDateSelectionStat || false,
+            endDateSelectionStat: props.endDateSelectionStat || false,
+
             userStatus: props.userStatus,
-            displayStatus:props.displayStatus,
-            personalName:props.personalName,
+            displayStatus: props.displayStatus,
+            personalName: props.personalName,
 
             demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
-            beginDateOfPermission:props.beginDateOfPermission || new Date("2020-01-01T00:00"),
+            beginDateOfPermission: props.beginDateOfPermission || new Date("2020-01-01T00:00"),
             endDateOfPermission: props.endDateOfPermission || new Date("2020-01-01T00:00"),
 
             selectVehicleUsageName: props.selectVehicleUsageName || "Araç Kullanım Durumu Seçiniz",
             selectVehicleUsageID: props.selectVehicleUsageID || "",
 
-            foldCode:props.foldCode,
-            areaCode:props.areaCode,
+            foldCode: props.foldCode,
+            areaCode: props.areaCode,
 
-            priceOfTrainOrBus:props.priceOfTrainOrBus||  0,
-            totalDistanceOfIndividualCar:props.totalDistanceOfIndividualCar || 0,
+            priceOfTrainOrBus: "",
+            totalDistanceOfIndividualCar:"",
+
             displayEnterPriceBox: false,
             displayEnterDistanceBox: false,
             permissionDescription: props.permissionDescription || ""
@@ -136,16 +123,40 @@ class FillingThePermissionForm extends React.Component {
         this.handleBeginDateOfPermission = this.handleBeginDateOfPermission.bind(this);
         this.handleEndDateOfPermission = this.handleEndDateOfPermission.bind(this);
 
-
         this.handleTheSelectionOfVehicle = this.handleTheSelectionOfVehicle.bind(this);
         this.takePriceForBusAndTrain = this.takePriceForBusAndTrain.bind(this);
         this.updatePermissionDescription = this.updatePermissionDescription.bind(this);
         this.takeTotalDistanceForIndividualCar = this.takeTotalDistanceForIndividualCar.bind(this);
-        //this.validateAndSetPermission = this.validateAndSetPermission.bind(this);
+        this.validateAndSetData = this.validateAndSetData.bind(this);
 
-        inputForBus = inputForBus.bind(this);
-        inputForDist = inputForDist.bind(this);
+        this.inputsForBusAndCarUsage = this.inputsForBusAndCarUsage.bind(this);
 
+    }
+
+    inputsForBusAndCarUsage(usageID) {
+        if (usageID === "v3") {
+            console.log(this.state.priceOfTrainOrBus);
+            return (
+                <div>
+                    <input type="text" className="form-control" style={{height: "100%", margin: "0.1vw"}}
+                           placeholder="Ücret (₺)"
+                           value={this.state.priceOfTrainOrBus|| ""} onChange={this.takePriceForBusAndTrain}/>
+                </div>
+            )
+        } else if (usageID === "v4") {
+
+            return (
+                <div>
+                    <input type="text"  className="form-control" style={{height: "100%", margin: "0.1vw"}}
+                           placeholder="Gidiş-Geliş (km)"
+                           value={this.state.totalDistanceOfIndividualCar|| ""}
+                           onChange={this.takeTotalDistanceForIndividualCar}/>
+                </div>
+            )
+        }
+        else {
+            return null;
+        }
     }
 
     selectTheTypeOfPermission(event) {
@@ -154,10 +165,6 @@ class FillingThePermissionForm extends React.Component {
             setPermissionType: event.target.id
         })
     }
-
-/*    validateAndSetPermission(){
-        this.props.setPermission(this.state);
-    }*/
 
     takeTotalDistanceForIndividualCar(event) {
         this.setState({
@@ -169,7 +176,6 @@ class FillingThePermissionForm extends React.Component {
         this.setState({
             priceOfTrainOrBus: event.target.value
         });
-
     }
 
     handleTheSelectionOfVehicle(event) {
@@ -180,20 +186,100 @@ class FillingThePermissionForm extends React.Component {
     }
 
     updatePermissionDescription(event) {
-        this.setState({permissionDescription: event.target.value})
+        //console.log(event.target.value+"---");
+        this.setState({
+            permissionDescription: event.target.value
+        })
     }
 
     handleBeginDateOfPermission(date) {
         this.setState({
-            beginDateOfPermission: date
+            beginDateOfPermission: date,
+            begDateSelectionStat: true
         });
-
     }
 
     handleEndDateOfPermission(date) {
         this.setState({
-            endDateOfPermission: date
+            endDateOfPermission: date,
+            endDateSelectionStat: true
         });
+    }
+
+    validateAndSetData() {
+
+        if (this.state.selectVehicleUsageID !== "v3") {
+            this.setState({
+                priceOfTrainOrBus: 0
+            })
+        }
+        if (this.state.selectVehicleUsageID !== "v4") {
+            this.setState({
+                totalDistanceOfIndividualCar: 0
+            })
+        }
+
+
+
+        if (this.state.setPermissionType !== "1" &&
+            this.state.setPermissionType !== "2" &&
+            this.state.setPermissionType !== "3" &&
+            this.state.setPermissionType !== "4" &&
+            this.state.setPermissionType !== "5" &&
+            this.state.setPermissionType !== "6") {
+            this.setState({
+                warningMessage: "İZİN TİPİNİ SEÇİNİZ !",
+                checkStatus: false
+            })
+        } else if (!this.state.begDateSelectionStat) {
+            this.setState({
+                warningMessage: "İZİN BAŞLANGIÇ TARİHİNİ SEÇİNİZ !",
+                checkStatus: false
+            })
+        } else if (!this.state.endDateSelectionStat) {
+            this.setState({
+                warningMessage: "İZİN BİTİŞ TARİHİNİ SEÇİNİZ !",
+                checkStatus: false
+            })
+        } else if (this.state.beginDateOfPermission > this.state.endDateOfPermission) {
+            this.setState({
+                warningMessage: "İZİN BİTİŞ BAŞLANGIÇTAN SONRA OLMALIDIR !",
+                checkStatus: false
+            })
+        } else if (this.state.selectVehicleUsageID !== "v1" &&
+            this.state.selectVehicleUsageID !== "v2" &&
+            this.state.selectVehicleUsageID !== "v3" &&
+            this.state.selectVehicleUsageID !== "v4") {
+            this.setState({
+                warningMessage: "ARAÇ KULLANIM DURUMUNU SEÇİNİZ !",
+                checkStatus: false
+            })
+        }
+        else if (this.state.permissionDescription === "" || this.state.permissionDescription === undefined || this.state.permissionDescription === null) {
+            this.setState({
+                warningMessage: "İZİN AÇIKLAMANIZI DOLDURUNUZ !!",
+                checkStatus: false
+            })
+
+        }
+        if (this.state.selectVehicleUsageID === "v3" && this.state.priceOfTrainOrBus === "0") {
+                this.setState({
+                    warningMessage: "O TL OLAMAZ !! !",
+                    checkStatus: false
+                })
+        }
+        else {
+
+            this.setState({
+                warningMessage: "TANIMLAMA BAŞARILI",
+                checkStatus: true
+            })
+            this.props.setPermission(this.state)
+            this.props.history.push({
+                pathname: '/PersonelScreens/DisplayPermissionForm',
+            })
+        }
+
     }
 
     render() {
@@ -265,7 +351,7 @@ class FillingThePermissionForm extends React.Component {
                     </Row>
                     {/* Here the vehicle usage selection part as dropdown */}
                     <Row className="justify-content-center" style={{margin: "10px"}}>
-                        <DropdownButton id="dropdown-item-button" title={this.props.selectVehicleUsageName}>
+                        <DropdownButton id="dropdown-item-button" title={this.state.selectVehicleUsageName}>
                             <Dropdown.Item id="v1" name="Araç Kullanılmayacak" as="button"
                                            onClick={this.handleTheSelectionOfVehicle}>Araç
                                 Kullanılmayacak</Dropdown.Item>
@@ -286,34 +372,35 @@ class FillingThePermissionForm extends React.Component {
                             2)When employee selects  "Şahsi Araç Kullanılacak" second components becomes active to take
                                 total distance of journey as KM.
                         */}
-                        {inputForBus(this.state.selectVehicleUsageID)}
-                        {inputForDist(this.state.selectVehicleUsageID)}
+                        {this.inputsForBusAndCarUsage(this.state.selectVehicleUsageID)}
+
                     </Row>
                     {/*
                         This components allows to fill explanation of permission demand.
                     */}
                     <Row className="justify-content-center" md={3} style={{margin: "10px"}}>
                         <div>
-                            <textarea placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
-                                      value={this.state.permissionDescription}
+                            <textarea id ="textID" placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
+                                      value={this.state.permissionDescription || ""}
                                       className="form-control" rows="4" onChange={this.updatePermissionDescription}/>
                         </div>
                     </Row>
                     {/*
                         This component navigates the user to display permission demand before send as a demand.
-                        Navigates to "DisplayPermissionForm" class.
+                        Navigates to "DisplayPermissionForm" class. this.validateAndSetData(this.state)
                     */}
                     <Row className="justify-content-center">
-                        <Link to="DisplayPermissionForm">
-                            <Button variant="primary" size="lg" active onClick={this.props.setPermission(this.state)}>
-                                ONAYLAMAYA GEÇ
-                            </Button>
-                        </Link>
+                        <Button variant="primary" size="lg" active onClick={ () =>{
+                            this.validateAndSetData()
+                        }
+                        }>
+                            ONAYLAMAYA GEÇ
+                        </Button>
                     </Row>
                     {/* This part for warning for inputs */}
                     <Row className="justify-content-center">
                         <p style={{paddingTop: "1vw"}}>
-                            UYARI ALANI
+                            {this.state.warningMessage}
                         </p>
                     </Row>
 
