@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import setPermissionAction from "../actions/setPermissionAction";
 import {KeyboardDateTimePicker} from "@material-ui/pickers";
 import moment from "moment";
+let numbRegex = /^[0-9]+$/;
 
 /*
    This class allows to user that filling the permission form.
@@ -27,7 +28,6 @@ import moment from "moment";
     8) Onaylamaya Geç (Button Component)
     9) Uyarı Alanı (<h1> component)
 */
-let distRegex = /^\d+$/;
 
 const mapStateToProps = (state) => {
     return {
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
         personalName: state.userLoginReducer.personalName,
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
-        demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
+        //demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
 
         begDateSelectionStat: state.permissionReducer.begDateSelectionStat || false,
         endDateSelectionStat: state.permissionReducer.endDateSelectionStat || false,
@@ -139,7 +139,7 @@ class FillingThePermissionForm extends React.Component {
             return (
                 <div>
                     <input type="text" className="form-control" style={{height: "100%", margin: "0.1vw"}}
-                           placeholder="Ücret (₺)"
+                           placeholder="Ücret (₺)" maxLength="4"
                            value={this.state.priceOfTrainOrBus|| ""} onChange={this.takePriceForBusAndTrain}/>
                 </div>
             )
@@ -149,6 +149,7 @@ class FillingThePermissionForm extends React.Component {
                 <div>
                     <input type="text"  className="form-control" style={{height: "100%", margin: "0.1vw"}}
                            placeholder="Gidiş-Geliş (km)"
+                           maxLength="4"
                            value={this.state.totalDistanceOfIndividualCar|| ""}
                            onChange={this.takeTotalDistanceForIndividualCar}/>
                 </div>
@@ -256,20 +257,26 @@ class FillingThePermissionForm extends React.Component {
             })
         }
         else if (this.state.permissionDescription === "" || this.state.permissionDescription === undefined || this.state.permissionDescription === null) {
+
             this.setState({
                 warningMessage: "İZİN AÇIKLAMANIZI DOLDURUNUZ !!",
                 checkStatus: false
             })
 
         }
-        if (this.state.selectVehicleUsageID === "v3" && this.state.priceOfTrainOrBus === "0") {
+        else if (this.state.selectVehicleUsageID === "v3" && (this.state.priceOfTrainOrBus==="0" || this.state.priceOfTrainOrBus===null ||this.state.priceOfTrainOrBus===undefined)) {
+            this.setState({
+                warningMessage: "ÜCRET ALANI BOŞ BIRAKILAMAZ !",
+                checkStatus: false
+            })
+        }
+        else if (this.state.selectVehicleUsageID === "v3" && !numbRegex.test(this.state.priceOfTrainOrBus)) {
                 this.setState({
-                    warningMessage: "O TL OLAMAZ !! !",
+                    warningMessage: "ÜCRETİ RAKAMLARLA GİRİNİZ !",
                     checkStatus: false
                 })
         }
         else {
-
             this.setState({
                 warningMessage: "TANIMLAMA BAŞARILI",
                 checkStatus: true
