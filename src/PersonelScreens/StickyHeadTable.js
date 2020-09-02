@@ -16,6 +16,40 @@ import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
 import ResponsiveDialog from "./ResponsiveDialog";
 
+/*
+const rows1 = [
+    createData(2, '123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 3, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '130', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+    createData(2, '131', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
+        "LUK VAR", "KABUL EDİLMİŞTİR"),
+];
+function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPermission, chiefConfirmStatus,generalManagerConfirmStatus, chiefsDescription, generalManagerDescription) {
+    return {
+        userStatus,
+        permissionID,
+        beginDateOfPermission,
+        endDateOfPermission,
+        chiefConfirmStatus,
+        generalManagerConfirmStatus,
+        chiefsDescription,
+        generalManagerDescription
+    };
+}*/
+
 {/*Here the main theme that specifies the local and background color.*/
 }
 const theme = createMuiTheme({
@@ -29,7 +63,7 @@ const theme = createMuiTheme({
 }
 const columns = [
     {
-        id: 'demandID',
+        id: 'permissionID',
         label: 'İzin ID'
     },
     {
@@ -141,6 +175,7 @@ export default function StickyHeadTable(props) {
     }
 
     function DisplayTheRowOfForm() {
+
         return (
             <React.Fragment>
                 {/* First Grid defined here */}
@@ -229,6 +264,7 @@ export default function StickyHeadTable(props) {
     }
 
     return (
+
         <div  >
             <div style={{display: "flex", justifyContent: "flex-end", margin: "5px"}}>
                 <Bounce>
@@ -254,20 +290,17 @@ export default function StickyHeadTable(props) {
                             </TableHead>
                             <TableBody>
                                 {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                    console.log(row)
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.demandID}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.permissionID}>
                                             {columns.map((column) => {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id}>
                                                         {value}
-                                                        {column.id === "chiefAcceptance" &&
-                                                        <ResponsiveDialog chiefStatus={row.chiefStatus}
-                                                                          explanationOfChief={row.explanationOfChief}/>}
-                                                        {column.id === "generalManAcceptance" &&
-                                                        <ResponsiveDialog chiefStatus={row.bossStatus}
-                                                                          explanationOfGeneralManager={row.explanationOfGeneralManager}/>}
-                                                        {column.id === "displayScreen" && displayPermissionForm(row.typeOfUser)}
+                                                        {column.id === "chiefAcceptance" && <ResponsiveDialog chiefStatus={row.chiefConfirmStatus} explanationOfChief={row.chiefsDescription}/>}
+                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefStatus={row.generalManagerConfirmStatus} explanationOfGeneralManager={row.generalManagerDescription}/>}
+                                                        {column.id === "displayScreen" && displayPermissionForm(row.userStatus)}
                                                     </TableCell>
                                                 );
                                             })}

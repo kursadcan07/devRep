@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 
         personalName: state.userLoginReducer.personalName,
 
-        demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
+        demandDateOfPermission:moment().format("DD-MM-YYYY HH:mm:ss"),
 
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
@@ -46,6 +46,7 @@ class DisplayPermissionForm extends React.Component {
         this.state = {
             sendPermissionDemand: false,
         }
+        console.log(this.props.demandDateOfPermission);
     }
 
     componentDidMount() {
@@ -95,7 +96,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPersonalInformationPart(this.props.personalName, this.props.demandDate)}
+                        {displayPersonalInformationPart(this.props.personalName, this.props.demandDateOfPermission)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -1321,7 +1322,7 @@ function displayManagersButtonsForForm() {
 }
 
 const api = axios.create({
-    baseURL: `http://localhost:5000`
+    baseURL: `http://localhost:4000`
 })
 
 function dateConverter(givenDate1) {
@@ -1409,7 +1410,6 @@ function displayPersonelsButtonsForForm(props, userIDS,
                     </Link>
 
                     <button type="button" onClick={() => {
-                        console.log(beginDateOfPermissionS + " ::: " + endDateOfPermissionS + " ::: " + demandDateOfPermissionS)
                         api.post('/createPermission',
                             {
                                 personalName: personalNameS,
@@ -1461,7 +1461,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                             GÖNDER
                         </h1>
                     </button>
-                    {/*  </Link>*/}
+
                 </Row>
             </Col>
         </div>

@@ -10,7 +10,6 @@ import {connect} from "react-redux";
 
 const axios = require('axios');
 
-
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
@@ -30,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const api = axios.create({
-    baseURL: `http://localhost:5000`
+    baseURL: `http://localhost:4000`
 })
 let passRegex = /^[a-zA-Z0-9]{5,12}$/
 // eslint-disable-next-line no-control-regex
@@ -60,38 +59,73 @@ class loginScreen extends React.Component {
         this.setState({userPassword: event.target.value})
     }
 
+<<<<<<< HEAD
     validateForEmail(emailInput){
         if(emailInput.length<10){
+=======
+    validateForEmail(emailInput) {
+        if (emailInput.length < 10) {
+>>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Mail adresi çok kısa !",
                 stat: false
             })
+<<<<<<< HEAD
         }
         else if(emailInput.length>50){
+=======
+        } else if (emailInput.length > 50) {
+>>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Mail adresi çok uzun !",
                 stat: false
             })
+<<<<<<< HEAD
         }
         else if (!emailRegex.test(emailInput)){
+=======
+        } else if (!emailRegex.test(emailInput)) {
             return ({
                 mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
                 stat: false
             })
-        }
-        else if (emailInput.split("@")[1] !==  "orema.com.tr" && emailInput.split("@")[1] !== "desird.com.tr"){
+        } else if (emailInput.split("@")[1] !== "orema.com.tr" && emailInput.split("@")[1] !== "desird.com.tr") {
             return ({
                 mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
                 stat: false
             })
-        }
-        else{
+        } else {
             return ({
                 mes: "E Mail Validasyonu Okey",
                 stat: true
             })
         }
 
+    }
+
+    validateForPassword(passwordInput) {
+        if (passwordInput.length < 5) {
+            return ({
+                mes: "Şifre 5 karakterden kısa olamaz !",
+                stat: false
+            })
+        } else if (passwordInput.length > 12) {
+>>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
+            return ({
+                mes: "Şifre 12 karakterden uzun olamaz !",
+                stat: false
+            })
+        } else if (!passRegex.test(passwordInput)) {
+            return ({
+                mes: "Şifrede özel karakter bulunamaz !",
+                stat: false
+            })
+        } else {
+            return ({
+                mes: "Giriş Başarılı",
+                stat: true
+            })
+        }
     }
 
     validateForPassword(passwordInput) {
@@ -119,18 +153,15 @@ class loginScreen extends React.Component {
     }
 
     checkLoginData(userMail, userPassword) {
-
-        if (!this.validateForPassword(userPassword).stat) {
+        if (!this.validateForEmail(userMail).stat) {
+            this.setState({
+                mes: this.validateForEmail(userMail).mes
+            })
+        } else if (!this.validateForPassword(userPassword).stat) {
             this.setState({
                 mes: this.validateForPassword(userPassword).mes
             })
-        }
-        else if (!this.validateForEmail(userMail).stat){
-            this.setState({
-                mes:this.validateForEmail(userMail).mes
-            })
-        }
-        else {
+        } else {
             api.post('/login',
                 {
                     userMail: userMail,

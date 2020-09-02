@@ -5,10 +5,13 @@ const permissionReducer = (state = {
     displayStatus:2,
 
     personalName:"-",
-    demandDateOfPermission:null,
+    demandDateOfPermission:undefined,
 
     beginDateOfPermission:new Date("2020-01-01T00:00"),
     endDateOfPermission: new Date("2020-01-01T00:00"),
+
+    begDateSelectionStat:false,
+    endDateSelectionStat:false,
 
     foldCode:25,
     areaCode:50,
@@ -18,9 +21,10 @@ const permissionReducer = (state = {
     selectVehicleUsageName:"Araç kullanım durumu",
     selectVehicleUsageID:"",
 
-    priceOfTrainOrBus:null,
-    totalDistanceOfIndividualCar:null,
+    priceOfTrainOrBus:"",
+    totalDistanceOfIndividualCar:"",
 
+    displayThePermissionName:"",
     setThePermissionType:2,
 
     chiefConfirmStatus:-1,
@@ -44,6 +48,10 @@ const permissionReducer = (state = {
 
                 beginDateOfPermission:action.payload.beginDateOfPermission,
                 endDateOfPermission:action.payload.endDateOfPermission,
+
+                begDateSelectionStat:action.payload.begDateSelectionStat,
+                endDateSelectionStat:action.payload.endDateSelectionStat,
+
 
                 foldCode:action.payload.foldCode,
                 areaCode:action.payload.areaCode,
