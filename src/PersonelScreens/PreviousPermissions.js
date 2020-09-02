@@ -2,13 +2,12 @@ import React from "react";
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import StickyHeadTable from "./StickyHeadTable";
 import {connect} from "react-redux";
+import {constants} from "react-spring/cookbook";
+
 const axios = require('axios');
 
-
-
-
 const api = axios.create({
-    baseURL: `http://localhost:5000`
+    baseURL: `http://localhost:4000`
 })
 
 const mapStateToProps = (state) => {
@@ -41,28 +40,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-//AKTİF İZİN TALEPLERİ
-/*const rows = [
-    createData(1, '123', "22/22/2222", "22/22/2222", "22/22/2222", 1, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 2, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 3, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 4, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 5, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 6, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '130', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(1, '131', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-];*/
-
+//
 const rows1 = [
     createData(2, '123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
         "LUK VAR", "KABUL EDİLMİŞTİR"),
@@ -85,16 +63,19 @@ const rows1 = [
 ];
 
 
-/*function displayActiveDemands(displayActives) {
-    if (displayActives) {
-        return (
-            <StickyHeadTable rows={rows}/>
-        );
-    } else {
-        return (<StickyHeadTable rows={rows1}/>);
-    }
-}*/
-function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPermission, chiefConfirmStatus,generalManagerConfirmStatus, chiefsDescription, generalManagerDescription) {
+/*
+ var json = {"active":{"label":"Active","value":"12"},"automatic":{"label":"Automatic","value":"8"},"waiting":{"label":"Waiting","value":"1"},"manual":{"label":"Manual","value":"3"}};
+    var arr = [];
+    Object.keys(json).forEach(function(key) {
+      arr.push(json[key]);
+    });
+    return <ul>{arr.map(item => <MyAppChild key={item.label} label={item.label} value={item.value} />)}</ul>;
+
+
+
+
+ */
+function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPermission, chiefConfirmStatus, generalManagerConfirmStatus, chiefsDescription, generalManagerDescription) {
     return {
         userStatus,
         permissionID,
@@ -106,46 +87,47 @@ function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPe
         generalManagerDescription
     };
 }
-function takeDataAndConvertDisplayForm(givenDataJson) {
-    const arr = []
-    const dataArr = []
-    Object.keys(givenDataJson).forEach(key => arr.push({name: key, value: givenDataJson[key]}));
-    for (let i = 0; i < arr.length; i++) {
-        dataArr.push( createData(
-            arr[i].value.userStatus,
-            arr[i].value.permissionID,
-            arr[i].value.beginDateOfPermission,
-            arr[i].value.endDateOfPermission,
-            arr[i].value.chiefConfirmStatus,
-            arr[i].value.generalManagerConfirmStatus,
-            arr[i].value.chiefsDescription,
-            arr[i].value.generalManagerDescription
-        ));
-    }
-    return dataArr;
-}
 
-
-
-let rows=  [];
 class PreviousPermissions extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            displayActives: true
+            displayActives: true,
+            rows:null,
         }
-        this.ToggleButton = this.ToggleButton.bind(this);
-        console.log(this.state.userID)
+        this.arr2=[];
+
         api.get('/displayUsersPermissions/:userID', {
             params: {
-                userID: this.state.userID
+                userID: this.props.userID
             }
         }).then(
             function (response) {
-                rows =takeDataAndConvertDisplayForm(response.data.prevPerms);
-               //    rows: takeDataAndConvertDisplayForm(response.data.prevPerms),
+                console.log(response)
+                var arr = [];
+                Object.keys(response.data.prevPerms).forEach(function (key) {
+                    arr.push(response.data.prevPerms[key]);
+                });
+
+                for (let i = 0; i < arr.length; i++) {
+
+                    this.arr2.push(createData(
+                        arr[i].userStatus,
+                        arr[i].permissionID,
+                        arr[i].beginDateOfPermission,
+                        arr[i].endDateOfPermission,
+                        arr[i].chiefConfirmStatus,
+                        arr[i].generalManagerConfirmStatus,
+                        arr[i].chiefsDescription,
+                        arr[i].generalManagerDescription)
+                    )
+                }
+
             }
+
         )
+        this.ToggleButton = this.ToggleButton.bind(this);
     }
 
     ToggleButton() {
@@ -155,7 +137,7 @@ class PreviousPermissions extends React.Component {
     }
 
     render() {
-
+        console.log(this.arr2);
         return (
             <div style={{
                 display: "flex",
@@ -177,8 +159,13 @@ class PreviousPermissions extends React.Component {
                         onChange={() => this.ToggleButton()}
                     />
                 </div>
-                <StickyHeadTable rows={this.rows}/>
+                <div>
+                    <StickyHeadTable rows={this.state.rows}/>
+                </div>
+
+
             </div>
+
         )
     }
 }

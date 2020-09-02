@@ -294,7 +294,6 @@ export default function StickyHeadTable(props) {
                                     return (
                                         <TableRow hover role="checkbox" tabIndex={-1} key={row.permissionID}>
                                             {columns.map((column) => {
-                                                console.log(row)
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id}>
