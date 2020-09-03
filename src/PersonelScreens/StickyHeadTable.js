@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -13,42 +13,10 @@ import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import {trTR} from '@material-ui/core/locale';
 import {Bounce} from "react-reveal";
 import Grid from "@material-ui/core/Grid";
-import {Link} from "react-router-dom";
 import ResponsiveDialog from "./ResponsiveDialog";
 
-/*
-const rows1 = [
-    createData(2, '123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 3, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '130', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '131', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-];
-function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPermission, chiefConfirmStatus,generalManagerConfirmStatus, chiefsDescription, generalManagerDescription) {
-    return {
-        userStatus,
-        permissionID,
-        beginDateOfPermission,
-        endDateOfPermission,
-        chiefConfirmStatus,
-        generalManagerConfirmStatus,
-        chiefsDescription,
-        generalManagerDescription
-    };
-}*/
+const axios = require('axios');
+
 
 {/*Here the main theme that specifies the local and background color.*/
 }
@@ -59,6 +27,11 @@ const theme = createMuiTheme({
 
 }, trTR);
 
+
+const api = axios.create({
+    baseURL: `http://localhost:4000`
+})
+
 {/*Here the columns that are specifies the main tags of rows.*/
 }
 const columns = [
@@ -67,19 +40,19 @@ const columns = [
         label: 'İzin ID'
     },
     {
-        id: 'demandBegin',
+        id: 'beginDateOfPermission',
         label: 'İZİN BAŞLANGIÇ',
     },
     {
-        id: 'demandEnd',
+        id: 'endDateOfPermission',
         label: 'İZİN BİTİŞ',
     },
     {
-        id: 'chiefAcceptance',
+        id: 'chiefConfirmStatus',
         label: 'AMİR ONAYI',
     },
     {
-        id: 'generalManAcceptance',
+        id: 'generalManagerConfirmStatus',
         label: 'GENEL MÜDÜR ONAYI',
     },
     {
@@ -88,29 +61,64 @@ const columns = [
     },
 ];
 
-/* This function determines a button to monitor related permission in form*/
-function displayPermissionForm() {
+
+/*
+
+userID: state.permissionReducer.userID,
+
+    userStatus: state.permissionReducer.userStatus,
+    displayStatus: state.permissionReducer.displayStatus,
+
+    personalName: state.userLoginReducer.personalName,
+
+    demandDateOfPermission:moment().format("DD-MM-YYYY HH:mm:ss"),
+
+    beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
+    endDateOfPermission: state.permissionReducer.endDateOfPermission,
+
+    foldCode: state.permissionReducer.foldCode,
+    areaCode: state.permissionReducer.areaCode,
+
+    selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
+    selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
+
+    permissionDescription: state.permissionReducer.permissionDescription,
+
+    personalCarUsage: state.permissionReducer.personalCarUsage,
+    totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
+    priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
+
+    displayThePermissionName: state.permissionReducer.displayThePermissionName,
+    setPermissionType: state.permissionReducer.setPermissionType
+*/
+
+
+/*
+
+/!* This function determines a button to monitor related permission in form*!/
+function displayPermissionForm(permissionID) {
     return (
         <div style={{
             display: "flex",
             justifyContent: "flex-start"
         }}>
-            <Link to="DisplayPermissionForm">
-                <Button variant="outlined" color="primary" style={{
+           {/!* <Link to="DisplayPermissionForm">*!/}
+            {/!*    <Button variant="outlined" color="primary" style={{
                     display: "flex",
                     justifyContent: "flex-start",
                     padding: "1px",
                     background: "rgba(180,133,205,0.64)",
                     borderRadius: "50%"
-                }}>
-                    <img style={{width: "30px", height: "20px", margin: "auto"}}
+                }}>*!/}
+
+                    {/!*<img style={{width: "30px", height: "20px", margin: "auto"}}
                          src={require('./SystemImages/DisplayPermissionButtonIcon.svg')}
-                         alt="my image"/>
-                </Button>
-            </Link>
+                         alt="my image"/>*!/}
+           {/!*     </Button>*!/}
+          {/!*  </Link>*!/}
         </div>
     )
-}
+}*/
 
 {/*Here the style definition for usage of varible classes*/
 }
@@ -141,6 +149,7 @@ const stylesForBounce = makeStyles((theme) => ({
     related informations.
 */
 }
+
 export default function StickyHeadTable(props) {
     /*
     * Here the variables and states that are determined to decide style.
@@ -163,16 +172,6 @@ export default function StickyHeadTable(props) {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    {/*
-
-        This component describes the signs meanings in the table.
-        As:
-            1) ✔ => ONAY
-            2) ⊖ => BEKLEMEDE
-            3)
-
-    */
-    }
 
     function DisplayTheRowOfForm() {
 
@@ -263,9 +262,9 @@ export default function StickyHeadTable(props) {
         );
     }
 
-    return (
 
-        <div  >
+    return (
+        <div>
             <div style={{display: "flex", justifyContent: "flex-end", margin: "5px"}}>
                 <Bounce>
                     <Grid container item xs={12} spacing={1}>
@@ -273,7 +272,7 @@ export default function StickyHeadTable(props) {
                     </Grid>
                 </Bounce>
             </div>
-            <ThemeProvider theme={theme} >
+            <ThemeProvider theme={theme}>
                 <Paper className={defineRootAndContainerProperties.root}>
                     <TableContainer className={defineRootAndContainerProperties.container}>
                         <Table stickyHeader aria-label="sticky table">
@@ -290,7 +289,6 @@ export default function StickyHeadTable(props) {
                             </TableHead>
                             <TableBody>
                                 {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                    console.log(row)
                                     return (
                                         <TableRow hover role="checkbox" tabIndex={-1} key={row.permissionID}>
                                             {columns.map((column) => {
@@ -298,9 +296,25 @@ export default function StickyHeadTable(props) {
                                                 return (
                                                     <TableCell key={column.id}>
                                                         {value}
-                                                        {column.id === "chiefAcceptance" && <ResponsiveDialog chiefStatus={row.chiefConfirmStatus} explanationOfChief={row.chiefsDescription}/>}
-                                                        {column.id === "generalManAcceptance" && <ResponsiveDialog chiefStatus={row.generalManagerConfirmStatus} explanationOfGeneralManager={row.generalManagerDescription}/>}
-                                                        {column.id === "displayScreen" && displayPermissionForm(row.userStatus)}
+                                                        {column.id === "chiefConfirmStatus" &&
+                                                        <ResponsiveDialog chiefConfirmStatus={row.chiefConfirmStatus}
+                                                                          desParam={1}
+                                                                          explanationOfChief={row.chiefsDescription}/>}
+                                                        {column.id === "generalManagerConfirmStatus" &&
+                                                        <ResponsiveDialog
+                                                            generalManagerConfirmStatus={row.generalManagerConfirmStatus}
+                                                            desParam={2}
+                                                            explanationOfGeneralManager={row.generalManagerDescription}/>}
+                                                        {column.id === "displayScreen" && <Button onClick={()=>{
+                                                                api.get('/displayPermissionByID/' + row.permissionID)
+                                                                    .then(
+                                                                        function (response) {
+                                                                            console.log(response)
+                                                                        }
+                                                                    )
+
+
+                                                            }}>abc</Button>}
                                                     </TableCell>
                                                 );
                                             })}
@@ -322,5 +336,5 @@ export default function StickyHeadTable(props) {
                 </Paper>
             </ThemeProvider>
         </div>
-    );
+    )
 }

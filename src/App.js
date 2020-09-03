@@ -38,6 +38,7 @@ function App() {
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
                     <Route path="/PersonelScreens/NavigateTheChief" component={NavigateTheChief} />
                     <Route path="/PersonelScreens/DisplayPermissionForm" render={(props) => <DisplayPermissionForm {...props} title={`Props through render`} />}/>
+                    <Route path="/PersonelScreens/DisplayPermissionForm/:permissionID" render={(props) => <DisplayPermissionForm {...props} title={`Props through render`} />}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>
                     <Route path="/PersonelScreens/StickyHeadTable" component={StickyHeadTable}/>
                     <Route path="/PersonelScreens/TakeTheSignature" component={TakeTheSignature} />

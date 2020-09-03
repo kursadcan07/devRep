@@ -46,7 +46,7 @@ class DisplayPermissionForm extends React.Component {
         this.state = {
             sendPermissionDemand: false,
         }
-        console.log(this.props.demandDateOfPermission);
+
     }
 
     componentDidMount() {
@@ -108,20 +108,20 @@ class DisplayPermissionForm extends React.Component {
                         {
 
                             displayEmployeesPermissionDates(
-                                this.props.beginDateOfPermission.getDate() + "-" +
-                                (this.props.beginDateOfPermission.getMonth() + 1) + "-" +
+                                this.props.beginDateOfPermission.getDate() + "/" +
+                                (this.props.beginDateOfPermission.getMonth() + 1) + "/" +
                                 this.props.beginDateOfPermission.getFullYear()
                                 ,
                                 this.props.beginDateOfPermission.getHours() +
-                                ":" +
+                                " " +
                                 this.props.beginDateOfPermission.getMinutes(),
 
-                                this.props.endDateOfPermission.getDate() + "-" +
-                                (this.props.endDateOfPermission.getMonth() + 1) + "-" +
+                                this.props.endDateOfPermission.getDate() + "/" +
+                                (this.props.endDateOfPermission.getMonth() + 1) + "/" +
                                 this.props.endDateOfPermission.getFullYear(),
 
                                 this.props.endDateOfPermission.getHours() +
-                                ":" +
+                                " " +
                                 this.props.endDateOfPermission.getMinutes(), this.props.beginDateOfPermission,
                                 this.props.endDateOfPermission
                             )}
@@ -1327,15 +1327,14 @@ const api = axios.create({
 
 function dateConverter(givenDate1) {
     let givenDate= new Date(givenDate1);
-    return givenDate.getDate() + "-" +
-        (givenDate.getMonth() + 1) + "-" +
+    return givenDate.getDate() + "/" +
+        (givenDate.getMonth() + 1) + "/" +
         givenDate.getFullYear()
-        + ":" +
+        + "-" +
         givenDate.getHours() +
-        "-" +
+        ":" +
         givenDate.getMinutes();
 }
-
 
 function displayPersonelsButtonsForForm(props, userIDS,
                                         userStatusS, personalNameS, demandDateOfPermissionS, beginDateOfPermissionS,
@@ -1425,7 +1424,8 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 priceOfTrainOrBus: priceOfTrainOrBusS,
                                 totalDistanceOfIndividualCar:totalDistanceOfIndividualCarS,
                                 permissionDescription: permissionDescriptionS,
-                                personalCarUsage: personalCarUsageS
+                                personalCarUsage: personalCarUsageS,
+                                isPermissionActive:true
                             }).then(res => {
 
                             if (res.data.stat) {

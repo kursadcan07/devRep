@@ -3,7 +3,7 @@ const permissionReducer = (state = {
 
     userStatus:2,
     displayStatus:2,
-
+    isPermissionActive:true,
     personalName:"-",
     demandDateOfPermission:undefined,
 

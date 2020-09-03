@@ -2,8 +2,6 @@ import React from "react";
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import StickyHeadTable from "./StickyHeadTable";
 import {connect} from "react-redux";
-import {constants} from "react-spring/cookbook";
-
 const axios = require('axios');
 
 const api = axios.create({
@@ -22,6 +20,7 @@ const mapStateToProps = (state) => {
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
         //demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
+        isPermissionActive:state.permissionReducer.isPermissionActive,
 
         begDateSelectionStat: state.permissionReducer.begDateSelectionStat || false,
         endDateSelectionStat: state.permissionReducer.endDateSelectionStat || false,
@@ -40,41 +39,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-//
-const rows1 = [
-    createData(2, '123', "22/22/2222", "22/22/2222", "22/22/2222", 2, 1, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '124', "22/22/2222", "22/22/2222", "22/22/2222", 2, 3, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '125', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '126', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '127', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '128', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '129', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '130', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE TATRİHİNI 22/22/2222 YE REVİZE EDİNİZ DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-    createData(2, '131', "22/22/2222", "22/22/2222", "22/22/2222", 2, 0, "İZNE ÇIKMANIZ UYGUN DEĞİLDİR YOĞUN" +
-        "LUK VAR", "KABUL EDİLMİŞTİR"),
-];
-
-
-/*
- var json = {"active":{"label":"Active","value":"12"},"automatic":{"label":"Automatic","value":"8"},"waiting":{"label":"Waiting","value":"1"},"manual":{"label":"Manual","value":"3"}};
-    var arr = [];
-    Object.keys(json).forEach(function(key) {
-      arr.push(json[key]);
-    });
-    return <ul>{arr.map(item => <MyAppChild key={item.label} label={item.label} value={item.value} />)}</ul>;
-
-
-
-
- */
 function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPermission, chiefConfirmStatus, generalManagerConfirmStatus, chiefsDescription, generalManagerDescription) {
     return {
         userStatus,
@@ -90,29 +54,46 @@ function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPe
 
 class PreviousPermissions extends React.Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
-            displayActives: true,
-            rows:null,
+            data: [],
+            displayActives: true
         }
-        this.arr2=[];
+        this.ToggleButton = this.ToggleButton.bind(this);
+        this.getData = this.getData.bind(this);
+    }
 
-        api.get('/displayUsersPermissions/:userID', {
+    ToggleButton() {
+        this.setState((currentState) => ({
+            displayActives: !this.state.displayActives
+        }));
+    }
+
+    componentDidMount() {
+        this.getData().then((data) => {
+            this.setState({data: data})
+        });
+    }
+
+    getData() {
+        let arr = [];
+        let arr2 = [];
+        return api.get('/displayUsersPermissions/:userID/:isPermissionActive', {
             params: {
-                userID: this.props.userID
+                userID: this.props.userID,
+                isPermissionActive:this.props.isPermissionActive
             }
         }).then(
             function (response) {
-                console.log(response)
-                var arr = [];
                 Object.keys(response.data.prevPerms).forEach(function (key) {
                     arr.push(response.data.prevPerms[key]);
                 });
 
                 for (let i = 0; i < arr.length; i++) {
 
-                    this.arr2.push(createData(
+                    arr2.push(createData(
                         arr[i].userStatus,
                         arr[i].permissionID,
                         arr[i].beginDateOfPermission,
@@ -123,21 +104,12 @@ class PreviousPermissions extends React.Component {
                         arr[i].generalManagerDescription)
                     )
                 }
+                return arr2
 
-            }
-
-        )
-        this.ToggleButton = this.ToggleButton.bind(this);
-    }
-
-    ToggleButton() {
-        this.setState((currentState) => ({
-            displayActives: !this.state.displayActives
-        }));
+            })
     }
 
     render() {
-        console.log(this.arr2);
         return (
             <div style={{
                 display: "flex",
@@ -159,11 +131,7 @@ class PreviousPermissions extends React.Component {
                         onChange={() => this.ToggleButton()}
                     />
                 </div>
-                <div>
-                    <StickyHeadTable rows={this.state.rows}/>
-                </div>
-
-
+                <StickyHeadTable rows={this.state.data}/>
             </div>
 
         )
