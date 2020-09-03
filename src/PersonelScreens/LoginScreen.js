@@ -60,17 +60,31 @@ class loginScreen extends React.Component {
         this.setState({userPassword: event.target.value})
     }
 
+<<<<<<< HEAD
+    validateForEmail(emailInput){
+        if(emailInput.length<10){
+=======
     validateForEmail(emailInput) {
         if (emailInput.length < 10) {
+>>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Mail adresi çok kısa !",
                 stat: false
             })
+<<<<<<< HEAD
+        }
+        else if(emailInput.length>50){
+=======
         } else if (emailInput.length > 50) {
+>>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Mail adresi çok uzun !",
                 stat: false
             })
+<<<<<<< HEAD
+        }
+        else if (!emailRegex.test(emailInput)){
+=======
         } else if (!emailRegex.test(emailInput)) {
             return ({
                 mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
@@ -88,6 +102,31 @@ class loginScreen extends React.Component {
             })
         }
 
+    }
+
+    validateForPassword(passwordInput) {
+        if (passwordInput.length < 5) {
+            return ({
+                mes: "Şifre 5 karakterden kısa olamaz !",
+                stat: false
+            })
+        } else if (passwordInput.length > 12) {
+>>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
+            return ({
+                mes: "Şifre 12 karakterden uzun olamaz !",
+                stat: false
+            })
+        } else if (!passRegex.test(passwordInput)) {
+            return ({
+                mes: "Şifrede özel karakter bulunamaz !",
+                stat: false
+            })
+        } else {
+            return ({
+                mes: "Giriş Başarılı",
+                stat: true
+            })
+        }
     }
 
     validateForPassword(passwordInput) {
