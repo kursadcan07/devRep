@@ -40,7 +40,6 @@ const mapStateToProps = (state) => {
         personalName: state.userLoginReducer.personalName,
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
-        //demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
 
         begDateSelectionStat: state.permissionReducer.begDateSelectionStat || false,
         endDateSelectionStat: state.permissionReducer.endDateSelectionStat || false,
@@ -83,8 +82,14 @@ class FillingThePermissionForm extends React.Component {
     */
     constructor(props) {
         super(props)
-
-
+        let nowDate = new Date(Date.now());
+        let currDate = new Date(
+            nowDate.getFullYear(),
+            nowDate.getMonth()+1,
+            nowDate.getDate(),
+            nowDate.getHours(),
+            nowDate.getMinutes()
+        )
         this.state = {
             userID: props.userID,
             displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
@@ -100,9 +105,9 @@ class FillingThePermissionForm extends React.Component {
             displayStatus: props.displayStatus,
             personalName: props.personalName,
 
-            demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
-            beginDateOfPermission: props.beginDateOfPermission || new Date("2020-01-01T00:00"),
-            endDateOfPermission: props.endDateOfPermission || new Date("2020-01-01T00:00"),
+            demandDateOfPermission: props.demandDateOfPermission|| currDate,
+            beginDateOfPermission: props.beginDateOfPermission || new Date(2020,1,1,0,0,0),
+            endDateOfPermission: props.endDateOfPermission || new Date(2020,1,1,0,0,0),
 
             selectVehicleUsageName: props.selectVehicleUsageName || "Araç Kullanım Durumu Seçiniz",
             selectVehicleUsageID: props.selectVehicleUsageID || "",
@@ -194,15 +199,34 @@ class FillingThePermissionForm extends React.Component {
     }
 
     handleBeginDateOfPermission(date) {
+        let currDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+        );
+
         this.setState({
-            beginDateOfPermission: date,
+            beginDateOfPermission: currDate,
             begDateSelectionStat: true
         });
+
     }
 
     handleEndDateOfPermission(date) {
+        let currDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+
+        );
         this.setState({
-            endDateOfPermission: date,
+            endDateOfPermission: currDate,
             endDateSelectionStat: true
         });
     }
@@ -341,7 +365,7 @@ class FillingThePermissionForm extends React.Component {
                             label="İzin Başlangıç"
                             onError={console.log}
                             onChange={this.handleBeginDateOfPermission}
-                            format="dd-MM-yyyy HH:mm:ss "
+                            format="dd-MM-yyyy HH:mm"
                             ampm={false}
                         />
                     </Row>
@@ -352,7 +376,7 @@ class FillingThePermissionForm extends React.Component {
                             label="İzin Bitiş"
                             onError={console.log}
                             onChange={this.handleEndDateOfPermission}
-                            format="dd-MM-yyyy HH:mm:ss "
+                            format="dd-MM-yyyy HH:mm"
                             ampm={false}
                         />
                     </Row>

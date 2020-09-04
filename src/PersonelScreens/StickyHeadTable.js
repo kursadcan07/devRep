@@ -320,9 +320,7 @@ export default function StickyHeadTable(props) {
                                                             generalManagerConfirmStatus={row.generalManagerConfirmStatus}
                                                             desParam={2}
                                                             explanationOfGeneralManager={row.generalManagerDescription}/>
-
                                                             }
-
                                                         {column.id === "displayScreen" && <Link to={"./DisplayPermissionForm/"+row.permissionID}>
                                                             <Fab aria-label="edit" style={{margin:"3px"}}>
                                                                 <VisibilityIcon/>

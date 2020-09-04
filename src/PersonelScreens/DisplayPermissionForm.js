@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import {connect} from "react-redux";
-import moment from "moment";
 
 const axios = require('axios');
 
@@ -61,6 +60,9 @@ const mapStateToProps = (state) => {
 
 
 class DisplayPermissionForm extends React.Component {
+    elem;
+    elem1;
+    elem2;
     constructor(props) {
         super(props);
             this.state = {
@@ -100,7 +102,7 @@ class DisplayPermissionForm extends React.Component {
                 generalManagerDescription: this.props.generalManagerDescription,
 
             }
-
+        console.log(this.state.demandDateOfPermission)
     }
 
     componentDidMount() {
@@ -237,25 +239,24 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
+
                         {
 
                             displayEmployeesPermissionDates(
-                                this.state.beginDateOfPermission.getDate() + "/" +
-                                (this.state.beginDateOfPermission.getMonth() + 1) + "/" +
-                                this.state.beginDateOfPermission.getFullYear()
-                                ,
-                                this.state.beginDateOfPermission.getHours() +
-                                " " +
-                                this.state.beginDateOfPermission.getMinutes(),
-
-                                this.state.endDateOfPermission.getDate() + "/" +
-                                (this.state.endDateOfPermission.getMonth() + 1) + "/" +
-                                this.state.endDateOfPermission.getFullYear(),
-
-                                this.state.endDateOfPermission.getHours() +
-                                " " +
-                                this.state.endDateOfPermission.getMinutes(), this.state.beginDateOfPermission,
-                                this.state.endDateOfPermission
+                                new Date(
+                                    this.state.beginDateOfPermission.getFullYear(),
+                                    this.state.beginDateOfPermission.getMonth(),
+                                    this.state.beginDateOfPermission.getDate(),
+                                    this.state.beginDateOfPermission.getHours(),
+                                    this.state.beginDateOfPermission.getMinutes()
+                                ),
+                                new Date(
+                                    this.state.endDateOfPermission.getFullYear(),
+                                    this.state.endDateOfPermission.getMonth(),
+                                    this.state.endDateOfPermission.getDate(),
+                                    this.state.endDateOfPermission.getHours(),
+                                    this.state.endDateOfPermission.getMinutes()
+                                )
                             )}
                     </div>
                     <div style={{
@@ -316,9 +317,11 @@ class DisplayPermissionForm extends React.Component {
                         this.state.userID,
                         this.state.userStatus,
                         this.state.personalName,
+
                         this.state.demandDateOfPermission,
                         this.state.beginDateOfPermission,
                         this.state.endDateOfPermission,
+
                         this.state.foldCode,
                         this.state.areaCode,
                         this.state.selectVehicleUsageName,
@@ -644,6 +647,12 @@ function perAccCompt(perTypeID) {
 //This functional component fills that name-surname of personel that demands permisson and date when demans created.
 function displayPersonalInformationPart(personalNameSurname, demandDate) {
 
+   let currDate = demandDate.getDate() + "/" +  demandDate.getMonth() + "/" + demandDate.getFullYear() +
+       "-"+
+        demandDate.getHours() + ":"
+       + demandDate.getMinutes();
+
+
     return (
         <div style={{
             display: "flex",
@@ -708,7 +717,7 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
                     borderBottom: "0.5px solid black",
                     borderRight: "0.5px solid black"
                 }}
-                >Talep Tarih : {demandDate}</h1>
+                >Talep Tarih : {currDate}</h1>
             </div>
         </div>
     );
@@ -744,7 +753,7 @@ function timeDiffCalc(dateFuture, dateNow) {
 }
 
 //BLOCK FOUR
-function displayEmployeesPermissionDates(permissionStartDate, permissionStartTime, permissionEndDate, permissionEndTime, permissionBegDate, permissionFinishDate) {
+function displayEmployeesPermissionDates(beginDateOfPermission,endDateOfPermission) {
 
     return (
 
@@ -849,7 +858,6 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                     flex: 1,
                     alignItems: "center",
                     border: "0.2px solid black",
-
                 }}>
                     <h1 style={{
                         display: "flex",
@@ -857,7 +865,12 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>{permissionStartDate}</h1>
+                    }}>{beginDateOfPermission.getDate()+
+                    "/"+
+                    beginDateOfPermission.getMonth()+
+                    "/"+
+                    beginDateOfPermission.getFullYear()
+                    }</h1>
                 </div>
 
                 <div style={{
@@ -874,7 +887,7 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>{permissionStartTime}</h1>
+                    }}>{beginDateOfPermission.getHours()+":"+beginDateOfPermission.getMinutes()}</h1>
                 </div>
             </div>
             <div style={{
@@ -914,7 +927,11 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>{permissionEndDate}</h1>
+                    }}>{endDateOfPermission.getDate()+
+                    "/"+
+                    endDateOfPermission.getMonth()+
+                    "/"+
+                    endDateOfPermission.getFullYear()}</h1>
                 </div>
                 <div style={{
                     display: "flex",
@@ -930,7 +947,7 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}>{permissionEndTime}</h1>
+                    }}>{endDateOfPermission.getHours()+":"+endDateOfPermission.getMinutes()}</h1>
                 </div>
             </div>
             <div style={{
@@ -969,7 +986,7 @@ function displayEmployeesPermissionDates(permissionStartDate, permissionStartTim
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto"
-                    }}> {timeDiffCalc(permissionFinishDate, permissionBegDate)}</h1>
+                    }}> {timeDiffCalc(endDateOfPermission, beginDateOfPermission)}</h1>
                 </div>
             </div>
         </div>
@@ -1456,7 +1473,7 @@ function displayManagersButtonsForForm() {
 const api = axios.create({
     baseURL: `http://localhost:4000`
 })*/
-
+/*
 function dateConverter(givenDate1) {
     let givenDate= new Date(givenDate1);
     return givenDate.getDate() + "/" +
@@ -1466,7 +1483,7 @@ function dateConverter(givenDate1) {
         givenDate.getHours() +
         ":" +
         givenDate.getMinutes();
-}
+}*/
 
 function displayPersonelsButtonsForForm(props, userIDS,
                                         userStatusS, personalNameS, demandDateOfPermissionS, beginDateOfPermissionS,
@@ -1546,9 +1563,11 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 personalName: personalNameS,
                                 userID: userIDS,
                                 userStatus: userStatusS,
-                                demandDateOfPermission: dateConverter(demandDateOfPermissionS),
-                                beginDateOfPermission: dateConverter(beginDateOfPermissionS),
-                                endDateOfPermission: dateConverter(endDateOfPermissionS),
+
+                                demandDateOfPermission:demandDateOfPermissionS,
+                                beginDateOfPermission:beginDateOfPermissionS,
+                                endDateOfPermission:endDateOfPermissionS,
+
                                 foldCode: foldCodeS,
                                 areaCode: areaCodeS,
                                 selectVehicleUsageName: selectVehicleUsageNameS,
@@ -1601,4 +1620,3 @@ function displayPersonelsButtonsForForm(props, userIDS,
 }
 
 export default connect(mapStateToProps)(DisplayPermissionForm);
-

@@ -7,8 +7,8 @@ const permissionReducer = (state = {
     displayStatus:2,
     isPermissionActive:true,
     personalName:"-",
-    demandDateOfPermission:moment().format("DD-MM-YYYY HH:mm:ss"),
-
+    demandDateOfPermission:new Date("2020-01-01T00:00"),
+    // new Date(date.setMonth(date.getMonth()+8));
     beginDateOfPermission:new Date("2020-01-01T00:00"),
     endDateOfPermission: new Date("2020-01-01T00:00"),
 
