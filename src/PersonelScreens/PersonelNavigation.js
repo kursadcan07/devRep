@@ -1,18 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import makeStyles from "@material-ui/core/styles/makeStyles";
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
-
 
 function PersonelNavigation() {
 

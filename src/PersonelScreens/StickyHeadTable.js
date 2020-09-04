@@ -14,6 +14,10 @@ import {trTR} from '@material-ui/core/locale';
 import {Bounce} from "react-reveal";
 import Grid from "@material-ui/core/Grid";
 import ResponsiveDialog from "./ResponsiveDialog";
+import DisplayPermissionForm from "./DisplayPermissionForm";
+import {Link} from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const axios = require('axios');
 
@@ -122,14 +126,14 @@ function displayPermissionForm(permissionID) {
 
 {/*Here the style definition for usage of varible classes*/
 }
-const useStyles = makeStyles({
+/*const useStyles = makeStyles({
     root: {
         width: '100%',
     },
     container: {
         width: "100%",
     },
-});
+});*/
 
 {
     /*This const determines styles for bounce which displays buttons as animated */
@@ -141,7 +145,7 @@ const stylesForBounce = makeStyles((theme) => ({
     paper: {
         textAlign: 'center',
         padding: "10px",
-        background: "rgba(139,133,133,0.21)"
+        background:"rgba(183, 180, 180, 0.14)"
     },
 }));
 {/*
@@ -154,7 +158,7 @@ export default function StickyHeadTable(props) {
     /*
     * Here the variables and states that are determined to decide style.
     * */
-    const defineRootAndContainerProperties = useStyles();
+   /* const defineRootAndContainerProperties = useStyles();*/
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const defineStyleForBounce = stylesForBounce();
@@ -180,14 +184,16 @@ export default function StickyHeadTable(props) {
                 {/* First Grid defined here */}
                 <Grid item xs={3}>
                     <Paper className={defineStyleForBounce.paper}>
-                        <h1 style={{
+                        <Fab style={{
                             fontSize: "20px",
                             borderRadius: "50%",
                             backgroundColor: "rgba(49,236,9,0.95)",
-                            textAlign: "center"
+                            textAlign: "center",
+                            height:"30px",
+                            width: "30px"
                         }}>
                             ✔
-                        </h1>
+                        </Fab>
                         <h1 style={{
                             fontSize: "12px",
                             fontWeight: "bold",
@@ -201,16 +207,16 @@ export default function StickyHeadTable(props) {
                 <Grid item xs={4}>
                     <Paper className={defineStyleForBounce.paper}>
 
-                        <h1 style={{
+                        <Fab style={{
                             fontSize: "20px",
                             borderRadius: "50%",
                             backgroundColor: "rgba(255,220,0,0.95)",
                             textAlign: "center",
-                            marginRight: "10px",
-                            marginLeft: "10px"
+                            height:"30px",
+                            width: "30px"
                         }}>
                             ⊖
-                        </h1>
+                        </Fab>
                         <h1 style={{fontSize: "12px", textAlign: "center", fontWeight: "bold"}}
                         >
                             BEKLEMEDE
@@ -219,14 +225,16 @@ export default function StickyHeadTable(props) {
                 </Grid>
                 <Grid item xs={2}>
                     <Paper className={defineStyleForBounce.paper}>
-                        <h1 style={{
+                        <Fab style={{
                             fontSize: "20px",
                             borderRadius: "50%",
                             backgroundColor: "rgba(220,16,16,0.95)",
-                            textAlign: "center"
+                            textAlign: "center",
+                            height:"30px",
+                            width: "30px"
                         }}>
                             ✖
-                        </h1>
+                        </Fab>
                         <h1 style={{
                             fontSize: "12px",
                             fontWeight: "bold",
@@ -239,14 +247,16 @@ export default function StickyHeadTable(props) {
                 </Grid>
                 <Grid item xs={3}>
                     <Paper className={defineStyleForBounce.paper}>
-                        <h1 style={{
+                        <Fab style={{
                             fontSize: "20px",
                             borderRadius: "50%",
                             backgroundColor: "rgb(253,131,1)",
-                            textAlign: "center"
+                            textAlign: "center",
+                            height:"30px",
+                            width: "30px"
                         }}>
                             !
-                        </h1>
+                        </Fab>
                         <h1 style={{
                             fontSize: "12px",
                             fontWeight: "bold",
@@ -264,22 +274,23 @@ export default function StickyHeadTable(props) {
 
 
     return (
-        <div>
+        <div style={{width:"100vw",margin:"0",display:"block"}}
+        >
             <div style={{display: "flex", justifyContent: "flex-end", margin: "5px"}}>
-                <Bounce>
+                <Bounce >
                     <Grid container item xs={12} spacing={1}>
                         <DisplayTheRowOfForm/>
                     </Grid>
                 </Bounce>
             </div>
             <ThemeProvider theme={theme}>
-                <Paper className={defineRootAndContainerProperties.root}>
-                    <TableContainer className={defineRootAndContainerProperties.container}>
-                        <Table stickyHeader aria-label="sticky table">
+                <Paper /*className={defineRootAndContainerProperties.root}*/>
+                    <TableContainer /* className={defineRootAndContainerProperties.container}*/>
+                        <Table stickyHeader aria-label="sticky table" >
                             <TableHead>
                                 <TableRow>
                                     {columns.map((column) => (
-                                        <TableCell
+                                        <TableCell style={{fontSize:"0.75rem",padding:"1px",textAlign:"center",fontWeight:"bold"}}
                                             key={column.id}
                                         >
                                             {column.label}
@@ -290,31 +301,33 @@ export default function StickyHeadTable(props) {
                             <TableBody>
                                 {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.permissionID}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.permissionID} style={{width:"100%"}}>
                                             {columns.map((column) => {
-                                                const value = row[column.id];
                                                 return (
-                                                    <TableCell key={column.id}>
-                                                        {value}
+                                                    <TableCell key={column.id} style={{padding:"1px",textAlign:"center"}}>
+                                                        {column.id==="permissionID" && row.permissionID}
+                                                        {column.id==="beginDateOfPermission" && row.beginDateOfPermission}
+                                                        {column.id==="endDateOfPermission" && row.endDateOfPermission}
                                                         {column.id === "chiefConfirmStatus" &&
+
                                                         <ResponsiveDialog chiefConfirmStatus={row.chiefConfirmStatus}
                                                                           desParam={1}
-                                                                          explanationOfChief={row.chiefsDescription}/>}
+                                                                          explanationOfChief={row.chiefsDescription}/>
+                                                          }
                                                         {column.id === "generalManagerConfirmStatus" &&
+
                                                         <ResponsiveDialog
                                                             generalManagerConfirmStatus={row.generalManagerConfirmStatus}
                                                             desParam={2}
-                                                            explanationOfGeneralManager={row.generalManagerDescription}/>}
-                                                        {column.id === "displayScreen" && <Button onClick={()=>{
-                                                                api.get('/displayPermissionByID/' + row.permissionID)
-                                                                    .then(
-                                                                        function (response) {
-                                                                            console.log(response)
-                                                                        }
-                                                                    )
+                                                            explanationOfGeneralManager={row.generalManagerDescription}/>
 
+                                                            }
 
-                                                            }}>abc</Button>}
+                                                        {column.id === "displayScreen" && <Link to={"./DisplayPermissionForm/"+row.permissionID}>
+                                                            <Fab aria-label="edit" style={{margin:"3px"}}>
+                                                                <VisibilityIcon/>
+                                                            </Fab>
+                                                        </Link>}
                                                     </TableCell>
                                                 );
                                             })}
@@ -335,6 +348,7 @@ export default function StickyHeadTable(props) {
                     />
                 </Paper>
             </ThemeProvider>
+
         </div>
     )
 }

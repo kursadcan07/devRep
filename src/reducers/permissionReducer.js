@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const permissionReducer = (state = {
     userID:0,
 
@@ -5,7 +7,7 @@ const permissionReducer = (state = {
     displayStatus:2,
     isPermissionActive:true,
     personalName:"-",
-    demandDateOfPermission:undefined,
+    demandDateOfPermission:moment().format("DD-MM-YYYY HH:mm:ss"),
 
     beginDateOfPermission:new Date("2020-01-01T00:00"),
     endDateOfPermission: new Date("2020-01-01T00:00"),

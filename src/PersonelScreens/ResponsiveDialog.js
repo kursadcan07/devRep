@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
 
 export default function ResponsiveDialog(props) {
 
@@ -37,17 +38,18 @@ export default function ResponsiveDialog(props) {
 
                 }}>
 
-                    <button style={{
+                    <Fab style={{
                         backgroundColor: "rgba(49,236,9,0.95)",
                         fontSize: "20px",
                         borderRadius: "50%",
                         margin: "auto",
                         textAlign: "center",
-                        width: "40px",
+                        height:"30px",
+                        width: "30px"
                     }}
                             onClick={handleClickOpen}>
                         ✔
-                    </button>
+                    </Fab>
                     <Dialog
                         fullScreen={fullScreen}
                         open={open}
@@ -73,20 +75,20 @@ export default function ResponsiveDialog(props) {
                 <div style={{
                     display: "flex", width: "80px", justifyContent: "center"
                 }}>
-                    <button style={{
+                    <Fab style={{
                         backgroundColor: "rgba(220,16,16,0.95)",
-
                         borderRadius: "50%",
                         margin: "auto",
                         textAlign: "center",
                         display: 'flex',
-                        width: "40px"
+                        height:"30px",
+                        width: "30px"
                     }} onClick={handleClickOpen}>
                         <h1 style={{fontSize: "20px", margin: "auto"}}>
                             ✖
                         </h1>
 
-                    </button>
+                    </Fab>
                     <Dialog
                         fullScreen={fullScreen}
                         open={open}
@@ -114,19 +116,20 @@ export default function ResponsiveDialog(props) {
                     width: "80px",
                     justifyContent: "center"
                 }}>
-                    <button style={{
+                    <Fab style={{
                         backgroundColor: "rgba(255,220,0,0.95)",
                         fontSize: "20px",
                         borderRadius: "50%",
                         margin: "auto",
                         textAlign: "center",
-                        width: "40px"
+                        height:"30px",
+                        width: "30px"
                     }} onClick={handleClickOpen}
                     >
                         <h1 style={{fontSize: "20px", margin: "auto"}}>
                             ⊖
                         </h1>
-                    </button>
+                    </Fab>
                     <Dialog
                         fullScreen={fullScreen}
                         open={open}
@@ -154,19 +157,20 @@ export default function ResponsiveDialog(props) {
                     width: "80px",
                     justifyContent: "center"
                 }}>
-                    <button style={{
+                    <Fab style={{
                         backgroundColor: "rgb(253,131,1)",
                         fontSize: "20px",
                         borderRadius: "50%",
                         margin: "auto",
                         textAlign: "center",
-                        width: "40px"
+                        height:"30px",
+                        width: "30px"
                     }} onClick={handleClickOpen}
                     >
                         <h1 style={{fontSize: "20px", margin: "auto"}}>
                             !
                         </h1>
-                    </button>
+                    </Fab>
                     <Dialog
                         fullScreen={fullScreen}
                         open={open}

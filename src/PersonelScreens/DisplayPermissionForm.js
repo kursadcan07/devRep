@@ -8,6 +8,22 @@ import moment from "moment";
 
 const axios = require('axios');
 
+const api = axios.create({
+    baseURL: `http://localhost:4000`
+})
+
+/*function getManagersNameAndSignaturebyID(givenIDofManager) {
+    api.get('/getNameAndSignatureByID/' + givenIDofManager)
+        .then(
+            function (response) {
+                console.log(response)
+                return response;
+            }
+        )
+
+
+}*/
+
 const mapStateToProps = (state) => {
     return {
         userID: state.permissionReducer.userID,
@@ -16,8 +32,11 @@ const mapStateToProps = (state) => {
         displayStatus: state.permissionReducer.displayStatus,
 
         personalName: state.userLoginReducer.personalName,
+        chiefsName:state.userLoginReducer.chiefsName,
+        generalManagersName:state.userLoginReducer.generalManagersName,
 
-        demandDateOfPermission:moment().format("DD-MM-YYYY HH:mm:ss"),
+
+        demandDateOfPermission:state.permissionReducer.demandDateOfPermission,
 
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
@@ -40,19 +59,132 @@ const mapStateToProps = (state) => {
     }
 };
 
+
 class DisplayPermissionForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            sendPermissionDemand: false,
-        }
+            this.state = {
+
+                userStatus: this.props.userStatus,
+                displayStatus:  this.props.displayStatus,
+                isPermissionActive:  this.props.isPermissionActive,
+                personalName:  this.props.personalName,
+                demandDateOfPermission: this.props.demandDateOfPermission,
+
+                beginDateOfPermission:  this.props.beginDateOfPermission,
+                endDateOfPermission: this.props.endDateOfPermission,
+
+                begDateSelectionStat:this.props.begDateSelectionStat,
+                endDateSelectionStat: this.props.endDateSelectionStat,
+
+                foldCode: this.props.foldCode,
+                areaCode: this.props.areaCode,
+
+                permissionDescription: this.props.permissionDescription,
+
+                selectVehicleUsageName: this.props.selectVehicleUsageName,
+                selectVehicleUsageID: this.props.selectVehicleUsageID,
+
+                setPermissionType:this.props.setPermissionType,
+
+                priceOfTrainOrBus: this.props.priceOfTrainOrBus,
+                totalDistanceOfIndividualCar: this.props.totalDistanceOfIndividualCar,
+
+                displayThePermissionName: this.props.displayThePermissionName,
+                setThePermissionType: this.props.setThePermissionType,
+
+                chiefConfirmStatus: this.props.chiefConfirmStatus,
+                chiefsDescription: this.props.chiefsDescription,
+
+                generalManagerConfirmStatus: this.props.generalManagerConfirmStatus,
+                generalManagerDescription: this.props.generalManagerDescription,
+
+            }
 
     }
 
     componentDidMount() {
         if (this.state.sendPermissionDemand) {
-            console.log("gonder,lcek")
+            console.log("Gönderilcek")
         }
+        let endCode = window.location.href.split("/")[window.location.href.split("/").length-1];
+        console.log(endCode,"fdlsfdslşs")
+        if(endCode!=="DisplayPermissionForm"){
+            api.get('/DisplayPermissionForm/' +endCode,
+            ).then(res => {
+
+                this.setState({
+                    userStatus: res.data.usersPermission.userStatus,
+                    displayStatus:  res.data.usersPermission.displayStatus,
+                    isPermissionActive:  res.data.usersPermission.isPermissionActive,
+                    personalName:  res.data.usersPermission.personalName,
+                    demandDateOfPermission:  res.data.usersPermission.demandDateOfPermission,
+
+                    beginDateOfPermission:   res.data.usersPermission.beginDateOfPermission,
+                    endDateOfPermission:  res.data.usersPermission.endDateOfPermission,
+
+                    begDateSelectionStat: res.data.usersPermission.begDateSelectionStat,
+                    endDateSelectionStat: this.props.endDateSelectionStat,
+
+                    foldCode: this.props.foldCode,
+                    areaCode: this.props.areaCode,
+
+                    permissionDescription: this.props.permissionDescription,
+
+                    selectVehicleUsageName: this.props.selectVehicleUsageName,
+                    selectVehicleUsageID: this.props.selectVehicleUsageID,
+
+                    priceOfTrainOrBus: this.props.priceOfTrainOrBus,
+                    totalDistanceOfIndividualCar: this.props.totalDistanceOfIndividualCar,
+
+                    displayThePermissionName: this.props.displayThePermissionName,
+                    setThePermissionType: this.props.setThePermissionType,
+
+                    chiefConfirmStatus: this.props.chiefConfirmStatus,
+                    chiefsDescription: this.props.chiefsDescription,
+
+                    generalManagerConfirmStatus: this.props.generalManagerConfirmStatus,
+                    generalManagerDescription: this.props.generalManagerDescription,
+
+
+                })
+              /*  userStatus:,
+                    displayStatus:undefined,
+                    isPermissionActive:undefined,
+                    personalName:undefined,
+                    demandDateOfPermission:undefined,
+
+                    beginDateOfPermission:undefined,
+                    endDateOfPermission:undefined,
+
+                    begDateSelectionStat:undefined,
+                    endDateSelectionStat:undefined,
+
+                    foldCode:undefined,
+                    areaCode:undefined,
+
+                    permissionDescription:undefined,
+
+                    selectVehicleUsageName:undefined,
+                    selectVehicleUsageID:undefined,
+
+                    priceOfTrainOrBus:undefined,
+                    totalDistanceOfIndividualCar:undefined,
+
+                    displayThePermissionName:undefined,
+                    setThePermissionType:undefined,
+
+                    chiefConfirmStatus:undefined,
+                    chiefsDescription:undefined,
+
+                    generalManagerConfirmStatus:undefined,
+                    generalManagerDescription:undefined,
+*/
+                }
+            )
+        }
+
+
     }
 
     render() {
@@ -77,7 +209,7 @@ class DisplayPermissionForm extends React.Component {
                             marginBottom: "4px",
                             border: "0.6px solid black"
                         }}>
-                        {displayLogoAndMainDescription(this.props.areaCode, this.props.foldCode)}
+                        {displayLogoAndMainDescription(this.state.areaCode, this.state.foldCode)}
                     </div>
 
                     <div style={{
@@ -87,7 +219,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPermissionTypeAndRest(this.props.setPermissionType)}
+                        {displayPermissionTypeAndRest(this.state.setPermissionType)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -96,7 +228,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPersonalInformationPart(this.props.personalName, this.props.demandDateOfPermission)}
+                        {displayPersonalInformationPart(this.state.personalName, this.state.demandDateOfPermission)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -108,22 +240,22 @@ class DisplayPermissionForm extends React.Component {
                         {
 
                             displayEmployeesPermissionDates(
-                                this.props.beginDateOfPermission.getDate() + "/" +
-                                (this.props.beginDateOfPermission.getMonth() + 1) + "/" +
-                                this.props.beginDateOfPermission.getFullYear()
+                                this.state.beginDateOfPermission.getDate() + "/" +
+                                (this.state.beginDateOfPermission.getMonth() + 1) + "/" +
+                                this.state.beginDateOfPermission.getFullYear()
                                 ,
-                                this.props.beginDateOfPermission.getHours() +
+                                this.state.beginDateOfPermission.getHours() +
                                 " " +
-                                this.props.beginDateOfPermission.getMinutes(),
+                                this.state.beginDateOfPermission.getMinutes(),
 
-                                this.props.endDateOfPermission.getDate() + "/" +
-                                (this.props.endDateOfPermission.getMonth() + 1) + "/" +
-                                this.props.endDateOfPermission.getFullYear(),
+                                this.state.endDateOfPermission.getDate() + "/" +
+                                (this.state.endDateOfPermission.getMonth() + 1) + "/" +
+                                this.state.endDateOfPermission.getFullYear(),
 
-                                this.props.endDateOfPermission.getHours() +
+                                this.state.endDateOfPermission.getHours() +
                                 " " +
-                                this.props.endDateOfPermission.getMinutes(), this.props.beginDateOfPermission,
-                                this.props.endDateOfPermission
+                                this.state.endDateOfPermission.getMinutes(), this.state.beginDateOfPermission,
+                                this.state.endDateOfPermission
                             )}
                     </div>
                     <div style={{
@@ -133,7 +265,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayVehicleUsagesOfPersonel(this.props.selectVehicleUsageID)}
+                        {displayVehicleUsagesOfPersonel(this.state.selectVehicleUsageID)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -142,7 +274,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayTheExplanationOfPermission(this.props.permissionDescription)}
+                        {displayTheExplanationOfPermission(this.state.permissionDescription)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -151,7 +283,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayDetailsOfVehicleUsage(this.props.totalDistanceOfIndividualCar, this.props.priceOfTrainOrBus, this.props.selectVehicleUsageID)}
+                        {displayDetailsOfVehicleUsage(this.state.totalDistanceOfIndividualCar, this.state.priceOfTrainOrBus, this.state.selectVehicleUsageID)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -160,7 +292,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayTheAcceptionPart()}
+                        {displayTheAcceptionPart(this.state.personalName,this.state.personalName,this.state.personalName)}
                     </div>
 
                     <div style={{
@@ -180,21 +312,21 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.props.displayStatus === 2 && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props,
-                        this.props.userID,
-                        this.props.userStatus,
-                        this.props.personalName,
-                        this.props.demandDateOfPermission,
-                        this.props.beginDateOfPermission,
-                        this.props.endDateOfPermission,
-                        this.props.foldCode,
-                        this.props.areaCode,
-                        this.props.selectVehicleUsageName,
-                        this.props.selectVehicleUsageID,
-                        this.props.permissionDescription,
-                        this.props.personalCarUsage,
-                        this.props.totalDistanceOfIndividualCar,
-                        this.props.priceOfTrainOrBus
+                    {this.state.displayStatus === 2 && (this.state.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props,
+                        this.state.userID,
+                        this.state.userStatus,
+                        this.state.personalName,
+                        this.state.demandDateOfPermission,
+                        this.state.beginDateOfPermission,
+                        this.state.endDateOfPermission,
+                        this.state.foldCode,
+                        this.state.areaCode,
+                        this.state.selectVehicleUsageName,
+                        this.state.selectVehicleUsageID,
+                        this.state.permissionDescription,
+                        this.state.personalCarUsage,
+                        this.state.totalDistanceOfIndividualCar,
+                        this.state.priceOfTrainOrBus
                     ))}
 
                 </div>
@@ -1042,7 +1174,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
     )
 }
 
-function displayTheAcceptionPart() {
+function displayTheAcceptionPart(employeeName,chiefName,generalManagerName) {
     const imza1 = require('./PrivateData/ExampleSignature.png');
     return (
         <div style={{
@@ -1113,7 +1245,7 @@ function displayTheAcceptionPart() {
                     padding: "10px",
                     margin: "auto"
                 }}>
-                    ZOZAN KARTAL
+                    {employeeName}
                 </h1>
 
                 <h1 style={{
@@ -1125,7 +1257,7 @@ function displayTheAcceptionPart() {
                     padding: "10px",
                     margin: "auto"
                 }}>
-                    KARTAL ZOZAN
+                    {chiefName}
                 </h1>
 
                 <h1 style={{
@@ -1137,7 +1269,7 @@ function displayTheAcceptionPart() {
                     padding: "10px",
                     margin: "auto"
                 }}>
-                    KOZAN KARTAL
+                    {generalManagerName}
                 </h1>
             </div>
             <div style={{
@@ -1320,10 +1452,10 @@ function displayManagersButtonsForForm() {
         </div>
     )
 }
-
+/*
 const api = axios.create({
     baseURL: `http://localhost:4000`
-})
+})*/
 
 function dateConverter(givenDate1) {
     let givenDate= new Date(givenDate1);

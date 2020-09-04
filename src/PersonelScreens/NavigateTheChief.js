@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Bounce, Slide} from "react-reveal";
 
+const axios = require('axios');
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const api = axios.create({
+    baseURL: `http://localhost:4000`
+})
 
 function displayIndividualOperations(flag) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
@@ -25,9 +30,9 @@ function displayIndividualOperations(flag) {
             <Grid container spacing={1} style={{justifyContent: "center"}}>
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
-                        <Link to="FillingThePermissionForm" style={{textDecoration:"none"}}>
+                        <Link to="FillingThePermissionForm" style={{textDecoration: "none"}}>
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
-                                    type="button" className="btn btn-success">
+                                    type="button" className="btn btn-primary btn-block">
                                 <img alt="IconEye"
                                      style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
                                      src={crateDemandIcon}/>
@@ -46,9 +51,30 @@ function displayIndividualOperations(flag) {
 
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce right>
-                        <Link to="PreviousPermissons" style={{textDecoration:"none"}}>
-                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
-                                    type="button" className="btn btn-success">
+                        <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
+                            <button style={{display: "flex", flex: 0.5, width: "100%"}} onClick={() => {
+
+                                api.post('/personelScreens/:chiefID',
+                                    {
+                                        chiefID: 5
+                                    })
+                                    .then(res => {
+
+                                        if (res.data.stat) {
+                                            this.props.history.push({
+                                                pathname: '/PersonelScreens/PreviousPermissions/5',
+                                            })
+
+                                        } else if (!res.data.stat) {
+
+                                            this.setState({
+                                                mes: res.data.mes
+                                            })
+
+                                        }
+                                    })
+                            }}
+                                    type="button" className="btn btn-primary btn-block">
                                 <img alt="IconEye"
                                      style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
                                      src={displayPermissionDemandIcon}/>
@@ -81,21 +107,21 @@ function displayTheManagementBasedOperations(flag) {
 
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
-                        <Link to="PreviousPermissons" style={{textDecoration:"none"}}>
-                        <button style={{display: "flex", flex: 0.5, width: "100%"}}
-                                type="button" className="btn btn-success">
-                            <img alt="IconEye"
-                                 style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
-                                 src={crateDemandIcon}/>
-                            <h1 style={{
-                                display: "flex",
-                                flexDirection: "flex-start",
-                                fontSize: "16px",
-                                margin: "auto"
-                            }}>
-                                İZİN TALEPLERİ
-                            </h1>
-                        </button>
+                        <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
+                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
+                                    type="button" className="btn btn-primary btn-block">
+                                <img alt="IconEye"
+                                     style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
+                                     src={crateDemandIcon}/>
+                                <h1 style={{
+                                    display: "flex",
+                                    flexDirection: "flex-start",
+                                    fontSize: "16px",
+                                    margin: "auto"
+                                }}>
+                                    İZİN TALEPLERİ
+                                </h1>
+                            </button>
                         </Link>
                     </Bounce>
                 </Grid>
@@ -140,10 +166,11 @@ class NavigateTheChief extends React.Component {
 
                 <Grid item xs={12} sm={6} style={{display: "flex", flexDirection: "column", flex: 1, width: "100%"}}>
 
-                    <button type="button" className="btn btn-success" onClick={this.handleManagementOrientedOperations}
+                    <button type="button" className="btn btn-primary btn-block"
+                            onClick={this.handleManagementOrientedOperations}
                             style={{display: "flex", flex: 0.5, margin: "5px"}}>
 
-                        <img style={{width: "150px", height: "150px"}} src={managementIcon} alt="ManagementOperations"/>
+                        <img style={{width: "140px", height: "140px"}} src={managementIcon} alt="ManagementOperations"/>
                         <h3 style={{margin: "auto", width: "100%"}}>
                             İDARİ İŞLEMLER
                         </h3>
@@ -165,7 +192,8 @@ class NavigateTheChief extends React.Component {
                 <Grid item xs={12} sm={6} style={{display: "flex", flexDirection: "column", flex: 1, width: "100%"}}>
 
 
-                    <button type="button" className="btn btn-success" onClick={this.handleIndividualOperationSelection}
+                    <button type="button" className="btn btn-primary btn-block"
+                            onClick={this.handleIndividualOperationSelection}
                             style={{display: "flex", flex: 0.5, margin: "5px"}}>
 
                         <img style={{width: "140px", height: "140px"}} src={individualIcon} alt="IndividualOperations"/>

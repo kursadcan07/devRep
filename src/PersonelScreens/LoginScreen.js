@@ -17,6 +17,8 @@ const mapStateToProps = (state) => {
         userMail: state.userLoginReducer.userMail,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
+        usersChiefID:state.userLoginReducer.usersChiefID,
+        usersGeneralManagerID:state.userLoginReducer.usersGeneralManagerID,
         userArea: state.userLoginReducer.userArea
     }
 };
@@ -60,31 +62,26 @@ class loginScreen extends React.Component {
         this.setState({userPassword: event.target.value})
     }
 
-<<<<<<< HEAD
-    validateForEmail(emailInput){
-        if(emailInput.length<10){
-=======
+
     validateForEmail(emailInput) {
         if (emailInput.length < 10) {
->>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Mail adresi çok kısa !",
                 stat: false
             })
-<<<<<<< HEAD
+
         }
         else if(emailInput.length>50){
-=======
+
         } else if (emailInput.length > 50) {
->>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Mail adresi çok uzun !",
                 stat: false
             })
-<<<<<<< HEAD
+
         }
         else if (!emailRegex.test(emailInput)){
-=======
+
         } else if (!emailRegex.test(emailInput)) {
             return ({
                 mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
@@ -111,7 +108,6 @@ class loginScreen extends React.Component {
                 stat: false
             })
         } else if (passwordInput.length > 12) {
->>>>>>> afc6ef183330791b7b938b778eee5e497b0f89e7
             return ({
                 mes: "Şifre 12 karakterden uzun olamaz !",
                 stat: false
