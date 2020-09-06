@@ -99,7 +99,7 @@ class PreviousPermissions extends React.Component {
                 Object.keys(response.data.prevPerms).forEach(function (key) {
                     arr.push(response.data.prevPerms[key]);
                 });
-                console.log(response)
+
                 for (let i = 0; i < arr.length; i++) {
 
                     arr2.push(createData(
@@ -113,7 +113,7 @@ class PreviousPermissions extends React.Component {
                         arr[i].generalManagerDescription)
                     )
                 }
-                console.log(arr2)
+
                 return arr2
 
             })

@@ -38,6 +38,8 @@ const mapStateToProps = (state) => {
         userID: state.userLoginReducer.userID,
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
+
+
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
 
@@ -46,6 +48,7 @@ const mapStateToProps = (state) => {
 
         selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
         selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
+
         priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
         totalDistanceOfIndividualCar:  state.permissionReducer.totalDistanceOfIndividualCar,
 
@@ -105,7 +108,8 @@ class FillingThePermissionForm extends React.Component {
             displayStatus: props.displayStatus,
             personalName: props.personalName,
 
-            demandDateOfPermission: props.demandDateOfPermission|| currDate,
+            demandDateOfPermission: props.demandDateOfPermission|| new Date(2020,1,1,0,0,0),
+
             beginDateOfPermission: props.beginDateOfPermission || new Date(2020,1,1,0,0,0),
             endDateOfPermission: props.endDateOfPermission || new Date(2020,1,1,0,0,0),
 

@@ -4,7 +4,7 @@ const permissionReducer = (state = {
     userID:0,
 
     userStatus:2,
-    displayStatus:2,
+    displayStatus:1,
     isPermissionActive:true,
     personalName:"-",
     demandDateOfPermission:new Date("2020-01-01T00:00"),
@@ -26,8 +26,8 @@ const permissionReducer = (state = {
     priceOfTrainOrBus:"",
     totalDistanceOfIndividualCar:"",
 
-    displayThePermissionName:"",
-    setThePermissionType:2,
+    displayPermissionName:"",
+    setPermissionType:2,
 
     chiefConfirmStatus:-1,
     chiefsDescription:"",
@@ -66,7 +66,7 @@ const permissionReducer = (state = {
                 priceOfTrainOrBus:action.payload.priceOfTrainOrBus,
                 totalDistanceOfIndividualCar:action.payload.totalDistanceOfIndividualCar,
 
-                displayThePermissionName:action.payload.displayThePermissionName,
+                displayPermissionName:action.payload.displayPermissionName,
                 setPermissionType:action.payload.setPermissionType
             }
             break;
