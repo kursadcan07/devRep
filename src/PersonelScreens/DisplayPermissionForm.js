@@ -11,21 +11,9 @@ const api = axios.create({
     baseURL: `http://localhost:4000`
 })
 
-/*function getManagersNameAndSignaturebyID(givenIDofManager) {
-    api.get('/getNameAndSignatureByID/' + givenIDofManager)
-        .then(
-            function (response) {
-                console.log(response)
-                return response;
-            }
-        )
-
-
-}*/
-
 const mapStateToProps = (state) => {
     return {
-        userID: state.permissionReducer.userID,
+        userID: state.userLoginReducer.userID,
 
         userStatus: state.permissionReducer.userStatus,
         displayStatus: state.permissionReducer.displayStatus,
@@ -69,6 +57,7 @@ class DisplayPermissionForm extends React.Component {
         if (this.endCode !== "DisplayPermissionForm") {
 
             this.state = {
+                userID: undefined,
                 personalName: undefined,
                 userStatus: undefined,
                 displayStatus: 2,
@@ -104,7 +93,10 @@ class DisplayPermissionForm extends React.Component {
         }
         else
         {
+
             this.state = {
+
+                userID: this.props.userID,
                 personalName: this.props.personalName,
                 userStatus: this.props.userStatus,
                 displayStatus: this.props.displayStatus,
@@ -145,9 +137,12 @@ class DisplayPermissionForm extends React.Component {
             this.getData().then((data) => {
 
                 this.setState({
+
+                    userID:data.userID,
                     personalName: data.personalName,
                     userStatus: data.userStatus,
                     displayStatus:2,
+
                     isPermissionActive: data.isPermissionActive,
                     demandDateOfPermission: data.demandDateOfPermission,
 
@@ -312,7 +307,8 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.endCode === "DisplayPermissionForm" && (this.state.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props,
+                    {this.endCode === "DisplayPermissionForm" && (this.state.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(
+                        this.props,
                         this.state.userID,
                         this.state.userStatus,
                         this.state.personalName,
@@ -453,6 +449,7 @@ function displayPermissionTypeAndRest(perTypeID) {
                     flex: 1,
                     fontFamily: "Arya",
                     fontSize: "22px",
+                    fontWeight:"bold",
                     margin: "auto",
                     justifyContent: "center"
                 }}>
@@ -676,7 +673,7 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
                     fontFamily: "Arya",
                     margin: "auto",
                     fontSize: "18px",
-                    fontWeight: "normal",
+                    fontWeight: "bold",
                     borderRight: "1px solid black",
                 }}
                 >AD SOYAD</h1>
@@ -787,6 +784,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                             flex: 1,
                             justifyContent: "center",
                             fontSize: "15px",
+                            fontWeight:"bold",
                             margin: "auto",
                             fontFamily:"Arya",
                             borderBottom: "1px solid black",
@@ -809,6 +807,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                             fontSize: "15px",
                             margin: "auto",
                             fontFamily:"Arya",
+                            fontWeight:"bold",
                             borderBottom: "1px solid black",
                         }}>TARİHİ</h1>
                     </div>
@@ -827,6 +826,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                             justifyContent: "center",
                             fontSize: "15px",
                             margin: "auto",
+                            fontWeight:"bold",
                             fontFamily:"Arya"
                         }}>SAATİ</h1>
                     </div>
@@ -854,6 +854,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         justifyContent: "center",
                         fontSize: "15px",
                         margin: "auto",
+                        fontWeight:"bold",
                         fontFamily:"Arya",
                         borderBottom: "1px solid black",
                     }}>BAŞLANGIÇ</h1>
@@ -922,6 +923,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
+                        fontWeight:"bold",
                         margin: "auto",
                         fontFamily:"Arya",
                         borderBottom: "1px solid black",
@@ -992,6 +994,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         fontSize: "15px",
                         margin: "auto",
                         fontFamily:"Arya",
+                        fontWeight:"bold",
                         borderBottom: "1px solid black",
                     }}>İZİN SÜRESİ</h1>
                 </div>
@@ -1102,7 +1105,8 @@ function displayTheExplanationOfPermission(explOfPer) {
             display: "flex",
             flex: 1,
             justifyContent: "center",
-            flexDirection: "row"
+            flexDirection: "row",
+            border: "0.4px solid black",
         }}>
             <h1 style={{
                 display: "flex",
@@ -1111,10 +1115,11 @@ function displayTheExplanationOfPermission(explOfPer) {
                 fontSize: "13px",
                 flex: 0.1,
                 padding: "0.1vw",
-                border: "0.2px solid black",
+                fontWeight:"bold",
                 height: "100%",
                 fontFamily:"Arya",
-                margin: "auto"
+                margin: "auto",
+                borderRight: "1.5px solid black",
 
             }}>AÇIKLAMA:
             </h1>
@@ -1126,7 +1131,8 @@ function displayTheExplanationOfPermission(explOfPer) {
                 flexDirection: "row",
                 flex: 0.9,
                 wordBreak: "break-word",
-                fontFamily:"Arya"
+                fontFamily:"Arya",
+                paddingLeft:"5px"
             }}>
                 {explOfPer}
             </p>
@@ -1177,6 +1183,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
                     alignItems: "center",
                     flex: 0.7,
                     margin: "auto",
+                    fontFamily:"Arya",
                     fontSize: 15
                 }}> {kiloMeter} km</p>
             </div>
@@ -1212,7 +1219,8 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
                     justifyContent: "center",
                     borderLeft: "0.1px solid black",
                     flex: 0.7,
-                    margin: "auto"
+                    margin: "auto",
+                    fontFamily:"Arya",
                 }}> {priceTL} ₺</p>
             </div>
         </div>
@@ -1243,7 +1251,8 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     border: "0.2px solid black",
                     margin: "auto",
                     fontFamily:"Arya",
-                    padding: "5px"
+                    padding: "5px",
+                    fontWeight:"bold",
                 }}>
                     İZİNLİ PERSONEL ONAYI
                 </h1>
@@ -1256,7 +1265,8 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     border: "0.2px solid black",
                     margin: "auto",
                     padding: "5px",
-                    fontFamily:"Arya"
+                    fontFamily:"Arya",
+                    fontWeight:"bold",
 
                 }}>
                     SORUMLU AMİR ONAYI
@@ -1266,10 +1276,11 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     display: "flex",
                     justifyContent: "center",
                     flex: 1,
-                    fontSize: "13px",
+                    fontWeight:"bold",
+                    fontSize: "12px",
                     border: "0.2px solid black",
                     margin: "auto",
-                    padding: "4px",
+                    padding: "5px",
                     fontFamily:"Arya"
 
                 }}>
@@ -1582,6 +1593,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                     </Link>
 
                     <button type="button" onClick={() => {
+
                         api.post('/createPermission',
                             {
                                 personalName: personalNameS,
@@ -1601,7 +1613,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 totalDistanceOfIndividualCar: totalDistanceOfIndividualCarS,
                                 permissionDescription: permissionDescriptionS,
                                 personalCarUsage: personalCarUsageS,
-                                isPermissionActive: true
+                                isPermissionActive: false
                             }).then(res => {
 
                             if (res.data.stat) {

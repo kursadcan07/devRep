@@ -19,11 +19,14 @@ const mapStateToProps = (state) => {
         displayStatus: state.permissionReducer.displayStatus,
 
         userID: state.userLoginReducer.userID,
+        usersChiefID:state.userLoginReducer.usersChiefID,
+
+
+
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
-        //demandDateOfPermission: moment().format("DD-MM-YYYY HH:mm:ss"),
         isPermissionActive: state.permissionReducer.isPermissionActive,
 
         begDateSelectionStat: state.permissionReducer.begDateSelectionStat || false,
@@ -63,66 +66,100 @@ class PreviousPermissions extends React.Component {
         super(props);
         this.state = {
             data: [],
-            displayActives: true,
-            checkedA: true,
+            isActive: true,
             activePassiveHeader: "AKTİF İZİN TALEPLERİ"
         }
-        this.ToggleButton = this.ToggleButton.bind(this);
         this.getData = this.getData.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.bringHeader = this.bringHeader.bind(this);
+        this.endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
+        if (this.endCode !== "PreviousPermissions") {
 
-    }
 
-    ToggleButton() {
-        this.setState((currentState) => ({
-            displayActives: !this.state.displayActives
-        }));
-    }
 
-    componentDidMount() {
+
+        }
+
         this.getData().then((data) => {
             this.setState({data: data})
         });
     }
 
+
+    componentDidUpdate(prevProps,prevState) {
+        if(prevState.isActive !==this.state.isActive) {
+            this.getData().then((data) => {
+                this.setState({data: data})
+            });
+
+        }
+    }
+
     getData() {
         let arr = [];
         let arr2 = [];
-        return api.get('/displayUsersPermissions/:userID', {
-            params: {
-                userID: this.props.userID,
-                /*            isPermissionActive:this.props.isPermissionActive*/
-            }
-        }).then(
-            function (response) {
-                Object.keys(response.data.prevPerms).forEach(function (key) {
-                    arr.push(response.data.prevPerms[key]);
-                });
 
-                for (let i = 0; i < arr.length; i++) {
+        return api.get('/displayUsersPermissions/'+ this.props.userID+'/'+this.state.isActive)
+                .then(
+                function (response) {
 
-                    arr2.push(createData(
-                        arr[i].userStatus,
-                        arr[i].permissionID,
-                        arr[i].beginDateOfPermission,
-                        arr[i].endDateOfPermission,
-                        arr[i].chiefConfirmStatus,
-                        arr[i].generalManagerConfirmStatus,
-                        arr[i].chiefsDescription,
-                        arr[i].generalManagerDescription)
-                    )
-                }
+                    Object.keys(response.data.prevPerms).forEach(function (key) {
+                        arr.push(response.data.prevPerms[key]);
+                    });
 
-                return arr2
+                    for (let i = 0; i < arr.length; i++) {
 
-            })
+                        arr2.push(createData(
+                            arr[i].userStatus,
+                            arr[i].permissionID,
+                            arr[i].beginDateOfPermission,
+                            arr[i].endDateOfPermission,
+                            arr[i].chiefConfirmStatus,
+                            arr[i].generalManagerConfirmStatus,
+                            arr[i].chiefsDescription,
+                            arr[i].generalManagerDescription)
+                        )
+                    }
+
+                    return arr2
+
+                })
     }
+   /* getDataForManager() {
+        let arr = [];
+        let arr2 = [];
+
+        return api.get('/displayUsersPermissions/'+ this.props.usersChiefID+'/'+this.state.isActive)
+            .then(
+                function (response) {
+
+                    Object.keys(response.data.prevPerms).forEach(function (key) {
+                        arr.push(response.data.prevPerms[key]);
+                    });
+
+                    for (let i = 0; i < arr.length; i++) {
+
+                        arr2.push(createData(
+                            arr[i].userStatus,
+                            arr[i].permissionID,
+                            arr[i].beginDateOfPermission,
+                            arr[i].endDateOfPermission,
+                            arr[i].chiefConfirmStatus,
+                            arr[i].generalManagerConfirmStatus,
+                            arr[i].chiefsDescription,
+                            arr[i].generalManagerDescription)
+                        )
+                    }
+
+                    return arr2
+
+                })
+    }*/
 
     handleChange(event) {
         this.setState({
-            checkedA: event.target.checked
-        })
+            isActive: !this.state.isActive
+        });
         if (event.target.checked) {
             this.setState({
                 activePassiveHeader: "AKTİF İZİN TALEPLERİ"
@@ -132,12 +169,15 @@ class PreviousPermissions extends React.Component {
                 activePassiveHeader: "GEÇMİŞ İZİN TALEPLERİ"
             })
         }
+
+        this.getData();
+
     }
 
     bringHeader() {
     return(
             <Bounce>
-                    {this.state.checkedA ? "AKTİF İZİN TALEPLERİ" : "GEÇMİŞ İZİN TALEPLERİ"}
+                    {this.state.isActive ? "AKTİF İZİN TALEPLERİ" : "GEÇMİŞ İZİN TALEPLERİ"}
             </Bounce>
     )   }
 
@@ -170,21 +210,13 @@ class PreviousPermissions extends React.Component {
                     </h1>
                     <Switch
                         style={{display: "flex", margin: "0"}}
-                        checked={this.state.checkedA}
+                        checked={this.state.isActive}
                         onChange={this.handleChange}
                         color="primary"
-                        name="checkedA"
+                        name="isActive"
                         inputProps={{'aria-label': 'primary checkbox'}}
                     />
 
-
-                    {/* <BootstrapSwitchButton
-                        width={300}
-                        checked={this.state.displayActives}
-                        onlabel={"AKTİF TALEPLER"}
-                        offlabel={"GEÇMİŞ TALEPLER"}
-                        onChange={() => this.ToggleButton()}
-                    />*/}
                 </div>
                 <StickyHeadTable rows={this.state.data}/>
             </div>

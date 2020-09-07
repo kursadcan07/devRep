@@ -1,8 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
+import {connect} from "react-redux";
+const mapStateToProps = (state) => {
+    return {
+        userID: state.userLoginReducer.userID,
+    }
+};
 
-function PersonelNavigation() {
+function PersonelNavigation(props) {
 
     const iconFirst = require('./SystemImages/FillingFormImage.svg');
 
@@ -37,4 +43,11 @@ function PersonelNavigation() {
 }
 
 
-export default PersonelNavigation;
+
+
+export default connect(mapStateToProps)
+
+(
+    PersonelNavigation
+)
+;

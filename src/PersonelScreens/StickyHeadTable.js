@@ -65,76 +65,6 @@ const columns = [
     },
 ];
 
-
-/*
-
-userID: state.permissionReducer.userID,
-
-    userStatus: state.permissionReducer.userStatus,
-    displayStatus: state.permissionReducer.displayStatus,
-
-    personalName: state.userLoginReducer.personalName,
-
-    demandDateOfPermission:moment().format("DD-MM-YYYY HH:mm:ss"),
-
-    beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
-    endDateOfPermission: state.permissionReducer.endDateOfPermission,
-
-    foldCode: state.permissionReducer.foldCode,
-    areaCode: state.permissionReducer.areaCode,
-
-    selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
-    selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
-
-    permissionDescription: state.permissionReducer.permissionDescription,
-
-    personalCarUsage: state.permissionReducer.personalCarUsage,
-    totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
-    priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
-
-    displayThePermissionName: state.permissionReducer.displayThePermissionName,
-    setPermissionType: state.permissionReducer.setPermissionType
-*/
-
-
-/*
-
-/!* This function determines a button to monitor related permission in form*!/
-function displayPermissionForm(permissionID) {
-    return (
-        <div style={{
-            display: "flex",
-            justifyContent: "flex-start"
-        }}>
-           {/!* <Link to="DisplayPermissionForm">*!/}
-            {/!*    <Button variant="outlined" color="primary" style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    padding: "1px",
-                    background: "rgba(180,133,205,0.64)",
-                    borderRadius: "50%"
-                }}>*!/}
-
-                    {/!*<img style={{width: "30px", height: "20px", margin: "auto"}}
-                         src={require('./SystemImages/DisplayPermissionButtonIcon.svg')}
-                         alt="my image"/>*!/}
-           {/!*     </Button>*!/}
-          {/!*  </Link>*!/}
-        </div>
-    )
-}*/
-
-{/*Here the style definition for usage of varible classes*/
-}
-/*const useStyles = makeStyles({
-    root: {
-        width: '100%',
-    },
-    container: {
-        width: "100%",
-    },
-});*/
-
 {
     /*This const determines styles for bounce which displays buttons as animated */
 }
@@ -182,7 +112,7 @@ export default function StickyHeadTable(props) {
         return (
             <React.Fragment>
                 {/* First Grid defined here */}
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <Paper className={defineStyleForBounce.paper}>
                         <Fab style={{
                             fontSize: "20px",
@@ -204,7 +134,7 @@ export default function StickyHeadTable(props) {
                         </h1>
                     </Paper>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={5}>
                     <Paper className={defineStyleForBounce.paper}>
 
                         <Fab style={{
@@ -223,7 +153,7 @@ export default function StickyHeadTable(props) {
                         </h1>
                     </Paper>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                     <Paper className={defineStyleForBounce.paper}>
                         <Fab style={{
                             fontSize: "20px",
@@ -245,7 +175,7 @@ export default function StickyHeadTable(props) {
                         </h1>
                     </Paper>
                 </Grid>
-                <Grid item xs={3}>
+                {/*<Grid item xs={3}>
                     <Paper className={defineStyleForBounce.paper}>
                         <Fab style={{
                             fontSize: "20px",
@@ -267,7 +197,7 @@ export default function StickyHeadTable(props) {
                         </h1>
 
                     </Paper>
-                </Grid>
+                </Grid>*/}
             </React.Fragment>
         );
     }
@@ -306,8 +236,28 @@ export default function StickyHeadTable(props) {
                                                 return (
                                                     <TableCell key={column.id} style={{padding:"1px",textAlign:"center"}}>
                                                         {column.id==="permissionID" && row.permissionID}
-                                                        {column.id==="beginDateOfPermission" && row.beginDateOfPermission}
-                                                        {column.id==="endDateOfPermission" && row.endDateOfPermission}
+                                                        {column.id==="beginDateOfPermission" && (
+                                                            row.beginDateOfPermission.split("T")[0].split("-")[2]
+                                                                +"/"+
+                                                            row.beginDateOfPermission.split("T")[0].split("-")[1] +
+                                                              "/"+
+                                                            row.beginDateOfPermission.split("T")[0].split("-")[0]
+
+                                                            +" - "+
+                                                            row.beginDateOfPermission.split("T")[1].substr(0,5)
+                                                        )
+                                                        }
+                                                        {column.id==="endDateOfPermission" && (
+                                                            row.endDateOfPermission.split("T")[0].split("-")[2]
+                                                            +"/"+
+                                                            row.endDateOfPermission.split("T")[0].split("-")[1] +
+                                                            "/"+
+                                                            row.endDateOfPermission.split("T")[0].split("-")[0]
+
+                                                            +" - "+
+                                                            row.endDateOfPermission.split("T")[1].substr(0,5)
+                                                        )
+                                                        }
                                                         {column.id === "chiefConfirmStatus" &&
 
                                                         <ResponsiveDialog chiefConfirmStatus={row.chiefConfirmStatus}

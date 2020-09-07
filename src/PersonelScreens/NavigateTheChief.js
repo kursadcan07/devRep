@@ -107,8 +107,13 @@ function displayTheManagementBasedOperations(flag) {
 
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
-                        <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
+                        {/*  ----------------------------------------------- */}
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
+                                    onClick={()=>{
+                                        this.props.history.push({
+                                            pathname: '/PersonelScreens/DisplayPermissionForm',
+                                        })
+                                    }}
                                     type="button" className="btn btn-primary btn-block">
                                 <img alt="IconEye"
                                      style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
@@ -122,7 +127,7 @@ function displayTheManagementBasedOperations(flag) {
                                     İZİN TALEPLERİ
                                 </h1>
                             </button>
-                        </Link>
+
                     </Bounce>
                 </Grid>
             </Grid>
