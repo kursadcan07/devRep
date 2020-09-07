@@ -35,10 +35,12 @@ const mapStateToProps = (state) => {
         userStatus: state.permissionReducer.userStatus,
         displayStatus: state.permissionReducer.displayStatus,
 
+
+        setPermissionType: state.permissionReducer.setPermissionType,
         userID: state.userLoginReducer.userID,
+
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
-
 
         beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
         endDateOfPermission: state.permissionReducer.endDateOfPermission,
@@ -56,7 +58,7 @@ const mapStateToProps = (state) => {
         areaCode: state.permissionReducer.areaCode,
 
         displayThePermissionName: state.permissionReducer.displayThePermissionName,
-        setPermissionType: state.permissionReducer.setPermissionType,
+
 
     }
 };
@@ -85,14 +87,7 @@ class FillingThePermissionForm extends React.Component {
     */
     constructor(props) {
         super(props)
-        let nowDate = new Date(Date.now());
-        let currDate = new Date(
-            nowDate.getFullYear(),
-            nowDate.getMonth()+1,
-            nowDate.getDate(),
-            nowDate.getHours(),
-            nowDate.getMinutes()
-        )
+
         this.state = {
             userID: props.userID,
             displayThePermissionName: props.displayThePermissionName || "İzin Tipinizi Seçiniz",
@@ -139,7 +134,6 @@ class FillingThePermissionForm extends React.Component {
         this.validateAndSetData = this.validateAndSetData.bind(this);
 
         this.inputsForBusAndCarUsage = this.inputsForBusAndCarUsage.bind(this);
-
     }
 
     inputsForBusAndCarUsage(usageID) {
@@ -256,6 +250,8 @@ class FillingThePermissionForm extends React.Component {
             this.state.setPermissionType !== "4" &&
             this.state.setPermissionType !== "5" &&
             this.state.setPermissionType !== "6") {
+
+
             this.setState({
                 warningMessage: "İZİN TİPİNİ SEÇİNİZ !",
                 checkStatus: false
@@ -309,12 +305,12 @@ class FillingThePermissionForm extends React.Component {
                 warningMessage: "TANIMLAMA BAŞARILI",
                 checkStatus: true
             })
+
             this.props.setPermission(this.state)
             this.props.history.push({
                 pathname: '/PersonelScreens/DisplayPermissionForm',
             })
         }
-
     }
 
     render() {

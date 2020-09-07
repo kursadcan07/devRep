@@ -67,7 +67,7 @@ const permissionReducer = (state = {
                 totalDistanceOfIndividualCar:action.payload.totalDistanceOfIndividualCar,
 
                 displayPermissionName:action.payload.displayPermissionName,
-                setPermissionType:action.payload.setPermissionType
+                setPermissionType:action.payload.setPermissionType,
             }
             break;
         case "CHIEFS_CONFIRM":

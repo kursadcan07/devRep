@@ -62,10 +62,12 @@ const mapStateToProps = (state) => {
 class DisplayPermissionForm extends React.Component {
     endCode;
     constructor(props) {
+
         super(props);
 
         this.endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
         if (this.endCode !== "DisplayPermissionForm") {
+
             this.state = {
                 personalName: undefined,
                 userStatus: undefined,
@@ -100,11 +102,39 @@ class DisplayPermissionForm extends React.Component {
                 generalManagerDescription: undefined,
             }
         }
-
-
         else
         {
-            console.log(console.log(props.displayStatus))
+            this.state = {
+                personalName: this.props.personalName,
+                userStatus: this.props.userStatus,
+                displayStatus: this.props.displayStatus,
+                isPermissionActive: this.props.isPermissionActive,
+                demandDateOfPermission: new Date(Date.now()),
+
+                beginDateOfPermission:this.props.beginDateOfPermission,
+                endDateOfPermission:this.props.endDateOfPermission,
+
+                foldCode: this.props.foldCode,
+                areaCode: this.props.areaCode,
+
+                permissionDescription: this.props.permissionDescription,
+
+                selectVehicleUsageName: this.props.selectVehicleUsageName,
+                selectVehicleUsageID: this.props.selectVehicleUsageID,
+
+                priceOfTrainOrBus: this.props.priceOfTrainOrBus,
+                totalDistanceOfIndividualCar: this.props.totalDistanceOfIndividualCar,
+
+                displayPermissionName: this.props.displayThePermissionName,
+                setPermissionType: this.props.setPermissionType,
+
+                chiefConfirmStatus: this.props.chiefConfirmStatus,
+                chiefsDescription: this.props.chiefsDescription,
+
+                generalManagerConfirmStatus: this.props.generalManagerConfirmStatus,
+                generalManagerDescription: this.props.generalManagerDescription,
+            }
+
         }
         this.getData = this.getData.bind(this);
     }
@@ -155,11 +185,12 @@ class DisplayPermissionForm extends React.Component {
     getData() {
         let endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
         if (endCode !== "DisplayPermissionForm") {
-           return  api.get('/DisplayPermissionForm/' + endCode)
+           return (api.get('/DisplayPermissionForm/' + endCode)
                 .then(
                     function (response) {
+
                         return response.data.usersPermission
-                    })
+                    }))
 
         }
     }
@@ -187,7 +218,7 @@ class DisplayPermissionForm extends React.Component {
                             marginBottom: "4px",
                             border: "0.6px solid black"
                         }}>
-                        {displayLogoAndMainDescription(this.props.areaCode, this.props.foldCode)}
+                        {displayLogoAndMainDescription(this.state.areaCode, this.state.foldCode)}
                     </div>
 
                     <div style={{
@@ -197,7 +228,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPermissionTypeAndRest(this.props.setPermissionType)}
+                        {displayPermissionTypeAndRest(this.state.setPermissionType)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -206,7 +237,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayPersonalInformationPart(this.props.personalName,new Date(Date.now()))}
+                        {displayPersonalInformationPart(this.state.personalName,new Date (this.state.demandDateOfPermission))}
                     </div>
                     <div style={{
                         display: "flex",
@@ -220,10 +251,10 @@ class DisplayPermissionForm extends React.Component {
 
                             displayEmployeesPermissionDates(
                                 new Date(
-                                    Date.now()
+                                    this.state.beginDateOfPermission
                                 ),
                                 new Date(
-                                    Date.now()
+                                    this.state.endDateOfPermission
                                 )
                             )}
                     </div>
@@ -234,7 +265,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayVehicleUsagesOfPersonel(this.props.selectVehicleUsageID)}
+                        {displayVehicleUsagesOfPersonel(this.state.selectVehicleUsageID)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -243,7 +274,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayTheExplanationOfPermission(this.props.permissionDescription)}
+                        {displayTheExplanationOfPermission(this.state.permissionDescription)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -252,7 +283,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayDetailsOfVehicleUsage(this.props.totalDistanceOfIndividualCar, this.props.priceOfTrainOrBus, this.props.selectVehicleUsageID)}
+                        {displayDetailsOfVehicleUsage(this.state.totalDistanceOfIndividualCar, this.state.priceOfTrainOrBus, this.state.selectVehicleUsageID)}
                     </div>
                     <div style={{
                         display: "flex",
@@ -261,7 +292,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayTheAcceptionPart(this.props.personalName, this.props.personalName, this.props.personalName)}
+                        {displayTheAcceptionPart(this.state.personalName, this.state.personalName, this.state.personalName)}
                     </div>
 
                     <div style={{
@@ -281,23 +312,24 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.endCode === "DisplayPermissionForm" && (this.props.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props,
-                        this.props.userID,
-                        this.props.userStatus,
-                        this.props.personalName,
+                    {this.endCode === "DisplayPermissionForm" && (this.state.userStatus === 1 ? displayManagersButtonsForForm() : displayPersonelsButtonsForForm(this.props,
+                        this.state.userID,
+                        this.state.userStatus,
+                        this.state.personalName,
 
-                        this.props.demandDateOfPermission,
-                        this.props.beginDateOfPermission,
-                        this.props.endDateOfPermission,
+                        this.state.demandDateOfPermission,
+                        this.state.beginDateOfPermission,
+                        this.state.endDateOfPermission,
 
-                        this.props.foldCode,
-                        this.props.areaCode,
-                        this.props.selectVehicleUsageName,
-                        this.props.selectVehicleUsageID,
-                        this.props.permissionDescription,
-                        this.props.personalCarUsage,
-                        this.props.totalDistanceOfIndividualCar,
-                        this.props.priceOfTrainOrBus
+                        this.state.foldCode,
+                        this.state.areaCode,
+                        this.state.selectVehicleUsageName,
+                        this.state.selectVehicleUsageID,
+                        this.state.permissionDescription,
+                        this.state.personalCarUsage,
+                        this.state.totalDistanceOfIndividualCar,
+                        this.state.priceOfTrainOrBus,
+                        this.state.setPermissionType
                     ))}
 
                 </div>
@@ -345,7 +377,7 @@ function displayLogoAndMainDescription(areaCode, foldNumb) {
                         fontSize: "3vw",
                         fontWeight: "normal",
                         margin: "auto",
-                        fontFamily: "Scada"
+                        fontFamily: "Arya"
                     }}>
                         DESIRD TASARIM
                     </h1>
@@ -356,7 +388,7 @@ function displayLogoAndMainDescription(areaCode, foldNumb) {
                         fontSize: "2.5vw",
                         justifyContent: "center",
                         margin: "auto",
-                        fontFamily: "Scada"
+                        fontFamily: "Arya"
                     }}>
                         {areaCode}
                     </h1>
@@ -377,7 +409,7 @@ function displayLogoAndMainDescription(areaCode, foldNumb) {
                         fontSize: "2.5vw",
                         fontWeight: "normal",
                         margin: "auto",
-                        fontFamily: "Scada"
+                        fontFamily: "Arya"
                     }}>
                         PERSONEL İZİN BELGESİ FORMU
                     </h1>
@@ -389,7 +421,7 @@ function displayLogoAndMainDescription(areaCode, foldNumb) {
                         justifyContent: "center",
                         margin: "auto",
                         border: "0.5px solid black",
-                        fontFamily: "Scada"
+                        fontFamily: "Arya"
                     }}>
                         {foldNumb}
                     </h1>
@@ -401,6 +433,7 @@ function displayLogoAndMainDescription(areaCode, foldNumb) {
 
 //ÜSTTEN 2.BLOK KOMPONENT İZİN TÜRÜ ALINIR, BİR KOMPONENTİ DE İÇERDE YARATIR.
 function displayPermissionTypeAndRest(perTypeID) {
+    console.log(perTypeID,"DİYORR")
     return (
         <div style={{
             display: "flex",
@@ -418,7 +451,7 @@ function displayPermissionTypeAndRest(perTypeID) {
                 <h1 style={{
                     display: "flex",
                     flex: 1,
-                    fontFamily: "Scada",
+                    fontFamily: "Arya",
                     fontSize: "22px",
                     margin: "auto",
                     justifyContent: "center"
@@ -464,7 +497,7 @@ function perAccCompt(perTypeID) {
                         display: "flex",
                         justifyContent: "center",
                         flex: 0.8,
-                        fontFamily: "Scada",
+                        fontFamily: "Arya",
                         fontSize: "18px",
                         margin: "auto"
                     }}>
@@ -491,7 +524,7 @@ function perAccCompt(perTypeID) {
                         display: "flex",
                         flex: 0.8,
                         justifyContent: "center",
-                        fontFamily: "Scada",
+                        fontFamily: "Arya",
                         fontSize: "18px",
                         margin: "auto"
                     }}>
@@ -516,7 +549,7 @@ function perAccCompt(perTypeID) {
                         display: "flex",
                         flex: 0.8,
                         justifyContent: "center",
-                        fontFamily: "Scada",
+                        fontFamily: "Arya",
                         fontSize: "18px",
                         margin: "auto"
                     }}>
@@ -547,7 +580,7 @@ function perAccCompt(perTypeID) {
                         flex: 0.8,
                         fontSize: "14px",
                         margin: "auto",
-                        fontFamily: "Scada"
+                        fontFamily: "Arya"
                     }}>
                         Ücretsiz İzin
                     </h1>
@@ -572,7 +605,7 @@ function perAccCompt(perTypeID) {
                         flex: 0.8,
                         justifyContent: "center",
                         fontSize: "16px",
-                        fontFamily: "Scada",
+                        fontFamily: "Arya",
                         margin: "auto"
                     }}>
                         Ücretli İzin
@@ -595,7 +628,7 @@ function perAccCompt(perTypeID) {
                         flex: 0.8,
                         justifyContent: "center",
                         fontSize: "12px",
-                        fontFamily: "Scada",
+                        fontFamily: "Arya",
                         margin: "auto"
                     }}>
                         2 Ay İçinde Telafi Yapılacak
@@ -640,20 +673,18 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
                     justifyContent: "center",
                     flex: 1,
                     textAlign: "center",
-                    fontFamily: "Scada",
+                    fontFamily: "Arya",
                     margin: "auto",
                     fontSize: "18px",
-                    borderTop: "0px",
-                    fontWeight: "normal"
+                    fontWeight: "normal",
+                    borderRight: "1px solid black",
                 }}
                 >AD SOYAD</h1>
                 <div style={{
                     display: "flex",
                     justifyContent: "center",
                     flex: 3.333,
-                    border: "0.5px solid black",
                     borderLeft: "1px solid black",
-                    borderTop: "0px"
                 }}
                 >
                     <h1 style={{
@@ -661,7 +692,7 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
                         flex: 3.333,
                         justifyContent: "center",
                         margin: "auto",
-                        fontFamily: "Scada",
+                        fontFamily: "Arya",
                         fontSize: "15px",
                         textAlign: "center"
                     }}
@@ -673,7 +704,8 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
             <div style={{
                 display: "flex",
                 flex: 1.666,
-                justifyContent: "center"
+                justifyContent: "center",
+                border: "0.5px solid black"
             }}>
                 <h1 style={{
                     display: "flex",
@@ -682,9 +714,7 @@ function displayPersonalInformationPart(personalNameSurname, demandDate) {
                     textAlign: "center",
                     margin: "auto",
                     fontSize: "18px",
-                    fontFamily: "Scada",
-                    borderBottom: "0.5px solid black",
-                    borderRight: "0.5px solid black"
+                    fontFamily: "Arya",
                 }}
                 >Talep Tarih : {currDate}</h1>
             </div>
@@ -757,7 +787,9 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                             flex: 1,
                             justifyContent: "center",
                             fontSize: "15px",
-                            margin: "auto"
+                            margin: "auto",
+                            fontFamily:"Arya",
+                            borderBottom: "1px solid black",
                         }}> İZİN </h1>
                     </div>
 
@@ -775,7 +807,9 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                             flex: 1,
                             justifyContent: "center",
                             fontSize: "15px",
-                            margin: "auto"
+                            margin: "auto",
+                            fontFamily:"Arya",
+                            borderBottom: "1px solid black",
                         }}>TARİHİ</h1>
                     </div>
                     <div style={{
@@ -784,14 +818,16 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         flex: 1,
                         alignItems: "center",
                         border: "0.2px solid black",
-                        borderTop: "0px"
+                        borderTop: "0px",
+                        borderBottom: "0px",
                     }}>
                         <h1 style={{
                             display: "flex",
                             flex: 1,
                             justifyContent: "center",
                             fontSize: "15px",
-                            margin: "auto"
+                            margin: "auto",
+                            fontFamily:"Arya"
                         }}>SAATİ</h1>
                     </div>
                 </div>
@@ -817,7 +853,9 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya",
+                        borderBottom: "1px solid black",
                     }}>BAŞLANGIÇ</h1>
                 </div>
 
@@ -827,17 +865,19 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                     flex: 1,
                     alignItems: "center",
                     border: "0.2px solid black",
+                    borderRight: "0px",
                 }}>
                     <h1 style={{
                         display: "flex",
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya"
                     }}>{
                         beginDateOfPermission.getDate() +
                         "/" +
-                        beginDateOfPermission.getMonth() +
+                        (beginDateOfPermission.getMonth() + 1 ) +
                         "/" +
                         beginDateOfPermission.getFullYear()
                     }</h1>
@@ -849,14 +889,17 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                     flex: 1,
                     alignItems: "center",
                     border: "0.2px solid black",
-                    borderTop: "0px"
+                    borderTop: "0px",
+                    borderBottom: "0px",
+                    borderRight: "0px",
                 }}>
                     <h1 style={{
                         display: "flex",
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya"
                     }}>{beginDateOfPermission.getHours() + ":" + beginDateOfPermission.getMinutes()}</h1>
                 </div>
             </div>
@@ -879,7 +922,10 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya",
+                        borderBottom: "1px solid black",
+                        borderRight: "1px solid black",
                     }}>BİTİŞ</h1>
                 </div>
 
@@ -889,6 +935,7 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                     flex: 1,
                     alignItems: "center",
                     border: "0.2px solid black",
+                    borderRight: "0px",
 
                 }}>
                     <h1 style={{
@@ -896,10 +943,11 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya"
                     }}>{endDateOfPermission.getDate() +
                     "/" +
-                    endDateOfPermission.getMonth() +
+                    (endDateOfPermission.getMonth() +1 ) +
                     "/" +
                     endDateOfPermission.getFullYear()}</h1>
                 </div>
@@ -909,14 +957,17 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                     flex: 1,
                     alignItems: "center",
                     border: "0.2px solid black",
-                    borderTop: "0px"
+                    borderTop: "0px",
+                    borderBottom: "0px",
+                    borderRight: "0px",
                 }}>
                     <h1 style={{
                         display: "flex",
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya"
                     }}>{endDateOfPermission.getHours() + ":" + endDateOfPermission.getMinutes()}</h1>
                 </div>
             </div>
@@ -939,7 +990,9 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya",
+                        borderBottom: "1px solid black",
                     }}>İZİN SÜRESİ</h1>
                 </div>
 
@@ -948,14 +1001,16 @@ function displayEmployeesPermissionDates(beginDateOfPermission, endDateOfPermiss
                     justifyContent: "center",
                     flex: 2,
                     alignItems: "center",
-                    border: "0.2px solid black"
+                    border: "0.2px solid black",
+                    borderBottom: "0px",
                 }}>
                     <h1 style={{
                         display: "flex",
                         flex: 1,
                         justifyContent: "center",
                         fontSize: "15px",
-                        margin: "auto"
+                        margin: "auto",
+                        fontFamily:"Arya"
                     }}> {timeDiffCalc(endDateOfPermission, beginDateOfPermission)}</h1>
                 </div>
             </div>
@@ -989,7 +1044,7 @@ function displayVehicleUsagesOfPersonel(vehicleUsageID) {
                     justifyContent: "center",
                     textAlignment: "center",
                     fontSize: "12px",
-                    fontFamily: "Scada",
+                    fontFamily: "Arya",
                     margin: "auto"
                 }}>
                     GÖREVLİ İSE ŞİRKET ARACI KULLANACAK MI :
@@ -1005,7 +1060,7 @@ function displayVehicleUsagesOfPersonel(vehicleUsageID) {
                 paddingLeft: "30px",
                 borderLeft: "0.1px solid black",
                 textAlignment: "center",
-                fontFamily: "Scada",
+                fontFamily: "Arya",
                 fontSize: "16px"
             }}
             >
@@ -1026,7 +1081,7 @@ function displayVehicleUsagesOfPersonel(vehicleUsageID) {
                 borderLeft: "0.1px solid black",
                 textAlignment: "center",
                 fontSize: "16px",
-                fontFamily: "Scada"
+                fontFamily: "Arya"
             }}
             >
                 HAYIR
@@ -1058,9 +1113,10 @@ function displayTheExplanationOfPermission(explOfPer) {
                 padding: "0.1vw",
                 border: "0.2px solid black",
                 height: "100%",
+                fontFamily:"Arya",
                 margin: "auto"
 
-            }}>Açıklama:
+            }}>AÇIKLAMA:
             </h1>
 
             <p style={{
@@ -1069,7 +1125,8 @@ function displayTheExplanationOfPermission(explOfPer) {
                 justifyContent: "flex-start",
                 flexDirection: "row",
                 flex: 0.9,
-                wordBreak: "break-word"
+                wordBreak: "break-word",
+                fontFamily:"Arya"
             }}>
                 {explOfPer}
             </p>
@@ -1079,7 +1136,8 @@ function displayTheExplanationOfPermission(explOfPer) {
 
 //HERE WE TAKE
 function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
-    console.log(carUsageID);
+
+
     return (
         <div style={{
             display: "flex",
@@ -1101,7 +1159,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
                     display: "flex",
                     justifyContent: "center",
                     flex: 1,
-                    fontFamily: "Scada",
+                    fontFamily: "Arya",
                     fontSize: "16px",
                     margin: "auto"
                 }}>
@@ -1136,7 +1194,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
                     display: "flex",
                     justifyContent: "center",
                     flex: 1,
-                    fontFamily: "Scada",
+                    fontFamily: "Arya",
                     fontSize: "16px",
                     margin: "auto"
                 }}>
@@ -1184,6 +1242,7 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     fontSize: "12px",
                     border: "0.2px solid black",
                     margin: "auto",
+                    fontFamily:"Arya",
                     padding: "5px"
                 }}>
                     İZİNLİ PERSONEL ONAYI
@@ -1196,7 +1255,8 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     fontSize: "12px",
                     border: "0.2px solid black",
                     margin: "auto",
-                    padding: "5px"
+                    padding: "5px",
+                    fontFamily:"Arya"
 
                 }}>
                     SORUMLU AMİR ONAYI
@@ -1209,7 +1269,9 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     fontSize: "13px",
                     border: "0.2px solid black",
                     margin: "auto",
-                    padding: "4px"
+                    padding: "4px",
+                    fontFamily:"Arya"
+
                 }}>
                     GENEL MÜDÜR ONAYI
                 </h1>
@@ -1230,7 +1292,8 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     fontSize: "15px",
                     border: "0.2px solid black",
                     padding: "10px",
-                    margin: "auto"
+                    margin: "auto",
+                    fontFamily:"Arya"
                 }}>
                     {employeeName}
                 </h1>
@@ -1242,7 +1305,8 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     fontSize: "15px",
                     border: "0.2px solid black",
                     padding: "10px",
-                    margin: "auto"
+                    margin: "auto",
+                    fontFamily:"Arya"
                 }}>
                     {chiefName}
                 </h1>
@@ -1254,7 +1318,8 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
                     fontSize: "15px",
                     border: "0.2px solid black",
                     padding: "10px",
-                    margin: "auto"
+                    margin: "auto",
+                    fontFamily:"Arya"
                 }}>
                     {generalManagerName}
                 </h1>
@@ -1308,7 +1373,9 @@ function displayFormHRrelatedInfo() {
                 justifyContent: "center",
                 flex: 0.6,
                 fontSize: "1vw",
-                margin: "auto"
+                margin: "auto",
+                fontFamily:"Arya"
+
             }}>
                 Form No: IKFR002
             </h1>
@@ -1318,7 +1385,8 @@ function displayFormHRrelatedInfo() {
                 justifyContent: "center",
                 flex: 1,
                 fontSize: "1vw",
-                margin: "auto"
+                margin: "auto",
+                fontFamily:"Arya"
             }}>
                 Form Yayın Tarihi: 21/09/2016
             </h1>
@@ -1327,7 +1395,8 @@ function displayFormHRrelatedInfo() {
                 justifyContent: "center",
                 flex: 1.4,
                 fontSize: "1vw",
-                margin: "auto"
+                margin: "auto",
+                fontFamily:"Arya"
             }}>
                 Form Revizyon Tarihi :02.07.2019
             </h1>
@@ -1336,7 +1405,8 @@ function displayFormHRrelatedInfo() {
                 justifyContent: "center",
                 flex: 1,
                 fontSize: "1vw",
-                margin: "auto"
+                margin: "auto",
+                fontFamily:"Arya"
             }}>
                 Form Revizyon No: 0002
             </h1>
@@ -1440,28 +1510,11 @@ function displayManagersButtonsForForm() {
     )
 }
 
-/*
-const api = axios.create({
-    baseURL: `http://localhost:4000`
-})*/
-
-/*
-function dateConverter(givenDate1) {
-    let givenDate= new Date(givenDate1);
-    return givenDate.getDate() + "/" +
-        (givenDate.getMonth() + 1) + "/" +
-        givenDate.getFullYear()
-        + "-" +
-        givenDate.getHours() +
-        ":" +
-        givenDate.getMinutes();
-}*/
-
 function displayPersonelsButtonsForForm(props, userIDS,
                                         userStatusS, personalNameS, demandDateOfPermissionS, beginDateOfPermissionS,
                                         endDateOfPermissionS, foldCodeS, areaCodeS, selectVehicleUsageNameS,
                                         selectVehicleUsageIDS, permissionDescriptionS, personalCarUsageS, totalDistanceOfIndividualCarS,
-                                        priceOfTrainOrBusS
+                                        priceOfTrainOrBusS,setPermissionTypeS
 ) {
 
     return (
@@ -1539,7 +1592,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 demandDateOfPermission: demandDateOfPermissionS,
                                 beginDateOfPermission: beginDateOfPermissionS,
                                 endDateOfPermission: endDateOfPermissionS,
-
+                                setPermissionType:setPermissionTypeS,
                                 foldCode: foldCodeS,
                                 areaCode: areaCodeS,
                                 selectVehicleUsageName: selectVehicleUsageNameS,
