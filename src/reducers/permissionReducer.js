@@ -4,7 +4,7 @@ const permissionReducer = (state = {
     userID:0,
     chiefID:0,
     generalManagerID:0,
-
+    displayStatus:0,
     isPermissionActive:true,
     personalName:"-",
 
@@ -41,9 +41,9 @@ const permissionReducer = (state = {
             state = {
                 ...state,
                 userID:action.payload.userID,
+
                 chiefID:action.payload.chiefID,
                 generalManagerID:action.payload.generalManagerID,
-
                 personalName:action.payload.personalName,
 
                 userStatus:action.payload.userStatus,
@@ -85,6 +85,12 @@ const permissionReducer = (state = {
                 ...state,
                 generalManagerConfirmStatus:action.payload.generalManagerConfirmStatus,
                 generalManagerDescription:action.payload.generalManagerDescription
+            }
+            break;
+        case "SET_DISPLAY_STATUS":
+            state={
+                ...state,
+                displayStatus:action.payload.displayStatus,
             }
             break;
         default:

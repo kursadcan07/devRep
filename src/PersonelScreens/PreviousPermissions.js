@@ -60,7 +60,6 @@ function createData(userStatus, permissionID, beginDateOfPermission, endDateOfPe
 
 class PreviousPermissions extends React.Component {
 
-
     constructor(props) {
 
         super(props);
@@ -74,14 +73,14 @@ class PreviousPermissions extends React.Component {
         this.getDataForManagers = this.getDataForManagers.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.bringHeader = this.bringHeader.bind(this);
-        console.log(props.userStatus)
+
 
         if (this.props.userStatus === 1) {
-            this.getData().then((data) => {
+             this.getData().then((data) => {
                 this.setState({data: data})
             });
         } else if (props.userStatus === 2) {
-            this.getData().then((data) => {
+             this.getDataForManagers().then((data) => {
                 this.setState({data: data})
             });
         }
@@ -90,12 +89,12 @@ class PreviousPermissions extends React.Component {
 
     componentDidMount() {
         if(this.props.userStatus===1){
-            this.getData(this.props.userID).then((data) => {
+             this.getData(this.props.userID).then((data) => {
                 this.setState({data: data})
             });
         }
         else if(this.props.userStatus===2){
-            this.getDataForManagers(this.props.userID).then((data) => {
+             this.getDataForManagers(this.props.userID).then((data) => {
                 this.setState({data: data})
             });
 

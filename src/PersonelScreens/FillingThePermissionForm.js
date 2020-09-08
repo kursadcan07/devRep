@@ -61,7 +61,6 @@ const mapStateToProps = (state) => {
 
         displayThePermissionName: state.permissionReducer.displayThePermissionName,
 
-
     }
 };
 

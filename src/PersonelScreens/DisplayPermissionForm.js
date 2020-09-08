@@ -13,10 +13,10 @@ const api = axios.create({
 
 const mapStateToProps = (state) => {
     return {
-
         userID: state.userLoginReducer.userID,
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
+
 
         userStatus: state.userLoginReducer.userStatus,
 
@@ -50,8 +50,8 @@ const mapStateToProps = (state) => {
 
 
 class DisplayPermissionForm extends React.Component {
-    endCode;
 
+    endCode;
     constructor(props) {
 
         super(props);
@@ -129,9 +129,10 @@ class DisplayPermissionForm extends React.Component {
             }
 
         }
+
         this.getData = this.getData.bind(this);
         this.displayButtonsForPermission = this.displayButtonsForPermission.bind(this);
-        console.log("USE STATUSSSS : " , this.state.userStatus)
+
     }
 
     componentDidMount() {
@@ -140,7 +141,7 @@ class DisplayPermissionForm extends React.Component {
             this.getData().then((data) => {
 
                 this.setState({
-
+                    permissionID:data.permissionID,
                     userID: data.userID,
                     personalName: data.personalName,
 
@@ -178,8 +179,6 @@ class DisplayPermissionForm extends React.Component {
         }
     }
 
-
-
     getData() {
             return (api.get('/DisplayPermissionForm/' + this.endCode)
                 .then(
@@ -191,18 +190,40 @@ class DisplayPermissionForm extends React.Component {
 
     displayButtonsForPermission() {
         let endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
-        console.log("HAT 11111111111111111111111111111111111111 ")
-        console.log(this.state.userStatus,"userin statusu !")
+
         if (this.state.userStatus === 2) {
-            console.log("HAT 122222222222222222222222222222222 ")
-            if (endCode !== "DisplayPermissionForm") {
-                console.log("MERHABA AGALAR")
-                return displayManagersButtonsForForm();
+            if(endCode==="DisplayPermissionForm"){
+                return displayPersonelsButtonsForForm(
+                    this.props,
+                    this.state.userID,
+                    this.state.userStatus,
+                    this.state.personalName,
+
+                    this.state.demandDateOfPermission,
+                    this.state.beginDateOfPermission,
+                    this.state.endDateOfPermission,
+
+                    this.state.foldCode,
+                    this.state.areaCode,
+                    this.state.selectVehicleUsageName,
+                    this.state.selectVehicleUsageID,
+                    this.state.permissionDescription,
+                    this.state.personalCarUsage,
+                    this.state.totalDistanceOfIndividualCar,
+                    this.state.priceOfTrainOrBus,
+                    this.state.setPermissionType,
+                    this.state.chiefID,
+                    this.state.generalManagerID
+
+                )
+            }
+            else{
+                return displayManagersButtonsForForm(this.props);
             }
         } else if (this.state.userStatus === 1) {
-            console.log("HAT 3333333333333333333333333333333333 ")
+
             if (endCode === "DisplayPermissionForm") {
-                console.log("HAT 44444444444444444444444444 ")
+
                 return displayPersonelsButtonsForForm(
                     this.props,
                     this.state.userID,
@@ -354,7 +375,7 @@ class DisplayPermissionForm extends React.Component {
         )
     }
 }
-function displayManagersButtonsForForm() {
+function displayManagersButtonsForForm(props) {
     return (
         <div style={{
             display: "flex",
@@ -371,9 +392,17 @@ function displayManagersButtonsForForm() {
                 }}>
 
                     <button type="button" onClick={() => {
+                        let unPermisID=window.location.href.split("/")[window.location.href.split("/").length - 1];
                         console.log("TALEP REDDEDİLDİ !! ")
-                    }}
-                            className="btn btn-danger" style={{
+                        api.put('/changeChiefStatus/',{permissionID:unPermisID,chiefConfirmStatus:2}).then(r =>
+                            console.log(r)
+                        )
+                        props.history.push({
+                            pathname: '/PersonelScreens/PreviousPermissons',
+                        })
+
+
+                    }} className="btn btn-danger" style={{
                         display: "flex",
                         marginRight: "5px",
                         flex: 1,
@@ -400,6 +429,14 @@ function displayManagersButtonsForForm() {
                         justifyContent: "center"
                     }} onClick={() => {
                         console.log("TALEP ONAYLANDI !! ")
+                        let unPermisID=window.location.href.split("/")[window.location.href.split("/").length - 1];
+                        api.put('/changeChiefStatus/',{permissionID:unPermisID,chiefConfirmStatus:1}).then(r =>
+                            console.log(r)
+                        )
+                        props.history.push({
+                            pathname: '/PersonelScreens/PreviousPermissons',
+                        })
+
                     }}>
                         <h1 style={{
                             display: "flex",
@@ -728,12 +765,10 @@ function perAccCompt(perTypeID) {
 //This functional component fills that name-surname of personel that demands permisson and date when demans created.
 function displayPersonalInformationPart(personalNameSurname, demandDate) {
 
-    console.log(personalNameSurname)
     let currDate = demandDate.getDate() + "/" + demandDate.getMonth() + "/" + demandDate.getFullYear() +
         "-" +
         demandDate.getHours() + ":"
         + demandDate.getMinutes();
-
 
     return (
         <div style={{
@@ -1583,7 +1618,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                     </Link>
 
                     <button type="button" onClick={() => {
-                        console.log(chiefIDS);
+
                         api.post('/createPermission',
                             {
                                 personalName: personalNameS,

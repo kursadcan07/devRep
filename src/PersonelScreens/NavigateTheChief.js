@@ -5,7 +5,18 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Bounce, Slide} from "react-reveal";
 import {connect} from "react-redux";
 
+import setDisplayStatusAction from "../actions/setDisplayStatusAction";
 const axios = require('axios');
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setDisplayStatus: (displayStatus) => {
+            dispatch(setDisplayStatusAction(displayStatus));
+        }
+    }
+};
+
 
 const mapStateToProps = (state) => {
     return {
@@ -42,7 +53,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const useStyles = makeStyles((theme) => ({
+/*const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
@@ -51,67 +62,12 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
-}));
-
+}));*/
+/*
 const api = axios.create({
     baseURL: `http://localhost:4000`
-})
+}*/
 
-function displayIndividualOperations(flag) {
-    const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
-    const displayPermissionDemandIcon = require('./SystemImages/DisplayPermissionButtonIcon.svg');
-    if (flag) {
-        return (
-            <Grid container spacing={1} style={{justifyContent: "center"}}>
-                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
-                    <Bounce left>
-                        <Link to="FillingThePermissionForm" style={{textDecoration: "none"}}>
-                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
-                                    type="button" className="btn btn-primary btn-block">
-                                <img alt="IconEye"
-                                     style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
-                                     src={crateDemandIcon}/>
-                                <h1 style={{
-                                    display: "flex",
-                                    flexDirection: "flex-start",
-                                    fontSize: "16px",
-                                    margin: "auto"
-                                }}>
-                                    İZİN TALEBİ YARAT
-                                </h1>
-                            </button>
-                        </Link>
-                    </Bounce>
-                </Grid>
-
-                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
-                    <Bounce right>
-                        <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
-                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
-
-                                    type="button" className="btn btn-primary btn-block">
-                                <img alt="IconEye"
-                                     style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
-                                     src={displayPermissionDemandIcon}/>
-                                <h1 style={{
-                                    display: "flex",
-                                    flexDirection: "flex-start",
-                                    fontSize: "16px",
-                                    margin: "auto"
-                                }}>
-                                    İZİNLERİ GÖRÜNTÜLE
-                                </h1>
-                            </button>
-                        </Link>
-                    </Bounce>
-                </Grid>
-
-            </Grid>
-        )
-    } else {
-        return null;
-    }
-}
 
 function displayTheManagementBasedOperations(flag,props) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
@@ -240,9 +196,70 @@ class NavigateTheChief extends React.Component {
         );
     }
 }
-export default connect(mapStateToProps)
+
+
+function displayIndividualOperations(flag) {
+    const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
+    const displayPermissionDemandIcon = require('./SystemImages/DisplayPermissionButtonIcon.svg');
+    if (flag) {
+        return (
+            <Grid container spacing={1} style={{justifyContent: "center"}}>
+                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
+                    <Bounce left>
+                        <Link to="FillingThePermissionForm" style={{textDecoration: "none"}}>
+                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
+                                    type="button" className="btn btn-primary btn-block">
+                                <img alt="IconEye"
+                                     style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
+                                     src={crateDemandIcon}/>
+                                <h1 style={{
+                                    display: "flex",
+                                    flexDirection: "flex-start",
+                                    fontSize: "16px",
+                                    margin: "auto"
+                                }}>
+                                    İZİN TALEBİ YARAT
+                                </h1>
+                            </button>
+                        </Link>
+                    </Bounce>
+                </Grid>
+
+                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
+                    <Bounce right>
+                        <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
+                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
+                                    onClick={()=>{
+                                        //BURDA KALDIIIIIIIIIIIIIIIIIIIIIM
+                                        console.log("Hiii")
+                                        this.props.setDisplayStatus(1);
+                                    }}
+
+                                    type="button" className="btn btn-primary btn-block">
+                                <img alt="IconEye"
+                                     style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
+                                     src={displayPermissionDemandIcon}/>
+                                <h1 style={{
+                                    display: "flex",
+                                    flexDirection: "flex-start",
+                                    fontSize: "16px",
+                                    margin: "auto"
+                                }}>
+                                    İZİNLERİ GÖRÜNTÜLE
+                                </h1>
+                            </button>
+                        </Link>
+                    </Bounce>
+                </Grid>
+
+            </Grid>
+        )
+    } else {
+        return null;
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)
 
 (
-    NavigateTheChief
-)
+    NavigateTheChief,displayIndividualOperations())
 ;
