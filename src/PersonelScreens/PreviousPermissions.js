@@ -15,13 +15,12 @@ const api = axios.create({
 const mapStateToProps = (state) => {
     return {
 
-        userStatus: state.permissionReducer.userStatus,
+        userStatus: state.userLoginReducer.userStatus,
         displayStatus: state.permissionReducer.displayStatus,
 
         userID: state.userLoginReducer.userID,
-        usersChiefID:state.userLoginReducer.usersChiefID,
-
-
+        chiefID: state.userLoginReducer.chiefID,
+        generalManagerID: state.userLoginReducer.generalManagerID,
 
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
@@ -63,78 +62,77 @@ class PreviousPermissions extends React.Component {
 
 
     constructor(props) {
+
         super(props);
+
         this.state = {
             data: [],
             isActive: true,
             activePassiveHeader: "AKTİF İZİN TALEPLERİ"
         }
         this.getData = this.getData.bind(this);
+        this.getDataForManagers = this.getDataForManagers.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.bringHeader = this.bringHeader.bind(this);
-        this.endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
-        if (this.endCode !== "PreviousPermissions") {
+        console.log(props.userStatus)
 
-
-
-
+        if (this.props.userStatus === 1) {
+            this.getData().then((data) => {
+                this.setState({data: data})
+            });
+        } else if (props.userStatus === 2) {
+            this.getData().then((data) => {
+                this.setState({data: data})
+            });
         }
 
-        this.getData().then((data) => {
-            this.setState({data: data})
-        });
     }
 
-
-    componentDidUpdate(prevProps,prevState) {
-        if(prevState.isActive !==this.state.isActive) {
-            this.getData().then((data) => {
+    componentDidMount() {
+        if(this.props.userStatus===1){
+            this.getData(this.props.userID).then((data) => {
+                this.setState({data: data})
+            });
+        }
+        else if(this.props.userStatus===2){
+            this.getDataForManagers(this.props.userID).then((data) => {
                 this.setState({data: data})
             });
 
         }
+
     }
 
-    getData() {
-        let arr = [];
-        let arr2 = [];
+    componentDidUpdate(prevProps, prevState) {
 
-        return api.get('/displayUsersPermissions/'+ this.props.userID+'/'+this.state.isActive)
-                .then(
-                function (response) {
+        if (prevState.isActive !== this.state.isActive) {
 
-                    Object.keys(response.data.prevPerms).forEach(function (key) {
-                        arr.push(response.data.prevPerms[key]);
-                    });
+            if(this.props.userStatus===1){
+                 this.getData(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
+            else if(this.props.userStatus===2){
+                 this.getDataForManagers(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
 
-                    for (let i = 0; i < arr.length; i++) {
+            }
+        }
 
-                        arr2.push(createData(
-                            arr[i].userStatus,
-                            arr[i].permissionID,
-                            arr[i].beginDateOfPermission,
-                            arr[i].endDateOfPermission,
-                            arr[i].chiefConfirmStatus,
-                            arr[i].generalManagerConfirmStatus,
-                            arr[i].chiefsDescription,
-                            arr[i].generalManagerDescription)
-                        )
-                    }
-
-                    return arr2
-
-                })
     }
-   /* getDataForManager() {
+
+    getData(userID) {
         let arr = [];
         let arr2 = [];
-
-        return api.get('/displayUsersPermissions/'+ this.props.usersChiefID+'/'+this.state.isActive)
+        return api.get('/displayUsersPermissions/' + userID + '/' + this.state.isActive)
             .then(
                 function (response) {
 
                     Object.keys(response.data.prevPerms).forEach(function (key) {
+
                         arr.push(response.data.prevPerms[key]);
+
                     });
 
                     for (let i = 0; i < arr.length; i++) {
@@ -154,7 +152,39 @@ class PreviousPermissions extends React.Component {
                     return arr2
 
                 })
-    }*/
+    }
+
+    getDataForManagers(chiefID) {
+        let arr = [];
+        let arr2 = [];
+        return api.get('/displayPermissionsForChief/' + chiefID + '/' + this.state.isActive)
+            .then(
+                function (response) {
+
+                    Object.keys(response.data.prevPerms).forEach(function (key) {
+
+                        arr.push(response.data.prevPerms[key]);
+
+                    });
+
+                    for (let i = 0; i < arr.length; i++) {
+
+                        arr2.push(createData(
+                            arr[i].userStatus,
+                            arr[i].permissionID,
+                            arr[i].beginDateOfPermission,
+                            arr[i].endDateOfPermission,
+                            arr[i].chiefConfirmStatus,
+                            arr[i].generalManagerConfirmStatus,
+                            arr[i].chiefsDescription,
+                            arr[i].generalManagerDescription)
+                        )
+                    }
+
+                    return arr2
+
+                })
+    }
 
     handleChange(event) {
         this.setState({
@@ -175,11 +205,12 @@ class PreviousPermissions extends React.Component {
     }
 
     bringHeader() {
-    return(
+        return (
             <Bounce>
-                    {this.state.isActive ? "AKTİF İZİN TALEPLERİ" : "GEÇMİŞ İZİN TALEPLERİ"}
+                {this.state.isActive ? "AKTİF İZİN TALEPLERİ" : "GEÇMİŞ İZİN TALEPLERİ"}
             </Bounce>
-    )   }
+        )
+    }
 
 
     render() {

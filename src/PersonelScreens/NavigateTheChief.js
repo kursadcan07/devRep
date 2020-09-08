@@ -3,8 +3,43 @@ import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Bounce, Slide} from "react-reveal";
+import {connect} from "react-redux";
 
 const axios = require('axios');
+
+const mapStateToProps = (state) => {
+    return {
+
+        userStatus: state.userLoginReducer.userStatus,
+        displayStatus: state.permissionReducer.displayStatus,
+
+        userID: state.userLoginReducer.userID,
+        chiefID: state.userLoginReducer.chiefID,
+        generalManagerID: state.userLoginReducer.generalManagerID,
+
+
+        permissionDescription: state.permissionReducer.permissionDescription,
+        personalName: state.userLoginReducer.personalName,
+        beginDateOfPermission: state.permissionReducer.beginDateOfPermission,
+        endDateOfPermission: state.permissionReducer.endDateOfPermission,
+        isPermissionActive: state.permissionReducer.isPermissionActive,
+
+        begDateSelectionStat: state.permissionReducer.begDateSelectionStat || false,
+        endDateSelectionStat: state.permissionReducer.endDateSelectionStat || false,
+
+        selectVehicleUsageName: state.permissionReducer.selectVehicleUsageName,
+        selectVehicleUsageID: state.permissionReducer.selectVehicleUsageID,
+        priceOfTrainOrBus: state.permissionReducer.priceOfTrainOrBus,
+        totalDistanceOfIndividualCar: state.permissionReducer.totalDistanceOfIndividualCar,
+
+        foldCode: state.permissionReducer.foldCode,
+        areaCode: state.permissionReducer.areaCode,
+
+        displayThePermissionName: state.permissionReducer.displayThePermissionName,
+        setPermissionType: state.permissionReducer.setPermissionType,
+
+    }
+};
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,28 +87,8 @@ function displayIndividualOperations(flag) {
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce right>
                         <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
-                            <button style={{display: "flex", flex: 0.5, width: "100%"}} onClick={() => {
+                            <button style={{display: "flex", flex: 0.5, width: "100%"}}
 
-                                api.post('/personelScreens/:chiefID',
-                                    {
-                                        chiefID: 5
-                                    })
-                                    .then(res => {
-
-                                        if (res.data.stat) {
-                                            this.props.history.push({
-                                                pathname: '/PersonelScreens/PreviousPermissions/5',
-                                            })
-
-                                        } else if (!res.data.stat) {
-
-                                            this.setState({
-                                                mes: res.data.mes
-                                            })
-
-                                        }
-                                    })
-                            }}
                                     type="button" className="btn btn-primary btn-block">
                                 <img alt="IconEye"
                                      style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
@@ -98,9 +113,8 @@ function displayIndividualOperations(flag) {
     }
 }
 
-function displayTheManagementBasedOperations(flag) {
+function displayTheManagementBasedOperations(flag,props) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
-    const displayPermissionDemandIcon = require('./SystemImages/DisplayPermissionButtonIcon.svg');
     if (flag) {
         return (
             <Grid container spacing={1} style={{justifyContent: "center"}}>
@@ -110,7 +124,7 @@ function displayTheManagementBasedOperations(flag) {
                         {/*  ----------------------------------------------- */}
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
                                     onClick={()=>{
-                                        this.props.history.push({
+                                        props.history.push({
                                             pathname: '/PersonelScreens/DisplayPermissionForm',
                                         })
                                     }}
@@ -139,8 +153,8 @@ function displayTheManagementBasedOperations(flag) {
 
 class NavigateTheChief extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             selectedIndividualOperations: false,
             selectedManagementOperations: false
@@ -189,7 +203,7 @@ class NavigateTheChief extends React.Component {
                                   justifyContent: "center",
                                   width: "100%"
                               }}>
-                            {displayTheManagementBasedOperations(this.state.selectedManagementOperations)}
+                            {displayTheManagementBasedOperations(this.state.selectedManagementOperations,this.props)}
                         </Link>
                     </Grid>
                 </Grid>
@@ -226,5 +240,9 @@ class NavigateTheChief extends React.Component {
         );
     }
 }
+export default connect(mapStateToProps)
 
-export default NavigateTheChief;
+(
+    NavigateTheChief
+)
+;

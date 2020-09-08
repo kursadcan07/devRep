@@ -32,12 +32,14 @@ let numbRegex = /^[0-9]+$/;
 const mapStateToProps = (state) => {
     return {
 
-        userStatus: state.permissionReducer.userStatus,
+        userStatus: state.userLoginReducer.userStatus,
         displayStatus: state.permissionReducer.displayStatus,
 
 
         setPermissionType: state.permissionReducer.setPermissionType,
         userID: state.userLoginReducer.userID,
+        chiefID: state.userLoginReducer.chiefID,
+        generalManagerID: state.userLoginReducer.generalManagerID,
 
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,

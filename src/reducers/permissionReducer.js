@@ -2,9 +2,9 @@ import moment from "moment";
 
 const permissionReducer = (state = {
     userID:0,
+    chiefID:0,
+    generalManagerID:0,
 
-    userStatus:2,
-    displayStatus:1,
     isPermissionActive:true,
     personalName:"-",
 
@@ -41,6 +41,9 @@ const permissionReducer = (state = {
             state = {
                 ...state,
                 userID:action.payload.userID,
+                chiefID:action.payload.chiefID,
+                generalManagerID:action.payload.generalManagerID,
+
                 personalName:action.payload.personalName,
 
                 userStatus:action.payload.userStatus,

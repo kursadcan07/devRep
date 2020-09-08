@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
         userMail: state.userLoginReducer.userMail,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
-        usersChiefID:state.userLoginReducer.usersChiefID,
-        usersGeneralManagerID:state.userLoginReducer.usersGeneralManagerID,
+        chiefID: state.userLoginReducer.chiefID,
+        generalManagerID: state.userLoginReducer.generalManagerID,
         userArea: state.userLoginReducer.userArea
     }
 };
@@ -80,9 +80,7 @@ class loginScreen extends React.Component {
             })
 
         }
-        else if (!emailRegex.test(emailInput)){
-
-        } else if (!emailRegex.test(emailInput)) {
+        else if (!emailRegex.test(emailInput)) {
             return ({
                 mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
                 stat: false
@@ -125,29 +123,7 @@ class loginScreen extends React.Component {
         }
     }
 
-    validateForPassword(passwordInput) {
-        if (passwordInput.length < 5) {
-            return ({
-                mes: "Şifre 5 karakterden kısa olamaz !",
-                stat: false
-            })
-        } else if (passwordInput.length > 12) {
-            return ({
-                mes: "Şifre 12 karakterden uzun olamaz !",
-                stat: false
-            })
-        } else if (!passRegex.test(passwordInput)) {
-            return ({
-                mes: "Şifrede özel karakter bulunamaz !",
-                stat: false
-            })
-        } else {
-            return ({
-                mes: "Giriş Başarılı",
-                stat: true
-            })
-        }
-    }
+
 
     checkLoginData(userMail, userPassword) {
         if (!this.validateForEmail(userMail).stat) {
@@ -173,7 +149,7 @@ class loginScreen extends React.Component {
 
                     this.props.setUser(res.data.onlineUser)
 
-                    if (this.props.userStatus === "1") {
+                    if (this.props.userStatus === 1) {
                         this.props.history.push({
                             pathname: '/PersonelScreens/PersonelNavigation',
                         })

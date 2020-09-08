@@ -32,7 +32,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={LoginScreen}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={PersonelNavigation}/>
-                    <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissions}/>
+                    <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissions} />
                     <Route path="/PersonelScreens/FillingThePermissionForm" component={FillingThePermissionForm}/>
                     <Route path="/PersonelScreens/PersonelNavigation" component={NavPrevPer} />
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
