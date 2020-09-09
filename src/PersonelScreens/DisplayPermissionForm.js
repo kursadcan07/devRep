@@ -214,7 +214,6 @@ class DisplayPermissionForm extends React.Component {
             open:false
         });
         let unPermisID = window.location.href.split("/")[window.location.href.split("/").length - 1];
-
         api.put('/changeChiefStatus/', {
             permissionID: unPermisID,
             chiefConfirmStatus: this.state.chiefConfirmStatus,
@@ -285,7 +284,7 @@ class DisplayPermissionForm extends React.Component {
                                                 this.handleClickOpen(2)
                                             }}
 
-                                            className="btn btn-danger" style={{
+                                        className="btn btn-danger" style={{
                                         display: "flex",
                                         marginRight: "5px",
                                         flex: 1,

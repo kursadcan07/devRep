@@ -27,7 +27,7 @@ export default function ResponsiveDialog(props) {
             setOpen(false);
             //HERE WE DELETE THE DEMAND OF PERMISSION.
         };
-        console.log("dsfkosdf"+props.chiefConfirmStatus)
+
 
         if (props.chiefConfirmStatus === 1 || props.generalManagerConfirmStatus===1) {
 
@@ -59,7 +59,7 @@ export default function ResponsiveDialog(props) {
                         <DialogTitle id="responsive-dialog-title">{"AÇIKLAMA"}</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                {props.desParam==="1" ? props.explanationOfChief : props.explanationOfGeneralManager}
+                                {props.desParam===1 ? props.explanationOfChief : props.explanationOfGeneralManager}
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
