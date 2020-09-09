@@ -70,7 +70,7 @@ class PreviousPermissions extends React.Component {
             activePassiveHeader: "AKTİF İZİN TALEPLERİ"
         }
         this.getData = this.getData.bind(this);
-        this.getDataForManagers = this.getDataForManagers.bind(this);
+        this.getDataForChief = this.getDataForChief.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.bringHeader = this.bringHeader.bind(this);
 
@@ -79,19 +79,29 @@ class PreviousPermissions extends React.Component {
             this.getData().then((data) => {
                 this.setState({data: data})
             });
-        } else if (props.userStatus === 2) {
-            if (this.props.displayStatus===1) {
+        } else if (this.props.userStatus === 2) {
+            if (this.props.displayStatus === 1) {
                 this.getData(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });
-            }
-            else{
-                this.getDataForManagers(this.props.userID).then((data) => {
+            } else {
+                this.getDataForChief(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });
             }
-        }
+        } else if (this.props.userStatus === 3) {
 
+            if (this.props.displayStatus === 1) {
+                this.getData(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            } else {
+                this.getDataForGeneralManager(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
+
+        }
     }
 
     componentDidMount() {
@@ -100,19 +110,27 @@ class PreviousPermissions extends React.Component {
                 this.setState({data: data})
             });
         } else if (this.props.userStatus === 2) {
-            if (this.props.displayStatus===1) {
+            if (this.props.displayStatus === 1) {
                 this.getData(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });
-            }
-            else{
-                this.getDataForManagers(this.props.userID).then((data) => {
+            } else {
+                this.getDataForChief(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });
             }
 
+        } else if (this.props.userStatus === 3) {
+            if (this.props.displayStatus === 1) {
+                this.getData(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            } else {
+                this.getDataForGeneralManager(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
         }
-
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -124,16 +142,27 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else if (this.props.userStatus === 2) {
-                if (this.props.displayStatus===1) {
+                if (this.props.displayStatus === 1) {
                     this.getData(this.props.userID).then((data) => {
                         this.setState({data: data})
                     });
-                }
-                else{
-                    this.getDataForManagers(this.props.userID).then((data) => {
+                } else {
+                    this.getDataForChief(this.props.userID).then((data) => {
                         this.setState({data: data})
                     });
                 }
+            } else if (this.props.userStatus === 3) {
+
+                if (this.props.displayStatus === 1) {
+                    this.getData(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                } else {
+                    this.getDataForGeneralManager(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }
+
             }
         }
 
@@ -171,10 +200,43 @@ class PreviousPermissions extends React.Component {
                 })
     }
 
-    getDataForManagers(chiefID) {
+    getDataForChief(chiefID) {
         let arr = [];
         let arr2 = [];
+
         return api.get('/displayPermissionsForChief/' + chiefID + '/' + this.state.isActive)
+            .then(
+                function (response) {
+
+                    Object.keys(response.data.prevPerms).forEach(function (key) {
+
+                        arr.push(response.data.prevPerms[key]);
+
+                    });
+
+                    for (let i = 0; i < arr.length; i++) {
+
+                        arr2.push(createData(
+                            arr[i].userStatus,
+                            arr[i].permissionID,
+                            arr[i].beginDateOfPermission,
+                            arr[i].endDateOfPermission,
+                            arr[i].chiefConfirmStatus,
+                            arr[i].generalManagerConfirmStatus,
+                            arr[i].chiefsDescription,
+                            arr[i].generalManagerDescription)
+                        )
+                    }
+                    return arr2
+                })
+    }
+
+    getDataForGeneralManager(generalManagerID) {
+
+        let arr = [];
+        let arr2 = [];
+
+        return api.get('/displayPermissionsForGeneralManager/' + generalManagerID + '/' + this.state.isActive)
             .then(
                 function (response) {
 

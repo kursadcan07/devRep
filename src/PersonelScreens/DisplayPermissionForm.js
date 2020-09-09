@@ -5,7 +5,6 @@ import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import {connect} from "react-redux";
 import Button from "@material-ui/core/Button";
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -146,6 +145,10 @@ class DisplayPermissionForm extends React.Component {
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.updateChiefsDescription=this.updateChiefsDescription.bind(this);
+        this.handleClickOpenForGeneralManager=this.handleClickOpenForGeneralManager.bind(this);
+        this.updateGeneralManagersDescription = this.updateGeneralManagersDescription.bind(this);
+        this.handleCloseForManager=this.handleCloseForManager.bind(this);
+
 
     }
 
@@ -201,11 +204,24 @@ class DisplayPermissionForm extends React.Component {
         });
     };
 
+    handleClickOpenForGeneralManager(generalManagerConfirmStat){
+        this.setState({
+            open: true,
+            generalManagerConfirmStatus:generalManagerConfirmStat
+        });
+    };
 
     updateChiefsDescription(event) {
         //console.log(event.target.value+"---");
         this.setState({
             chiefsDescription: event.target.value
+        })
+    }
+
+    updateGeneralManagersDescription(event) {
+        //console.log(event.target.value+"---");
+        this.setState({
+            generalManagerDescription: event.target.value
         })
     }
 
@@ -226,19 +242,150 @@ class DisplayPermissionForm extends React.Component {
         })
     };
 
+    handleCloseForManager(){
+        this.setState({
+            open:false
+        });
+
+        let unPermisID = window.location.href.split("/")[window.location.href.split("/").length - 1];
+        api.put('/changeChiefStatus/', {
+            permissionID: unPermisID,
+            generalManagerConfirmStatus: this.state.generalManagerConfirmStatus,
+            generalManagerDescription:this.state.generalManagerDescription
+        }).then(r =>
+            console.log(r)
+        )
+        this.props.history.push({
+            pathname: '/PersonelScreens/PreviousPermissons',
+        })
+    };
+
     getData() {
         return (api.get('/DisplayPermissionForm/' + this.endCode)
             .then(
                 function (response) {
                     return response.data.usersPermission
                 }))
-
     }
 
     displayButtonsForPermission() {
         let endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
         //
-        if (this.state.userStatus === 2) {
+        if (this.state.userStatus === 3) {
+            if (endCode === "DisplayPermissionForm") {
+                return displayPersonelsButtonsForForm(
+                    this.props,
+                    this.state.userID,
+                    this.state.userStatus,
+                    this.state.personalName,
+
+                    this.state.demandDateOfPermission,
+                    this.state.beginDateOfPermission,
+                    this.state.endDateOfPermission,
+
+                    this.state.foldCode,
+                    this.state.areaCode,
+                    this.state.selectVehicleUsageName,
+                    this.state.selectVehicleUsageID,
+                    this.state.permissionDescription,
+                    this.state.personalCarUsage,
+                    this.state.totalDistanceOfIndividualCar,
+                    this.state.priceOfTrainOrBus,
+                    this.state.setPermissionType,
+                    this.state.chiefID,
+                    this.state.generalManagerID
+                )
+            } else {
+                if (this.state.displayStatus !== 1) {
+                    return (
+                        <div style={{
+                            display: "flex",
+                            flex: 3,
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}>
+                            <Col>
+                                <Row style={{
+                                    display: "flex",
+                                    flex: 3,
+                                    justifyContent: "center",
+                                    alignItems: "center"
+                                }}>
+
+                                    <button type="button"
+                                            onClick={() => {
+                                                this.handleClickOpenForGeneralManager(2)
+                                            }}
+
+                                            className="btn btn-danger" style={{
+                                        display: "flex",
+                                        marginRight: "5px",
+                                        flex: 1,
+                                        justifyContent: "center",
+                                        borderRadius: "5%",
+                                        textAlign: "center",
+                                        fontWeight: "normal"
+                                    }}>
+                                        <h1 style={{
+                                            display: "flex",
+                                            flex: 1,
+                                            justifyContent: "center",
+                                            fontSize: "15px",
+                                            margin: "auto"
+                                        }}>
+                                            TALEBİ REDDET
+                                        </h1>
+                                    </button>
+
+                                    <button type="button" className="btn btn-success" style={{
+                                        display: "flex",
+                                        flex: 1,
+                                        borderRadius: "5%",
+                                        textAlign: "center",
+                                        justifyContent: "center"
+                                    }} onClick={() => {
+                                        this.handleClickOpenForGeneralManager(1)
+                                    }}>
+                                        <h1 style={{
+                                            display: "flex",
+                                            flex: 1,
+                                            justifyContent: "center",
+                                            fontSize: "15px",
+                                            margin: "auto"
+                                        }}>
+                                            TALEBİ ONAYLA
+                                        </h1>
+                                    </button>
+
+                                    <Dialog
+                                        open={this.state.open}
+                                        onClose={this.handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogTitle id="alert-dialog-title">{"AÇIKLAMANIZ"}</DialogTitle>
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">
+                                                 <textarea id ="textID" placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
+                                                           value={this.state.generalManagerDescription || ""}
+                                                           className="form-control" rows="4" onChange={this.updateGeneralManagersDescription}/>
+                                            </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button onClick={this.handleCloseForManager} color="primary" autoFocus>
+                                                GÖNDER
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
+
+                                </Row>
+                            </Col>
+                        </div>
+                    )
+                }
+            }
+        }
+        else if (this.state.userStatus === 2) {
             if (endCode === "DisplayPermissionForm") {
                 return displayPersonelsButtonsForForm(
                     this.props,
