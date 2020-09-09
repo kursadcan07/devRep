@@ -139,7 +139,7 @@ class FillingThePermissionForm extends React.Component {
 
     inputsForBusAndCarUsage(usageID) {
         if (usageID === "v3") {
-            console.log(this.state.priceOfTrainOrBus);
+
             return (
                 <div>
                     <input type="text" className="form-control" style={{height: "100%", margin: "0.1vw"}}

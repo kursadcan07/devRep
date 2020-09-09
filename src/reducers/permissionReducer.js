@@ -1,10 +1,8 @@
-import moment from "moment";
 
 const permissionReducer = (state = {
     userID:0,
     chiefID:0,
     generalManagerID:0,
-    displayStatus:0,
     isPermissionActive:true,
     personalName:"-",
 
@@ -47,7 +45,6 @@ const permissionReducer = (state = {
                 personalName:action.payload.personalName,
 
                 userStatus:action.payload.userStatus,
-                displayStatus:action.payload.displayStatus,
 
                 demandDateOfPermission:action.payload.demandDateOfPermission,
 
@@ -87,12 +84,7 @@ const permissionReducer = (state = {
                 generalManagerDescription:action.payload.generalManagerDescription
             }
             break;
-        case "SET_DISPLAY_STATUS":
-            state={
-                ...state,
-                displayStatus:action.payload.displayStatus,
-            }
-            break;
+
         default:
             break;
     }

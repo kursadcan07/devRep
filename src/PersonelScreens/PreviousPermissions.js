@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
     return {
 
         userStatus: state.userLoginReducer.userStatus,
-        displayStatus: state.permissionReducer.displayStatus,
+        displayStatus: state.userLoginReducer.displayStatus,
 
         userID: state.userLoginReducer.userID,
         chiefID: state.userLoginReducer.chiefID,
@@ -76,27 +76,40 @@ class PreviousPermissions extends React.Component {
 
 
         if (this.props.userStatus === 1) {
-             this.getData().then((data) => {
+            this.getData().then((data) => {
                 this.setState({data: data})
             });
         } else if (props.userStatus === 2) {
-             this.getDataForManagers().then((data) => {
-                this.setState({data: data})
-            });
+            if (this.props.displayStatus===1) {
+                this.getData(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
+            else{
+                this.getDataForManagers(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
         }
 
     }
 
     componentDidMount() {
-        if(this.props.userStatus===1){
-             this.getData(this.props.userID).then((data) => {
+        if (this.props.userStatus === 1) {
+            this.getData(this.props.userID).then((data) => {
                 this.setState({data: data})
             });
-        }
-        else if(this.props.userStatus===2){
-             this.getDataForManagers(this.props.userID).then((data) => {
-                this.setState({data: data})
-            });
+        } else if (this.props.userStatus === 2) {
+            if (this.props.displayStatus===1) {
+                this.getData(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
+            else{
+                this.getDataForManagers(this.props.userID).then((data) => {
+                    this.setState({data: data})
+                });
+            }
 
         }
 
@@ -106,16 +119,21 @@ class PreviousPermissions extends React.Component {
 
         if (prevState.isActive !== this.state.isActive) {
 
-            if(this.props.userStatus===1){
-                 this.getData(this.props.userID).then((data) => {
+            if (this.props.userStatus === 1) {
+                this.getData(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });
-            }
-            else if(this.props.userStatus===2){
-                 this.getDataForManagers(this.props.userID).then((data) => {
-                    this.setState({data: data})
-                });
-
+            } else if (this.props.userStatus === 2) {
+                if (this.props.displayStatus===1) {
+                    this.getData(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }
+                else{
+                    this.getDataForManagers(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }
             }
         }
 

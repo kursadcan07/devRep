@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 {/*
     This class displays success message to user.
@@ -8,7 +9,22 @@ import {Link} from "react-router-dom";
 
 */}
 
-function displaySuccessMessageWhenPermissionDemanded() {
+const mapStateToProps = (state) => {
+    return {
+
+        userStatus: state.userLoginReducer.userStatus,
+    }
+};
+
+
+function displaySuccessMessageWhenPermissionDemanded(props) {
+    let currLink=""
+    if(props.userStatus===1){
+        currLink="PersonelNavigation"
+    }else if (props.userStatus===2){
+        currLink="NavigateTheChief";
+    }
+    console.log(props.userStatus,"USERIN STATUSU")
     return(
         /* Here the main <div> */
         <div style={{
@@ -34,15 +50,20 @@ function displaySuccessMessageWhenPermissionDemanded() {
                 İZİN TALEBİNİZ BAŞARIYLA YARATILMIŞTIR
             </h1>
             {/*Here the part of button that allows to display current status of permissions.*/}
-            <Link to="PreviousPermissons" style={{
+            <Link to={currLink} style={{
                 textDecoration: "none",
                 display: "flex",
                 flex: 1,
                 margin:"20px"
             }}>
-            <button type="button" className="btn btn-outline-success" style={{display:"flex", flex:1}}>TALEBİN DURUMUNU GÖRÜNTÜLE</button>
+            <button type="button" className="btn btn-outline-success" style={{display:"flex", flex:1}}>ANA EKRANA DÖN</button>
             </Link>
         </div>
     )
 }
-export default displaySuccessMessageWhenPermissionDemanded;
+export default connect(mapStateToProps)
+
+(
+    displaySuccessMessageWhenPermissionDemanded
+)
+;

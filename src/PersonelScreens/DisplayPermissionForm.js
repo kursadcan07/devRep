@@ -4,6 +4,13 @@ import {Link} from "react-router-dom";
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import {connect} from "react-redux";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const axios = require('axios');
 
@@ -17,7 +24,7 @@ const mapStateToProps = (state) => {
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
 
-
+        displayStatus: state.userLoginReducer.displayStatus,
         userStatus: state.userLoginReducer.userStatus,
 
         personalName: state.userLoginReducer.personalName,
@@ -52,6 +59,7 @@ const mapStateToProps = (state) => {
 class DisplayPermissionForm extends React.Component {
 
     endCode;
+
     constructor(props) {
 
         super(props);
@@ -62,6 +70,7 @@ class DisplayPermissionForm extends React.Component {
                 userID: undefined,
                 personalName: undefined,
                 userStatus: this.props.userStatus,
+                displayStatus: this.props.displayStatus,
 
                 isPermissionActive: undefined,
                 demandDateOfPermission: undefined,
@@ -91,6 +100,7 @@ class DisplayPermissionForm extends React.Component {
 
                 generalManagerConfirmStatus: undefined,
                 generalManagerDescription: undefined,
+                open: false,
             }
         } else {
             this.state = {
@@ -126,22 +136,27 @@ class DisplayPermissionForm extends React.Component {
 
                 generalManagerConfirmStatus: this.props.generalManagerConfirmStatus,
                 generalManagerDescription: this.props.generalManagerDescription,
+                open: false,
             }
 
         }
 
         this.getData = this.getData.bind(this);
         this.displayButtonsForPermission = this.displayButtonsForPermission.bind(this);
+        this.handleClickOpen = this.handleClickOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.updateChiefsDescription=this.updateChiefsDescription.bind(this);
 
     }
 
     componentDidMount() {
         let endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
         if (endCode !== "DisplayPermissionForm") {
+
             this.getData().then((data) => {
 
                 this.setState({
-                    permissionID:data.permissionID,
+                    permissionID: data.permissionID,
                     userID: data.userID,
                     personalName: data.personalName,
 
@@ -179,20 +194,53 @@ class DisplayPermissionForm extends React.Component {
         }
     }
 
+    handleClickOpen(chiefConfirStat){
+        this.setState({
+           open: true,
+           chiefConfirmStatus:chiefConfirStat
+        });
+    };
+
+
+    updateChiefsDescription(event) {
+        //console.log(event.target.value+"---");
+        this.setState({
+            chiefsDescription: event.target.value
+        })
+    }
+
+    handleClose(){
+        this.setState({
+            open:false
+        });
+        let unPermisID = window.location.href.split("/")[window.location.href.split("/").length - 1];
+
+        api.put('/changeChiefStatus/', {
+            permissionID: unPermisID,
+            chiefConfirmStatus: this.state.chiefConfirmStatus,
+            chiefsDescription:this.state.chiefsDescription
+        }).then(r =>
+            console.log(r)
+        )
+        this.props.history.push({
+            pathname: '/PersonelScreens/PreviousPermissons',
+        })
+    };
+
     getData() {
-            return (api.get('/DisplayPermissionForm/' + this.endCode)
-                .then(
-                    function (response) {
-                        return response.data.usersPermission
-                    }))
+        return (api.get('/DisplayPermissionForm/' + this.endCode)
+            .then(
+                function (response) {
+                    return response.data.usersPermission
+                }))
 
     }
 
     displayButtonsForPermission() {
         let endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
-
+        //
         if (this.state.userStatus === 2) {
-            if(endCode==="DisplayPermissionForm"){
+            if (endCode === "DisplayPermissionForm") {
                 return displayPersonelsButtonsForForm(
                     this.props,
                     this.state.userID,
@@ -214,11 +262,95 @@ class DisplayPermissionForm extends React.Component {
                     this.state.setPermissionType,
                     this.state.chiefID,
                     this.state.generalManagerID
-
                 )
-            }
-            else{
-                return displayManagersButtonsForForm(this.props);
+            } else {
+                if (this.state.displayStatus !== 1) {
+                    return (
+                        <div style={{
+                            display: "flex",
+                            flex: 3,
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}>
+                            <Col>
+                                <Row style={{
+                                    display: "flex",
+                                    flex: 3,
+                                    justifyContent: "center",
+                                    alignItems: "center"
+                                }}>
+
+                                    <button type="button"
+                                            onClick={() => {
+                                                this.handleClickOpen(2)
+                                            }}
+
+                                            className="btn btn-danger" style={{
+                                        display: "flex",
+                                        marginRight: "5px",
+                                        flex: 1,
+                                        justifyContent: "center",
+                                        borderRadius: "5%",
+                                        textAlign: "center",
+                                        fontWeight: "normal"
+                                    }}>
+                                        <h1 style={{
+                                            display: "flex",
+                                            flex: 1,
+                                            justifyContent: "center",
+                                            fontSize: "15px",
+                                            margin: "auto"
+                                        }}>
+                                            TALEBİ REDDET
+                                        </h1>
+                                    </button>
+
+                                    <button type="button" className="btn btn-success" style={{
+                                        display: "flex",
+                                        flex: 1,
+                                        borderRadius: "5%",
+                                        textAlign: "center",
+                                        justifyContent: "center"
+                                    }} onClick={() => {
+                                            this.handleClickOpen(1)
+                                    }}>
+                                        <h1 style={{
+                                            display: "flex",
+                                            flex: 1,
+                                            justifyContent: "center",
+                                            fontSize: "15px",
+                                            margin: "auto"
+                                        }}>
+                                            TALEBİ ONAYLA
+                                        </h1>
+                                    </button>
+
+                                    <Dialog
+                                        open={this.state.open}
+                                        onClose={this.handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogTitle id="alert-dialog-title">{"AÇIKLAMANIZ"}</DialogTitle>
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">
+                                                 <textarea id ="textID" placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
+                                                           value={this.state.chiefsDescription || ""}
+                                                           className="form-control" rows="4" onChange={this.updateChiefsDescription}/>
+                                            </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button onClick={this.handleClose} color="primary" autoFocus>
+                                                GÖNDER
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
+
+                                </Row>
+                            </Col>
+                        </div>
+                    )
+                }
             }
         } else if (this.state.userStatus === 1) {
 
@@ -375,84 +507,8 @@ class DisplayPermissionForm extends React.Component {
         )
     }
 }
-function displayManagersButtonsForForm(props) {
-    return (
-        <div style={{
-            display: "flex",
-            flex: 3,
-            justifyContent: "center",
-            alignItems: "center",
-        }}>
-            <Col>
-                <Row style={{
-                    display: "flex",
-                    flex: 3,
-                    justifyContent: "center",
-                    alignItems: "center"
-                }}>
-
-                    <button type="button" onClick={() => {
-                        let unPermisID=window.location.href.split("/")[window.location.href.split("/").length - 1];
-                        console.log("TALEP REDDEDİLDİ !! ")
-                        api.put('/changeChiefStatus/',{permissionID:unPermisID,chiefConfirmStatus:2}).then(r =>
-                            console.log(r)
-                        )
-                        props.history.push({
-                            pathname: '/PersonelScreens/PreviousPermissons',
-                        })
 
 
-                    }} className="btn btn-danger" style={{
-                        display: "flex",
-                        marginRight: "5px",
-                        flex: 1,
-                        justifyContent: "center",
-                        borderRadius: "5%",
-                        textAlign: "center",
-                        fontWeight: "normal"
-                    }}>
-                        <h1 style={{
-                            display: "flex",
-                            flex: 1,
-                            justifyContent: "center",
-                            fontSize: "15px",
-                            margin: "auto"
-                        }}>
-                            TALEBİ REDDET
-                        </h1>
-                    </button>
-                    <button type="button" className="btn btn-success" style={{
-                        display: "flex",
-                        flex: 1,
-                        borderRadius: "5%",
-                        textAlign: "center",
-                        justifyContent: "center"
-                    }} onClick={() => {
-                        console.log("TALEP ONAYLANDI !! ")
-                        let unPermisID=window.location.href.split("/")[window.location.href.split("/").length - 1];
-                        api.put('/changeChiefStatus/',{permissionID:unPermisID,chiefConfirmStatus:1}).then(r =>
-                            console.log(r)
-                        )
-                        props.history.push({
-                            pathname: '/PersonelScreens/PreviousPermissons',
-                        })
-
-                    }}>
-                        <h1 style={{
-                            display: "flex",
-                            flex: 1,
-                            justifyContent: "center",
-                            fontSize: "15px",
-                            margin: "auto"
-                        }}>
-                            TALEBİ ONAYLA
-                        </h1>
-                    </button>
-                </Row>
-            </Col>
-        </div>
-    )
-}
 /*function */
 
 //ÜST BAŞLIĞIN OLDUĞU KOMPONENT ( __1__ )
@@ -1682,5 +1738,4 @@ function displayPersonelsButtonsForForm(props, userIDS,
         </div>
     )
 }
-
 export default connect(mapStateToProps)(DisplayPermissionForm);

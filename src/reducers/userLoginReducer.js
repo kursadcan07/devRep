@@ -3,6 +3,7 @@ const userReducer = (state = {
 
     chiefID:0,
     generalManagerID:0,
+    displayStatus:0,
 
     userMail:"",
     personalName:"",
@@ -25,6 +26,13 @@ const userReducer = (state = {
                 chiefsName:action.payload.chiefsName,
                 generalManagersName:action.payload.generalManagersName,
                 userArea:action.payload.userArea
+            }
+            break;
+        case "SET_DISPLAY_STATUS":
+
+            state={
+                ...state,
+                displayStatus:action.payload,
             }
             break;
         default:

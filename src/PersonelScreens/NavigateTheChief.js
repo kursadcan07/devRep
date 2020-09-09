@@ -6,6 +6,8 @@ import {Bounce, Slide} from "react-reveal";
 import {connect} from "react-redux";
 
 import setDisplayStatusAction from "../actions/setDisplayStatusAction";
+
+
 const axios = require('axios');
 
 
@@ -17,17 +19,15 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-
 const mapStateToProps = (state) => {
     return {
 
         userStatus: state.userLoginReducer.userStatus,
-        displayStatus: state.permissionReducer.displayStatus,
+        displayStatus: state.userLoginReducer.displayStatus,
 
         userID: state.userLoginReducer.userID,
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
-
 
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
@@ -51,23 +51,6 @@ const mapStateToProps = (state) => {
 
     }
 };
-
-
-/*const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));*/
-/*
-const api = axios.create({
-    baseURL: `http://localhost:4000`
-}*/
-
 
 function displayTheManagementBasedOperations(flag,props) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
@@ -117,6 +100,7 @@ class NavigateTheChief extends React.Component {
         }
         this.handleIndividualOperationSelection = this.handleIndividualOperationSelection.bind(this);
         this.handleManagementOrientedOperations = this.handleManagementOrientedOperations.bind(this);
+
     }
 
     handleIndividualOperationSelection(event) {
@@ -127,9 +111,12 @@ class NavigateTheChief extends React.Component {
     }
 
     handleManagementOrientedOperations(event) {
+
         this.setState({
             selectedManagementOperations: !this.state.selectedManagementOperations,
         })
+        this.props.setDisplayStatus(2);
+
     }
 
     render() {
@@ -185,7 +172,7 @@ class NavigateTheChief extends React.Component {
                             justifyContent: "center",
                             width: "100%"
                         }}>
-                            {displayIndividualOperations(this.state.selectedIndividualOperations)}
+                            {displayIndividualOperations(this.state.selectedIndividualOperations,this.props)}
                         </div>
 
                     </Grid>
@@ -198,7 +185,7 @@ class NavigateTheChief extends React.Component {
 }
 
 
-function displayIndividualOperations(flag) {
+function displayIndividualOperations(flag,props) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
     const displayPermissionDemandIcon = require('./SystemImages/DisplayPermissionButtonIcon.svg');
     if (flag) {
@@ -231,8 +218,8 @@ function displayIndividualOperations(flag) {
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
                                     onClick={()=>{
                                         //BURDA KALDIIIIIIIIIIIIIIIIIIIIIM
-                                        console.log("Hiii")
-                                        this.props.setDisplayStatus(1);
+                                        props.setDisplayStatus(1);
+                                        /*props.setDisplayStatus(1);*/
                                     }}
 
                                     type="button" className="btn btn-primary btn-block">
@@ -261,5 +248,5 @@ function displayIndividualOperations(flag) {
 export default connect(mapStateToProps, mapDispatchToProps)
 
 (
-    NavigateTheChief,displayIndividualOperations())
+    NavigateTheChief)
 ;

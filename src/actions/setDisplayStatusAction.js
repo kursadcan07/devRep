@@ -1,6 +1,6 @@
-export default function setDisplayStatusAction(userData) {
+export default function setDisplayStatusAction(displayStatus) {
     return{
         type:"SET_DISPLAY_STATUS",
-        payload:userData
+        payload:displayStatus
     }
 }
