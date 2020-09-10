@@ -80,6 +80,7 @@ class PreviousPermissions extends React.Component {
                 this.setState({data: data})
             });
         } else if (this.props.userStatus === 2) {
+
             if (this.props.displayStatus === 1) {
                 this.getData(this.props.userID).then((data) => {
                     this.setState({data: data})
@@ -96,6 +97,7 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else {
+                console.log(this.props.userID,"Selam");
                 this.getDataForGeneralManager(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });
@@ -293,6 +295,9 @@ class PreviousPermissions extends React.Component {
 
 
     render() {
+        console.log("------------")
+        console.log(this.state.data)
+        console.log("------------")
         return (
             <div style={{
                 display: "flex",

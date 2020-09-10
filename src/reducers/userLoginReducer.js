@@ -1,10 +1,10 @@
 const userReducer = (state = {
     userID:0,
-
+    signature:undefined,
+    doesSignatureExist:false,
     chiefID:0,
     generalManagerID:0,
     displayStatus:0,
-
     userMail:"",
     personalName:"",
     userStatus:0,
@@ -20,6 +20,9 @@ const userReducer = (state = {
                 chiefID:action.payload.chiefID,
                 generalManagerID:action.payload.generalManagerID,
 
+                signature:action.payload.signature,
+                doesSignatureExist:action.payload.doesSignatureExist,
+
                 userMail:action.payload.userMail,
                 personalName:action.payload.personalName,
                 userStatus:action.payload.userStatus,
@@ -29,10 +32,15 @@ const userReducer = (state = {
             }
             break;
         case "SET_DISPLAY_STATUS":
-
             state={
                 ...state,
                 displayStatus:action.payload,
+            }
+            break;
+        case "SET_USERS_SIGNATURE":
+            state={
+                ...state,
+                signature:action.payload,
             }
             break;
         default:

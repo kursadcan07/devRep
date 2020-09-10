@@ -209,6 +209,7 @@ class DisplayPermissionForm extends React.Component {
             open: true,
             generalManagerConfirmStatus:generalManagerConfirmStat
         });
+        console.log(this.state.generalManagerConfirmStatus,"Yönetici confirm stat");
     };
 
     updateChiefsDescription(event) {
@@ -248,7 +249,7 @@ class DisplayPermissionForm extends React.Component {
         });
 
         let unPermisID = window.location.href.split("/")[window.location.href.split("/").length - 1];
-        api.put('/changeChiefStatus/', {
+        api.put('/changeGeneralManagerStatus/', {
             permissionID: unPermisID,
             generalManagerConfirmStatus: this.state.generalManagerConfirmStatus,
             generalManagerDescription:this.state.generalManagerDescription

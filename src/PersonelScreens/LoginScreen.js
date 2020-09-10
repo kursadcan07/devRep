@@ -8,12 +8,12 @@ import {Link} from "react-router-dom";
 import setOnlineUser from "../actions/userLoginActions";
 import {connect} from "react-redux";
 
-
 const axios = require('axios');
 
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
+        signature: state.userLoginReducer.signature,
         userMail: state.userLoginReducer.userMail,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
@@ -45,13 +45,15 @@ class loginScreen extends React.Component {
             userMail: "",
             userPassword: "",
             loginStat: false,
-            mes: ""
+            mes: "",
+            signature: ""
         }
         this.updateEmail = this.updateEmail.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.checkLoginData = this.checkLoginData.bind(this);
         this.validateForPassword = this.validateForPassword.bind(this);
         this.validateForEmail = this.validateForEmail.bind(this);
+        /*  this.setDataForUser = this.setDataForUser.bind(this);*/
     }
 
     updateEmail(event) {
@@ -62,7 +64,6 @@ class loginScreen extends React.Component {
         this.setState({userPassword: event.target.value})
     }
 
-
     validateForEmail(emailInput) {
         if (emailInput.length < 10) {
             return ({
@@ -70,8 +71,7 @@ class loginScreen extends React.Component {
                 stat: false
             })
 
-        }
-        else if(emailInput.length>50){
+        } else if (emailInput.length > 50) {
 
         } else if (emailInput.length > 50) {
             return ({
@@ -79,8 +79,7 @@ class loginScreen extends React.Component {
                 stat: false
             })
 
-        }
-        else if (!emailRegex.test(emailInput)) {
+        } else if (!emailRegex.test(emailInput)) {
             return ({
                 mes: "Mail adresi abc@desird.com.tr formatında olmalıdır !",
                 stat: false
@@ -124,8 +123,7 @@ class loginScreen extends React.Component {
     }
 
 
-
-    checkLoginData(userMail, userPassword) {
+    checkLoginData(userMail, userPassword, props) {
         if (!this.validateForEmail(userMail).stat) {
             this.setState({
                 mes: this.validateForEmail(userMail).mes
@@ -135,38 +133,46 @@ class loginScreen extends React.Component {
                 mes: this.validateForPassword(userPassword).mes
             })
         } else {
-            api.post('/login',
-                {
-                    userMail: userMail,
-                    userPassword: userPassword,
-                }).then(res => {
-
-                if (res.data.stat) {
-
-                    this.setState({
-                        loginStat: true
+            let signatureExist = false;
+            return api.get('/LoginSignatureValidation/' + this.state.userMail)
+                .then(
+                    function (response) {
+                        signatureExist = response.stat;
                     })
+                .then(
+                    api.post('/login',
+                        {
+                            userMail: userMail,
+                            userPassword: userPassword,
+                        }).then(res => {
+                        if (res.data.stat) {
+                            this.setState({
+                                loginStat: true
+                            })
+                            this.props.setUser(res.data.onlineUser)
 
-                    this.props.setUser(res.data.onlineUser)
+                            if (!signatureExist) {
+                                props.history.push({
+                                    pathname: '/PersonelScreens/TakeTheSignature',
+                                })
+                            } else if (this.props.userStatus === 1) {
+                                props.history.push({
+                                    pathname: '/PersonelScreens/PersonelNavigation',
+                                })
+                            } else {
+                                props.history.push({
+                                    pathname: '/PersonelScreens/NavigateTheChief',
+                                })
+                            }
 
-                    if (this.props.userStatus === 1) {
-                        this.props.history.push({
-                            pathname: '/PersonelScreens/PersonelNavigation',
-                        })
-                    } else {
-                        this.props.history.push({
-                            pathname: '/PersonelScreens/NavigateTheChief',
-                        })
-                    }
 
-                } else if (!res.data.stat) {
-                    console.log(res.data.mes)
-                    this.setState({
-                        mes: res.data.mes
-                    })
-                }
-            })
-
+                        } else if (!res.data.stat) {
+                            console.log(res.data.mes)
+                            this.setState({
+                                mes: res.data.mes
+                            })
+                        }
+                    }))
         }
     }
 
@@ -219,6 +225,7 @@ class loginScreen extends React.Component {
                         <input type="password" className="form-control" placeholder="Şifre"
                                onChange={this.updatePassword}/>
                     </div>
+
                     {/*
                Here the remember me part as a check-box.
             */}
@@ -234,7 +241,7 @@ class loginScreen extends React.Component {
 
                     <button className="btn btn-primary btn-block" type="button"
                             onClick={() => {
-                                this.checkLoginData(this.state.userMail, this.state.userPassword)
+                                this.checkLoginData(this.state.userMail, this.state.userPassword, this.props)
                             }}>Giriş
                     </button>
                     {/*
@@ -252,9 +259,5 @@ class loginScreen extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)
-
-(
-    loginScreen
-)
+export default connect(mapStateToProps, mapDispatchToProps)(loginScreen)
 ;
