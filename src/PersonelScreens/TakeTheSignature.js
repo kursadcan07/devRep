@@ -1,7 +1,14 @@
 import React from "react";
 import setSignatureAction from "../actions/setUsersSignature";
 import {connect} from "react-redux";
+
 const axios = require('axios');
+
+const api = axios.create({
+    baseURL: `http://localhost:4000`
+})
+
+
 {
     /*
     * This class takes signature from user and makes operations with it.
@@ -17,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
-        signature:state.userLoginReducer.signature,
+        userSignature: state.userLoginReducer.userSignature,
         userMail: state.userLoginReducer.userMail,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
@@ -26,33 +33,45 @@ const mapStateToProps = (state) => {
         userArea: state.userLoginReducer.userArea
     }
 };
-const api = axios.create({
-    baseURL: `http://localhost:4000`
-})
 
-class takeSignature extends React.Component{
+class takeSignature extends React.Component {
     constructor(props) {
         super(props);
-        this.getBase64 = this.getBase64.bind(this);
+
         this.state = {
-            imgUpload: '',
+            imgUpload:undefined,
         }
-    }
-    getBase64(e) {
-        let file = e.target.files[0]
-        let reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-            this.setState({
-                imgUpload: reader.result
-            })
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        }
+
+        this.onFileChange = this.onFileChange.bind(this)
+        this.onFileUpload = this.onFileUpload.bind(this);
 
     }
 
+    onFileChange(event) {
+        this.setState({imgUpload: event.target.files[0]});
+       console.log(event.target.files[0])
+        console.log( URL.createObjectURL(event.target.files[0]))
+    }
+
+    onFileUpload() {
+
+        let imgFormObj = new FormData();
+        imgFormObj.append("imageName","multer-image-" + Date.now());
+        imgFormObj.append("imageData",this.state.imgUpload)
+
+        api.post("/uploadmulter/"+this.props.userID,imgFormObj).then(
+            (data)=>{
+
+                console.log(data,"ŞEKLİNDE İMZA KAYDEDİLDİ")
+
+            }
+        )
+
+        this.props.history.push({
+            pathname: '/PersonelScreens/PersonelNavigation',
+        })
+
+    }
 
     render() {
         return (
@@ -71,7 +90,8 @@ class takeSignature extends React.Component{
                     This part displays file browser to user.
                 */}
                     <div style={{display: "flex", justifyContent: "center", textAlign: "center", margin: "10px"}}>
-                        <input type="file" className="input-file" name="imgUpload" accept='.png' onChange={this.getBase64} />
+                        <input type="file" className="input-file" name="imgUpload" accept='.png'
+                               onChange={this.onFileChange}/>
                     </div>
                     {/*
                     This part contains submit button to take signature from user.Then navigates the user to
@@ -79,26 +99,13 @@ class takeSignature extends React.Component{
                 */}
                     <div style={{display: "flex", justifyContent: "center", textAlign: "center", margin: "10px"}}>
 
-                        <button type="button" onClick={ ()=> {
-                            this.props.setSignature(this.state.imgUpload)
-                            api.post('setSignatureOfUser/'+this.props.userID,
-                                {imgUpload:this.state.imgUpload})
-                                .then(res=>{
-                                    console.log("GELEN RESPONSEEEEEEEE")
-                                    console.log(res)
-                                    console.log("GELEN RESPONSEEEEEEEE")
-                                })
-                                .then(
-                                this.props.history.push({
-                                    pathname: '/PersonelScreens/PersonelNavigation',
-                                }))
-                        }
-
+                        <button type="button" onClick={this.onFileUpload
                         } style={{margin: "auto"}} className="btn btn-primary btn-block">İMZAYI YÜKLE
                         </button>
 
                     </div>
                 </form>
+                <img src={this.state.imgUpload} alt="upload-image" className="process__image" />
             </div>
         )
     }

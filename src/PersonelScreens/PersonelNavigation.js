@@ -3,32 +3,53 @@ import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
 
+const axios = require('axios');
+const api = axios.create({
+    baseURL: `http://localhost:4000`
+})
+
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
-        signature: state.userLoginReducer.signature,
         userMail: state.userLoginReducer.userMail,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
-        userArea: state.userLoginReducer.userArea
+        userArea: state.userLoginReducer.userArea,
     }
 };
 
 class PersonelNavigation extends React.Component {
-    dataUrl
+
     constructor(props) {
+
         super(props);
-        this.dataUrl = props.signature;
+        console.log("NAVİGASYON ALANIIIIIIII")
+        console.log(props);
+
+        this.setImage=this.setImage.bind(this);
+
+    }
+
+    setImage (){
+       return api.get(
+            '/getSignatureByUsersID/' + this.props.userID,
+        )
+            .then(
+                function (response) {
+                    console.log("************************************")
+                    console.log( URL.createObjectURL(response.data.usersSignature.imageName));
+                    /* let data = URL.createObjectURL(response.files[0]);
+                     console.log(data);*/
+                    /*return (response.data.usersSignature.imageData)*/
+                })
     }
 
 
     render() {
 
-
         const iconFirst = require('./SystemImages/FillingFormImage.svg');
-
         const iconSecond = require('./SystemImages/DisplayPreviousPermissionsImage.svg');
         return (
             <Grid container spacing={2} style={{width: "100%"}}>
@@ -56,10 +77,8 @@ class PersonelNavigation extends React.Component {
                         </button>
                     </Link>
                 </Grid>
-                <img src={this.dataUrl}  alt={"logo"}/>
-
+                <img src={this.setImage()} alt={"fd"}/>
             </Grid>
-
         )
     }
 }

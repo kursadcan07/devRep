@@ -13,10 +13,10 @@ const axios = require('axios');
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
-        signature: state.userLoginReducer.signature,
         userMail: state.userLoginReducer.userMail,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
+        userSignature:state.userLoginReducer.userSignature,
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
         userArea: state.userLoginReducer.userArea
@@ -39,21 +39,20 @@ let passRegex = /^[a-zA-Z0-9]{5,12}$/
 let emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
 class loginScreen extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             userMail: "",
             userPassword: "",
             loginStat: false,
             mes: "",
-            signature: ""
         }
         this.updateEmail = this.updateEmail.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.checkLoginData = this.checkLoginData.bind(this);
         this.validateForPassword = this.validateForPassword.bind(this);
         this.validateForEmail = this.validateForEmail.bind(this);
-        /*  this.setDataForUser = this.setDataForUser.bind(this);*/
+
     }
 
     updateEmail(event) {
@@ -137,18 +136,20 @@ class loginScreen extends React.Component {
             return api.get('/LoginSignatureValidation/' + this.state.userMail)
                 .then(
                     function (response) {
-                        signatureExist = response.stat;
+                        signatureExist = response.data.stat;
                     })
                 .then(
                     api.post('/login',
                         {
                             userMail: userMail,
                             userPassword: userPassword,
-                        }).then(res => {
+                        })
+                        .then(res => {
                         if (res.data.stat) {
                             this.setState({
                                 loginStat: true
                             })
+
                             this.props.setUser(res.data.onlineUser)
 
                             if (!signatureExist) {
@@ -164,8 +165,6 @@ class loginScreen extends React.Component {
                                     pathname: '/PersonelScreens/NavigateTheChief',
                                 })
                             }
-
-
                         } else if (!res.data.stat) {
                             console.log(res.data.mes)
                             this.setState({

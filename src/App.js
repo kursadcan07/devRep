@@ -1,17 +1,13 @@
 import React, {useState} from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Link} from "react-router-dom";
-import Logo from "./PersonelScreens/SystemImages/CompanyLogo.png";
 import PersonelNavigation from "./PersonelScreens/PersonelNavigation";
 import PreviousPermissions from "./PersonelScreens/PreviousPermissions";
 import FillingThePermissionForm from "./PersonelScreens/FillingThePermissionForm";
-import NavPrevPer from "./PersonelScreens/SuccesMessage";
 import SuccesDisplaying from "./PersonelScreens/SuccesMessage";
 import NavigateTheChief from "./PersonelScreens/NavigateTheChief";
 import DisplayPermissionForm from "./PersonelScreens/DisplayPermissionForm";
 import reviseMessage from "./PersonelScreens/ReviseMessageSending";
 import StickyHeadTable from "./PersonelScreens/StickyHeadTable";
-import takeSignature from "./PersonelScreens/TakeTheSignature";
 import ResetThePassword from "./PersonelScreens/ResetThePassword";
 import LoginScreen from "./PersonelScreens/LoginScreen";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -31,7 +27,7 @@ function App() {
         <Router>
             <div>
                 <Switch>
-                    <Route path="/" exact component={LoginScreen}/>
+                    <Route path="/" exact component={LoginScreen}  />
                     <Route path="/PersonelScreens/PersonelNavigation" component={PersonelNavigation}/>
                     <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissions} />
                     <Route path="/PersonelScreens/FillingThePermissionForm" component={FillingThePermissionForm}/>
