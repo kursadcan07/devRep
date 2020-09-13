@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.js": "/static/js/main.36ec343a.chunk.js",
+    "main.js.map": "/static/js/main.36ec343a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.021b1fe2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.021b1fe2.js.map",
+    "static/css/2.89ea3530.chunk.css": "/static/css/2.89ea3530.chunk.css",
+    "static/js/2.e2ceef1d.chunk.js": "/static/js/2.e2ceef1d.chunk.js",
+    "static/js/2.e2ceef1d.chunk.js.map": "/static/js/2.e2ceef1d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.91102333f178f1e73679bd711f87bca9.js": "/precache-manifest.91102333f178f1e73679bd711f87bca9.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.89ea3530.chunk.css.map": "/static/css/2.89ea3530.chunk.css.map",
+    "static/js/2.e2ceef1d.chunk.js.LICENSE.txt": "/static/js/2.e2ceef1d.chunk.js.LICENSE.txt",
+    "static/media/DisplayPermissionButtonIcon.svg": "/static/media/DisplayPermissionButtonIcon.fcb99e16.svg",
+    "static/media/DisplayPreviousPermissionsImage.svg": "/static/media/DisplayPreviousPermissionsImage.a39b2ccb.svg",
+    "static/media/ExampleSignature.png": "/static/media/ExampleSignature.654f4e14.png",
+    "static/media/FillingFormImage.svg": "/static/media/FillingFormImage.818e0173.svg",
+    "static/media/IndividualIcon.svg": "/static/media/IndividualIcon.5ae37c8a.svg",
+    "static/media/ManagerIcon.svg": "/static/media/ManagerIcon.ab2a2cf9.svg",
+    "static/media/ManagerReplacement.svg": "/static/media/ManagerReplacement.f5add173.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.021b1fe2.js",
+    "static/css/2.89ea3530.chunk.css",
+    "static/js/2.e2ceef1d.chunk.js",
+    "static/js/main.36ec343a.chunk.js"
+  ]
+}

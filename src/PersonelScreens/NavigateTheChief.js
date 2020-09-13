@@ -60,8 +60,6 @@ function displayTheManagementBasedOperations(flag,props) {
             <Grid container spacing={1} style={{justifyContent: "center"}}>
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
-                        {/*  ----------------------------------------------- */}
-
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
                                     onClick={()=>{
                                         props.history.push({
@@ -81,7 +79,6 @@ function displayTheManagementBasedOperations(flag,props) {
                                     İZİN TALEPLERİ
                                 </h1>
                             </button>
-
                     </Bounce>
                 </Grid>
                 {props.proxyChiefID!==-1000 &&
