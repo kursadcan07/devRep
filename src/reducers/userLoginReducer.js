@@ -1,6 +1,7 @@
 const userReducer = (state = {
     userID:0,
     userSignature:undefined,
+    proxyChiefID:undefined,
     chiefID:0,
     generalManagerID:0,
     displayStatus:0,
@@ -17,6 +18,8 @@ const userReducer = (state = {
                 ...state,
                 userID: action.payload.userID,
                 chiefID:action.payload.chiefID,
+                proxyChiefID:action.payload.proxyChiefID,
+
                 generalManagerID:action.payload.generalManagerID,
                 userMail:action.payload.userMail,
                 personalName:action.payload.personalName,

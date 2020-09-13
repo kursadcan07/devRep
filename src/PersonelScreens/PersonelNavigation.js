@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
         userMail: state.userLoginReducer.userMail,
+        proxyChiefID:state.userLoginReducer.proxyChiefID,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
         chiefID: state.userLoginReducer.chiefID,
@@ -25,32 +26,26 @@ class PersonelNavigation extends React.Component {
     constructor(props) {
 
         super(props);
-        console.log("NAVİGASYON ALANIIIIIIII")
-        console.log(props);
-
-        this.setImage=this.setImage.bind(this);
-
+        console.log(props.userID);
+             // this.setImage=this.setImage.bind(this);
     }
-
+    /*
     setImage (){
        return api.get(
             '/getSignatureByUsersID/' + this.props.userID,
         )
             .then(
                 function (response) {
-                    console.log("************************************")
-                    console.log( URL.createObjectURL(response.data.usersSignature.imageName));
-                    /* let data = URL.createObjectURL(response.files[0]);
-                     console.log(data);*/
-                    /*return (response.data.usersSignature.imageData)*/
+                    console.log(response)
                 })
     }
-
+    */
 
     render() {
 
         const iconFirst = require('./SystemImages/FillingFormImage.svg');
         const iconSecond = require('./SystemImages/DisplayPreviousPermissionsImage.svg');
+
         return (
             <Grid container spacing={2} style={{width: "100%"}}>
                 <Grid item xs={12} sm={6}>
@@ -77,8 +72,8 @@ class PersonelNavigation extends React.Component {
                         </button>
                     </Link>
                 </Grid>
-                <img src={this.setImage()} alt={"fd"}/>
             </Grid>
+
         )
     }
 }

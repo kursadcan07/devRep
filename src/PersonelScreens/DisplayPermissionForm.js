@@ -20,7 +20,11 @@ const api = axios.create({
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
+
         chiefID: state.userLoginReducer.chiefID,
+        proxyChiefID:state.userLoginReducer.proxyChiefID,
+
+
         generalManagerID: state.userLoginReducer.generalManagerID,
 
         displayStatus: state.userLoginReducer.displayStatus,
@@ -105,6 +109,8 @@ class DisplayPermissionForm extends React.Component {
             this.state = {
                 userID: this.props.userID,
                 chiefID: this.props.chiefID,
+                proxyChiefID:this.props.proxyChiefID,
+
                 generalManagerID: this.props.generalManagerID,
 
                 personalName: this.props.personalName,
@@ -294,7 +300,8 @@ class DisplayPermissionForm extends React.Component {
                     this.state.priceOfTrainOrBus,
                     this.state.setPermissionType,
                     this.state.chiefID,
-                    this.state.generalManagerID
+                    this.state.generalManagerID,
+                    this.state.proxyChiefID,
                 )
             } else {
                 if (this.state.displayStatus !== 1) {
@@ -408,7 +415,8 @@ class DisplayPermissionForm extends React.Component {
                     this.state.priceOfTrainOrBus,
                     this.state.setPermissionType,
                     this.state.chiefID,
-                    this.state.generalManagerID
+                    this.state.generalManagerID,
+                    this.state.proxyChiefID,
                 )
             } else {
                 if (this.state.displayStatus !== 1) {
@@ -523,7 +531,8 @@ class DisplayPermissionForm extends React.Component {
                     this.state.priceOfTrainOrBus,
                     this.state.setPermissionType,
                     this.state.chiefID,
-                    this.state.generalManagerID
+                    this.state.generalManagerID,
+                    this.state.proxyChiefID,
                 )
             }
         }
@@ -1753,7 +1762,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                         userStatusS, personalNameS, demandDateOfPermissionS, beginDateOfPermissionS,
                                         endDateOfPermissionS, foldCodeS, areaCodeS, selectVehicleUsageNameS,
                                         selectVehicleUsageIDS, permissionDescriptionS, personalCarUsageS, totalDistanceOfIndividualCarS,
-                                        priceOfTrainOrBusS, setPermissionTypeS, chiefIDS, generalManagerIDS
+                                        priceOfTrainOrBusS, setPermissionTypeS, chiefIDS, generalManagerIDS ,proxyChiefIDS
 ) {
 
     return (
@@ -1827,6 +1836,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 personalName: personalNameS,
                                 userID: userIDS,
                                 chiefID: chiefIDS,
+
                                 generalManagerID: generalManagerIDS,
                                 userStatus: userStatusS,
                                 displayStatus: 1,
@@ -1843,7 +1853,8 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 totalDistanceOfIndividualCar: totalDistanceOfIndividualCarS,
                                 permissionDescription: permissionDescriptionS,
                                 personalCarUsage: personalCarUsageS,
-                                isPermissionActive: true
+                                isPermissionActive: true,
+                                proxyChiefID:proxyChiefIDS,
                             }).then(res => {
 
                             if (res.data.stat) {

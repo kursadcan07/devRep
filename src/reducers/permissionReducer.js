@@ -2,6 +2,8 @@
 const permissionReducer = (state = {
     userID:0,
     chiefID:0,
+    proxyChiefID:0,
+
     generalManagerID:0,
     isPermissionActive:true,
     personalName:"-",
@@ -41,6 +43,8 @@ const permissionReducer = (state = {
                 userID:action.payload.userID,
 
                 chiefID:action.payload.chiefID,
+                proxyChiefID:action.payload.proxyChiefID,
+
                 generalManagerID:action.payload.generalManagerID,
                 personalName:action.payload.personalName,
 

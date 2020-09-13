@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
 
         userID: state.userLoginReducer.userID,
         chiefID: state.userLoginReducer.chiefID,
+        proxyChiefID:state.userLoginReducer.proxyChiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
 
         permissionDescription: state.permissionReducer.permissionDescription,
@@ -73,6 +74,7 @@ class PreviousPermissions extends React.Component {
         this.getDataForChief = this.getDataForChief.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.bringHeader = this.bringHeader.bind(this);
+        this.getDataForProxyChief=this.getDataForProxyChief.bind(this);
 
 
         if (this.props.userStatus === 1) {
@@ -86,9 +88,17 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else {
-                this.getDataForChief(this.props.userID).then((data) => {
-                    this.setState({data: data})
-                });
+                if(this.props.proxyChiefID!==-1000){
+                    this.getDataForChief(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }else{
+                    this.getDataForProxyChief(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+
+                }
+
             }
         } else if (this.props.userStatus === 3) {
 
@@ -117,9 +127,16 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else {
-                this.getDataForChief(this.props.userID).then((data) => {
-                    this.setState({data: data})
-                });
+                if(this.props.proxyChiefID!==-1000){
+                    this.getDataForChief(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }else{
+                    this.getDataForProxyChief(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+
+                }
             }
 
         } else if (this.props.userStatus === 3) {
@@ -149,9 +166,16 @@ class PreviousPermissions extends React.Component {
                         this.setState({data: data})
                     });
                 } else {
-                    this.getDataForChief(this.props.userID).then((data) => {
-                        this.setState({data: data})
-                    });
+                    if(this.props.proxyChiefID!==-1000){
+                        this.getDataForChief(this.props.userID).then((data) => {
+                            this.setState({data: data})
+                        });
+                    }else{
+                        this.getDataForProxyChief(this.props.userID).then((data) => {
+                            this.setState({data: data})
+                        });
+
+                    }
                 }
             } else if (this.props.userStatus === 3) {
 
@@ -203,10 +227,47 @@ class PreviousPermissions extends React.Component {
     }
 
     getDataForChief(chiefID) {
+
+        console.log("DERLER Kİİİİ")
+        console.log(this.props)
+
+
         let arr = [];
         let arr2 = [];
 
         return api.get('/displayPermissionsForChief/' + chiefID + '/' + this.state.isActive)
+            .then(
+                function (response) {
+
+                    Object.keys(response.data.prevPerms).forEach(function (key) {
+
+                        arr.push(response.data.prevPerms[key]);
+
+                    });
+
+                    for (let i = 0; i < arr.length; i++) {
+
+                        arr2.push(createData(
+                            arr[i].userStatus,
+                            arr[i].permissionID,
+                            arr[i].beginDateOfPermission,
+                            arr[i].endDateOfPermission,
+                            arr[i].chiefConfirmStatus,
+                            arr[i].generalManagerConfirmStatus,
+                            arr[i].chiefsDescription,
+                            arr[i].generalManagerDescription)
+                        )
+                    }
+                    return arr2
+                })
+    }
+
+    getDataForProxyChief(proxyChiefID) {
+
+        let arr = [];
+        let arr2 = [];
+
+        return api.get('/displayPermissionsForProxyChief/' + proxyChiefID + '/' + this.state.isActive)
             .then(
                 function (response) {
 

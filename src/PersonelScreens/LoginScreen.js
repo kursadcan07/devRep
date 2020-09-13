@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
         userMail: state.userLoginReducer.userMail,
+        proxyChiefID:state.userLoginReducer.proxyChiefID,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
         userSignature:state.userLoginReducer.userSignature,
@@ -46,7 +47,9 @@ class loginScreen extends React.Component {
             userPassword: "",
             loginStat: false,
             mes: "",
+
         }
+
         this.updateEmail = this.updateEmail.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.checkLoginData = this.checkLoginData.bind(this);
@@ -149,14 +152,20 @@ class loginScreen extends React.Component {
                             this.setState({
                                 loginStat: true
                             })
+                            console.log("online olan userrrr::::")
+                            console.log(res.data.onlineUser)
 
                             this.props.setUser(res.data.onlineUser)
-
+                            /*
                             if (!signatureExist) {
                                 props.history.push({
                                     pathname: '/PersonelScreens/TakeTheSignature',
                                 })
-                            } else if (this.props.userStatus === 1) {
+                            }
+                            else
+                            */
+
+                            if (this.props.userStatus === 1) {
                                 props.history.push({
                                     pathname: '/PersonelScreens/PersonelNavigation',
                                 })

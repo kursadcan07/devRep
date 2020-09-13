@@ -8,8 +8,6 @@ import {connect} from "react-redux";
 import setDisplayStatusAction from "../actions/setDisplayStatusAction";
 
 
-const axios = require('axios');
-
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -28,6 +26,7 @@ const mapStateToProps = (state) => {
         userID: state.userLoginReducer.userID,
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
+        proxyChiefID:state.userLoginReducer.proxyChiefID,
 
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
@@ -54,17 +53,44 @@ const mapStateToProps = (state) => {
 
 function displayTheManagementBasedOperations(flag,props) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');
+    const crateReplacementIcon = require('./SystemImages/ManagerReplacement.svg');
     if (flag) {
         return (
             <Grid container spacing={1} style={{justifyContent: "center"}}>
+                {props.proxyChiefID!==-1000 &&
+                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
+                    <Bounce right>
+                        {/*  ----------------------------------------------- */}
+                        <button style={{display: "flex", flex: 0.5, width: "100%"}}
+                                onClick={()=>{
+                                    props.history.push({
+                                        pathname: '/PersonelScreens/GenerateProxyManager',
+                                    })
+                                }}
+                                type="button" className="btn btn-primary btn-block">
+                            <img alt="IconEye"
+                                 style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
+                                 src={crateReplacementIcon}/>
+                            <h1 style={{
+                                display: "flex",
+                                flexDirection: "flex-start",
+                                fontSize: "16px",
+                                margin: "auto"
+                            }}>
+                                VEKALET SİSTEMİ
+                            </h1>
+                        </button>
 
+                    </Bounce>
+                </Grid>}
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
                         {/*  ----------------------------------------------- */}
+
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
                                     onClick={()=>{
                                         props.history.push({
-                                            pathname: '/PersonelScreens/DisplayPermissionForm',
+                                            pathname: '/PersonelScreens/PreviousPermissons',
                                         })
                                     }}
                                     type="button" className="btn btn-primary btn-block">
@@ -83,6 +109,7 @@ function displayTheManagementBasedOperations(flag,props) {
 
                     </Bounce>
                 </Grid>
+
             </Grid>
         )
     } else {
@@ -138,16 +165,8 @@ class NavigateTheChief extends React.Component {
                         </h3>
                     </button>
                     <Grid item xs={12} style={{display: "flex", flexDirection: "column", flex: 0.5, width: "100%"}}>
-                        <Link to="PreviousPermissons"
-                              style={{
-                                  display: "flex",
-                                  flex: 0.5,
-                                  textDecoration: "none",
-                                  justifyContent: "center",
-                                  width: "100%"
-                              }}>
+
                             {displayTheManagementBasedOperations(this.state.selectedManagementOperations,this.props)}
-                        </Link>
                     </Grid>
                 </Grid>
 

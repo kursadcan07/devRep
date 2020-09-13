@@ -14,6 +14,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from "@date-io/date-fns";
 import trLocale from "date-fns/locale/tr"
 import TakeTheSignature from "./PersonelScreens/TakeTheSignature";
+import GenerateProxyManager from "./PersonelScreens/GenerateProxyManager";
 
 
 /*
@@ -32,8 +33,11 @@ function App() {
                     <Route path="/PersonelScreens/PreviousPermissons" component={PreviousPermissions} />
                     <Route path="/PersonelScreens/FillingThePermissionForm" component={FillingThePermissionForm}/>
                     <Route path="/PersonelScreens/PersonelNavigation" render={(props) => <PersonelNavigation {...props} title={`Props through render`} />}  />
+                    <Route path="/PersonelScreens/GenerateProxyManager" render={(props) => <GenerateProxyManager {...props} title={`Props through render`} />}  />
+
                     <Route path="/PersonelScreens/SuccesDisplaying" component={SuccesDisplaying} />
                     <Route path="/PersonelScreens/NavigateTheChief" component={NavigateTheChief} />
+
                     <Route path="/PersonelScreens/DisplayPermissionForm" render={(props) => <DisplayPermissionForm {...props} title={`Props through render`} />}/>
                     <Route path="/PersonelScreens/DisplayPermissionForm/:permissionID" render={(props) => <DisplayPermissionForm {...props} title={`Props through render`} />}/>
                     <Route path="/PersonelScreens/ReviseMessageSending" component={reviseMessage}/>

@@ -9,8 +9,8 @@ import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
 import setPermissionAction from "../actions/setPermissionAction";
 import {KeyboardDateTimePicker} from "@material-ui/pickers";
-import moment from "moment";
 let numbRegex = /^[0-9]+$/;
+
 
 /*
    This class allows to user that filling the permission form.
@@ -38,7 +38,10 @@ const mapStateToProps = (state) => {
 
         setPermissionType: state.permissionReducer.setPermissionType,
         userID: state.userLoginReducer.userID,
+
         chiefID: state.userLoginReducer.chiefID,
+        proxyChiefID:state.userLoginReducer.proxyChiefID,
+
         generalManagerID: state.userLoginReducer.generalManagerID,
 
         permissionDescription: state.permissionReducer.permissionDescription,
