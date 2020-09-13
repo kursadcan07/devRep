@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
         userMail: state.userLoginReducer.userMail,
+        chiefConfirmStatus:state.permissionReducer.chiefConfirmStatus,
         proxyChiefID:state.userLoginReducer.proxyChiefID,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
@@ -156,16 +157,13 @@ class loginScreen extends React.Component {
                             console.log(res.data.onlineUser)
 
                             this.props.setUser(res.data.onlineUser)
-                            /*
+
                             if (!signatureExist) {
                                 props.history.push({
                                     pathname: '/PersonelScreens/TakeTheSignature',
                                 })
                             }
-                            else
-                            */
-
-                            if (this.props.userStatus === 1) {
+                            else if (this.props.userStatus === 1) {
                                 props.history.push({
                                     pathname: '/PersonelScreens/PersonelNavigation',
                                 })

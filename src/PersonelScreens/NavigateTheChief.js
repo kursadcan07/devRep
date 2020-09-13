@@ -27,6 +27,7 @@ const mapStateToProps = (state) => {
         chiefID: state.userLoginReducer.chiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
         proxyChiefID:state.userLoginReducer.proxyChiefID,
+        chiefConfirmStatus:state.permissionReducer.chiefConfirmStatus,
 
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,
@@ -57,32 +58,6 @@ function displayTheManagementBasedOperations(flag,props) {
     if (flag) {
         return (
             <Grid container spacing={1} style={{justifyContent: "center"}}>
-                {props.proxyChiefID!==-1000 &&
-                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
-                    <Bounce right>
-                        {/*  ----------------------------------------------- */}
-                        <button style={{display: "flex", flex: 0.5, width: "100%"}}
-                                onClick={()=>{
-                                    props.history.push({
-                                        pathname: '/PersonelScreens/GenerateProxyManager',
-                                    })
-                                }}
-                                type="button" className="btn btn-primary btn-block">
-                            <img alt="IconEye"
-                                 style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
-                                 src={crateReplacementIcon}/>
-                            <h1 style={{
-                                display: "flex",
-                                flexDirection: "flex-start",
-                                fontSize: "16px",
-                                margin: "auto"
-                            }}>
-                                VEKALET SİSTEMİ
-                            </h1>
-                        </button>
-
-                    </Bounce>
-                </Grid>}
                 <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
                     <Bounce left>
                         {/*  ----------------------------------------------- */}
@@ -109,6 +84,32 @@ function displayTheManagementBasedOperations(flag,props) {
 
                     </Bounce>
                 </Grid>
+                {props.proxyChiefID!==-1000 &&
+                <Grid item xs={10} sm={8} style={{justifyContent: "center"}}>
+                    <Bounce right>
+                        {/*  ----------------------------------------------- */}
+                        <button style={{display: "flex", flex: 0.5, width: "100%"}}
+                                onClick={()=>{
+                                    props.history.push({
+                                        pathname: '/PersonelScreens/GenerateProxyManager',
+                                    })
+                                }}
+                                type="button" className="btn btn-primary btn-block">
+                            <img alt="IconEye"
+                                 style={{display: "flex", flexDirection: "left", width: "70px", height: "70px"}}
+                                 src={crateReplacementIcon}/>
+                            <h1 style={{
+                                display: "flex",
+                                flexDirection: "flex-start",
+                                fontSize: "16px",
+                                margin: "auto"
+                            }}>
+                                VEKALET SİSTEMİ
+                            </h1>
+                        </button>
+
+                    </Bounce>
+                </Grid>}
 
             </Grid>
         )

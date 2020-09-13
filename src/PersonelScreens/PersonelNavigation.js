@@ -3,16 +3,18 @@ import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
 
+
 const axios = require('axios');
 const api = axios.create({
     baseURL: `http://localhost:4000`
 })
 
+
 const mapStateToProps = (state) => {
     return {
         userID: state.userLoginReducer.userID,
         userMail: state.userLoginReducer.userMail,
-        proxyChiefID:state.userLoginReducer.proxyChiefID,
+        proxyChiefID: state.userLoginReducer.proxyChiefID,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
         chiefID: state.userLoginReducer.chiefID,
@@ -26,22 +28,31 @@ class PersonelNavigation extends React.Component {
     constructor(props) {
 
         super(props);
-        console.log(props.userID);
-             // this.setImage=this.setImage.bind(this);
+        this.state = {
+            multerImage: undefined,
+        }
+
+        this.disp=this.disp.bind(this);
+        this.disp().then((data)=>{
+            console.log(data)
+        })
     }
-    /*
-    setImage (){
-       return api.get(
-            '/getSignatureByUsersID/' + this.props.userID,
+
+    disp(){
+       return api.get("getSignatureByUsersID/"+this.props.userID).then(
+            function (response) {
+                return response
+            }
+
+
         )
-            .then(
-                function (response) {
-                    console.log(response)
-                })
     }
-    */
+
+
 
     render() {
+
+        this.disp();
 
         const iconFirst = require('./SystemImages/FillingFormImage.svg');
         const iconSecond = require('./SystemImages/DisplayPreviousPermissionsImage.svg');
@@ -72,6 +83,7 @@ class PersonelNavigation extends React.Component {
                         </button>
                     </Link>
                 </Grid>
+
             </Grid>
 
         )

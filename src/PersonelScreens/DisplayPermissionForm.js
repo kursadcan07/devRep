@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
         chiefID: state.userLoginReducer.chiefID,
         proxyChiefID:state.userLoginReducer.proxyChiefID,
 
-
+        chiefConfirmStatus:state.permissionReducer.chiefConfirmStatus,
         generalManagerID: state.userLoginReducer.generalManagerID,
 
         displayStatus: state.userLoginReducer.displayStatus,
@@ -103,6 +103,10 @@ class DisplayPermissionForm extends React.Component {
 
                 generalManagerConfirmStatus: undefined,
                 generalManagerDescription: undefined,
+
+                prevChiefConfirmStatus:undefined,
+                prevGeneralManagerConfirmStatus:undefined,
+
                 open: false,
             }
         } else {
@@ -141,6 +145,9 @@ class DisplayPermissionForm extends React.Component {
 
                 generalManagerConfirmStatus: this.props.generalManagerConfirmStatus,
                 generalManagerDescription: this.props.generalManagerDescription,
+
+                prevChiefConfirmStatus:undefined,
+                prevGeneralManagerConfirmStatus:undefined,
                 open: false,
             }
 
@@ -276,8 +283,9 @@ class DisplayPermissionForm extends React.Component {
     }
 
     displayButtonsForPermission() {
+
         let endCode = window.location.href.split("/")[window.location.href.split("/").length - 1];
-        //
+
         if (this.state.userStatus === 3) {
             if (endCode === "DisplayPermissionForm") {
                 return displayPersonelsButtonsForForm(
@@ -304,7 +312,14 @@ class DisplayPermissionForm extends React.Component {
                     this.state.proxyChiefID,
                 )
             } else {
-                if (this.state.displayStatus !== 1) {
+
+                api.get("getStatusOfGeneralManagerAndChief/"+endCode).then((data1)=>{
+                    this.setState({
+                        prevGeneralManagerConfirmStatus:data1.data.generalManagerConfirmStatus,
+                    })
+                })
+
+                if (this.state.displayStatus !== 1 && this.state.prevGeneralManagerConfirmStatus===3 ) {
                     return (
                         <div style={{
                             display: "flex",
@@ -365,32 +380,33 @@ class DisplayPermissionForm extends React.Component {
                                         </h1>
                                     </button>
 
-                                    <Dialog
-                                        open={this.state.open}
-                                        onClose={this.handleClose}
-                                        aria-labelledby="alert-dialog-title"
-                                        aria-describedby="alert-dialog-description"
-                                    >
-                                        <DialogTitle id="alert-dialog-title">{"AÇIKLAMANIZ"}</DialogTitle>
-                                        <DialogContent>
-                                            <DialogContentText id="alert-dialog-description">
+                                </Row>
+                            </Col>
+
+                            <Dialog
+                                open={this.state.open}
+                                onClose={this.handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"AÇIKLAMANIZ"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
                                                  <textarea id ="textID" placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
                                                            value={this.state.generalManagerDescription || ""}
                                                            className="form-control" rows="4" onChange={this.updateGeneralManagersDescription}/>
-                                            </DialogContentText>
-                                        </DialogContent>
-                                        <DialogActions>
-                                            <Button onClick={this.handleCloseForManager} color="primary" autoFocus>
-                                                GÖNDER
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
-
-                                </Row>
-                            </Col>
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={this.handleCloseForManager} color="primary" autoFocus>
+                                        GÖNDER
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
                         </div>
                     )
                 }
+
             }
         }
         else if (this.state.userStatus === 2) {
@@ -419,7 +435,16 @@ class DisplayPermissionForm extends React.Component {
                     this.state.proxyChiefID,
                 )
             } else {
-                if (this.state.displayStatus !== 1) {
+
+                api.get("getStatusOfGeneralManagerAndChief/"+endCode).then((data1)=>{
+                      this.setState({
+                        prevChiefConfirmStatus:data1.data.chiefConfirmStatus,
+
+                    })
+                })
+
+
+                if (this.state.displayStatus !== 1 && this.state.prevChiefConfirmStatus === 3) {
                     return (
                         <div style={{
                             display: "flex",
@@ -440,7 +465,7 @@ class DisplayPermissionForm extends React.Component {
                                                 this.handleClickOpen(2)
                                             }}
 
-                                        className="btn btn-danger" style={{
+                                            className="btn btn-danger" style={{
                                         display: "flex",
                                         marginRight: "5px",
                                         flex: 1,
@@ -467,7 +492,7 @@ class DisplayPermissionForm extends React.Component {
                                         textAlign: "center",
                                         justifyContent: "center"
                                     }} onClick={() => {
-                                            this.handleClickOpen(1)
+                                        this.handleClickOpen(1)
                                     }}>
                                         <h1 style={{
                                             display: "flex",
@@ -655,7 +680,7 @@ class DisplayPermissionForm extends React.Component {
                     marginBottom: "4px"
                 }}>
 
-                    {this.displayButtonsForPermission()}
+                    {this.displayButtonsForPermission(this.props)}
 
                 </div>
 

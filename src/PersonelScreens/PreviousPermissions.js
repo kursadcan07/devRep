@@ -1,9 +1,7 @@
 import React from "react";
-import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import StickyHeadTable from "./StickyHeadTable";
 import {connect} from "react-redux";
 import Switch from "@material-ui/core/Switch";
-import Fade from 'react-reveal/Fade';
 import {Bounce} from "react-reveal";
 
 const axios = require('axios');
@@ -22,6 +20,7 @@ const mapStateToProps = (state) => {
         chiefID: state.userLoginReducer.chiefID,
         proxyChiefID:state.userLoginReducer.proxyChiefID,
         generalManagerID: state.userLoginReducer.generalManagerID,
+        chiefConfirmStatus:state.permissionReducer.chiefConfirmStatus,
 
         permissionDescription: state.permissionReducer.permissionDescription,
         personalName: state.userLoginReducer.personalName,

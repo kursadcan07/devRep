@@ -40,6 +40,7 @@ class takeSignature extends React.Component {
 
         this.state = {
             imgUpload:undefined,
+            imgUploadForblod:undefined,
         }
 
         this.onFileChange = this.onFileChange.bind(this)
@@ -49,8 +50,9 @@ class takeSignature extends React.Component {
 
     onFileChange(event) {
         this.setState({imgUpload: event.target.files[0]});
-       console.log(event.target.files[0])
-        console.log( URL.createObjectURL(event.target.files[0]))
+        this.setState({imgUploadForblod: URL.createObjectURL(event.target.files[0])});
+
+
     }
 
     onFileUpload() {
@@ -66,12 +68,18 @@ class takeSignature extends React.Component {
 
             }
         )
-
-        this.props.history.push({
-            pathname: '/PersonelScreens/PersonelNavigation',
-        })
+        if(this.props.userStatus===1) {
+            this.props.history.push({
+                pathname: '/PersonelScreens/PersonelNavigation',
+            })
+        }else{
+            this.props.history.push({
+                pathname: '/PersonelScreens/NavigateTheChief',
+            })
+        }
 
     }
+
 
     render() {
         return (
@@ -105,7 +113,7 @@ class takeSignature extends React.Component {
 
                     </div>
                 </form>
-                <img src={this.state.imgUpload} alt="upload-image" className="process__image" />
+                <img src={this.state.imgUploadForblod} alt="upload-image" className="process__image" />
             </div>
         )
     }
