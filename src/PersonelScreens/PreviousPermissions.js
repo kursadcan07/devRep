@@ -3,6 +3,9 @@ import StickyHeadTable from "./StickyHeadTable";
 import {connect} from "react-redux";
 import Switch from "@material-ui/core/Switch";
 import {Bounce} from "react-reveal";
+import {Link} from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const axios = require('axios');
 
@@ -74,7 +77,7 @@ class PreviousPermissions extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.bringHeader = this.bringHeader.bind(this);
         this.getDataForProxyChief=this.getDataForProxyChief.bind(this);
-
+        this.displayBackButton=this.displayBackButton.bind(this);
 
         if (this.props.userStatus === 1) {
             this.getData().then((data) => {
@@ -353,6 +356,28 @@ class PreviousPermissions extends React.Component {
         )
     }
 
+   displayBackButton() {
+
+        return(
+            <div style={{
+                display: "flex",
+                flex: 1,
+                marginTop: "4px",
+                paddingLeft:"100px",
+                marginBottom: "4px"
+            }}>
+                <Link to={this.props.userStatus===1 ? "/PersonelScreens/PersonelNavigation" :"/PersonelScreens/NavigateTheChief"  }>
+                    <Fab style={{
+                        display:"flex",
+                        width: "70px",
+                        height: "70px",
+                    }}>
+                        <ArrowBackIcon/>
+                    </Fab>
+                </Link>
+            </div>
+        )
+    }
 
     render() {
         console.log("------------")
@@ -394,6 +419,7 @@ class PreviousPermissions extends React.Component {
 
                 </div>
                 <StickyHeadTable rows={this.state.data}/>
+                {this.displayBackButton()}
             </div>
 
         )

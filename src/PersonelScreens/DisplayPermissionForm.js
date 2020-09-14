@@ -10,6 +10,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Fab from "@material-ui/core/Fab";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const axios = require('axios');
 
@@ -22,9 +24,9 @@ const mapStateToProps = (state) => {
         userID: state.userLoginReducer.userID,
 
         chiefID: state.userLoginReducer.chiefID,
-        proxyChiefID:state.userLoginReducer.proxyChiefID,
+        proxyChiefID: state.userLoginReducer.proxyChiefID,
 
-        chiefConfirmStatus:state.permissionReducer.chiefConfirmStatus,
+        chiefConfirmStatus: state.permissionReducer.chiefConfirmStatus,
         generalManagerID: state.userLoginReducer.generalManagerID,
 
         displayStatus: state.userLoginReducer.displayStatus,
@@ -104,8 +106,8 @@ class DisplayPermissionForm extends React.Component {
                 generalManagerConfirmStatus: undefined,
                 generalManagerDescription: undefined,
 
-                prevChiefConfirmStatus:undefined,
-                prevGeneralManagerConfirmStatus:undefined,
+                prevChiefConfirmStatus: undefined,
+                prevGeneralManagerConfirmStatus: undefined,
 
                 open: false,
             }
@@ -113,7 +115,7 @@ class DisplayPermissionForm extends React.Component {
             this.state = {
                 userID: this.props.userID,
                 chiefID: this.props.chiefID,
-                proxyChiefID:this.props.proxyChiefID,
+                proxyChiefID: this.props.proxyChiefID,
 
                 generalManagerID: this.props.generalManagerID,
 
@@ -146,8 +148,8 @@ class DisplayPermissionForm extends React.Component {
                 generalManagerConfirmStatus: this.props.generalManagerConfirmStatus,
                 generalManagerDescription: this.props.generalManagerDescription,
 
-                prevChiefConfirmStatus:undefined,
-                prevGeneralManagerConfirmStatus:undefined,
+                prevChiefConfirmStatus: undefined,
+                prevGeneralManagerConfirmStatus: undefined,
                 open: false,
             }
 
@@ -157,10 +159,10 @@ class DisplayPermissionForm extends React.Component {
         this.displayButtonsForPermission = this.displayButtonsForPermission.bind(this);
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.updateChiefsDescription=this.updateChiefsDescription.bind(this);
-        this.handleClickOpenForGeneralManager=this.handleClickOpenForGeneralManager.bind(this);
+        this.updateChiefsDescription = this.updateChiefsDescription.bind(this);
+        this.handleClickOpenForGeneralManager = this.handleClickOpenForGeneralManager.bind(this);
         this.updateGeneralManagersDescription = this.updateGeneralManagersDescription.bind(this);
-        this.handleCloseForManager=this.handleCloseForManager.bind(this);
+        this.handleCloseForManager = this.handleCloseForManager.bind(this);
 
 
     }
@@ -210,19 +212,19 @@ class DisplayPermissionForm extends React.Component {
         }
     }
 
-    handleClickOpen(chiefConfirStat){
+    handleClickOpen(chiefConfirStat) {
         this.setState({
-           open: true,
-           chiefConfirmStatus:chiefConfirStat
+            open: true,
+            chiefConfirmStatus: chiefConfirStat
         });
     };
 
-    handleClickOpenForGeneralManager(generalManagerConfirmStat){
+    handleClickOpenForGeneralManager(generalManagerConfirmStat) {
         this.setState({
             open: true,
-            generalManagerConfirmStatus:generalManagerConfirmStat
+            generalManagerConfirmStatus: generalManagerConfirmStat
         });
-        console.log(this.state.generalManagerConfirmStatus,"Yönetici confirm stat");
+        console.log(this.state.generalManagerConfirmStatus, "Yönetici confirm stat");
     };
 
     updateChiefsDescription(event) {
@@ -239,15 +241,15 @@ class DisplayPermissionForm extends React.Component {
         })
     }
 
-    handleClose(){
+    handleClose() {
         this.setState({
-            open:false
+            open: false
         });
         let unPermisID = window.location.href.split("/")[window.location.href.split("/").length - 1];
         api.put('/changeChiefStatus/', {
             permissionID: unPermisID,
             chiefConfirmStatus: this.state.chiefConfirmStatus,
-            chiefsDescription:this.state.chiefsDescription
+            chiefsDescription: this.state.chiefsDescription
         }).then(r =>
             console.log(r)
         )
@@ -256,16 +258,16 @@ class DisplayPermissionForm extends React.Component {
         })
     };
 
-    handleCloseForManager(){
+    handleCloseForManager() {
         this.setState({
-            open:false
+            open: false
         });
 
         let unPermisID = window.location.href.split("/")[window.location.href.split("/").length - 1];
         api.put('/changeGeneralManagerStatus/', {
             permissionID: unPermisID,
             generalManagerConfirmStatus: this.state.generalManagerConfirmStatus,
-            generalManagerDescription:this.state.generalManagerDescription
+            generalManagerDescription: this.state.generalManagerDescription
         }).then(r =>
             console.log(r)
         )
@@ -313,13 +315,13 @@ class DisplayPermissionForm extends React.Component {
                 )
             } else {
 
-                api.get("getStatusOfGeneralManagerAndChief/"+endCode).then((data1)=>{
+                api.get("getStatusOfGeneralManagerAndChief/" + endCode).then((data1) => {
                     this.setState({
-                        prevGeneralManagerConfirmStatus:data1.data.generalManagerConfirmStatus,
+                        prevGeneralManagerConfirmStatus: data1.data.generalManagerConfirmStatus,
                     })
                 })
 
-                if (this.state.displayStatus !== 1 && this.state.prevGeneralManagerConfirmStatus===3 ) {
+                if (this.state.displayStatus !== 1 && this.state.prevGeneralManagerConfirmStatus === 3) {
                     return (
                         <div style={{
                             display: "flex",
@@ -392,9 +394,11 @@ class DisplayPermissionForm extends React.Component {
                                 <DialogTitle id="alert-dialog-title">{"AÇIKLAMANIZ"}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
-                                                 <textarea id ="textID" placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
+                                                 <textarea id="textID" placeholder="İzin Açıklamanızı Doldurunuz"
+                                                           maxLength="500"
                                                            value={this.state.generalManagerDescription || ""}
-                                                           className="form-control" rows="4" onChange={this.updateGeneralManagersDescription}/>
+                                                           className="form-control" rows="4"
+                                                           onChange={this.updateGeneralManagersDescription}/>
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
@@ -408,8 +412,7 @@ class DisplayPermissionForm extends React.Component {
                 }
 
             }
-        }
-        else if (this.state.userStatus === 2) {
+        } else if (this.state.userStatus === 2) {
             if (endCode === "DisplayPermissionForm") {
                 return displayPersonelsButtonsForForm(
                     this.props,
@@ -436,9 +439,9 @@ class DisplayPermissionForm extends React.Component {
                 )
             } else {
 
-                api.get("getStatusOfGeneralManagerAndChief/"+endCode).then((data1)=>{
-                      this.setState({
-                        prevChiefConfirmStatus:data1.data.chiefConfirmStatus,
+                api.get("getStatusOfGeneralManagerAndChief/" + endCode).then((data1) => {
+                    this.setState({
+                        prevChiefConfirmStatus: data1.data.chiefConfirmStatus,
 
                     })
                 })
@@ -514,9 +517,11 @@ class DisplayPermissionForm extends React.Component {
                                         <DialogTitle id="alert-dialog-title">{"AÇIKLAMANIZ"}</DialogTitle>
                                         <DialogContent>
                                             <DialogContentText id="alert-dialog-description">
-                                                 <textarea id ="textID" placeholder="İzin Açıklamanızı Doldurunuz" maxLength="500"
+                                                 <textarea id="textID" placeholder="İzin Açıklamanızı Doldurunuz"
+                                                           maxLength="500"
                                                            value={this.state.chiefsDescription || ""}
-                                                           className="form-control" rows="4" onChange={this.updateChiefsDescription}/>
+                                                           className="form-control" rows="4"
+                                                           onChange={this.updateChiefsDescription}/>
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
@@ -684,13 +689,44 @@ class DisplayPermissionForm extends React.Component {
 
                 </div>
 
+                <div style={{
+                    display: "flex",
+                    flex: 1,
+                    marginTop: "4px",
+                    marginBottom: "4px"
+                }}>
+
+                    {displayBackButton(this.props.userStatus)}
+
+                </div>
             </div>
         )
     }
 }
 
 
-/*function */
+function displayBackButton() {
+
+    return(
+        <div style={{
+            display: "flex",
+            flex: 1,
+            marginTop: "4px",
+            paddingLeft:"100px",
+            marginBottom: "4px"
+        }}>
+            <Link to={"/PersonelScreens/PreviousPermissons"}>
+                <Fab style={{
+                    display:"flex",
+                    width: "70px",
+                    height: "70px",
+                }}>
+                    <ArrowBackIcon/>
+                </Fab>
+            </Link>
+        </div>
+    )
+}
 
 //ÜST BAŞLIĞIN OLDUĞU KOMPONENT ( __1__ )
 function displayLogoAndMainDescription(areaCode, foldNumb) {
@@ -1787,7 +1823,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                         userStatusS, personalNameS, demandDateOfPermissionS, beginDateOfPermissionS,
                                         endDateOfPermissionS, foldCodeS, areaCodeS, selectVehicleUsageNameS,
                                         selectVehicleUsageIDS, permissionDescriptionS, personalCarUsageS, totalDistanceOfIndividualCarS,
-                                        priceOfTrainOrBusS, setPermissionTypeS, chiefIDS, generalManagerIDS ,proxyChiefIDS
+                                        priceOfTrainOrBusS, setPermissionTypeS, chiefIDS, generalManagerIDS, proxyChiefIDS
 ) {
 
     return (
@@ -1879,7 +1915,7 @@ function displayPersonelsButtonsForForm(props, userIDS,
                                 permissionDescription: permissionDescriptionS,
                                 personalCarUsage: personalCarUsageS,
                                 isPermissionActive: true,
-                                proxyChiefID:proxyChiefIDS,
+                                proxyChiefID: proxyChiefIDS,
                             }).then(res => {
 
                             if (res.data.stat) {
@@ -1921,4 +1957,5 @@ function displayPersonelsButtonsForForm(props, userIDS,
         </div>
     )
 }
+
 export default connect(mapStateToProps)(DisplayPermissionForm);

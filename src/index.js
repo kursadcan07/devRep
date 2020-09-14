@@ -6,16 +6,17 @@ import {Provider} from 'react-redux';
 import store from "./store";
 import * as serviceWorker from './serviceWorker';
 
+
 {/*
     Here the reactDOM element and its definition by Id "root" that given in html tag in index.html .
     This <App> component containts whole parts of programm.
 */
 }
-
-
 ReactDOM.render(
-        <Provider store={store}>
-    <App store={store}/>
-</Provider>
+
+    <Provider store={store} >
+        <App store={store} />
+    </Provider>
+
     , document.getElementById("root"))
 serviceWorker.register();

@@ -1,5 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const axios = require('axios');
 const api = axios.create({
@@ -32,6 +35,7 @@ class GenerateProxyManager extends React.Component {
         this.setNewPass = this.setNewPass.bind(this);
         this.getProxyMail=this.getProxyMail.bind(this);
         this.getProxyPassword=this.getProxyPassword.bind(this);
+        this.displayBackButton=this.displayBackButton.bind(this);
 
         this.getProxyMail().then((data)=>{
             this.setState({
@@ -45,6 +49,28 @@ class GenerateProxyManager extends React.Component {
             })
         })
 
+    }
+    displayBackButton() {
+
+        return(
+            <div style={{
+                display: "flex",
+                flex: 1,
+                marginTop: "4px",
+                paddingLeft:"100px",
+                marginBottom: "4px"
+            }}>
+                <Link to={"/PersonelScreens/NavigateTheChief"}>
+                    <Fab style={{
+                        display:"flex",
+                        width: "70px",
+                        height: "70px",
+                    }}>
+                        <ArrowBackIcon/>
+                    </Fab>
+                </Link>
+            </div>
+        )
     }
 
     getProxyMail(){
@@ -155,7 +181,7 @@ class GenerateProxyManager extends React.Component {
 
                     </div>
                 </form>
-
+                {this.displayBackButton()}
             </div>
         )
     }

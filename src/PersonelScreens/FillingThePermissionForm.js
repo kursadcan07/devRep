@@ -9,6 +9,9 @@ import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
 import setPermissionAction from "../actions/setPermissionAction";
 import {KeyboardDateTimePicker} from "@material-ui/pickers";
+import {Link} from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 let numbRegex = /^[0-9]+$/;
 
 
@@ -438,8 +441,26 @@ class FillingThePermissionForm extends React.Component {
                             {this.state.warningMessage}
                         </p>
                     </Row>
-
                 </Col>
+                <div style={{
+                    display: "flex",
+                    flex: 1,
+                    marginTop: "4px",
+                    paddingLeft:"100px",
+                    marginBottom: "4px"
+                }}>
+                    <Link to={this.props.userStatus===1 ? "/PersonelScreens/PersonelNavigation":"/PersonelScreens/NavigateTheChief"}>
+                        <Fab style={{
+                            display:"flex",
+
+                            width: "70px",
+                            height: "70px",
+                        }}>
+                            <ArrowBackIcon/>
+                        </Fab>
+
+                    </Link>
+                </div>
             </Container>
         )
     }

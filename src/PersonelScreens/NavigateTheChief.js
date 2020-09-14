@@ -6,6 +6,9 @@ import {Bounce, Slide} from "react-reveal";
 import {connect} from "react-redux";
 
 import setDisplayStatusAction from "../actions/setDisplayStatusAction";
+import Fab from "@material-ui/core/Fab";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import blue from "@material-ui/core/colors/blue";
 
 
 
@@ -125,7 +128,7 @@ class NavigateTheChief extends React.Component {
         }
         this.handleIndividualOperationSelection = this.handleIndividualOperationSelection.bind(this);
         this.handleManagementOrientedOperations = this.handleManagementOrientedOperations.bind(this);
-
+        this.displayBackButton = this.displayBackButton.bind(this);
     }
 
     handleIndividualOperationSelection(event) {
@@ -143,12 +146,41 @@ class NavigateTheChief extends React.Component {
         this.props.setDisplayStatus(2);
 
     }
+     displayBackButton()
+    {
+        return (
+            <div
+                style={{
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems:"center",
+                    marginBottom:"10px",
+                    marginTop:"500px",
+                }}>
+                <Link
+                    to={"/"}>
+                    <Fab style={{
+                        display: "flex",
+                        width: "70px",
+                        height: "70px",
+                        backgroundColor:"transparent",
+                    }}>
+                        <PowerSettingsNewIcon style={{ color: blue[600] }}/>
+                    </Fab>
+                </Link>
+            </div>
+        )
+    }
+
 
     render() {
         const managementIcon = require('./SystemImages/ManagerIcon.svg');
         const individualIcon = require('./SystemImages/IndividualIcon.svg');
 
         return (
+            <div>
+
+
             <Grid container spacing={1} style={{width: "100%"}}>
 
                 <Grid item xs={12} sm={6} style={{display: "flex", flexDirection: "column", flex: 1, width: "100%"}}>
@@ -197,9 +229,14 @@ class NavigateTheChief extends React.Component {
 
             </Grid>
 
+                <div>
+                    {this.displayBackButton()}
+                </div>
+            </div>
         );
     }
 }
+
 
 
 function displayIndividualOperations(flag,props) {
@@ -255,7 +292,6 @@ function displayIndividualOperations(flag,props) {
                         </Link>
                     </Bounce>
                 </Grid>
-
             </Grid>
         )
     } else {
