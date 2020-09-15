@@ -3,15 +3,9 @@ import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {connect} from "react-redux";
 import Fab from "@material-ui/core/Fab";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import green from "@material-ui/core/colors/green";
 import blue from "@material-ui/core/colors/blue";
 
-const axios = require('axios');
-const api = axios.create({
-    baseURL: `http://localhost:4000`
-})
 
 const mapStateToProps = (state) => {
     return {
@@ -60,8 +54,6 @@ class PersonelNavigation extends React.Component {
 
     render() {
 
-        /* this.disp();*/
-
         const iconFirst = require('./SystemImages/FillingFormImage.svg');
         const iconSecond = require('./SystemImages/DisplayPreviousPermissionsImage.svg');
 
@@ -104,13 +96,11 @@ class PersonelNavigation extends React.Component {
                 }}>
                     {this.displayBackButton()}
                 </div>
-
             </div>
 
         )
     }
 }
-
 
 export default connect(mapStateToProps)
 

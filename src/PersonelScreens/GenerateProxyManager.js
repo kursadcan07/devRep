@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
         userID: state.userLoginReducer.userID,
         userMail: state.userLoginReducer.userMail,
         proxyChiefID:state.userLoginReducer.proxyChiefID,
+        proxyGeneralManagerID:state.userLoginReducer.proxyGeneralManagerID,
         personalName: state.userLoginReducer.personalName,
         userStatus: state.userLoginReducer.userStatus,
         userSignature:state.userLoginReducer.userSignature,
@@ -32,22 +33,40 @@ class GenerateProxyManager extends React.Component {
             newPasswordOfGivenUser: "",
             userMail:"",
         }
+
         this.setNewPass = this.setNewPass.bind(this);
         this.getProxyMail=this.getProxyMail.bind(this);
         this.getProxyPassword=this.getProxyPassword.bind(this);
         this.displayBackButton=this.displayBackButton.bind(this);
+        this.getProxyMailForGeneralManager=this.getProxyMailForGeneralManager.bind(this);
+        this.getProxyPasswordForGeneralManager=this.getProxyPasswordForGeneralManager.bind(this);
 
-        this.getProxyMail().then((data)=>{
-            this.setState({
-                userMail:data,
-            })
-        })
 
-        this.getProxyPassword().then((data)=>{
-            this.setState({
-                newPasswordOfGivenUser:data,
+        if(this.props.userStatus===2){
+            this.getProxyMail().then((data)=>{
+                this.setState({
+                    userMail:data,
+                })
             })
-        })
+            this.getProxyPassword().then((data)=>{
+                this.setState({
+                    newPasswordOfGivenUser:data,
+                })
+            })
+        }else{
+            this.getProxyMailForGeneralManager().then((data)=>{
+                this.setState({
+                    userMail:data,
+                })
+            })
+            this.getProxyPasswordForGeneralManager().then((data)=>{
+                this.setState({
+                    newPasswordOfGivenUser:data,
+                })
+            })
+
+        }
+
 
     }
     displayBackButton() {
@@ -82,12 +101,30 @@ class GenerateProxyManager extends React.Component {
             )
     }
 
+    getProxyMailForGeneralManager(){
+        return api.get("/GetUserMailOfProxyGeneralManager/"+this.props.proxyGeneralManagerID)
+            .then(
+                function (response) {
+                    return response.data.proxyGeneralManagerEmail.userMail;
+                }
+            )
+    }
+
 
     getProxyPassword(){
         return api.get("/GetUserMailOfProxyChief/"+this.props.proxyChiefID)
             .then(
                 function (response) {
                     return response.data.chiefProxyEmail.userPassword;
+                }
+            )
+    }
+
+    getProxyPasswordForGeneralManager(){
+        return api.get("/GetUserMailOfProxyGeneralManager/"+this.props.proxyGeneralManagerID)
+            .then(
+                function (response) {
+                    return response.data.proxyGeneralManagerEmail.userPassword;
                 }
             )
     }
@@ -168,13 +205,21 @@ class GenerateProxyManager extends React.Component {
 
                         <button type="button" onClick={() => {
 
+                            if(this.props.userStatus===2){
+                                api.put("/resetProxyChiefsPassword/" + this.props.proxyChiefID, {
+                                    userPassword:this.setNewPass(),
+                                }).then(r =>
+                                    console.log(r)
+                                )
 
-                            api.put("/resetProxyChiefsPassword/" + this.props.proxyChiefID, {
-                                userPassword:this.setNewPass(),
-                            }).then(r =>
-                                console.log(r)
-                            )
-
+                            }
+                            else{
+                                api.put("/resetProxyGeneralManagerPassword/"+this.props.proxyGeneralManagerID,{
+                                    userPassword:this.setNewPass(),
+                                }).then(r =>
+                                    console.log(r)
+                                )
+                            }
                         }
                         } style={{margin: "auto"}} className="btn btn-primary btn-block">ŞİFRE RESETLE
                         </button>

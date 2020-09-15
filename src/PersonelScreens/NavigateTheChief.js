@@ -195,7 +195,6 @@ class NavigateTheChief extends React.Component {
                         </h3>
                     </button>
                     <Grid item xs={12} style={{display: "flex", flexDirection: "column", flex: 0.5, width: "100%"}}>
-
                             {displayTheManagementBasedOperations(this.state.selectedManagementOperations,this.props)}
                     </Grid>
                 </Grid>
@@ -226,14 +225,19 @@ class NavigateTheChief extends React.Component {
 
                     </Grid>
                 </Grid>
-
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: "10px"
+                }}>
+                    {this.displayBackButton()}
+                </div>
             </Grid>
             </div>
         );
     }
 }
-
-
 
 function displayIndividualOperations(flag,props) {
     const crateDemandIcon = require('./SystemImages/FillingFormImage.svg');

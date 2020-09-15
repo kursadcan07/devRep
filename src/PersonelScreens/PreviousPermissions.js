@@ -78,6 +78,7 @@ class PreviousPermissions extends React.Component {
         this.bringHeader = this.bringHeader.bind(this);
         this.getDataForProxyChief=this.getDataForProxyChief.bind(this);
         this.displayBackButton=this.displayBackButton.bind(this);
+        this.getDataForProxyGeneralManager=this.getDataForProxyGeneralManager.bind(this);
 
         if (this.props.userStatus === 1) {
             this.getData().then((data) => {
@@ -109,10 +110,17 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else {
+                if(this.props.proxyGeneralManagerID!==-1000){
+                    this.getDataForGeneralManager(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }
+                else{
+                    this.getDataForProxyGeneralManager(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }
 
-                this.getDataForGeneralManager(this.props.userID).then((data) => {
-                    this.setState({data: data})
-                });
             }
 
         }
@@ -147,9 +155,16 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else {
-                this.getDataForGeneralManager(this.props.userID).then((data) => {
-                    this.setState({data: data})
-                });
+                if(this.props.proxyGeneralManagerID!==-1000){
+                    this.getDataForGeneralManager(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }else{
+                    this.getDataForProxyGeneralManager(this.props.userID).then((data) => {
+                        this.setState({data: data})
+                    });
+                }
+
             }
         }
     }
@@ -186,9 +201,15 @@ class PreviousPermissions extends React.Component {
                         this.setState({data: data})
                     });
                 } else {
-                    this.getDataForGeneralManager(this.props.userID).then((data) => {
-                        this.setState({data: data})
-                    });
+                    if(this.props.proxyGeneralManagerID !==-1000){
+                        this.getDataForGeneralManager(this.props.userID).then((data) => {
+                            this.setState({data: data})
+                        });
+                    }else{
+                        this.getDataForProxyGeneralManager(this.props.userID).then((data) => {
+                            this.setState({data: data})
+                        });
+                    }
                 }
 
             }
@@ -302,6 +323,40 @@ class PreviousPermissions extends React.Component {
         let arr2 = [];
 
         return api.get('/displayPermissionsForGeneralManager/' + generalManagerID + '/' + this.state.isActive)
+            .then(
+                function (response) {
+
+                    Object.keys(response.data.prevPerms).forEach(function (key) {
+
+                        arr.push(response.data.prevPerms[key]);
+
+                    });
+
+                    for (let i = 0; i < arr.length; i++) {
+
+                        arr2.push(createData(
+                            arr[i].userStatus,
+                            arr[i].permissionID,
+                            arr[i].beginDateOfPermission,
+                            arr[i].endDateOfPermission,
+                            arr[i].chiefConfirmStatus,
+                            arr[i].generalManagerConfirmStatus,
+                            arr[i].chiefsDescription,
+                            arr[i].generalManagerDescription)
+                        )
+                    }
+
+                    return arr2
+
+                })
+    }
+
+    getDataForProxyGeneralManager(proxyGeneralManagerID) {
+
+        let arr = [];
+        let arr2 = [];
+
+        return api.get('/displayPermissionsForProxyGeneralManager/' + proxyGeneralManagerID + '/' + this.state.isActive)
             .then(
                 function (response) {
 
