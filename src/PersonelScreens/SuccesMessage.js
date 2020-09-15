@@ -24,7 +24,8 @@ function displaySuccessMessageWhenPermissionDemanded(props) {
     }else if (props.userStatus===2){
         currLink="NavigateTheChief";
     }
-    console.log(props.userStatus,"USERIN STATUSU")
+
+
     return(
         /* Here the main <div> */
         <div style={{

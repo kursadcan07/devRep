@@ -44,8 +44,8 @@ class loginScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userMail: "",
-            userPassword: "",
+            userMail: "user15@orema.com.tr",
+            userPassword: "sifre123",
             loginStat: false,
             mes: "",
 
@@ -153,17 +153,15 @@ class loginScreen extends React.Component {
                             this.setState({
                                 loginStat: true
                             })
-                            console.log("online olan userrrr::::")
-                            console.log(res.data.onlineUser)
 
                             this.props.setUser(res.data.onlineUser)
 
-                            if (!signatureExist) {
+                           /* if (!signatureExist) {
                                 props.history.push({
                                     pathname: '/PersonelScreens/TakeTheSignature',
                                 })
                             }
-                            else if (this.props.userStatus === 1) {
+                            else*/ if (this.props.userStatus === 1) {
                                 props.history.push({
                                     pathname: '/PersonelScreens/PersonelNavigation',
                                 })
@@ -221,14 +219,14 @@ class loginScreen extends React.Component {
                 Here we take e-mail address of the user as a input.
             */}
                     <div className="form-group">
-                        <input type="email" className="form-control" placeholder="E-Posta"
+                        <input type="email" value={this.state.userMail} className="form-control" placeholder="E-Posta"
                                onChange={this.updateEmail}/>
                     </div>
                     {/*
                 Here we take password of the user as a input.
             */}
                     <div className="form-group">
-                        <input type="password" className="form-control" placeholder="Şifre"
+                        <input type="password" value={this.state.userPassword} className="form-control" placeholder="Şifre"
                                onChange={this.updatePassword}/>
                     </div>
 

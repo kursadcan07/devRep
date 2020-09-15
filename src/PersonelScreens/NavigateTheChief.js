@@ -228,10 +228,6 @@ class NavigateTheChief extends React.Component {
                 </Grid>
 
             </Grid>
-
-                <div>
-                    {this.displayBackButton()}
-                </div>
             </div>
         );
     }
@@ -271,9 +267,9 @@ function displayIndividualOperations(flag,props) {
                         <Link to="PreviousPermissons" style={{textDecoration: "none"}}>
                             <button style={{display: "flex", flex: 0.5, width: "100%"}}
                                     onClick={()=>{
-                                        //BURDA KALDIIIIIIIIIIIIIIIIIIIIIM
+
                                         props.setDisplayStatus(1);
-                                        /*props.setDisplayStatus(1);*/
+
                                     }}
 
                                     type="button" className="btn btn-primary btn-block">

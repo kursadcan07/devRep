@@ -665,7 +665,7 @@ class DisplayPermissionForm extends React.Component {
                         marginBottom: "4px",
                         border: "0.6px solid black"
                     }}>
-                        {displayTheAcceptionPart(this.state.personalName, this.state.personalName, this.state.personalName)}
+                        {/*{displayTheAcceptionPart(this.state.personalName, this.state.personalName, this.state.personalName)}*/}
                     </div>
 
                     <div style={{
@@ -1617,7 +1617,7 @@ function displayDetailsOfVehicleUsage(kiloMeter, priceTL, carUsageID) {
         </div>
     )
 }
-
+/*
 function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
     const imza1 = require('./PrivateData/ExampleSignature.png');
     return (
@@ -1761,7 +1761,7 @@ function displayTheAcceptionPart(employeeName, chiefName, generalManagerName) {
 
         </div>
     )
-}
+}*/
 
 function displayFormHRrelatedInfo() {
     return (

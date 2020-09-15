@@ -109,7 +109,7 @@ class PreviousPermissions extends React.Component {
                     this.setState({data: data})
                 });
             } else {
-                console.log(this.props.userID,"Selam");
+
                 this.getDataForGeneralManager(this.props.userID).then((data) => {
                     this.setState({data: data})
                 });

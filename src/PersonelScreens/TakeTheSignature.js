@@ -52,34 +52,31 @@ class takeSignature extends React.Component {
         this.setState({imgUpload: event.target.files[0]});
         this.setState({imgUploadForblod: URL.createObjectURL(event.target.files[0])});
 
-
     }
 
     onFileUpload() {
 
         let imgFormObj = new FormData();
         imgFormObj.append("imageName","multer-image-" + Date.now());
-        imgFormObj.append("imageData",this.state.imgUpload)
-
-        api.post("/uploadmulter/"+this.props.userID,imgFormObj).then(
+        imgFormObj.append("imageData",this.state.imgUpload);
+        console.log("------------")
+        console.log(imgFormObj);
+        console.log("------------")
+        api.post("/uploadmulter/"+this.props.userID,imgFormObj)
+            .then(
             (data)=>{
-
                 console.log(data,"ŞEKLİNDE İMZA KAYDEDİLDİ")
-
-            }
-        )
-        if(this.props.userStatus===1) {
+            })
+            if(this.props.userStatus===1) {
             this.props.history.push({
                 pathname: '/PersonelScreens/PersonelNavigation',
             })
-        }else{
+            }else{
             this.props.history.push({
                 pathname: '/PersonelScreens/NavigateTheChief',
             })
-        }
-
+            }
     }
-
 
     render() {
         return (
